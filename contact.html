@@ -1,37 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact | Faiz Krisnadi</title>
     <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
+        a { color: var(--accent); text-decoration: none; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
+        footer { margin-top: 4rem; opacity: 0.6; }
+
+        /* Contact-specific styles */
+        .contact-container {
+            margin-top: 2rem;
         }
-        a {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: blue;
+        .contact-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            background: rgba(0,0,0,0.02);
+        }
+        .contact-method:hover {
+            background: rgba(37, 99, 235, 0.05);
+            transform: translateY(-2px);
+        }
+        .contact-icon {
+            font-size: 1.5rem;
+            width: 40px;
+            color: var(--accent);
+        }
+        .contact-details {
+            flex: 1;
+        }
+        .contact-label {
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+        .contact-value {
+            color: #555;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Contact Me</h1>
-        <p>Email: faiz.krisnadi@u.nus.edu</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/faizkrisnadi/" target="_blank">linkedin.com/in/faizkrisnadi</a></p>
-        <a href="index.html">Go back to Home</a>
-    </div>
+    <header>
+        <h1>Faiz Krisnadi</h1>
+        <p class="subtitle">Master's in International Affairs</p>
+        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html" style="font-weight:600">Contact</a>
+    </nav>
+    
+    <main class="contact-container">
+        <div class="contact-method">
+            <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-details">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">
+                    <a href="mailto:faiz.krisnadi@u.nus.edu">faiz.krisnadi@u.nus.edu</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-method">
+            <div class="contact-icon">
+                <i class="fab fa-x-twitter"></i>
+            </div>
+            <div class="contact-details">
+                <div class="contact-label">X (Twitter)</div>
+                <div class="contact-value">
+                    <a href="https://x.com/faizkrisnadi" target="_blank">x.com/faizkrisnadi</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-method">
+            <div class="contact-icon">
+                <i class="fab fa-linkedin-in"></i>
+            </div>
+            <div class="contact-details">
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">
+                    <a href="https://linkedin.com/in/faizkrisnadi" target="_blank">linkedin.com/in/faizkrisnadi</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        © 2024 Faiz Krisnadi. All rights reserved.
+    </footer>
 </body>
 </html>
