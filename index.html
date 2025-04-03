@@ -20,13 +20,18 @@
             color: var(--text);
             background: var(--bg);
         }
-        a { color: var(--accent); text-decoration: none; }
-        h1 { font-weight: 500; margin-bottom: 0; }
-        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
-        nav { margin: 2rem 0; }
-        nav a { margin-right: 1.5rem; }
-        section { margin: 3rem 0; }
-        footer { margin-top: 4rem; opacity: 0.6; }
+        .container {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .profile-column {
+            width: 200px;
+            text-align: center;
+        }
+        .content-column {
+            flex: 1;
+        }
         .profile-photo {
             width: 150px;
             height: 150px;
@@ -40,32 +45,53 @@
             height: 100%;
             object-fit: cover;
         }
-        .project-card {
-            border-left: 3px solid var(--accent);
-            padding: 1rem;
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { 
+            opacity: 0.8; 
+            margin-top: 0.5rem;
+            line-height: 1.4;
+        }
+        nav { 
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+        footer { 
+            margin-top: 4rem; 
+            opacity: 0.6;
+            text-align: center;
+        }
+        .intro-text {
             margin: 2rem 0;
+            line-height: 1.7;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="profile-photo">
-            <img src="assets/images/profile.jpg" alt="Faiz Krisnadi">
+    <div class="container">
+        <!-- Left Column - Profile -->
+        <div class="profile-column">
+            <div class="profile-photo">
+                <img src="assets/images/profile.jpg" alt="Faiz Krisnadi">
+            </div>
+            <h1>Faiz Krisnadi</h1>
+            <p class="subtitle">Master's in International Affairs</p>
+            <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
         </div>
-        <h1>Faiz Krisnadi</h1>
-        <p class="subtitle">Master's in International Affairs</p>
-        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </header>
-    
-    <nav>
-        <a href="about.html">About</a>
-        <a href="research.html">Research</a>
-        <a href="cv.html">CV</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    
-    <div class="project-card">
-        <p>Interested in the intersection of International Affairs, Economic Development, & Political Economy.</p>
+
+        <!-- Right Column - Content -->
+        <div class="content-column">
+            <nav>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="cv.html">CV</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            
+            <div class="intro-text">
+                <p>Interested in the intersection of International Affairs, Economic Development, & Political Economy.</p>
+            </div>
+        </div>
     </div>
     
     <footer>
