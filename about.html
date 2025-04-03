@@ -1,43 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About | Faiz Krisnadi</title>
     <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
         }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
+        a { color: var(--accent); text-decoration: none; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
+        section { margin: 3rem 0; }
+        footer { margin-top: 4rem; opacity: 0.6; }
+        
+        /* About page specific */
+        .about-content {
+            margin-top: 2rem;
+            line-height: 1.7;
         }
-        a {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: blue;
+        .education-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+        .education-item h3 {
+            margin-bottom: 0.3rem;
+        }
+        .education-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-cta {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>About Me</h1>
-        <p>Hi, I'm Faiz Krisnadi! I am a Master's student in International Affairs at Lee Kuan Yew School of Public Policy of the NUS (LKYSPP NUS) as a Low Tuck Kwong Foundation scholar, specializing in economic development, public policy, and political economy.</p>
-        
-        <p>In Fall 2025, I will be an exchange student at the University of St. Gallen, Switzerland, further deepening my expertise in global affairs and economics.</p>
-        
-        <p>I hold a Bachelor’s degree in International Relations from Universitas Muhammadiyah Yogyakarta, where I was awarded an IISMA scholarship to study at the University of Glasgow, UK, and also spent a semester at Asia University, Taiwan</p>
-        
-        <p>I am actively seeking research projects, internships, or part-time entry-level roles in policy research, economic development, or international affairs. Feel free to reach out via email at faiz.krisnadi@u.nus.edu.</p>
-        
-        <a href="index.html">Go back to Home</a>
-    </div>
+    <header>
+        <h1>Faiz Krisnadi</h1>
+        <p class="subtitle">Master's in International Affairs</p>
+        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html" style="font-weight:600">About</a>
+        <a href="research.html">Research</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section class="about-content">
+            <p>Hi, I'm Faiz Krisnadi! I am a Master's student in International Affairs at Lee Kuan Yew School of Public Policy of the NUS (LKYSPP NUS) as a Low Tuck Kwong Foundation scholar, specializing in economic development, public policy, and political economy.</p>
+            
+            <div class="education-item">
+                <h3>University of St. Gallen, Switzerland</h3>
+                <p class="education-meta">Exchange Student | Fall 2025</p>
+                <p>Will be deepening my expertise in global affairs and economics through this exchange program.</p>
+            </div>
+            
+            <div class="education-item">
+                <h3>Universitas Muhammadiyah Yogyakarta</h3>
+                <p class="education-meta">Bachelor's in International Relations | 2018-2022</p>
+                <p>Awarded an IISMA scholarship to study at the University of Glasgow, UK, and spent a semester at Asia University, Taiwan.</p>
+            </div>
+            
+            <div class="contact-cta">
+                <h3>Let's Connect</h3>
+                <p>I am actively seeking research projects, internships, or part-time entry-level roles in policy research, economic development, or international affairs.</p>
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:faiz.krisnadi@u.nus.edu">faiz.krisnadi@u.nus.edu</a></p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        © 2024 Faiz Krisnadi. All rights reserved.
+    </footer>
 </body>
 </html>
