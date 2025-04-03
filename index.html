@@ -1,52 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faiz Krisnadi | Personal Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #555;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faiz Krisnadi | Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Font Awesome for icons (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+  <header>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
+  </header>
 
-    <div class="container">
-        <h1>Welcome to My Website!</h1>
-        <p>Hi, I'm Faiz Krisnadi. I'm a Master's student in International Affairs at LKYSPP.</p>
-        <p>This website showcases my research, projects, and thoughts on global development.</p>
+  <main>
+    <section id="home" class="hero">
+      <h1>Hi, I'm <span>Faiz Krisnadi</span></h1>
+      <p>Web Developer | Designer | Creative Thinker</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </section>
 
-        <h2>Explore My Pages:</h2>
-        <p>
-            <a href="about.html">About Me</a> |
-            <a href="projects.html">My Projects</a> |
-            <a href="contact.html">Contact Me</a>
-        </p>
-    </div>
+    <section id="projects" class="projects">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Project 1</h3>
+          <p>A colorful web app built with HTML/CSS.</p>
+        </div>
+        <div class="project-card">
+          <h3>Project 2</h3>
+          <p>Interactive JavaScript project.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 Faiz Krisnadi. All rights reserved.</p>
+  </footer>
 </body>
-
-
+</html>
 

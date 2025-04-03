@@ -1,0 +1,14 @@
+:root {
+    --dark-blue: #0a192f;
+    --accent-blue: #64ffda;
+    --light-blue: #ccd6f6;
+    --medium-blue: #112240;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-blue);
+    color: var(--light-blue);
+  }
