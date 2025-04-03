@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Faiz Krisnadi | Portfolio</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Font Awesome for icons (optional) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faiz Krisnadi</title>
+    <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        a { color: var(--accent); text-decoration: none; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
+        section { margin: 3rem 0; }
+        footer { margin-top: 4rem; opacity: 0.6; }
+    </style>
 </head>
 <body>
-  <header>
+    <header>
+        <h1>Faiz Krisnadi</h1>
+        <p class="subtitle">Web Developer & Designer</p>
+    </header>
+    
     <nav>
-      <a href="#home">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
     </nav>
-  </header>
-
-  <main>
-    <section id="home" class="hero">
-      <h1>Hi, I'm <span>Faiz Krisnadi</span></h1>
-      <p>Web Developer | Designer | Creative Thinker</p>
-      <a href="#projects" class="btn">View My Work</a>
+    
+    <section id="work">
+        <h2>Selected Projects</h2>
+        <!-- Add your projects here -->
     </section>
-
-    <section id="projects" class="projects">
-      <h2>My Projects</h2>
-      <div class="project-grid">
-        <div class="project-card">
-          <h3>Project 1</h3>
-          <p>A colorful web app built with HTML/CSS.</p>
-        </div>
-        <div class="project-card">
-          <h3>Project 2</h3>
-          <p>Interactive JavaScript project.</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2024 Faiz Krisnadi. All rights reserved.</p>
-  </footer>
+    
+    <footer>
+        © 2024 Faiz Krisnadi. All rights reserved.
+    </footer>
 </body>
 </html>
 
