@@ -30,13 +30,30 @@
         .cv-section { margin-bottom: 2.5rem; }
         .cv-item { margin-bottom: 1.5rem; }
         .cv-date { color: #666; font-size: 0.9rem; }
+        .cv-download {
+            margin: 2rem 0;
+            padding: 1rem;
+            border: 1px dashed rgba(0,0,0,0.2);
+            border-radius: 8px;
+        }
         .download-btn {
-            display: inline-block;
-            padding: 0.5rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
             background: var(--accent);
             color: white;
-            border-radius: 4px;
-            margin-top: 1rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+        .download-btn:hover {
+            background: #1a56db;
+            transform: translateY(-2px);
+        }
+        .file-size {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
         }
     </style>
 </head>
@@ -58,9 +75,13 @@
     <main>
         <section>
             <h2>Curriculum Vitae</h2>
-            <a href="cv.pdf" class="download-btn">
-                <i class="fas fa-download"></i> Download PDF
-            </a>
+            
+            <div class="cv-download">
+                <a href="faiz-cv.pdf" class="download-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i> Download Full CV (PDF)
+                </a>
+                <p class="file-size">File size: 2.4MB</p>
+            </div>
             
             <div class="cv-section">
                 <h3>Education</h3>
@@ -69,7 +90,6 @@
                     <div class="cv-date">2022-2024</div>
                     <p>Master of International Affairs, Specialization in Economic Development</p>
                 </div>
-                <!-- Add more education items -->
             </div>
             
             <div class="cv-section">
@@ -79,7 +99,6 @@
                     <div class="cv-date">2023-Present</div>
                     <p>Conducted policy analysis on regional economic integration.</p>
                 </div>
-                <!-- Add more experience items -->
             </div>
             
             <div class="cv-section">
