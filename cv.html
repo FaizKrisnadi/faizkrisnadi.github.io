@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Faiz Krisnadi</title>
+    <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        a { color: var(--accent); text-decoration: none; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
+        section { margin: 3rem 0; }
+        footer { margin-top: 4rem; opacity: 0.6; }
+        .cv-section { margin-bottom: 2.5rem; }
+        .cv-item { margin-bottom: 1.5rem; }
+        .cv-date { color: #666; font-size: 0.9rem; }
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Faiz Krisnadi</h1>
+        <p class="subtitle">Master's in International Affairs</p>
+        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="cv.html" style="font-weight:600">CV</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Curriculum Vitae</h2>
+            <a href="cv.pdf" class="download-btn">
+                <i class="fas fa-download"></i> Download PDF
+            </a>
+            
+            <div class="cv-section">
+                <h3>Education</h3>
+                <div class="cv-item">
+                    <strong>Lee Kuan Yew School of Public Policy</strong>
+                    <div class="cv-date">2022-2024</div>
+                    <p>Master of International Affairs, Specialization in Economic Development</p>
+                </div>
+                <!-- Add more education items -->
+            </div>
+            
+            <div class="cv-section">
+                <h3>Work Experience</h3>
+                <div class="cv-item">
+                    <strong>Research Assistant</strong>, ASEAN Studies Centre
+                    <div class="cv-date">2023-Present</div>
+                    <p>Conducted policy analysis on regional economic integration.</p>
+                </div>
+                <!-- Add more experience items -->
+            </div>
+            
+            <div class="cv-section">
+                <h3>Skills</h3>
+                <ul>
+                    <li>Policy Analysis</li>
+                    <li>Economic Modeling</li>
+                    <li>Stata/SPSS</li>
+                    <li>Multilingual: English, Bahasa Indonesia, French</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        © 2024 Faiz Krisnadi. All rights reserved.
+    </footer>
+</body>
+</html>
