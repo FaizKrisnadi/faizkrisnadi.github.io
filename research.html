@@ -20,16 +20,39 @@
             color: var(--text);
             background: var(--bg);
         }
-        a { color: var(--accent); text-decoration: none; }
+        a { 
+            color: var(--accent); 
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        a:hover {
+            opacity: 0.7;
+        }
         h1 { font-weight: 500; margin-bottom: 0; }
         .subtitle { opacity: 0.8; margin-top: 0.5rem; }
         nav { margin: 2rem 0; }
         nav a { margin-right: 1.5rem; }
         section { margin: 3rem 0; }
         footer { margin-top: 4rem; opacity: 0.6; }
-        .research-item { margin-bottom: 2rem; }
-        .research-item h3 { margin-bottom: 0.5rem; }
-        .research-meta { color: #666; font-size: 0.9rem; }
+        .research-item { 
+            margin-bottom: 2rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
+        }
+        .research-item h3 { 
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .research-meta { 
+            color: #666; 
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .research-link {
+            font-style: italic;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -49,33 +72,89 @@
     
     <main>
         <section>
-            <h2>Research Projects</h2>
+            <h2>Book Chapters</h2>
             
             <div class="research-item">
-                <h3>The Political Economy of Southeast Asian Development</h3>
-                <p class="research-meta">2023 | Working Paper</p>
-                <p>Examining the institutional frameworks affecting economic growth in ASEAN countries.</p>
+                <h3>Menavigasi Prinsip Sentralitas ASEAN di Asia Tenggara di Tengah Menguatnya BRICS: Peran Kepemimpinan Indonesia</h3>
+                <p class="research-meta">Universitas Muhammadiyah Yogyakarta (Forthcoming)</p>
             </div>
             
             <div class="research-item">
-                <h3>Climate Change Policy in Emerging Economies</h3>
-                <p class="research-meta">2022 | Published in Journal of International Affairs</p>
-                <p>Comparative analysis of climate policy adoption in Indonesia, Vietnam, and Thailand.</p>
+                <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
+                <p class="research-meta">Mahidol University (2021)</p>
+                <a href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" 
+                   class="research-link"
+                   target="_blank" 
+                   rel="noopener">
+                   (link)
+                </a>
             </div>
         </section>
-        
+
         <section>
-            <h2>Conference Presentations</h2>
+            <h2>Conference Proceedings and Other Publications</h2>
+            
             <div class="research-item">
-                <h3>ASEAN Economic Forum 2023</h3>
-                <p class="research-meta">Bangkok, Thailand | November 2023</p>
-                <p>Presented findings on regional trade agreements and their impact on labor markets.</p>
+                <h3>Transforming Indonesia's Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
+                <p class="research-meta">Conference Proceeding (2023)</p>
+                <a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" 
+                   class="research-link"
+                   target="_blank" 
+                   rel="noopener">
+                   (link)
+                </a>
+            </div>
+            
+            <!-- Add other conference proceedings following the same pattern -->
+            
+            <div class="research-item">
+                <h3>Indonesia's Government's Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
+                <p class="research-meta">Undergraduate Thesis (2022)</p>
+                <a href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" 
+                   class="research-link"
+                   target="_blank" 
+                   rel="noopener">
+                   (link)
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2>Op-Ed</h2>
+            
+            <div class="research-item">
+                <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
+                <p class="research-meta">Citrakara Mandala (October 2020)</p>
+                <a href="https://link.medium.com/agfcQ4L6oub" 
+                   class="research-link"
+                   target="_blank" 
+                   rel="noopener">
+                   (link)
+                </a>
+            </div>
+            
+            <!-- Add other Op-Eds following the same pattern -->
+            
+        </section>
+
+        <section>
+            <h2>Podcast</h2>
+            
+            <div class="research-item">
+                <h3>Politik Lingkungan Global</h3>
+                <p class="research-meta">IPIREL Podcast (December 2020)</p>
+                <a href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&nd=1&dlsi=829834af9f8c4e86" 
+                   class="research-link"
+                   target="_blank" 
+                   rel="noopener">
+                   (link)
+                </a>
             </div>
         </section>
     </main>
     
     <footer>
-        © 2024 Faiz Krisnadi. All rights reserved.
+        © 2025 Faiz Krisnadi. All rights reserved.
     </footer>
 </body>
 </html>
