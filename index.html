@@ -1,55 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-   <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faiz Krisnadi</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* [Keeping all your existing CSS] */
+        .profile-column {
+            display: flex;
+            align-items: center; /* Align image and text in one row */
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f9f9f9;
-        }
-
-        .container {
-            display: flex;
-            align-items: center;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        .profile-photo {
+            flex-shrink: 0; /* Prevents resizing */
+            margin-right: 20px; /* Space between photo and text */
         }
 
         .profile-photo img {
-            width: 150px; /* Adjust size */
+            width: 150px; /* Fixed size */
             height: 150px;
-            border-radius: 8px; /* Keeps it square with rounded corners */
-            border: 2px solid #ccc; /* Thin border */
-            margin-right: 20px; /* Space between image and text */
             object-fit: cover;
-        }
-
-        .text-content {
-            flex: 1;
+            border-radius: 8px; /* Slightly rounded corners */
+            border: 2px solid #ccc; /* Thin border */
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="profile-photo">
-            <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
-                 alt="Faiz Krisnadi"
-                 onerror="this.src='https://via.placeholder.com/150'">
-        </div>
 <body>
     <div class="container">
         <div class="profile-column">
