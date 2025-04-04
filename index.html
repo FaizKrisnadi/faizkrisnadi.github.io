@@ -1,58 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faiz Krisnadi</title>
-    <style>
-        /* Keep all existing styles */
-        .container {
-            display: flex;
-            align-items: center;
-            max-width: 800px;
-            margin: auto;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faiz Krisnadi</title>
+  <style>
+    /* Basic resets / body styling */
+    body {
+      margin: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000;
+    }
 
-        .profile-photo {
-            flex-shrink: 0;
-            margin-right: 20px; /* Space between image and text */
-        }
+    /* Container to hold photo & text side by side */
+    .container {
+      display: flex;
+      align-items: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-        .profile-photo img {
-            width: 120px; /* Adjust size */
-            height: 120px;
-            border-radius: 8px; /* Slightly rounded edges */
-            border: 1.5px solid #ccc; /* Thin border */
-        }
+    /* Profile photo container */
+    .profile-photo {
+      margin-right: 20px; /* Space between image & text */
+      flex-shrink: 0;     /* Prevents the photo from shrinking */
+    }
 
-        .content {
-            flex-grow: 1;
-        }
-    </style>
+    /* Profile image styling */
+    .profile-photo img {
+      width: 150px;             /* Fixed width */
+      height: 150px;            /* Fixed height */
+      object-fit: cover;        /* Crop to fill the container */
+      border-radius: 8px;       /* Slightly rounded corners */
+      border: 1.5px solid #ccc; /* Thin border */
+    }
+
+    /* Content area next to the image */
+    .content {
+      flex-grow: 1; /* Takes up remaining space */
+    }
+
+    /* Heading style (optional) */
+    h1 {
+      margin-bottom: 0.5em;
+    }
+
+    /* Grey text for subheadings */
+    .subtext {
+      color: #666; 
+      margin: 0.2em 0;
+    }
+
+    /* Navigation links */
+    nav {
+      margin: 1em 0;
+    }
+
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #007bff; /* Link color */
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer at the bottom, centered */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="profile-photo">
-            <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
-                 alt="Faiz Krisnadi"
-                 onerror="this.src='https://via.placeholder.com/120'">
-        </div>
-        <div class="content">
-            <h1>Faiz Krisnadi</h1>
-            <p>Master's in International Affairs</p>
-            <p>Lee Kuan Yew School of Public Policy</p>
-            <nav>
-                <a href="#">About</a> | 
-                <a href="#">Research</a> | 
-                <a href="#">CV</a> | 
-                <a href="#">Contact</a>
-            </nav>
-            <p>Interested in the intersection of International Affairs, Economic Development, & Political Economy.</p>
-        </div>
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Profile Photo -->
+    <div class="profile-photo">
+      <img 
+        src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
+        alt="Faiz Krisnadi"
+        onerror="this.src='https://via.placeholder.com/150'"
+      />
     </div>
-    <footer>
-        <p>© 2025 Faiz Krisnadi. All rights reserved.</p>
-    </footer>
+
+    <!-- Content Section -->
+    <div class="content">
+      <h1>Faiz Krisnadi</h1>
+      <p class="subtext">Master's in International Affairs</p>
+      <p class="subtext">Lee Kuan Yew School of Public Policy</p>
+
+      <!-- Navigation (Links to your existing pages) -->
+      <nav>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <p>Interested in the intersection of International Affairs, Economic Development, & Political Economy.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Faiz Krisnadi. All rights reserved.</p>
+  </footer>
 </body>
 </html>
 
