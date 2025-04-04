@@ -19,10 +19,10 @@
       line-height: 1.6;
       color: var(--text);
       background: var(--bg);
+      text-align: center; /* Center all content */
     }
-    /* Header section with title and grey subtitles */
+    /* Header section */
     header {
-      text-align: center;
       margin-bottom: 1.5rem;
     }
     header h1 {
@@ -37,39 +37,27 @@
     /* Navigation */
     nav {
       margin: 2rem 0;
-      text-align: center;
     }
     nav a {
-      margin-right: 1.5rem;
+      margin: 0 1rem;
       text-decoration: none;
       color: var(--accent);
     }
     nav a:hover {
       text-decoration: underline;
     }
-    /* Container for profile image & landing content */
-    .container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 2rem;
-    }
-    .profile-photo {
-      flex-shrink: 0;
-      margin-right: 20px;
-    }
+    /* Profile image centered */
     .profile-photo img {
       width: 150px;
       height: 150px;
       object-fit: cover;
       border-radius: 8px;
       border: 1.5px solid #ccc;
-    }
-    .content {
-      flex-grow: 1;
+      display: block;
+      margin: 0 auto 1rem; /* Centers image and adds spacing below */
     }
     /* Footer styling */
     footer {
-      text-align: center;
       margin-top: 4rem;
       color: #888;
       font-size: 14px;
@@ -91,20 +79,18 @@
     <a href="contact.html">Contact</a>
   </nav>
   
-  <div class="container">
-    <div class="profile-photo">
-      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
-           alt="Faiz Krisnadi"
-           onerror="this.src='https://via.placeholder.com/150'">
-    </div>
-    <div class="content">
-      <p>Welcome to my personal website. Explore my work, research, and projects using the navigation above.</p>
-    </div>
+  <div class="profile-photo">
+    <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
+         alt="Faiz Krisnadi"
+         onerror="this.src='https://via.placeholder.com/150'">
   </div>
+
+  <p>Interested in the intersection of International Affairs, Political Economy, and Economic Development.</p>
   
   <footer>
     <p>© 2025 Faiz Krisnadi. All rights reserved.</p>
   </footer>
 </body>
 </html>
+
 
