@@ -1,1 +1,59 @@
+<style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        a { color: var(--accent); text-decoration: none; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
+        section { margin: 3rem 0; }
+        footer { margin-top: 4rem; opacity: 0.6; }
 
+        /* Profile image style (copied from index.html) */
+        .profile-photo img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px; /* Matches your index.html style */
+          border: 1.5px solid #ccc;
+          display: block;
+          margin: 0 auto 1rem; /* Centers image and adds spacing below */
+        }
+
+        /* About page specific */
+        .about-content {
+            margin-top: 2rem;
+            line-height: 1.7;
+        }
+        .education-item {
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+        .education-item h3 {
+            margin-bottom: 0.3rem;
+        }
+        .education-meta {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-cta {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+</style>
