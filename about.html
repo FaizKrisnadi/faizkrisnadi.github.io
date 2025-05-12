@@ -27,7 +27,18 @@
         nav a { margin-right: 1.5rem; }
         section { margin: 3rem 0; }
         footer { margin-top: 4rem; opacity: 0.6; }
-        
+
+        /* Profile image style (copied from index.html) */
+        .profile-photo img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px; /* Matches your index.html style */
+          border: 1.5px solid #ccc;
+          display: block;
+          margin: 0 auto 1rem; /* Centers image and adds spacing below */
+        }
+
         /* About page specific */
         .about-content {
             margin-top: 2rem;
@@ -55,12 +66,19 @@
     </style>
 </head>
 <body>
+    <!-- Profile photo added here -->
+    <div class="profile-photo">
+      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+           alt="Faiz Krisnadi"
+           onerror="this.src='https://via.placeholder.com/150'">
+    </div>
+
     <header>
         <h1>Faiz Krisnadi</h1>
         <p class="subtitle">Master's in International Affairs</p>
         <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
     </header>
-    
+
     <nav>
         <a href="index.html">Home</a>
         <a href="about.html" style="font-weight:600">About</a>
@@ -68,37 +86,37 @@
         <a href="cv.html">CV</a>
         <a href="contact.html">Contact</a>
     </nav>
-    
+
     <main>
         <section class="about-content">
             <p>Hi, I'm Faiz! I am a Low Tuck Kwong Foundation scholar at Lee Kuan Yew School of Public Policy of the NUS (LKYSPP NUS) studying International Affairs.</p>
 
             <p>My academic training—Research Methods, Global Politics & Economy, International Economic Development, Behavioural Economics, Comparative Politics, and Business and Politics—has equipped me with a strong analytical framework for understanding the multifaceted challenges of international development and economic policy.</p>
-            
+
             <p>
-                I'm also serving as a <strong>Reviewer</strong> for 
-                <a href="https://www.samarinda.lan.go.id/jba/index.php/jba" 
-                   target="_blank" 
+                I'm also serving as a <strong>Reviewer</strong> for
+                <a href="https://www.samarinda.lan.go.id/jba/index.php/jba"
+                   target="_blank"
                    rel="noopener"
                    class="journal-link">
                    Jurnal Borneo Administrator
-                </a> 
+                </a>
                 by Indonesia's <abbr title="Lembaga Administrasi Negara">LAN</abbr> (State Administration Institution).
             </p>
-            
+
             <p><b>Below is my educational background:</b></p>
 
-            
+
               <div class="education-item">
                 <h3>National University of Singapore</h3>
                 <p class="education-meta">Master in International Affairs | Lee Kuan Yew School of Public Policy | Expected 2026</p>
             </div>
-            
+
             <div class="education-item">
                 <h3>University of St. Gallen, Switzerland</h3>
                 <p class="education-meta">School of Economics and Political Science | Visiting Fall 2025</p>
             </div>
-            
+
             <div class="education-item">
                 <h3>Universitas Muhammadiyah Yogyakarta, Indonesia</h3>
                 <p class="education-meta">Bachelor's of Political Science | Department of International Relations | 2022</p>
@@ -113,7 +131,7 @@
                 <h3>Asia University, Taiwan</h3>
                 <p class="education-meta">College of Social and Humanities | Visiting Fall 2020</p>
             </div>
-            
+
             <div class="contact-cta">
                 <h3>Let's Connect</h3>
                 <p>I am actively seeking research projects, internships, or part-time entry-level roles in policy research, economic development, or international affairs.</p>
@@ -121,7 +139,7 @@
             </div>
         </section>
     </main>
-    
+
     <footer>
         © 2025 Faiz Krisnadi. All rights reserved.
     </footer>
