@@ -20,12 +20,31 @@
             color: var(--text);
             background: var(--bg);
         }
-        a { color: var(--accent); text-decoration: none; }
+        a { 
+            color: var(--accent); 
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        a:hover {
+            opacity: 0.7;
+        }
         h1 { font-weight: 500; margin-bottom: 0; }
         .subtitle { opacity: 0.8; margin-top: 0.5rem; }
         nav { margin: 2rem 0; }
         nav a { margin-right: 1.5rem; }
+        section { margin: 3rem 0; }
         footer { margin-top: 4rem; opacity: 0.6; }
+        
+        /* Profile image style (copied from index.html) */
+        .profile-photo img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px; /* Matches your index.html style */
+          border: 1.5px solid #ccc;
+          display: block;
+          margin: 0 auto 1rem; /* Centers image and adds spacing below */
+        }
 
         /* Contact-specific styles */
         .contact-container {
@@ -62,6 +81,13 @@
     </style>
 </head>
 <body>
+    <!-- Profile photo added here -->
+    <div class="profile-photo">
+      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+           alt="Faiz Krisnadi"
+           onerror="this.src='https://via.placeholder.com/150'">
+    </div>
+    
     <header>
         <h1>Faiz Krisnadi</h1>
         <p class="subtitle">Master's in International Affairs</p>
