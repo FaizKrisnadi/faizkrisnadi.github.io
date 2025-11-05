@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resources | Faiz Krisnadi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --text: #333;
+      --muted: #666;
+      --accent: #2563eb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
+
+    /* Layout */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header { margin-bottom: 1rem; }
+    h1 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+    .subtitle { opacity: 0.8; margin: 0.4rem 0 0; }
+
+    nav { margin: 2rem 0; }
+    nav a { margin-right: 1.2rem; }
+    nav a.active { font-weight: 600; }
+
+    section { margin: 2.5rem 0; }
+    h2 { margin: 0 0 1rem; font-weight: 600; }
+
+    footer { margin-top: 4rem; opacity: 0.6; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(37,99,235,0.03));
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      border-radius: 10px;
+    }
+    .hero h1 { font-size: 2.25rem; }
+    .hero p { margin: 0.4rem 0 0; color: var(--muted); }
+
+    /* Lists / items */
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0;
+    }
+    .item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1rem 1rem 0.9rem;
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 0.9rem;
+      align-items: start;
+      margin-bottom: 0.8rem;
+    }
+    .item i { margin-top: 0.2rem; opacity: 0.9; }
+
+    .item-title {
+      margin: 0;
+      font-weight: 600;
+    }
+    .item-desc {
+      margin: 0.25rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .item-cta a {
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    /* Badges / notes */
+    .badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      line-height: 1;
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(37,99,235,0.08);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      margin-left: 0.4rem;
+      vertical-align: middle;
+    }
+
+    .note {
+      background: rgba(37,99,235,0.05);
+      border: 1px solid var(--border);
+      padding: 0.9rem 1rem;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.8rem;
+    }
+
+    /* Small */
+    @media (max-width: 420px) {
+      .item { grid-template-columns: 24px 1fr; }
+      .item-cta { grid-column: 2; margin-top: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner">
+    <h1>Resources</h1>
+    <p>Templates, datasets, and trackers I maintain for students and collaborators.</p>
+  </header>
+
+  <nav aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+    <a href="cv.html">CV</a>
+    <a href="contact.html">Contact</a>
+    <a href="resources.html" class="active">Resources</a>
+  </nav>
+
+  <main>
+    <!-- Templates -->
+    <section aria-labelledby="templates">
+      <h2 id="templates">Templates</h2>
+      <ul class="list">
+        <li class="item">
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <div>
+            <p class="item-title">CV Template (Overleaf)</p>
+            <p class="item-desc">
+              A lightweight, graduate-applications-ready CV built for quick edits and strict formatting.
+              Read the instructions page first; make changes via the variables, not the core code.
+            </p>
+          </div>
+          <div class="item-cta">
+            <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
+          </div>
+        </li>
+
+        <!-- Add more templates when ready:
+        <li class="item">
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <div>
+            <p class="item-title">Statement of Purpose Template <span class="badge">Coming soon</span></p>
+            <p class="item-desc">Structured prompts + sections to keep arguments crisp and evidence-based.</p>
+          </div>
+          <div class="item-cta"><a href="#">—</a></div>
+        </li>
+        -->
+      </ul>
+    </section>
+
+    <!-- Datasets -->
+    <section aria-labelledby="datasets">
+      <h2 id="datasets">Datasets <span class="badge">Coming soon</span></h2>
+      <ul class="list">
+        <li class="item">
+          <i class="fa-solid fa-database" aria-hidden="true"></i>
+          <div>
+            <p class="item-title">Public dataset catalog</p>
+            <p class="item-desc">
+              Cleaned, well-documented tables with a short data dictionary and reproducible notes (sources, filters, version).
+              I’ll post downloads and codebooks here once they’re production-ready.
+            </p>
+          </div>
+          <div class="item-cta"><span class="badge">WIP</span></div>
+        </li>
+      </ul>
+      <div class="note">
+        Want to request a field or variable? Ping me via <a href="contact.html">Contact</a> with a short use-case and column list.
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 Faiz Krisnadi. All rights reserved.
+  </footer>
+</body>
+</html>
