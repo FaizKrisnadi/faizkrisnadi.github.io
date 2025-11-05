@@ -1,162 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Resources | Faiz Krisnadi</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root{
-      --bg:#f8f8f8;
-      --text:#333;
-      --muted:#666;
-      --accent:#2563eb;
-      --card:#ffffff;
-      --border:#e5e7eb;
-    }
-    body{
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      max-width:720px;margin:0 auto;padding:2rem;line-height:1.6;color:var(--text);background:var(--bg);
-    }
-    a{color:var(--accent);text-decoration:none;}
-    a:hover{text-decoration:underline;}
-    section{margin:2.5rem 0;}
-    h2{margin:0 0 1rem;font-weight:600;}
-    footer{margin-top:4rem;opacity:.6;}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Faiz Krisnadi</title>
+    <style>
+        :root {
+            --bg: #f8f8f8;
+            --text: #333;
+            --accent: #2563eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+        }
+        a { 
+            color: var(--accent); 
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        a:hover { opacity: 0.7; }
+        h1 { font-weight: 500; margin-bottom: 0; }
+        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
 
-    /* --- Masthead: text left, photo right (matches other pages) --- */
-    .masthead{
-      display:grid;grid-template-columns:1fr 150px;gap:1.25rem;align-items:start;margin-bottom:1rem;
-    }
-    .personal-header{text-align:left;}
-    .personal-header h1{font-weight:500;margin:0;font-size:2.25rem;letter-spacing:-.01em;}
-    .personal-header .subtitle{color:#777;opacity:.95;margin:.35rem 0 0;}
-    .profile-photo img{
-      width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;display:block;margin:0;
-    }
+        nav { margin: 2rem 0; }
+        nav a { margin-right: 1.5rem; }
 
-    /* --- Nav left-aligned --- */
-    nav{margin:1.25rem 0 2rem;text-align:left;}
-    nav a{margin-right:1.2rem;}
-    nav a.active{font-weight:600;}
+        section { margin: 3rem 0; }
+        footer { margin-top: 4rem; opacity: 0.6; }
+        
+        /* Profile image (same as Contact page) */
+        .profile-photo img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px;
+          border: 1.5px solid #ccc;
+          display: block;
+          margin: 0 auto 1rem; /* centered */
+        }
 
-    /* --- Resources hero (left-aligned) --- */
-    .hero{
-      background:linear-gradient(180deg,rgba(37,99,235,.06),rgba(37,99,235,.03));
-      border:1px solid var(--border);padding:1.25rem 1rem;border-radius:10px;text-align:left;
-    }
-    .hero h1{margin:0;font-size:2rem;}
-    .hero p{margin:.4rem 0 0;color:var(--muted);}
+        /* Resources-specific */
+        .hero {
+          background: rgba(37, 99, 235, 0.06);
+          border: 1px solid #e5e7eb;
+          padding: 1.25rem 1rem;
+          border-radius: 10px;
+        }
+        .hero h2 { 
+          margin: 0 0 .35rem; 
+          font-weight: 600; 
+          font-size: 2rem; 
+        }
+        .hero p { margin: 0; color: #666; }
 
-    /* --- List cards --- */
-    .list{list-style:none;padding:0;margin:.25rem 0 0;}
-    .item{
-      background:var(--card);border:1px solid var(--border);border-radius:10px;
-      padding:1rem 1rem 1rem .9rem;display:grid;grid-template-columns:28px 1fr auto;
-      gap:.9rem;align-items:start;margin-bottom:.8rem;
-    }
-    .item i{margin-top:.2rem;opacity:.9;}
-    .item-title{margin:0;font-weight:600;}
-    .item-desc{margin:.25rem 0 0;color:var(--muted);font-size:.95rem;}
-    .item-cta a{font-size:.95rem;white-space:nowrap;}
+        .list { list-style: none; padding: 0; margin: 1rem 0 0; }
+        .item {
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 10px;
+          padding: 1rem 1rem 1rem .9rem;
+          display: grid;
+          grid-template-columns: 28px 1fr auto;
+          gap: .9rem;
+          align-items: start;
+          margin-bottom: .8rem;
+        }
+        .item i { margin-top: .2rem; opacity: .9; }
+        .item-title { margin: 0; font-weight: 600; }
+        .item-desc { margin: .25rem 0 0; color: #666; font-size: .95rem; }
+        .item-cta a { font-size: .95rem; white-space: nowrap; }
 
-    .badge{
-      display:inline-block;font-size:.78rem;line-height:1;padding:.35rem .55rem;border-radius:999px;
-      background:rgba(37,99,235,.08);border:1px solid var(--border);color:var(--accent);margin-left:.4rem;vertical-align:middle;
-    }
-    .note{
-      background:rgba(37,99,235,.05);border:1px solid var(--border);padding:.9rem 1rem;border-radius:8px;
-      color:var(--muted);font-size:.95rem;margin-top:.8rem;
-    }
+        .badge {
+          display: inline-block; font-size: .78rem; line-height: 1;
+          padding: .35rem .55rem; border-radius: 999px;
+          background: rgba(37,99,235,.08); border: 1px solid #e5e7eb; color: var(--accent);
+          margin-left: .4rem; vertical-align: middle;
+        }
+        .note {
+          background: rgba(37,99,235,.05); border: 1px solid #e5e7eb;
+          padding: .9rem 1rem; border-radius: 8px; color: #666; font-size: .95rem; margin-top: .8rem;
+        }
 
-    @media (max-width:520px){
-      .masthead{grid-template-columns:1fr;gap:.5rem;}
-      .profile-photo img{margin:0 auto;}
-    }
-    @media (max-width:420px){
-      .item{grid-template-columns:24px 1fr;}
-      .item-cta{grid-column:2;margin-top:.4rem;}
-    }
-  </style>
+        @media (max-width: 420px){
+          .item { grid-template-columns: 24px 1fr; }
+          .item-cta { grid-column: 2; margin-top: .4rem; }
+        }
+    </style>
 </head>
 <body>
-
-  <!-- Masthead (left text, right photo) -->
-  <div class="masthead">
-    <div class="personal-header">
-      <h1>Faiz Krisnadi</h1>
-      <p class="subtitle">Master's in International Affairs</p>
-      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </div>
+    <!-- Profile photo (centered) -->
     <div class="profile-photo">
       <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
            alt="Faiz Krisnadi"
            onerror="this.src='https://via.placeholder.com/150'">
     </div>
-  </div>
 
-  <!-- Site nav -->
-  <nav aria-label="Primary">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="research.html">Research</a>
-    <a href="cv.html">CV</a>
-    <a href="resources.html" class="active">Resources</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+    <!-- Personal header (left-aligned text) -->
+    <header>
+        <h1>Faiz Krisnadi</h1>
+        <p class="subtitle">Master's in International Affairs</p>
+        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </header>
 
-  <!-- Page hero -->
-  <header class="hero" role="banner">
-    <h1>Resources</h1>
-    <p>Templates, datasets, and trackers I maintain for students and collaborators.</p>
-  </header>
+    <!-- Nav (same order; Resources highlighted) -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="research.html">Research</a>
+        <a href="cv.html">CV</a>
+        <a href="resources.html" style="font-weight:600">Resources</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-  <main>
-    <!-- Templates -->
-    <section aria-labelledby="templates">
-      <h2 id="templates">Templates</h2>
-      <ul class="list">
-        <li class="item">
-          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
-          <div>
-            <p class="item-title">CV Template (Overleaf)</p>
-            <p class="item-desc">
-              A lightweight, graduate-applications-ready CV built for quick edits and strict formatting.
-              Read the instructions page first; make changes via the variables, not the core code.
-            </p>
-          </div>
-          <div class="item-cta">
-            <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
-          </div>
-        </li>
-        <!-- Add more templates as needed -->
-      </ul>
-    </section>
+    <!-- Page hero -->
+    <div class="hero">
+      <h2>Resources</h2>
+      <p>Templates, datasets, and trackers I maintain for students and collaborators.</p>
+    </div>
 
-    <!-- Datasets -->
-    <section aria-labelledby="datasets">
-      <h2 id="datasets">Datasets <span class="badge">Coming soon</span></h2>
-      <ul class="list">
-        <li class="item">
-          <i class="fa-solid fa-database" aria-hidden="true"></i>
-          <div>
-            <p class="item-title">Public dataset catalog</p>
-            <p class="item-desc">
-              Cleaned, well-documented tables with a short data dictionary and reproducible notes (sources, filters, version).
-              I’ll post downloads and codebooks here once they’re production-ready.
-            </p>
-          </div>
-          <div class="item-cta"><span class="badge">WIP</span></div>
-        </li>
-      </ul>
-      
-    </section>
-  </main>
+    <main>
+      <!-- Templates -->
+      <section aria-labelledby="templates">
+        <h3 id="templates">Templates</h3>
+        <ul class="list">
+          <li class="item">
+            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+            <div>
+              <p class="item-title">CV Template (Overleaf)</p>
+              <p class="item-desc">
+                A lightweight, graduate-applications-ready CV built for quick edits and strict formatting.
+                Read the instructions page first; make changes via the variables, not the core code.
+              </p>
+            </div>
+            <div class="item-cta">
+              <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
+            </div>
+          </li>
+          <!-- Add more template items here if needed -->
+        </ul>
+      </section>
 
-  <footer>
-    © 2025 Faiz Krisnadi. All rights reserved.
-  </footer>
+      <!-- Datasets -->
+      <section aria-labelledby="datasets">
+        <h3 id="datasets">Datasets <span class="badge">Coming soon</span></h3>
+        <ul class="list">
+          <li class="item">
+            <i class="fa-solid fa-database" aria-hidden="true"></i>
+            <div>
+              <p class="item-title">Public dataset catalog</p>
+              <p class="item-desc">
+                Cleaned, well-documented tables with a short data dictionary and reproducible notes (sources, filters, version).
+                I’ll post downloads and codebooks here once they’re production-ready.
+              </p>
+            </div>
+            <div class="item-cta"><span class="badge">WIP</span></div>
+          </li>
+        </ul>
+        
+      </section>
+    </main>
+
+    <footer>
+        © 2025 Faiz Krisnadi. All rights reserved.
+    </footer>
 </body>
 </html>
+
 
 
