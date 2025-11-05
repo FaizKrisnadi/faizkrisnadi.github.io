@@ -6,97 +6,96 @@
   <title>Resources | Faiz Krisnadi</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --bg: #f8f8f8;
-      --text: #333;
-      --muted: #666;
-      --accent: #2563eb;
-      --card: #ffffff;
-      --border: #e5e7eb;
+    :root{
+      --bg:#f8f8f8;
+      --text:#333;
+      --muted:#666;
+      --accent:#2563eb;
+      --card:#ffffff;
+      --border:#e5e7eb;
     }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      max-width:720px;margin:0 auto;padding:2rem;line-height:1.6;color:var(--text);background:var(--bg);
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a{color:var(--accent);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    section{margin:2.5rem 0;}
+    h2{margin:0 0 1rem;font-weight:600;}
+    footer{margin-top:4rem;opacity:.6;}
 
-    /* PROFILE + PERSONAL HEADER (restored) */
+    /* --- Masthead: text left, photo right (matches other pages) --- */
+    .masthead{
+      display:grid;grid-template-columns:1fr 150px;gap:1.25rem;align-items:start;margin-bottom:1rem;
+    }
+    .personal-header{text-align:left;}
+    .personal-header h1{font-weight:500;margin:0;font-size:2.25rem;letter-spacing:-.01em;}
+    .personal-header .subtitle{color:#777;opacity:.95;margin:.35rem 0 0;}
     .profile-photo img{
-      width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;
-      display:block;margin:0 auto 1rem;
+      width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;display:block;margin:0;
     }
-    .personal-header{ text-align:center; margin-bottom:1rem; }
-    .personal-header h1{ font-weight:500; margin:0; }
-    .personal-header .subtitle{ color:#777; opacity:.9; margin:.35rem 0 0; }
 
-    /* PAGE NAV */
-    nav { margin: 2rem 0; text-align:center; }
-    nav a { margin: 0 1rem; }
-    nav a.active { font-weight:600; }
+    /* --- Nav left-aligned --- */
+    nav{margin:1.25rem 0 2rem;text-align:left;}
+    nav a{margin-right:1.2rem;}
+    nav a.active{font-weight:600;}
 
-    section { margin: 2.5rem 0; }
-    h2 { margin: 0 0 1rem; font-weight: 600; }
-    footer { margin-top: 4rem; opacity: 0.6; }
-
-    /* Page hero */
-    .hero {
-      background: linear-gradient(180deg, rgba(37,99,235,0.06), rgba(37,99,235,0.03));
-      border: 1px solid var(--border);
-      padding: 1.25rem 1rem;
-      border-radius: 10px;
+    /* --- Resources hero (left-aligned) --- */
+    .hero{
+      background:linear-gradient(180deg,rgba(37,99,235,.06),rgba(37,99,235,.03));
+      border:1px solid var(--border);padding:1.25rem 1rem;border-radius:10px;text-align:left;
     }
-    .hero h1 { font-size: 2.25rem; margin:0; }
-    .hero p { margin: 0.4rem 0 0; color: var(--muted); }
+    .hero h1{margin:0;font-size:2rem;}
+    .hero p{margin:.4rem 0 0;color:var(--muted);}
 
-    /* Lists / items */
-    .list { list-style:none; padding:0; margin:.25rem 0 0; }
-    .item {
-      background: var(--card); border:1px solid var(--border); border-radius:10px;
-      padding:1rem 1rem 1rem .9rem; display:grid; grid-template-columns:28px 1fr auto;
-      gap:.9rem; align-items:start; margin-bottom:.8rem;
+    /* --- List cards --- */
+    .list{list-style:none;padding:0;margin:.25rem 0 0;}
+    .item{
+      background:var(--card);border:1px solid var(--border);border-radius:10px;
+      padding:1rem 1rem 1rem .9rem;display:grid;grid-template-columns:28px 1fr auto;
+      gap:.9rem;align-items:start;margin-bottom:.8rem;
     }
-    .item i{ margin-top:.2rem; opacity:.9; }
-    .item-title{ margin:0; font-weight:600; }
-    .item-desc{ margin:.25rem 0 0; color:var(--muted); font-size:.95rem; }
-    .item-cta a{ font-size:.95rem; white-space:nowrap; }
+    .item i{margin-top:.2rem;opacity:.9;}
+    .item-title{margin:0;font-weight:600;}
+    .item-desc{margin:.25rem 0 0;color:var(--muted);font-size:.95rem;}
+    .item-cta a{font-size:.95rem;white-space:nowrap;}
 
     .badge{
       display:inline-block;font-size:.78rem;line-height:1;padding:.35rem .55rem;border-radius:999px;
-      background:rgba(37,99,235,.08);border:1px solid var(--border);color:var(--accent);margin-left:.4rem;
-      vertical-align:middle;
+      background:rgba(37,99,235,.08);border:1px solid var(--border);color:var(--accent);margin-left:.4rem;vertical-align:middle;
     }
     .note{
       background:rgba(37,99,235,.05);border:1px solid var(--border);padding:.9rem 1rem;border-radius:8px;
       color:var(--muted);font-size:.95rem;margin-top:.8rem;
     }
 
+    @media (max-width:520px){
+      .masthead{grid-template-columns:1fr;gap:.5rem;}
+      .profile-photo img{margin:0 auto;}
+    }
     @media (max-width:420px){
-      .item{ grid-template-columns:24px 1fr; }
-      .item-cta{ grid-column:2; margin-top:.4rem; }
+      .item{grid-template-columns:24px 1fr;}
+      .item-cta{grid-column:2;margin-top:.4rem;}
     }
   </style>
 </head>
 <body>
 
-  <!-- RESTORED: profile photo + personal header -->
-  <div class="profile-photo">
-    <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
-         alt="Faiz Krisnadi"
-         onerror="this.src='https://via.placeholder.com/150'">
-  </div>
-  <div class="personal-header">
-    <h1>Faiz Krisnadi</h1>
-    <p class="subtitle">Master's in International Affairs</p>
-    <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+  <!-- Masthead (left text, right photo) -->
+  <div class="masthead">
+    <div class="personal-header">
+      <h1>Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </div>
+    <div class="profile-photo">
+      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+           alt="Faiz Krisnadi"
+           onerror="this.src='https://via.placeholder.com/150'">
+    </div>
   </div>
 
-  <!-- Page nav -->
+  <!-- Site nav -->
   <nav aria-label="Primary">
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
@@ -106,8 +105,8 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <!-- Page hero (headline “Resources”) -->
-  <header class="hero" role="banner" style="margin-top:-0.5rem;">
+  <!-- Page hero -->
+  <header class="hero" role="banner">
     <h1>Resources</h1>
     <p>Templates, datasets, and trackers I maintain for students and collaborators.</p>
   </header>
@@ -130,6 +129,7 @@
             <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
           </div>
         </li>
+        <!-- Add more templates as needed -->
       </ul>
     </section>
 
@@ -149,7 +149,7 @@
           <div class="item-cta"><span class="badge">WIP</span></div>
         </li>
       </ul>
-     
+      
     </section>
   </main>
 
@@ -158,4 +158,5 @@
   </footer>
 </body>
 </html>
+
 
