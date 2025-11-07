@@ -33,7 +33,7 @@
     section { margin: 3rem 0; }
     footer { margin-top: 4rem; opacity: .6; }
 
-    /* Profile photo (same as other pages) */
+    /* Profile photo */
     .profile-photo img{
       width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;
       display:block;margin:0 auto 1rem;
@@ -49,7 +49,7 @@
     .hero h2{ margin:0 0 .35rem; font-weight:600; font-size:2rem; }
     .hero p{ margin:0; color:#666; }
 
-    /* List items (templates/datasets) */
+    /* List items */
     .list{ list-style:none; padding:0; margin:1rem 0 0; }
     .item{
       background:#fff; border:1px solid var(--border); border-radius:10px;
@@ -74,12 +74,12 @@
       overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border); border-radius:10px; background:#fff;
     }
     .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:start; padding:1rem}
-    /* The important bit: no fixed height, contain the full image */
+    /* Media: full image always visible */
     .ds-media{display:flex; align-items:center; justify-content:center}
     .ds-media img{
       width:100%; height:auto; object-fit:contain; background:#fff;
       border-radius:8px; border:1px solid var(--border);
-      max-height: clamp(220px, 44vh, 520px);  /* responsive cap, no crop */
+      max-height: clamp(220px, 44vh, 520px);
     }
     .ds-title{margin:.15rem 0 .35rem; font-weight:600; font-size:1.25rem}
     .ds-desc{color:#555; margin:0}
@@ -94,10 +94,35 @@
     .ds-dots button.active{background:var(--accent)}
     .viz-meta{color:#666; font-size:.92rem; margin:.6rem 0 0}
 
+    /* Intro slide (title + blurb only) */
+    .intro{
+      grid-template-columns:1fr; 
+      background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.03));
+      border-radius:10px;
+    }
+    .intro .intro-wrap{
+      padding:.25rem .3rem .5rem .3rem;
+    }
+    .kicker{
+      letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; color:#4463b5;
+      background:rgba(37,99,235,.08); border:1px solid var(--border);
+      display:inline-block; padding:.25rem .5rem; border-radius:999px; margin-bottom:.5rem;
+    }
+    .intro h3{
+      margin:.15rem 0 .4rem; font-size:1.65rem; line-height:1.25; font-weight:700;
+    }
+    .lead{ color:#4b5563; margin:.35rem 0 .6rem; }
+    .chips{ display:flex; gap:.4rem; flex-wrap:wrap; }
+    .chip{
+      font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px;
+      background:#fff; border:1px solid var(--border); color:#475569;
+    }
+
     @media (max-width:720px){
       .ds-slide{grid-template-columns:1fr}
       .ds-prev{left:4px} .ds-next{right:4px}
       .ds-media img{max-height: clamp(200px, 38vh, 420px);}
+      .intro h3{font-size:1.45rem}
     }
 
     @media (max-width:420px){
@@ -178,6 +203,24 @@
 
       <button class="ds-nav ds-prev" aria-label="Previous slide">‹</button>
       <div class="ds-track">
+        <!-- Intro slide -->
+        <article class="ds-slide intro" role="group" aria-label="Intro">
+          <div class="intro-wrap">
+            <span class="kicker">WTO • Trade • Risk</span>
+            <h3>Trade, Disputes &amp; Risk — quick visuals from my VIID 2025 paper</h3>
+            <p class="lead">
+              A five-slide tour: dispute timelines, policy-annotated trade trends, a non-WTO comparator,
+              and how geopolitical risk (GPR) stretches filing lags. Swipe or use the arrows to explore.
+            </p>
+            <div class="chips">
+              <span class="chip">DS456 / DS593</span>
+              <span class="chip">Eurostat / USITC</span>
+              <span class="chip">UN Comtrade</span>
+              <span class="chip">GPR index</span>
+            </div>
+          </div>
+        </article>
+
         <!-- Slide 1 -->
         <article class="ds-slide" role="group" aria-label="1 of 5">
           <figure class="ds-media">
@@ -199,7 +242,7 @@
                  alt="EU HS1511 imports from Indonesia with markers for RED II, 2019/807, DS593 steps, EUDR, panel report">
           </figure>
           <div>
-            <div class="ds-title">IDN→EU HS1511 (Palm oil) with policy & WTO markers</div>
+            <div class="ds-title">IDN→EU HS1511 (Palm oil) with policy &amp; WTO markers</div>
             <p class="ds-desc">
               Imports peaked mid-2010s, dipped 2015–2016, recovered by 2021, then softened as sustainability rules tightened (RED II 2018, 2019/807, EUDR 2023) while DS593 advanced.
             </p>
@@ -301,6 +344,7 @@
   </script>
 </body>
 </html>
+
 
 
 
