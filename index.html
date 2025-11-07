@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home | Faiz Krisnadi</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -25,10 +25,12 @@
     a { color: var(--accent); text-decoration: none; transition: opacity .2s ease; }
     a:hover { opacity: .7; }
 
-    /* Photo centered (same as Contact/Resources) */
+    /* Photo centered */
     .profile-photo img {
       width: 150px; height: 150px; object-fit: cover;
-      border-radius: 8px; border: 1.5px solid #ccc;
+      border-radius: 50%;                      /* circle */
+      border: 2px solid #fff;                  /* inner clean edge */
+      box-shadow: 0 0 0 3px var(--border);     /* soft ring frame */
       display: block; margin: 0 auto 1rem;
     }
 
@@ -39,6 +41,19 @@
 
     nav { margin: 2rem 0; }
     nav a { margin-right: 1.5rem; }
+
+    /* Site search (below nav) */
+    .search { display:flex; gap:.5rem; align-items:center; margin: -0.5rem 0 1.25rem; }
+    .search input[type="search"]{
+      flex:1; padding:.6rem .9rem; font-size:.95rem; border:1px solid var(--border);
+      border-radius:999px; background:#fff; outline:none;
+    }
+    .search input[type="search"]::placeholder{ color:#8a8a8a; }
+    .search button{
+      padding:.55rem .85rem; border:1px solid var(--border); border-radius:999px;
+      background:#fff; color:var(--accent); cursor:pointer;
+    }
+    .search button:hover{ background:rgba(37,99,235,.06); }
 
     /* Cards */
     .card {
@@ -81,6 +96,12 @@
     <a href="resources.html">Resources</a>
   </nav>
 
+  <!-- Site search -->
+  <form class="search" id="site-search" role="search" aria-label="Search this site">
+    <input type="search" id="q" name="q" placeholder="Search this site…" autocomplete="off">
+    <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+  </form>
+
   <p style="font-size:1.35rem;font-weight:600;margin:.5rem 0 0;">Welcome!</p>
   <p>
     I'm interested in evidence-based international affairs, political economy, and economic development.
@@ -117,8 +138,24 @@
     <p>© 2025 Faiz Krisnadi. All rights reserved.</p>
   </footer>
 
+  <!-- Simple site search: opens DuckDuckGo results for your domain -->
+  <script>
+    (function(){
+      const form = document.getElementById('site-search');
+      const input = document.getElementById('q');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        const q = (input.value || '').trim();
+        if(!q) return;
+        // Change the domain below if you use a custom domain later
+        const url = 'https://duckduckgo.com/?q=' + encodeURIComponent('site:faizkrisnadi.github.io ' + q);
+        window.open(url, '_blank');
+      });
+    })();
+  </script>
 </body>
 </html>
+
 
 
 
