@@ -1,312 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research | Faiz Krisnadi</title>
-    <style>
-        :root {
-            --bg: #f8f8f8;
-            --text: #333;
-            --accent: #2563eb;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-        a { 
-            color: var(--accent); 
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-        a:hover {
-            opacity: 0.7;
-        }
-        h1 { font-weight: 500; margin-bottom: 0; }
-        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
-        nav { margin: 2rem 0; }
-        nav a { margin-right: 1.5rem; }
-        section { margin: 3rem 0; }
-        footer { margin-top: 4rem; opacity: 0.6; }
-        
-        /* Profile image style (copied from index.html) */
-        .profile-photo img {
-          width: 150px;
-          height: 150px;
-          object-fit: cover;
-          border-radius: 8px; /* Matches your index.html style */
-          border: 1.5px solid #ccc;
-          display: block;
-          margin: 0 auto 1rem; /* Centers image and adds spacing below */
-        }
-        
-        .research-item { 
-            margin-bottom: 2rem;
-            border-left: 3px solid var(--accent);
-            padding-left: 1rem;
-        }
-        .research-item h3 { 
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .research-meta { 
-            color: #666; 
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-        .research-link {
-            font-style: italic;
-            display: inline-block;
-            margin-top: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Research | Faiz Krisnadi</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
+
+      --avatar: 190px;
+      --avatar-mobile: 160px;
+      --avatar-focus-y: 40%;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height:1.75;
+    }
+    a{color:var(--accent); text-decoration:none; transition:opacity .2s}
+    a:hover{opacity:.8}
+
+    /* Header */
+    .hero-wrap{
+      max-width:980px; margin:0 auto;
+      display:grid; grid-template-columns: calc(var(--avatar) + 30px) 1fr;
+      gap:1.6rem; align-items:center;
+    }
+    .photo{
+      width:var(--avatar); aspect-ratio:1/1; height:auto; border-radius:50%;
+      object-fit:cover; object-position:50% var(--avatar-focus-y);
+      border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef; display:block;
+    }
+    .name{margin:0 0 .3rem; font-size:2.8rem; font-weight:900; letter-spacing:-.01em; line-height:1.2}
+    .subtitle{margin:.15rem 0; color:#777; font-weight:400}
+
+    /* Tabs */
+    .tabs-outer{max-width:980px; margin:1.1rem auto 1.6rem; padding:0 .2rem;}
+    .tabs{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); overflow:hidden;}
+    .tabs ul{list-style:none; margin:0; padding:.35rem; display:flex; gap:.6rem; align-items:center;}
+    .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
+    .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent);}
+    @media (max-width:560px){
+      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr); gap:.35rem; padding:.35rem;}
+      .tabs a{text-align:center; padding:.85rem .2rem;}
+    }
+
+    /* Section container */
+    .container{max-width:980px; margin:0 auto;}
+
+    /* Section titles */
+    h2.section{margin:2.2rem 0 1rem; font-size:1.35rem; font-weight:900; letter-spacing:.01em}
+
+    /* Research items */
+    .item{
+      background:#fff; border:1px solid var(--border); border-left:4px solid var(--accent);
+      border-radius:10px; padding:1rem 1.1rem; margin:.9rem 0;
+    }
+    .item h3{margin:.1rem 0 .35rem; font-size:1.03rem; font-weight:900}
+    .meta{color:#6b7280; font-size:.92rem; margin:.1rem 0 .35rem}
+    .plink{font-style:italic}
+
+    /* Floating search */
+    .search-fab{
+      position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
+      background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
+      color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
+    }
+    .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
+
+    /* Search overlay */
+    .search-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px); display:none; z-index:60; }
+    .search-panel{ max-width:900px; margin:8vh auto 0; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1rem 1.1rem; box-shadow:0 30px 60px rgba(0,0,0,.15);}
+    .search-bar{ display:flex; align-items:center; gap:.6rem; padding:.35rem .6rem; border:1px solid var(--border); border-radius:12px;}
+    .search-bar input{ flex:1; border:none; font-size:1.05rem; padding:.8rem .2rem; outline:none; background:#fff;}
+    .hint{color:var(--muted); font-size:.9rem; margin:.65rem .15rem 0}
+    .results{margin:.35rem 0 0; max-height:52vh; overflow:auto}
+    .result{ padding:.8rem .65rem; border-radius:8px; display:block; color:#111827;}
+    .result:hover{background:#f2f5ff}
+    .result small{display:block; color:#6b7280; margin-top:.15rem}
+    .nores{color:#6b7280; padding:1rem .25rem}
+    mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
+
+    footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px}
+
+    /* Responsive header grid */
+    @media (max-width:900px){
+      .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
+      .photo{width:var(--avatar-mobile)}
+      .name{font-size:2.35rem}
+    }
+    @media (max-width:680px){
+      .hero-wrap{grid-template-columns:1fr}
+      .photo{margin-inline:auto}
+      .name{text-align:left; margin-top:.6rem}
+    }
+  </style>
 </head>
 <body>
-    <!-- Profile photo added here -->
-    <div class="profile-photo">
-      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
-           alt="Faiz Krisnadi"
-           onerror="this.src='https://via.placeholder.com/150'">
+
+  <!-- Search button -->
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <!-- Header -->
+  <section class="hero-wrap" aria-label="Profile">
+    <img class="photo"
+         src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+         alt="Faiz Krisnadi"
+         onerror="this.src='https://via.placeholder.com/210'">
+    <div>
+      <h1 class="name">Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
     </div>
+  </section>
 
-    <header>
-        <h1>Faiz Krisnadi</h1>
-        <p class="subtitle">Master's in International Affairs</p>
-        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </header>
-
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="research.html" style="font-weight:600">Research</a>
-        <a href="cv.html">CV</a>
-        <a href="resources.html">Resources</a>
+  <!-- Tabs -->
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
     </nav>
-    
-    <main>
+  </div>
 
-        <p>My research broadly focuses on international affairs and political economy. In my ongoing master's thesis, I examine public attitudes toward Chinese investment in Indonesia, and I am honored to be advised by <a href="https://lkyspp.nus.edu.sg/our-people/faculty/liu-yao-adam" target="_blank">Adam Y. Liu</a> and <a href="https://www.jonathanchu.org/" target="_blank">Jonathan A. Chu</a>.</p>
+  <main class="container">
+    <p>
+      My research broadly focuses on international affairs and political economy. In my ongoing master's thesis, I examine public attitudes toward Chinese investment in Indonesia, and I am honored to be advised by
+      <a href="https://lkyspp.nus.edu.sg/our-people/faculty/liu-yao-adam" target="_blank" rel="noopener">Adam Y. Liu</a> and
+      <a href="https://www.jonathanchu.org/" target="_blank" rel="noopener">Jonathan A. Chu</a>.
+    </p>
 
-        <section>
-            <h2>Policy Report</h2>
-            
-            <div class="research-item">
-                <h3>Balancing Risk and Reward: Who benefits from China's investments in Indonesia?</h3>
-                <p class="research-meta">AidData at William & Mary (2025)</p>
-                <a href="https://www.aiddata.org/publications/balancing-risk-and-reward" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
+    <!-- Policy Report -->
+    <h2 class="section">Policy Report</h2>
+    <article class="item">
+      <h3>Balancing Risk and Reward: Who benefits from China's investments in Indonesia?</h3>
+      <div class="meta">AidData at William &amp; Mary (2025)</div>
+      <a class="plink" href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-        <section>
-            <h2>Work in Progress</h2>
-            
-            <div class="research-item">
-                <h3>Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities</h3>
-                <p class="research-link">Conditionally accepted at Indonesian Quarterly by CSIS Indonesia </p>
-            </div>
+    <!-- Work in Progress -->
+    <h2 class="section">Work in Progress</h2>
+    <article class="item">
+      <h3>Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities</h3>
+      <div class="meta">Conditionally accepted at Indonesian Quarterly by CSIS Indonesia</div>
+    </article>
+    <article class="item">
+      <h3>City Solar Mandates and Paradiplomacy: A Difference-in-Differences Analysis of Five ASEAN Capitals</h3>
+      <div class="meta">Conditionally accepted at Journal of Paradiplomacy and City Networks</div>
+    </article>
+    <article class="item">
+      <h3>Commercial diplomacy in times of crisis: Lessons from Indonesia’s coffee exports to Egypt</h3>
+      <div class="meta">Submitted to Kasetsart Journal of Social Sciences</div>
+    </article>
 
-            <div class="research-item">
-                <h3>City Solar Mandates and Paradiplomacy: A Difference-in-Differences Analysis of Five ASEAN Capitals</h3>
-                <p class="research-link">Conditionally accepted at Journal of Paradiplomacy and City Networks</p>
-            </div>
+    <!-- Recent works -->
+    <h2 class="section">Recent Works (Unpublished)</h2>
+    <article class="item">
+      <h3>Research Assignments (2024–2025)</h3>
+      <a class="plink" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-            <div class="research-item">
-                <h3>Commercial diplomacy in times of crisis: Lessons from Indonesia’s coffee exports to Egypt</h3>
-                <p class="research-link">Submitted to Kasetsart Journal of Social Sciences</p>
-            </div>
-            
-        </section>
-        
-        <section>
-            <h2>Recent Works (Unpublished)</h2>
-            
-            <div class="research-item">
-                <h3>Research Assignments (2024-2025)</h3>
-                <a href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
-        <section>
-            <h2>Book Chapters</h2>
-            
-            <div class="research-item">
-                <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
-                <p class="research-meta">Mahidol University (2021)</p>
-                <a href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
+    <!-- Book chapters -->
+    <h2 class="section">Book Chapters</h2>
+    <article class="item">
+      <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
+      <div class="meta">Mahidol University (2021)</div>
+      <a class="plink" href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-        <section>
-            <h2>Peer-Reviewed Journal Article and Conference Proceeding</h2>
-            
-             <div class="research-item">
-                <h3>Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand</h3>
-                <p class="research-meta">Perantau: Journal of Migration, Borders, and Belonging (2025)</p>
-                <a href="https://journal.ygtmi.org/perantau/article/view/4" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-            
-            <div class="research-item">
-                <h3>The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan</h3>
-                <p class="research-meta">Journal of Paradiplomacy and City Networks (2024)</p>
-                <a href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-            
-            <div class="research-item">
-                <h3>Transforming Indonesia's Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
-                <p class="research-meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</p>
-                <a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
+    <!-- Peer-reviewed & proceedings -->
+    <h2 class="section">Peer-Reviewed Journal Article and Conference Proceeding</h2>
+    <article class="item">
+      <h3>Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand</h3>
+      <div class="meta">Perantau: Journal of Migration, Borders, and Belonging (2025)</div>
+      <a class="plink" href="https://journal.ygtmi.org/perantau/article/view/4" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan</h3>
+      <div class="meta">Journal of Paradiplomacy and City Networks (2024)</div>
+      <a class="plink" href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Transforming Indonesia's Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>COVID-19 in Indonesia: Critics and Proposal</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2022)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2021)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-            <div class="research-item">
-                <h3>Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State</h3>
-                <p class="research-meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</p>
-                <a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
+    <!-- Thesis -->
+    <h2 class="section">Undergraduate Thesis</h2>
+    <article class="item">
+      <h3>Indonesia's Government's Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
+      <div class="meta">Undergraduate Thesis (2022)</div>
+      <a class="plink" href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-            <div class="research-item">
-                <h3>COVID-19 in Indonesia: Critics and Proposal</h3>
-                <p class="research-meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2022)</p>
-                <a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
+    <!-- Op-eds -->
+    <h2 class="section">Op-Ed</h2>
+    <article class="item">
+      <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
+      <div class="meta">Citrakara Mandala (October 2020)</div>
+      <a class="plink" href="https://link.medium.com/agfcQ4L6oub" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k?__twitter_impression=true&shareID=dsaYY8XriM4R&utm_campaign=share&utm_source=kumApp" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Politik Tata Ruang dalam Gemuruh Pandemi</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo" target="_blank" rel="noopener">(link)</a>
+    </article>
 
-            <div class="research-item">
-                <h3>Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015</h3>
-                <p class="research-meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2021)</p>
-                <a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
-            
-        <section>
-            <h2>Undergraduate Thesis</h2>
-            
-            <div class="research-item">
-                <h3>Indonesia's Government's Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
-                <p class="research-meta">Undergraduate Thesis (2022)</p>
-                <a href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
+    <!-- Podcast -->
+    <h2 class="section">Podcast</h2>
+    <article class="item">
+      <h3>Politik Lingkungan Global</h3>
+      <div class="meta">IPIREL Podcast (December 2020)</div>
+      <a class="plink" href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&nd=1&dlsi=829834af9f8c4e86" target="_blank" rel="noopener">(link)</a>
+    </article>
+  </main>
 
-        <section>
-            <h2>Op-Ed</h2>
-            
-            <div class="research-item">
-                <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
-                <p class="research-meta">Citrakara Mandala (October 2020)</p>
-                <a href="https://link.medium.com/agfcQ4L6oub" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-            
-            <div class="research-item">
-                <h3>Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi</h3>
-                <p class="research-meta">Kumparan (June 2020)</p>
-                <a href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k?__twitter_impression=true&shareID=dsaYY8XriM4R&utm_campaign=share&utm_source=kumApp" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
+  <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
 
-            <div class="research-item">
-                <h3>Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan</h3>
-                <p class="research-meta">Kumparan (June 2020)</p>
-                <a href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
+        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
 
-            <div class="research-item">
-                <h3>Politik Tata Ruang dalam Gemuruh Pandemi</h3>
-                <p class="research-meta">Kumparan (June 2020)</p>
-                <a href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-            
-        </section>
+  <script>
+    /* ---------- In-page search (shared with Home) ---------- */
+    const PAGE_LIST = [
+      { url: 'index.html',     title: 'Home' },
+      { url: 'research.html',  title: 'Research' },
+      { url: 'cv.html',        title: 'CV' },
+      { url: 'resources.html', title: 'Resources' }
+    ];
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
+    function extract(doc){
+      const title=(doc.querySelector('title')?.textContent||'').trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
+      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
+      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
+      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
+      return { title, metas, heads, links, body };
+    }
+    const normalize=s=>(s||'').toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
+      return sc;
+    }
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
+    }
+    async function buildIndex(){
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
+      }));
+      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
+    }
+    function hilite(text,q){
+      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
+      return out;
+    }
+    function search(q){
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
+    }
 
-        <section>
-            <h2>Podcast</h2>
-            
-            <div class="research-item">
-                <h3>Politik Lingkungan Global</h3>
-                <p class="research-meta">IPIREL Podcast (December 2020)</p>
-                <a href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&nd=1&dlsi=829834af9f8c4e86" 
-                   class="research-link"
-                   target="_blank" 
-                   rel="noopener">
-                   (link)
-                </a>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        © 2025 Faiz Krisnadi. All rights reserved.
-    </footer>
+    const openBtn=document.getElementById('openSearch');
+    const overlay=document.getElementById('searchOverlay');
+    const input=document.getElementById('searchInput');
+    const closeBtn=document.getElementById('closeSearch');
+    const results=document.getElementById('results');
+
+    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
+    function render(q){
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
+    }
+    openBtn.addEventListener('click',openSearch);
+    closeBtn.addEventListener('click',closeSearch);
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener('input',e=>render(e.target.value));
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
+    });
+  </script>
 </body>
 </html>
