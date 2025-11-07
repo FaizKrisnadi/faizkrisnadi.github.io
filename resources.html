@@ -1,65 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Resources | Faiz Krisnadi</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --bg: #f8f8f8;
-      --text: #333;
-      --accent: #2563eb;
-      --border: #e5e7eb;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
-    }
-    a { color: var(--accent); text-decoration: none; transition: opacity .2s ease; }
-    a:hover { opacity: .7; }
-    h1 { font-weight: 500; margin-bottom: 0; }
-    .subtitle { opacity: .8; margin-top: .5rem; }
+    :root{
+      --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
 
-    nav { margin: 2rem 0; }
-    nav a { margin-right: 1.5rem; }
+      --avatar: 190px;
+      --avatar-mobile: 160px;
+      --avatar-focus-y: 40%;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height:1.75;
+    }
+    a{color:var(--accent); text-decoration:none; transition:opacity .2s}
+    a:hover{opacity:.8}
 
-    section { margin: 3rem 0; }
-    footer { margin-top: 4rem; opacity: .6; }
+    /* Header */
+    .hero-wrap{
+      max-width:980px; margin:0 auto;
+      display:grid; grid-template-columns: calc(var(--avatar) + 30px) 1fr;
+      gap:1.6rem; align-items:center;
+    }
+    .photo{
+      width:var(--avatar); aspect-ratio:1/1; height:auto; border-radius:50%;
+      object-fit:cover; object-position:50% var(--avatar-focus-y);
+      border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef; display:block;
+    }
+    .name{margin:0 0 .3rem; font-size:2.8rem; font-weight:900; letter-spacing:-.01em; line-height:1.2}
+    .subtitle{margin:.15rem 0; color:#777; font-weight:400}
 
-    /* Profile photo */
-    .profile-photo img{
-      width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;
-      display:block;margin:0 auto 1rem;
+    /* Tabs */
+    .tabs-outer{max-width:980px; margin:1.1rem auto 1.6rem; padding:0 .2rem;}
+    .tabs{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); overflow:hidden;}
+    .tabs ul{list-style:none; margin:0; padding:.35rem; display:flex; gap:.6rem; align-items:center;}
+    .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
+    .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent);}
+    @media (max-width:560px){
+      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr); gap:.35rem; padding:.35rem;}
+      .tabs a{text-align:center; padding:.85rem .2rem;}
     }
 
-    /* Hero */
-    .hero{
-      background: rgba(37,99,235,.06);
-      border: 1px solid var(--border);
-      padding: 1.25rem 1rem;
-      border-radius: 10px;
+    .container{max-width:980px; margin:0 auto;}
+
+    /* Intro card (lightweight hero) */
+    .intro-card{
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:1rem 1.1rem; margin:.5rem 0 1.25rem;
     }
-    .hero h2{ margin:0 0 .35rem; font-weight:600; font-size:2rem; }
-    .hero p{ margin:0; color:#666; }
+    .intro-card h2{margin:.1rem 0 .4rem; font-size:1.5rem; font-weight:900}
+    .intro-card p{margin:0; color:#4b5563}
+
+    h3.section{margin:2rem 0 .8rem; font-size:1.25rem; font-weight:900}
 
     /* List items */
-    .list{ list-style:none; padding:0; margin:1rem 0 0; }
+    .list{list-style:none; padding:0; margin:.5rem 0 0}
     .item{
       background:#fff; border:1px solid var(--border); border-radius:10px;
       padding:1rem 1rem 1rem .9rem; display:grid; grid-template-columns:28px 1fr auto;
       gap:.9rem; align-items:start; margin-bottom:.8rem;
     }
-    .item i{ margin-top:.2rem; opacity:.9; }
-    .item-title{ margin:0; font-weight:600; }
-    .item-desc{ margin:.25rem 0 0; color:#666; font-size:.95rem; }
-    .item-cta a{ font-size:.95rem; white-space:nowrap; }
+    .item i{margin-top:.2rem; opacity:.9}
+    .item-title{margin:0; font-weight:700}
+    .item-desc{margin:.25rem 0 0; color:#666; font-size:.95rem}
+    .item-cta a{font-size:.95rem; white-space:nowrap}
 
     .badge{
       display:inline-block; font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px;
@@ -68,20 +87,21 @@
     }
 
     /* —— Dataset slider (no cropping) —— */
-    .ds-slider{position:relative;margin:3rem 0}
+    .ds-slider{position:relative; margin:2rem 0}
+    .ds-slider h3{margin:0 0 .75rem; font-size:1.25rem; font-weight:900}
     .ds-track{
       display:grid; grid-auto-flow:column; grid-auto-columns:100%;
-      overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border); border-radius:10px; background:#fff;
+      overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border);
+      border-radius:10px; background:#fff;
     }
     .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:start; padding:1rem}
-    /* Media: full image always visible */
     .ds-media{display:flex; align-items:center; justify-content:center}
     .ds-media img{
       width:100%; height:auto; object-fit:contain; background:#fff;
       border-radius:8px; border:1px solid var(--border);
       max-height: clamp(220px, 44vh, 520px);
     }
-    .ds-title{margin:.15rem 0 .35rem; font-weight:600; font-size:1.25rem}
+    .ds-title{margin:.15rem 0 .35rem; font-weight:700; font-size:1.1rem}
     .ds-desc{color:#555; margin:0}
     .ds-nav{
       position:absolute; top:50%; transform:translateY(-50%);
@@ -92,76 +112,100 @@
     .ds-dots{display:flex; gap:.35rem; justify-content:center; margin:.6rem 0 0}
     .ds-dots button{width:8px; height:8px; border-radius:999px; border:none; background:#cbd5e1; cursor:pointer}
     .ds-dots button.active{background:var(--accent)}
-    .viz-meta{color:#666; font-size:.92rem; margin:.6rem 0 0}
+    .viz-meta{color:#666; font-size:.92rem; margin:.75rem 0 0}
 
-    /* Intro slide (title + blurb only) */
-    .intro{
-      grid-template-columns:1fr; 
-      background: linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.03));
-      border-radius:10px;
-    }
-    .intro .intro-wrap{
-      padding:.25rem .3rem .5rem .3rem;
-    }
-    .kicker{
-      letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; color:#4463b5;
-      background:rgba(37,99,235,.08); border:1px solid var(--border);
-      display:inline-block; padding:.25rem .5rem; border-radius:999px; margin-bottom:.5rem;
-    }
-    .intro h3{
-      margin:.15rem 0 .4rem; font-size:1.65rem; line-height:1.25; font-weight:700;
-    }
-    .lead{ color:#4b5563; margin:.35rem 0 .6rem; }
-    .chips{ display:flex; gap:.4rem; flex-wrap:wrap; }
-    .chip{
-      font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px;
-      background:#fff; border:1px solid var(--border); color:#475569;
-    }
+    /* Intro slide inside slider */
+    .intro{grid-template-columns:1fr; background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.03)); border-radius:10px;}
+    .intro .intro-wrap{padding:.25rem .3rem .5rem .3rem}
+    .kicker{letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; color:#4463b5; background:rgba(37,99,235,.08); border:1px solid var(--border); display:inline-block; padding:.25rem .5rem; border-radius:999px; margin-bottom:.5rem}
+    .intro h3{margin:.15rem 0 .4rem; font-size:1.45rem; line-height:1.25; font-weight:900}
+    .lead{color:#4b5563; margin:.35rem 0 .6rem}
+    .chips{display:flex; gap:.4rem; flex-wrap:wrap}
+    .chip{font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px; background:#fff; border:1px solid var(--border); color:#475569}
 
     @media (max-width:720px){
       .ds-slide{grid-template-columns:1fr}
       .ds-prev{left:4px} .ds-next{right:4px}
-      .ds-media img{max-height: clamp(200px, 38vh, 420px);}
-      .intro h3{font-size:1.45rem}
+      .ds-media img{max-height: clamp(200px, 38vh, 420px)}
+      .intro h3{font-size:1.35rem}
     }
 
-    @media (max-width:420px){
-      .item{ grid-template-columns:24px 1fr; }
-      .item-cta{ grid-column:2; margin-top:.4rem; }
+    /* Floating search */
+    .search-fab{
+      position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
+      background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
+      color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
+    }
+    .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
+
+    /* Search overlay */
+    .search-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px); display:none; z-index:60; }
+    .search-panel{ max-width:900px; margin:8vh auto 0; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1rem 1.1rem; box-shadow:0 30px 60px rgba(0,0,0,.15);}
+    .search-bar{ display:flex; align-items:center; gap:.6rem; padding:.35rem .6rem; border:1px solid var(--border); border-radius:12px;}
+    .search-bar input{ flex:1; border:none; font-size:1.05rem; padding:.8rem .2rem; outline:none; background:#fff;}
+    .hint{color:var(--muted); font-size:.9rem; margin:.65rem .15rem 0}
+    .results{margin:.35rem 0 0; max-height:52vh; overflow:auto}
+    .result{ padding:.8rem .65rem; border-radius:8px; display:block; color:#111827;}
+    .result:hover{background:#f2f5ff}
+    .result small{display:block; color:#6b7280; margin-top:.15rem}
+    .nores{color:#6b7280; padding:1rem .25rem}
+    mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
+
+    footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px}
+    /* Responsive header grid */
+    @media (max-width:900px){
+      .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
+      .photo{width:var(--avatar-mobile)}
+      .name{font-size:2.35rem}
+    }
+    @media (max-width:680px){
+      .hero-wrap{grid-template-columns:1fr}
+      .photo{margin-inline:auto}
+      .name{text-align:left; margin-top:.6rem}
     }
   </style>
 </head>
 <body>
-  <!-- Profile photo -->
-  <div class="profile-photo">
-    <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" alt="Faiz Krisnadi" onerror="this.src='https://via.placeholder.com/150'">
-  </div>
+
+  <!-- Search -->
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
 
   <!-- Header -->
-  <header>
-    <h1>Faiz Krisnadi</h1>
-    <p class="subtitle">Master's in International Affairs</p>
-    <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-  </header>
+  <section class="hero-wrap" aria-label="Profile">
+    <img class="photo"
+         src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+         alt="Faiz Krisnadi"
+         onerror="this.src='https://via.placeholder.com/210'">
+    <div>
+      <h1 class="name">Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </div>
+  </section>
 
-  <!-- Nav -->
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="research.html">Research</a>
-    <a href="cv.html">CV</a>
-    <a href="resources.html" style="font-weight:600">Resources</a>
-  </nav>
-
-  <!-- Hero -->
-  <div class="hero">
-    <h2>Resources</h2>
-    <p>Templates, datasets, code, and trackers I maintain for open use.</p>
+  <!-- Tabs -->
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a class="active" href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
   </div>
 
-  <main>
+  <main class="container">
+    <section class="intro-card">
+      <h2>Resources</h2>
+      <p>Templates, datasets, code, and trackers I maintain for open use.</p>
+    </section>
+
     <!-- Templates -->
     <section aria-labelledby="templates">
-      <h3 id="templates">Templates</h3>
+      <h3 class="section" id="templates">Templates</h3>
       <ul class="list">
         <li class="item">
           <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
@@ -181,22 +225,20 @@
 
     <!-- Datasets -->
     <section aria-labelledby="datasets">
-      <h3 id="datasets">Datasets <span class="badge">Coming soon</span></h3>
+      <h3 class="section" id="datasets">Datasets <span class="badge">Coming soon</span></h3>
       <ul class="list">
         <li class="item">
           <i class="fa-solid fa-database" aria-hidden="true"></i>
           <div>
             <p class="item-title">Public dataset catalog</p>
-            <p class="item-desc">
-              Downloads and codebooks will appear here once production-ready.
-            </p>
+            <p class="item-desc">Downloads and codebooks will appear here once production-ready.</p>
           </div>
           <div class="item-cta"><span class="badge">WIP</span></div>
         </li>
       </ul>
     </section>
 
-    <!-- VIID 2025 — Slider -->
+    <!-- VIID slider -->
     <section id="viid-slider" class="ds-slider" aria-label="VIID visuals carousel">
       <h3>VIID 2025 — Visual Highlights</h3>
 
@@ -209,7 +251,7 @@
             <h3>Trade, Disputes &amp; Risk: quick visuals from my VIID 2025 paper</h3>
             <p class="lead">
               A five-slide tour: dispute timelines, policy-annotated trade trends, a non-WTO comparator,
-              and how geopolitical risk (GPR) stretches filing lags. Swipe or use the arrows to explore.
+              and how geopolitical risk (GPR) stretches filing lags. Swipe or use the arrows.
             </p>
             <div class="chips">
               <span class="chip">DS456 / DS593</span>
@@ -228,9 +270,7 @@
           </figure>
           <div>
             <div class="ds-title">Dispute timelines (consultations → panel → report)</div>
-            <p class="ds-desc">
-              DS456 (US–India, solar) progressed 2013–2016. DS593 (Indonesia–EU, palm oil) shows a long panel phase (2020–2025), consistent with pandemic-era disruption and a heavier docket.
-            </p>
+            <p class="ds-desc">DS456 (US–India, solar) progressed 2013–2016. DS593 (Indonesia–EU, palm oil) shows a long panel phase (2020–2025), consistent with pandemic-era disruption.</p>
           </div>
         </article>
 
@@ -242,9 +282,7 @@
           </figure>
           <div>
             <div class="ds-title">IDN→EU HS1511 (Palm oil) with policy &amp; WTO markers</div>
-            <p class="ds-desc">
-              Imports peaked mid-2010s, dipped 2015–2016, recovered by 2021, then softened as sustainability rules tightened (RED II 2018, 2019/807, EUDR 2023) while DS593 advanced.
-            </p>
+            <p class="ds-desc">Imports peaked mid-2010s, dipped 2015–2016, recovered by 2021, then softened as sustainability rules tightened (RED II 2018, 2019/807, EUDR 2023) while DS593 advanced.</p>
           </div>
         </article>
 
@@ -256,9 +294,7 @@
           </figure>
           <div>
             <div class="ds-title">PHL→CHN bananas (HS0803): 2012 maritime/SPS episode</div>
-            <p class="ds-desc">
-              Inspections/restrictions in Mar–Jun 2012 coincide with a sharp, short-run disruption. Manila did not file at the WTO; the issue resolved politically and trade later rebounded.
-            </p>
+            <p class="ds-desc">Mar–Jun 2012 inspections/restrictions coincide with a sharp, short-run disruption. No WTO filing; the issue resolved politically and trade later rebounded.</p>
           </div>
         </article>
 
@@ -270,9 +306,7 @@
           </figure>
           <div>
             <div class="ds-title">IND→USA solar (HS854140): trend + numbered events</div>
-            <p class="ds-desc">
-              DS456 adoption (Oct 2016) and India’s DCR removal (2017) precede US Section 201 safeguards (2018–2022/extension), which shape much of the later pattern.
-            </p>
+            <p class="ds-desc">DS456 adoption (Oct 2016) and India’s DCR removal (2017) precede US Section 201 safeguards (2018–2022/extension), which shape much of the later pattern.</p>
           </div>
         </article>
 
@@ -284,9 +318,7 @@
           </figure>
           <div>
             <div class="ds-title">Geopolitical Risk (GPR) vs filing/episode lags</div>
-            <p class="ds-desc">
-              Higher geopolitical risk coincides with longer lags between consultations and panel requests—and a longer episode in the non-WTO case. Exploratory pattern; small N.
-            </p>
+            <p class="ds-desc">Higher geopolitical risk coincides with longer lags between consultations and panel requests—and a longer episode in the non-WTO case. Exploratory; small N.</p>
           </div>
         </article>
       </div>
@@ -301,10 +333,11 @@
     </section>
   </main>
 
-  <footer>© 2025 Faiz Krisnadi. All rights reserved.</footer>
+  <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
 
-  <!-- Slider JS -->
+  <!-- Slider + Search JS -->
   <script>
+    /* ---------- Slider ---------- */
     (function(){
       const slider = document.querySelector('#viid-slider');
       if(!slider) return;
@@ -340,6 +373,96 @@
 
       go(0);
     })();
+
+    /* ---------- In-page search (same component as Home/Research/CV) ---------- */
+    const PAGE_LIST = [
+      { url: 'index.html',     title: 'Home' },
+      { url: 'research.html',  title: 'Research' },
+      { url: 'cv.html',        title: 'CV' },
+      { url: 'resources.html', title: 'Resources' }
+    ];
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
+    function extract(doc){
+      const title=(doc.querySelector('title')?.textContent||'').trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
+      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
+      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
+      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
+      return { title, metas, heads, links, body };
+    }
+    const normalize=s=>(s||'').toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
+      return sc;
+    }
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
+    }
+    async function buildIndex(){
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
+      }));
+      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
+    }
+    function hilite(text,q){
+      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
+      return out;
+    }
+    function search(q){
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
+    }
+
+    const openBtn=document.getElementById('openSearch');
+    const overlay=document.createElement('div');
+    overlay.className='search-overlay';
+    overlay.id='searchOverlay';
+    overlay.innerHTML=`
+      <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+          <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
+          <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
+        <div class="results" id="results"></div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const input=overlay.querySelector('#searchInput');
+    const closeBtn=overlay.querySelector('#closeSearch');
+    const results=overlay.querySelector('#results');
+
+    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
+    function render(q){
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
+    }
+    openBtn.addEventListener('click',openSearch);
+    closeBtn.addEventListener('click',closeSearch);
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener('input',e=>render(e.target.value));
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
+    });
   </script>
 </body>
 </html>
