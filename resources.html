@@ -67,14 +67,20 @@
       margin-left:.4rem; vertical-align:middle;
     }
 
-    /* —— Dataset slider —— */
+    /* —— Dataset slider (no cropping) —— */
     .ds-slider{position:relative;margin:3rem 0}
     .ds-track{
       display:grid; grid-auto-flow:column; grid-auto-columns:100%;
       overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border); border-radius:10px; background:#fff;
     }
-    .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:center; padding:1rem}
-    .ds-media img{width:100%; height:280px; object-fit:cover; border-radius:8px; border:1px solid var(--border); display:block}
+    .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:start; padding:1rem}
+    /* The important bit: no fixed height, contain the full image */
+    .ds-media{display:flex; align-items:center; justify-content:center}
+    .ds-media img{
+      width:100%; height:auto; object-fit:contain; background:#fff;
+      border-radius:8px; border:1px solid var(--border);
+      max-height: clamp(220px, 44vh, 520px);  /* responsive cap, no crop */
+    }
     .ds-title{margin:.15rem 0 .35rem; font-weight:600; font-size:1.25rem}
     .ds-desc{color:#555; margin:0}
     .ds-nav{
@@ -90,8 +96,8 @@
 
     @media (max-width:720px){
       .ds-slide{grid-template-columns:1fr}
-      .ds-media img{height:220px}
       .ds-prev{left:4px} .ds-next{right:4px}
+      .ds-media img{max-height: clamp(200px, 38vh, 420px);}
     }
 
     @media (max-width:420px){
@@ -175,7 +181,7 @@
         <!-- Slide 1 -->
         <article class="ds-slide" role="group" aria-label="1 of 5">
           <figure class="ds-media">
-            <img src="assets/viid/viid_fig1_timeline.png"
+            <img loading="lazy" src="assets/viid/viid_fig1_timeline.png"
                  alt="Timeline for DS456 and DS593 from consultations to panel report, with adoption markers">
           </figure>
           <div>
@@ -189,7 +195,7 @@
         <!-- Slide 2 -->
         <article class="ds-slide" role="group" aria-label="2 of 5">
           <figure class="ds-media">
-            <img src="assets/viid/viid_fig2_eu_palm_oil.png"
+            <img loading="lazy" src="assets/viid/viid_fig2_eu_palm_oil.png"
                  alt="EU HS1511 imports from Indonesia with markers for RED II, 2019/807, DS593 steps, EUDR, panel report">
           </figure>
           <div>
@@ -203,7 +209,7 @@
         <!-- Slide 3 -->
         <article class="ds-slide" role="group" aria-label="3 of 5">
           <figure class="ds-media">
-            <img src="assets/viid/viid_fig3_phl_chn_bananas.png"
+            <img loading="lazy" src="assets/viid/viid_fig3_phl_chn_bananas.png"
                  alt="Philippines banana exports to China with shaded March–June 2012 episode">
           </figure>
           <div>
@@ -217,7 +223,7 @@
         <!-- Slide 4 -->
         <article class="ds-slide" role="group" aria-label="4 of 5">
           <figure class="ds-media">
-            <img src="assets/viid/viid_fig4_ind_usa_solar.png"
+            <img loading="lazy" src="assets/viid/viid_fig4_ind_usa_solar.png"
                  alt="US imports from India, HS854140, with DS456 milestones and US Section 201 safeguard markers">
           </figure>
           <div>
@@ -231,7 +237,7 @@
         <!-- Slide 5 -->
         <article class="ds-slide" role="group" aria-label="5 of 5">
           <figure class="ds-media">
-            <img src="assets/viid/viid_fig5_gpr_scatter.png"
+            <img loading="lazy" src="assets/viid/viid_fig5_gpr_scatter.png"
                  alt="Scatter/line showing positive slope between GPR and filing/episode lags">
           </figure>
           <div>
@@ -295,6 +301,7 @@
   </script>
 </body>
 </html>
+
 
 
 
