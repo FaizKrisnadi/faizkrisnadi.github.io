@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Home | Faiz Krisnadi</title>
 
-  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Fonts: Lato (similar to the style you referenced) -->
+  <!-- Lato (match site) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -17,59 +15,85 @@
     :root{
       --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
 
-      /* avatar controls */
-      --avatar: 180px;            /* desktop */
-      --avatar-mobile: 150px;     /* mobile */
-      --avatar-focus-y: 38%;      /* raise/lower crop (35–45%) */
+      /* Avatar sizing + crop */
+      --avatar: 190px;
+      --avatar-mobile: 160px;
+      --avatar-focus-y: 40%; /* tweak to raise/lower face in the circle */
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       font-family:'Lato', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      max-width:980px; margin:0 auto; padding:2rem 1.25rem; line-height:1.7;
       color:var(--text); background:var(--bg);
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height:1.75;
     }
     a{color:var(--accent); text-decoration:none; transition:opacity .2s}
     a:hover{opacity:.8}
 
-    /* Header row (no grey panels) */
+    /* Header row */
     .hero-wrap{
+      max-width:980px; margin:0 auto;
       display:grid; grid-template-columns: calc(var(--avatar) + 30px) 1fr;
-      gap:1.5rem; align-items:center; margin-bottom:.75rem;
+      gap:1.6rem; align-items:center;
     }
     .photo{
       width:var(--avatar);
-      aspect-ratio:1 / 1;
-      height:auto; object-fit:cover; object-position:50% var(--avatar-focus-y);
-      border-radius:50%;
+      aspect-ratio:1/1;
+      height:auto; border-radius:50%;
+      object-fit:cover; object-position:50% var(--avatar-focus-y);
       border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef;
       display:block;
     }
-    .name{
-      margin:0 0 .35rem;
-      font-size:2.6rem;            /* slightly larger like the screenshot */
-      font-weight:900;             /* Lato Black for strong heading */
-      letter-spacing:-.01em;
-      line-height:1.2;
-    }
-    .subtitle{margin:.2rem 0; color:#777; font-weight:400}
+    .name{margin:0 0 .3rem; font-size:2.8rem; font-weight:900; letter-spacing:-.01em; line-height:1.2}
+    .subtitle{margin:.15rem 0; color:#777; font-weight:400}
 
-    /* Tabs */
-    .tabs{ margin:1.1rem 0 1.6rem; background:#fff; border:1px solid var(--border); border-radius:10px; }
-    .tabs ul{list-style:none; margin:0; padding:.35rem .6rem; display:flex; gap:1rem}
-    .tabs a{display:inline-block; padding:.55rem .9rem; border-radius:8px; color:#1f2937; font-weight:700}
-    .tabs a.active{color:var(--accent); background:rgba(37,99,235,.08)}
+    /* Tabs container */
+    .tabs-outer{
+      max-width:980px; margin:1.1rem auto 1.6rem;
+      padding:0 .2rem;
+    }
+    .tabs{
+      background:#fff; border:1px solid var(--border); border-radius:16px;
+      box-shadow:0 1px 0 rgba(0,0,0,.02);
+      overflow:hidden; /* keeps rounded corners perfect on mobile */
+    }
+    .tabs ul{
+      list-style:none; margin:0; padding:.35rem;
+      display:flex; gap:.6rem; align-items:center; justify-content:flex-start;
+    }
+    .tabs a{
+      display:inline-block; padding:.65rem 1rem; border-radius:10px;
+      color:#1f2937; font-weight:900; white-space:nowrap;
+    }
+    .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent)}
+
+    /* Mobile segmented control behaviour */
+    @media (max-width:560px){
+      .tabs ul{gap:.35rem; padding:.35rem}
+      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr)}
+      .tabs a{ text-align:center; padding:.85rem .2rem }
+    }
+
+    /* Body text blocks */
+    .intro{max-width:980px; margin:0 auto}
+    .intro p{margin:.4rem 0 1rem}
 
     /* Cards */
-    .card{background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.5rem; margin:1.5rem 0}
+    .card{
+      max-width:980px; margin:1.75rem auto; background:#fff;
+      border:1px solid var(--border); border-radius:10px; padding:1.4rem 1.5rem;
+    }
     .card h2{margin:0; color:var(--accent); font-size:1.2rem; font-weight:900}
-    .card p{margin:.75rem 0; font-weight:400}
+    .card p{margin:.7rem 0}
 
     /* Floating search button */
     .search-fab{
       position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
       background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
       color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
+      padding:0;
     }
     .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
 
@@ -89,27 +113,29 @@
     .nores{color:#6b7280; padding:1rem .25rem}
     mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
 
-    footer{margin-top:2rem; color:#888; font-size:14px}
+    footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px}
 
-    /* Responsive */
+    /* Responsive header grid */
     @media (max-width:900px){
       .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
       .photo{width:var(--avatar-mobile)}
+      .name{font-size:2.35rem}
     }
     @media (max-width:680px){
       .hero-wrap{grid-template-columns:1fr}
-      .photo{width:var(--avatar-mobile); margin-inline:auto}
+      .photo{margin-inline:auto}
+      .name{text-align:left; margin-top:.6rem}
     }
   </style>
 </head>
 <body>
 
-  <!-- Floating search button -->
+  <!-- Search button -->
   <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 
-  <!-- Header row -->
+  <!-- Header -->
   <section class="hero-wrap" aria-label="Profile">
     <img class="photo"
          src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
@@ -123,57 +149,71 @@
   </section>
 
   <!-- Tabs -->
-  <nav class="tabs" aria-label="Primary">
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="research.html">Research</a></li>
-      <li><a href="cv.html">CV</a></li>
-      <li><a href="resources.html">Resources</a></li>
-    </ul>
-  </nav>
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
+  </div>
 
-  <p style="font-size:1.15rem;font-weight:900;margin:.25rem 0 0;">Welcome!</p>
-  <p>
-    I'm interested in evidence-based international affairs, political economy, and economic development.
-    See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">full CV</a>.
-  </p>
-
-  <section class="about-content">
-    <p>I am a <a href="https://ltkfoundation.org/">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the
+  <!-- Intro -->
+  <div class="intro">
+    <p style="font-size:1.25rem; font-weight:900; margin:.25rem 0 .15rem">Welcome!</p>
+    <p>
+      I'm interested in evidence-based international affairs, political economy, and economic development.
+      See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">full CV</a>.
+    </p>
+    <p>
+      I am a <a href="https://ltkfoundation.org/">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the
       <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy (LKYSPP)</a>, National University of Singapore (NUS).
       I am a Young Leader with the <a href="https://pacforum.org/young-leaders-program/">Pacific Forum Young Leaders Program</a> and a reviewer for
       <a href="https://jba.lan.go.id/">Jurnal Borneo Administrator</a>.
     </p>
-    <p>Having educated across Singapore, Switzerland, the United Kingdom, Taiwan, and Indonesia, my academic training spans research methods, political economy, development, behavioral economics, comparative politics, impact investment, and business–government relations.</p>
-    <p>I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025). I earned a B.A. in Political Science (International Relations) from
+    <p>
+      Having educated across Singapore, Switzerland, the United Kingdom, Taiwan, and Indonesia, my academic training spans research methods,
+      political economy, development, behavioral economics, comparative politics, impact investment, and business–government relations.
+    </p>
+    <p>
+      I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025).
+      I earned a B.A. in Political Science (International Relations) from
       <a href="https://en.wikipedia.org/wiki/Muhammadiyah_University_of_Yogyakarta">Universitas Muhammadiyah Yogyakarta</a> (2022), where I also visited the
       <a href="https://en.wikipedia.org/wiki/University_of_Glasgow">University of Glasgow</a> (Fall 2021) and
-      <a href="https://en.wikipedia.org/wiki/Asia_University_(Taiwan)">Asia University</a> (Fall 2020).</p>
+      <a href="https://en.wikipedia.org/wiki/Asia_University_(Taiwan)">Asia University</a> (Fall 2020).
+    </p>
     <p>Outside work, I enjoy the outdoors (though I’m most often in the gym), and in my free time I play FPS and strategy games.</p>
-  </section>
+  </div>
 
-  <div class="card">
+  <!-- Latest publication -->
+  <section class="card">
     <h2>Latest Publication</h2>
-    <p>I’m proud to co-author the AidData policy report  
+    <p>
+      I’m proud to co-author the AidData policy report
       <a href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">
-        “Balancing Risk and Reward: Who benefits from China’s investments in Indonesia?”</a> (June 12, 2025).
+        “Balancing Risk and Reward: Who benefits from China’s investments in Indonesia?”
+      </a> (June 12, 2025).
     </p>
     <p>The report decodes over two decades of Beijing’s state-backed development finance (nearly $70 billion from 2000–2023) and private FDI (over $94 billion from 2010–2024), revealing which actors truly benefit.</p>
-    <p>Coverage: South China Morning Post — 
+    <p>Coverage: South China Morning Post —
       <a href="https://www.scmp.com/week-asia/economics/article/3318306/how-indonesia-can-maximise-benefits-chinese-investments" target="_blank" rel="noopener">
-        “Should Indonesia scrutinise China-funded projects?”</a> (July 16, 2025).
+        “Should Indonesia scrutinise China-funded projects?”
+      </a> (July 16, 2025).
     </p>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Let's Connect</h2>
+  <!-- Contact -->
+  <section class="card">
+    <h3 style="margin:0 0 .5rem">Let's Connect</h3>
     <p>I am actively seeking research assistantship in policy research, economic development, or international affairs.</p>
     <p><i class="fas fa-envelope"></i> <a href="mailto:faiz.krisnadi@u.nus.edu">faiz.krisnadi@u.nus.edu</a></p>
-  </div>
+  </section>
 
   <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
 
-  <!-- Overlay Search -->
+  <!-- Search overlay -->
   <div class="search-overlay" id="searchOverlay" aria-hidden="true">
     <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
       <div class="search-bar">
@@ -188,132 +228,79 @@
     </div>
   </div>
 
-  <!-- Search JS: indexes headings, links, and body text across pages -->
   <script>
+    /* ---------- In-page search (same across pages) ---------- */
     const PAGE_LIST = [
       { url: 'index.html',     title: 'Home' },
       { url: 'research.html',  title: 'Research' },
       { url: 'cv.html',        title: 'CV' },
       { url: 'resources.html', title: 'Resources' }
     ];
-
-    const cache = new Map();
-    let indexBuilt = false, INDEX = [];
-
-    async function fetchPage(u){
-      if(cache.has(u)) return cache.get(u);
-      const res = await fetch(u, { credentials: 'same-origin' });
-      const txt = await res.text();
-      cache.set(u, txt); return txt;
-    }
-    function buildDoc(html){ return new DOMParser().parseFromString(html, 'text/html'); }
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
     function extract(doc){
-      const title = (doc.querySelector('title')?.textContent || '').trim();
-      const metas = doc.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-      const heads = [...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
-      const links = [...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
-      const body  = (doc.body?.innerText || '').replace(/\s+/g,' ').trim().slice(0,20000);
+      const title=(doc.querySelector('title')?.textContent||'').trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
+      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
+      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
+      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
       return { title, metas, heads, links, body };
     }
-    const normalize = s => (s||'').toLowerCase();
-    function score(q, rec){
-      const hay = normalize([rec.title, rec.metas, rec.heads, rec.links, rec.body].join(' '));
-      const terms = normalize(q).split(/\s+/).filter(Boolean);
-      if(!terms.length) return 0;
-      let sc = 0;
-      for(const t of terms){
-        const regex = new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g');
-        const matches = hay.match(regex);
-        sc += matches ? matches.length * 12 : 0;
-      }
-      if(normalize(rec.title).includes(normalize(q))) sc += 30;
-      if(normalize(rec.heads).includes(normalize(q))) sc += 15;
+    const normalize=s=>(s||'').toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
       return sc;
     }
-    function snippet(rec, q){
-      const hay = [rec.heads, rec.links, rec.body].join(' ');
-      const txt = hay.replace(/\s+/g,' ');
-      const term = normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
-      if(!term){ return (rec.metas || rec.heads || rec.body).slice(0,160); }
-      const i = normalize(txt).indexOf(term);
-      const start = Math.max(0, i - 60), end = Math.min(txt.length, i + 120);
-      return (i >= 0 ? (start>0?'…':'') + txt.slice(start,end) + (end<txt.length?'…':'')
-                     : (rec.metas || rec.heads || rec.body).slice(0,160));
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
     }
     async function buildIndex(){
-      const pages = await Promise.allSettled(PAGE_LIST.map(async p=>{
-        const html = await fetchPage(p.url);
-        const doc = buildDoc(html);
-        const rec = extract(doc);
-        return { url:p.url, title: p.title || rec.title, ...rec };
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
       }));
-      INDEX = pages.filter(x=>x.status==='fulfilled').map(x=>x.value);
-      indexBuilt = true;
+      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
     }
-    function hilite(text, q){
-      const terms = normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
-      let out = text;
-      for(const t of terms){
-        const re = new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
-        out = out.replace(re,'<mark>$1</mark>');
-      }
+    function hilite(text,q){
+      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
       return out;
     }
     function search(q){
-      if(!q) return INDEX.slice(0,8).map(r=>({rec:r, sc:0}));
-      return INDEX
-        .map(rec => ({ rec, sc: score(q, rec) }))
-        .filter(x => x.sc > 0)
-        .sort((a,b)=>b.sc - a.sc)
-        .slice(0,12);
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
     }
 
-    // UI wiring
-    const openBtn  = document.getElementById('openSearch');
-    const overlay  = document.getElementById('searchOverlay');
-    const input    = document.getElementById('searchInput');
-    const closeBtn = document.getElementById('closeSearch');
-    const results  = document.getElementById('results');
+    const openBtn=document.getElementById('openSearch');
+    const overlay=document.getElementById('searchOverlay');
+    const input=document.getElementById('searchInput');
+    const closeBtn=document.getElementById('closeSearch');
+    const results=document.getElementById('results');
 
-    function openSearch(){
-      overlay.style.display='block';
-      overlay.setAttribute('aria-hidden','false');
-      setTimeout(()=>input.focus(),10);
-      if(!indexBuilt) buildIndex().then(()=>render(input.value));
-      else render(input.value);
-    }
-    function closeSearch(){
-      overlay.style.display='none';
-      overlay.setAttribute('aria-hidden','true');
-      input.value='';
-      results.innerHTML='';
-    }
+    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
     function render(q){
-      const hits = search(q);
-      if(!hits.length){
-        results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>`
-                              : `<div class="nores">Start typing to search pages.</div>`;
-        return;
-      }
-      results.innerHTML = hits.map(({rec})=>{
-        const snip = snippet(rec, q);
-        return `<a class="result" href="${rec.url}">
-                  <strong>${hilite(rec.title || 'Untitled', q)}</strong>
-                  <small>${hilite(snip, q)}</small>
-                </a>`;
-      }).join('');
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
     }
-
-    openBtn.addEventListener('click', openSearch);
-    closeBtn.addEventListener('click', closeSearch);
-    overlay.addEventListener('click', e=>{ if(e.target===overlay) closeSearch(); });
-    input.addEventListener('input', e=>render(e.target.value));
-    document.addEventListener('keydown', e=>{
-      if((e.metaKey || e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
-      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false'){ closeSearch(); }
-      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){
-        const top = results.querySelector('.result'); if(top) top.click();
-      }
+    openBtn.addEventListener('click',openSearch);
+    closeBtn.addEventListener('click',closeSearch);
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener('input',e=>render(e.target.value));
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
     });
   </script>
 </body>
