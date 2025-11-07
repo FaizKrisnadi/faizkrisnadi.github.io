@@ -4,7 +4,15 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home | Faiz Krisnadi</title>
+
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Fonts: Lato (similar to the style you referenced) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
@@ -16,12 +24,13 @@
     }
     *{box-sizing:border-box}
     body{
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      max-width:980px; margin:0 auto; padding:2rem 1.25rem; line-height:1.6;
+      font-family:'Lato', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      max-width:980px; margin:0 auto; padding:2rem 1.25rem; line-height:1.7;
       color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
     a{color:var(--accent); text-decoration:none; transition:opacity .2s}
-    a:hover{opacity:.75}
+    a:hover{opacity:.8}
 
     /* Header row (no grey panels) */
     .hero-wrap{
@@ -36,19 +45,25 @@
       border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef;
       display:block;
     }
-    .name{margin:0 0 .35rem; font-size:2.25rem; font-weight:800; letter-spacing:-.01em}
-    .subtitle{margin:.2rem 0; color:#777}
+    .name{
+      margin:0 0 .35rem;
+      font-size:2.6rem;            /* slightly larger like the screenshot */
+      font-weight:900;             /* Lato Black for strong heading */
+      letter-spacing:-.01em;
+      line-height:1.2;
+    }
+    .subtitle{margin:.2rem 0; color:#777; font-weight:400}
 
     /* Tabs */
     .tabs{ margin:1.1rem 0 1.6rem; background:#fff; border:1px solid var(--border); border-radius:10px; }
     .tabs ul{list-style:none; margin:0; padding:.35rem .6rem; display:flex; gap:1rem}
-    .tabs a{display:inline-block; padding:.55rem .9rem; border-radius:8px; color:#1f2937}
-    .tabs a.active{color:var(--accent); background:rgba(37,99,235,.08); font-weight:600}
+    .tabs a{display:inline-block; padding:.55rem .9rem; border-radius:8px; color:#1f2937; font-weight:700}
+    .tabs a.active{color:var(--accent); background:rgba(37,99,235,.08)}
 
     /* Cards */
     .card{background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.5rem; margin:1.5rem 0}
-    .card h2{margin:0; color:var(--accent); font-size:1.15rem}
-    .card p{margin:.75rem 0}
+    .card h2{margin:0; color:var(--accent); font-size:1.2rem; font-weight:900}
+    .card p{margin:.75rem 0; font-weight:400}
 
     /* Floating search button */
     .search-fab{
@@ -117,7 +132,7 @@
     </ul>
   </nav>
 
-  <p style="font-size:1.15rem;font-weight:700;margin:.25rem 0 0;">Welcome!</p>
+  <p style="font-size:1.15rem;font-weight:900;margin:.25rem 0 0;">Welcome!</p>
   <p>
     I'm interested in evidence-based international affairs, political economy, and economic development.
     See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">full CV</a>.
@@ -303,6 +318,7 @@
   </script>
 </body>
 </html>
+
 
 
 
