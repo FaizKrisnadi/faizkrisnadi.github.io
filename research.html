@@ -105,6 +105,32 @@
       .photo{margin-inline:auto}
       .name{text-align:left; margin-top:.6rem}
     }
+    /* --- Mobile segmented tabs: spacing + centering fix --- */
+@media (max-width: 560px){
+  .tabs { border-radius: 22px; }
+  .tabs ul{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;                 /* even gaps between pills */
+    padding: 6px;             /* small, even inset */
+  }
+  .tabs a{
+    display: flex;            /* perfect centering */
+    align-items: center;
+    justify-content: center;
+    height: 46px;             /* uniform pill height */
+    padding: 0;               /* remove side padding that caused mis-spacing */
+    min-width: 0;             /* allow shrink inside grid cell */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(14px, 3.8vw, 17px);
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
   </style>
 </head>
 <body>
