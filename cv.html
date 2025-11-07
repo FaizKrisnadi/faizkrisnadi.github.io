@@ -1,117 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV | Faiz Krisnadi</title>
-    <style>
-        :root {
-            --bg: #f8f8f8;
-            --text: #333;
-            --accent: #2563eb;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-        a { 
-            color: var(--accent); 
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-        a:hover {
-            opacity: 0.7;
-        }
-        h1 { font-weight: 500; margin-bottom: 0; }
-        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
-        nav { margin: 2rem 0; }
-        nav a { margin-right: 1.5rem; }
-        section { margin: 3rem 0; }
-        footer { margin-top: 4rem; opacity: 0.6; }
-        
-        /* Profile image style (copied from index.html) */
-        .profile-photo img {
-          width: 150px;
-          height: 150px;
-          object-fit: cover;
-          border-radius: 8px; /* Matches your index.html style */
-          border: 1.5px solid #ccc;
-          display: block;
-          margin: 0 auto 1rem; /* Centers image and adds spacing below */
-        }
-        
-        .cv-section { margin-bottom: 2.5rem; }
-        .cv-item { margin-bottom: 1.5rem; }
-        .cv-date { color: #666; font-size: 0.9rem; }
-        .cv-download {
-            margin: 2rem 0;
-            padding: 1rem;
-            border: 1px dashed rgba(0,0,0,0.2);
-            border-radius: 8px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--accent);
-            color: white;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-        .download-btn:hover {
-            background: #1a56db;
-            transform: translateY(-2px);
-        }
-        .file-size {
-            font-size: 0.8rem;
-            color: #666;
-            margin-top: 0.5rem;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>CV | Faiz Krisnadi</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
+
+      --avatar: 190px;
+      --avatar-mobile: 160px;
+      --avatar-focus-y: 40%;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height:1.75;
+    }
+    a{color:var(--accent); text-decoration:none; transition:opacity .2s}
+    a:hover{opacity:.8}
+
+    /* Header */
+    .hero-wrap{
+      max-width:980px; margin:0 auto;
+      display:grid; grid-template-columns: calc(var(--avatar) + 30px) 1fr;
+      gap:1.6rem; align-items:center;
+    }
+    .photo{
+      width:var(--avatar); aspect-ratio:1/1; height:auto; border-radius:50%;
+      object-fit:cover; object-position:50% var(--avatar-focus-y);
+      border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef; display:block;
+    }
+    .name{margin:0 0 .3rem; font-size:2.8rem; font-weight:900; letter-spacing:-.01em; line-height:1.2}
+    .subtitle{margin:.15rem 0; color:#777; font-weight:400}
+
+    /* Tabs */
+    .tabs-outer{max-width:980px; margin:1.1rem auto 1.6rem; padding:0 .2rem;}
+    .tabs{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); overflow:hidden;}
+    .tabs ul{list-style:none; margin:0; padding:.35rem; display:flex; gap:.6rem; align-items:center;}
+    .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
+    .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent);}
+    @media (max-width:560px){
+      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr); gap:.35rem; padding:.35rem;}
+      .tabs a{text-align:center; padding:.85rem .2rem;}
+    }
+
+    /* Main container */
+    .container{max-width:980px; margin:0 auto;}
+
+    h2.section{margin:2.2rem 0 1rem; font-size:1.35rem; font-weight:900; letter-spacing:.01em}
+
+    /* CV card */
+    .cv-card{
+      background:#fff; border:1px solid var(--border); border-radius:12px;
+      padding:1.2rem 1.2rem 1.35rem; margin:1rem 0;
+    }
+    .dl{
+      display:inline-flex; align-items:center; gap:.55rem; font-weight:900;
+      background:var(--accent); color:#fff; padding:.8rem 1.15rem; border-radius:10px;
+      border:1px solid rgba(0,0,0,.03); box-shadow:0 2px 0 rgba(0,0,0,.03);
+    }
+    .dl:hover{opacity:.9}
+    .filesize{color:var(--muted); font-size:.9rem; margin-top:.45rem}
+
+    /* Floating search */
+    .search-fab{
+      position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
+      background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
+      color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
+    }
+    .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
+
+    /* Search overlay */
+    .search-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px); display:none; z-index:60; }
+    .search-panel{ max-width:900px; margin:8vh auto 0; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1rem 1.1rem; box-shadow:0 30px 60px rgba(0,0,0,.15);}
+    .search-bar{ display:flex; align-items:center; gap:.6rem; padding:.35rem .6rem; border:1px solid var(--border); border-radius:12px;}
+    .search-bar input{ flex:1; border:none; font-size:1.05rem; padding:.8rem .2rem; outline:none; background:#fff;}
+    .hint{color:var(--muted); font-size:.9rem; margin:.65rem .15rem 0}
+    .results{margin:.35rem 0 0; max-height:52vh; overflow:auto}
+    .result{ padding:.8rem .65rem; border-radius:8px; display:block; color:#111827;}
+    .result:hover{background:#f2f5ff}
+    .result small{display:block; color:#6b7280; margin-top:.15rem}
+    .nores{color:#6b7280; padding:1rem .25rem}
+    mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
+
+    footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px}
+
+    /* Responsive header grid */
+    @media (max-width:900px){
+      .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
+      .photo{width:var(--avatar-mobile)}
+      .name{font-size:2.35rem}
+    }
+    @media (max-width:680px){
+      .hero-wrap{grid-template-columns:1fr}
+      .photo{margin-inline:auto}
+      .name{text-align:left; margin-top:.6rem}
+    }
+  </style>
 </head>
 <body>
-    <!-- Profile photo added here -->
-    <div class="profile-photo">
-      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
-           alt="Faiz Krisnadi"
-           onerror="this.src='https://via.placeholder.com/150'">
+
+  <!-- Search button -->
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <!-- Header -->
+  <section class="hero-wrap" aria-label="Profile">
+    <img class="photo"
+         src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+         alt="Faiz Krisnadi"
+         onerror="this.src='https://via.placeholder.com/210'">
+    <div>
+      <h1 class="name">Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
     </div>
-    
-    <header>
-        <h1>Faiz Krisnadi</h1>
-        <p class="subtitle">Master's in International Affairs</p>
-        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </header>
-    
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="research.html">Research</a>
-        <a href="cv.html" style="font-weight:600">CV</a>
-        <a href="resources.html">Resources</a>
+  </section>
+
+  <!-- Tabs -->
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a class="active" href="cv.html">CV</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
     </nav>
-    
-    <main>
-        <section>
-            <h2>Curriculum Vitae</h2>
-            
-            <div class="cv-download">
-                <a href="faiz-cv.pdf" class="download-btn" target="_blank">
-                    <i class="fas fa-file-pdf"></i> Download Full CV (PDF)
-                </a>
-                <p class="file-size">File size: 200KB</p>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        © 2025 Faiz Krisnadi. All rights reserved.
-    </footer>
+  </div>
+
+  <main class="container">
+    <h2 class="section">Curriculum Vitae</h2>
+
+    <div class="cv-card">
+      <p style="margin-top:0">
+        One-page summary and extended academic CV available below. For references or additional materials, feel free to <a href="mailto:faiz.krisnadi@u.nus.edu">email me</a>.
+      </p>
+      <p style="margin:.9rem 0 0">
+        <a class="dl" href="faiz-cv.pdf" target="_blank" rel="noopener">
+          <i class="fa-solid fa-file-pdf"></i> Download Full CV (PDF)
+        </a>
+      </p>
+      <div class="filesize">File size: ~200 KB</div>
+    </div>
+  </main>
+
+  <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
+        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- In-page search (same as Home/Research) ---------- */
+    const PAGE_LIST = [
+      { url: 'index.html',     title: 'Home' },
+      { url: 'research.html',  title: 'Research' },
+      { url: 'cv.html',        title: 'CV' },
+      { url: 'resources.html', title: 'Resources' }
+    ];
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
+    function extract(doc){
+      const title=(doc.querySelector('title')?.textContent||'').trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
+      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
+      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
+      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
+      return { title, metas, heads, links, body };
+    }
+    const normalize=s=>(s||'').toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
+      return sc;
+    }
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
+    }
+    async function buildIndex(){
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
+      }));
+      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
+    }
+    function hilite(text,q){
+      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
+      return out;
+    }
+    function search(q){
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
+    }
+
+    const openBtn=document.getElementById('openSearch');
+    const overlay=document.getElementById('searchOverlay');
+    const input=document.getElementById('searchInput');
+    const closeBtn=document.getElementById('closeSearch');
+    const results=document.getElementById('results');
+
+    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
+    function render(q){
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
+    }
+    openBtn.addEventListener('click',openSearch);
+    closeBtn.addEventListener('click',closeSearch);
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener('input',e=>render(e.target.value));
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
+    });
+  </script>
 </body>
 </html>
+
