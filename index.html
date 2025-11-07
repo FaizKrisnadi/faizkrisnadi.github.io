@@ -1,121 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Home | Faiz Krisnadi</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    :root {
-      --bg: #f8f8f8;
-      --text: #333;
-      --accent: #2563eb;
-      --border: #e5e7eb;
+    :root{
+      --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
+      --panel:#f3f4f6; /* light grey card */
     }
-    body {
-      font-family: 'Inter', sans-serif;
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 2rem;
-      line-height: 1.6;
-      color: var(--text);
-      background: var(--bg);
+    *{box-sizing:border-box}
+    body{
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      max-width:980px; margin:0 auto; padding:2rem 1.25rem; line-height:1.6;
+      color:var(--text); background:var(--bg);
     }
+    a{color:var(--accent); text-decoration:none; transition:opacity .2s}
+    a:hover{opacity:.75}
 
-    a { color: var(--accent); text-decoration: none; transition: opacity .2s ease; }
-    a:hover { opacity: .7; }
-
-    /* Photo centered */
-    .profile-photo img {
-      width: 150px; height: 150px; object-fit: cover;
-      border-radius: 50%;                      /* circle */
-      border: 2px solid #fff;                  /* inner clean edge */
-      box-shadow: 0 0 0 3px var(--border);     /* soft ring frame */
-      display: block; margin: 0 auto 1rem;
+    /* ——— Header hero row ——— */
+    .hero-wrap{
+      display:grid; grid-template-columns:260px 1fr; gap:1.5rem;
+      align-items:center; background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.25rem;
     }
-
-    /* Header + nav left-aligned */
-    header { margin-bottom: 1.5rem; }
-    header h1 { font-weight: 500; margin: 0 0 .25rem; }
-    header .subtitle { color: grey; opacity: .8; margin-top: .25rem; }
-
-    nav { margin: 2rem 0; }
-    nav a { margin-right: 1.5rem; }
-
-    /* Site search (below nav) */
-    .search { display:flex; gap:.5rem; align-items:center; margin: -0.5rem 0 1.25rem; }
-    .search input[type="search"]{
-      flex:1; padding:.6rem .9rem; font-size:.95rem; border:1px solid var(--border);
-      border-radius:999px; background:#fff; outline:none;
+    .photo-shell{
+      display:flex; align-items:center; justify-content:center;
+      background:var(--panel); border-radius:10px; border:1px solid var(--border); padding:1.25rem;
     }
-    .search input[type="search"]::placeholder{ color:#8a8a8a; }
-    .search button{
-      padding:.55rem .85rem; border:1px solid var(--border); border-radius:999px;
-      background:#fff; color:var(--accent); cursor:pointer;
+    .photo{
+      width:210px; height:210px; object-fit:cover; border-radius:50%;
+      border:2px solid #fff; box-shadow:0 0 0 4px #e6e9ef; /* soft ring */
+      display:block;
     }
-    .search button:hover{ background:rgba(37,99,235,.06); }
-
-    /* Cards */
-    .card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
+    .name-card{
+      background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:1.1rem 1.25rem;
     }
-    .card h2 { margin: 0; color: var(--accent); font-size: 1.25rem; }
-    .card p { margin: .75rem 0; }
+    .name{margin:0 0 .35rem; font-size:2.1rem; font-weight:700; letter-spacing:-.01em}
+    .subtitle{margin:.2rem 0; color:#777}
 
-    /* About text block */
-    .about-content { margin-top: 1.5rem; }
+    /* ——— Tabs nav ——— */
+    .tabs{
+      margin:1.1rem 0 1.6rem; background:#fff; border:1px solid var(--border);
+      border-radius:10px; overflow:hidden;
+    }
+    .tabs ul{list-style:none; margin:0; padding:.35rem .6rem; display:flex; gap:1rem}
+    .tabs a{
+      display:inline-block; padding:.55rem .9rem; border-radius:8px; color:#1f2937;
+    }
+    .tabs a.active{color:var(--accent); background:rgba(37,99,235,.08); font-weight:600}
 
-    /* Contact teaser */
-    .contact-cta h3 { margin: 0 0 .5rem; }
-    .contact-cta i { margin-right: .5rem; }
-    footer { margin-top: 4rem; color: #888; font-size: 14px; }
+    /* ——— Cards ——— */
+    .card{background:#fff; border:1px solid var(--border); border-radius:10px; padding:1.5rem; margin:1.5rem 0}
+    .card h2{margin:0; color:var(--accent); font-size:1.15rem}
+    .card p{margin:.75rem 0}
+
+    /* ——— Floating search button ——— */
+    .search-fab{
+      position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
+      background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
+      color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
+    }
+    .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
+
+    /* ——— Overlay search ——— */
+    .search-overlay{
+      position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px);
+      display:none; z-index:60;
+    }
+    .search-panel{
+      max-width:860px; margin:8vh auto 0; background:#fff; border:1px solid var(--border);
+      border-radius:12px; padding:1rem 1rem 1.1rem;
+      box-shadow:0 30px 60px rgba(0,0,0,.15);
+    }
+    .search-bar{
+      display:flex; align-items:center; gap:.6rem; padding:.35rem .6rem;
+      border:1px solid var(--border); border-radius:12px;
+    }
+    .search-bar input{
+      flex:1; border:none; font-size:1.05rem; padding:.8rem .2rem; outline:none; background:#fff;
+    }
+    .hint{color:var(--muted); font-size:.9rem; margin:.65rem .15rem 0}
+    .results{margin:.35rem 0 0; max-height:52vh; overflow:auto}
+    .result{
+      padding:.8rem .65rem; border-radius:8px; display:block; color:#111827;
+    }
+    .result:hover{background:#f2f5ff}
+    .result small{display:block; color:#6b7280; margin-top:.15rem}
+    .nores{color:#6b7280; padding:1rem .25rem}
+    mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
+
+    /* ——— Misc ——— */
+    footer{margin-top:2rem; color:#888; font-size:14px}
+
+    /* ——— Responsive ——— */
+    @media (max-width:900px){
+      .hero-wrap{grid-template-columns:210px 1fr}
+      .photo{width:180px;height:180px}
+    }
+    @media (max-width:680px){
+      body{padding:1.25rem}
+      .hero-wrap{grid-template-columns:1fr}
+      .photo{width:160px;height:160px}
+      .photo-shell{justify-content:flex-start}
+    }
   </style>
 </head>
 <body>
 
-  <div class="profile-photo">
-    <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" 
-         alt="Faiz Krisnadi"
-         onerror="this.src='https://via.placeholder.com/150'">
-  </div>
+  <!-- floating search button -->
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
 
-  <header>
-    <h1>Faiz Krisnadi</h1>
-    <p class="subtitle">Master's in International Affairs</p>
-    <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-  </header>
-  
-  <nav>
-    <a href="index.html" style="font-weight:600">Home</a>
-    <a href="research.html">Research</a>
-    <a href="cv.html">CV</a>
-    <a href="resources.html">Resources</a>
+  <!-- header hero row -->
+  <section class="hero-wrap" aria-label="Profile">
+    <div class="photo-shell">
+      <img class="photo"
+           src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+           alt="Faiz Krisnadi"
+           onerror="this.src='https://via.placeholder.com/210'">
+    </div>
+    <div class="name-card">
+      <h1 class="name">Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </div>
+  </section>
+
+  <!-- tabs -->
+  <nav class="tabs" aria-label="Primary">
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="cv.html">CV</a></li>
+      <li><a href="resources.html">Resources</a></li>
+    </ul>
   </nav>
 
-  <!-- Site search -->
-  <form class="search" id="site-search" role="search" aria-label="Search this site">
-    <input type="search" id="q" name="q" placeholder="Search this site…" autocomplete="off">
-    <button type="submit" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-  </form>
-
-  <p style="font-size:1.35rem;font-weight:600;margin:.5rem 0 0;">Welcome!</p>
+  <p style="font-size:1.15rem;font-weight:700;margin:.25rem 0 0;">Welcome!</p>
   <p>
     I'm interested in evidence-based international affairs, political economy, and economic development.
     See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">full CV</a>.
   </p>
 
   <section class="about-content">
-    <p>I am a <a href="https://ltkfoundation.org/">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy (LKYSPP)</a>, National University of Singapore (NUS). I am a Young Leader with the <a href="https://pacforum.org/young-leaders-program/">Pacific Forum Young Leaders Program</a> and a reviewer for <a href="https://jba.lan.go.id/">Jurnal Borneo Administrator</a>.</p>
+    <p>I am a <a href="https://ltkfoundation.org/">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the
+      <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy (LKYSPP)</a>, National University of Singapore (NUS).
+      I am a Young Leader with the <a href="https://pacforum.org/young-leaders-program/">Pacific Forum Young Leaders Program</a> and a reviewer for
+      <a href="https://jba.lan.go.id/">Jurnal Borneo Administrator</a>.
+    </p>
     <p>Having educated across Singapore, Switzerland, the United Kingdom, Taiwan, and Indonesia, my academic training spans research methods, political economy, development, behavioral economics, comparative politics, impact investment, and business–government relations.</p>
-    <p>I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025). I earned a B.A. in Political Science (International Relations) from <a href="https://en.wikipedia.org/wiki/Muhammadiyah_University_of_Yogyakarta">Universitas Muhammadiyah Yogyakarta</a> (2022), where I also visited the <a href="https://en.wikipedia.org/wiki/University_of_Glasgow">University of Glasgow</a> (Fall 2021) and <a href="https://en.wikipedia.org/wiki/Asia_University_(Taiwan)">Asia University</a> (Fall 2020).</p>
+    <p>I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025). I earned a B.A. in Political Science (International Relations) from
+      <a href="https://en.wikipedia.org/wiki/Muhammadiyah_University_of_Yogyakarta">Universitas Muhammadiyah Yogyakarta</a> (2022), where I also visited the
+      <a href="https://en.wikipedia.org/wiki/University_of_Glasgow">University of Glasgow</a> (Fall 2021) and
+      <a href="https://en.wikipedia.org/wiki/Asia_University_(Taiwan)">Asia University</a> (Fall 2020).</p>
     <p>Outside work, I enjoy the outdoors (though I’m most often in the gym), and in my free time I play FPS and strategy games.</p>
   </section>
 
-  <div class="latest-publication card">
+  <div class="card">
     <h2>Latest Publication</h2>
     <p>I’m proud to co-author the AidData policy report  
       <a href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">
@@ -128,33 +171,130 @@
     </p>
   </div>
 
-  <div class="contact-cta card">
-    <h3>Let's Connect</h3>
+  <div class="card">
+    <h2>Let's Connect</h2>
     <p>I am actively seeking research assistantship in policy research, economic development, or international affairs.</p>
-    <p><i class="fas fa-envelope"></i><a href="mailto:faiz.krisnadi@u.nus.edu">faiz.krisnadi@u.nus.edu</a></p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:faiz.krisnadi@u.nus.edu">faiz.krisnadi@u.nus.edu</a></p>
   </div>
-  
-  <footer>
-    <p>© 2025 Faiz Krisnadi. All rights reserved.</p>
-  </footer>
 
-  <!-- Simple site search: opens DuckDuckGo results for your domain -->
+  <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
+
+  <!-- ——— Overlay Search HTML ——— -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
+        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close</div>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+
+  <!-- ——— Overlay Search JS (client-side, no redirect) ——— -->
   <script>
-    (function(){
-      const form = document.getElementById('site-search');
-      const input = document.getElementById('q');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const q = (input.value || '').trim();
-        if(!q) return;
-        // Change the domain below if you use a custom domain later
-        const url = 'https://duckduckgo.com/?q=' + encodeURIComponent('site:faizkrisnadi.github.io ' + q);
-        window.open(url, '_blank');
-      });
-    })();
+    // Simple site index. Add/edit entries as you grow.
+    const SITE_INDEX = [
+      { title: "Home",       url: "index.html",
+        blurb: "Welcome and latest updates.", 
+        keywords: "home welcome profile faiz krisnadi international affairs political economy development" },
+      { title: "Research",   url: "research.html",
+        blurb: "Projects, papers, and policy memos.",
+        keywords: "research publications policy papers WTO dispute settlement geopolitics datasets" },
+      { title: "CV",         url: "cv.html",
+        blurb: "Curriculum Vitae: education, experience, skills.",
+        keywords: "cv resume curriculum vitae work experience education awards skills" },
+      { title: "Resources",  url: "resources.html",
+        blurb: "Templates, datasets, and VIID visuals.",
+        keywords: "resources templates datasets overleaf viid visuals data" }
+    ];
+
+    const openBtn  = document.getElementById('openSearch');
+    const overlay  = document.getElementById('searchOverlay');
+    const input    = document.getElementById('searchInput');
+    const closeBtn = document.getElementById('closeSearch');
+    const results  = document.getElementById('results');
+
+    function openSearch(){
+      overlay.style.display = 'block';
+      overlay.setAttribute('aria-hidden','false');
+      setTimeout(()=>input.focus(), 10);
+      renderResults(input.value);
+    }
+    function closeSearch(){
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden','true');
+      input.value = '';
+      results.innerHTML = '';
+    }
+
+    function normalize(s){ return (s||'').toLowerCase(); }
+    function score(q, item){
+      const hay = normalize(item.title + ' ' + item.blurb + ' ' + item.keywords);
+      const terms = normalize(q).split(/\s+/).filter(Boolean);
+      if(!terms.length) return 0;
+      let sc = 0;
+      for(const t of terms){
+        const hit = hay.indexOf(t);
+        if(hit >= 0) sc += 10 + Math.max(0, 20 - hit/10); // crude position weight
+      }
+      // slight boost for title matches
+      if(normalize(item.title).includes(normalize(q))) sc += 15;
+      return sc;
+    }
+    function hilite(text, q){
+      if(!q) return text;
+      const terms = normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out = text;
+      for(const t of terms){
+        if(!t) continue;
+        const re = new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+        out = out.replace(re, '<mark>$1</mark>');
+      }
+      return out;
+    }
+    function renderResults(q){
+      const ranked = SITE_INDEX
+        .map(item => ({...item, _score: score(q, item)}))
+        .filter(x => x._score > (q ? 0 : -1))
+        .sort((a,b) => b._score - a._score);
+      if(!q){
+        results.innerHTML = ranked.map(i =>
+          `<a class="result" href="${i.url}">
+             <strong>${i.title}</strong><small>${i.blurb}</small>
+           </a>`).join('');
+        return;
+      }
+      const html = ranked.length
+        ? ranked.map(i =>
+            `<a class="result" href="${i.url}">
+               <strong>${hilite(i.title,q)}</strong>
+               <small>${hilite(i.blurb,q)}</small>
+             </a>`).join('')
+        : `<div class="nores">No results for “${q.replace(/[<>&]/g,'') }”.</div>`;
+      results.innerHTML = html;
+    }
+
+    // Wire up events
+    openBtn.addEventListener('click', openSearch);
+    closeBtn.addEventListener('click', closeSearch);
+    overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeSearch(); });
+    input.addEventListener('input', (e)=>renderResults(e.target.value));
+    document.addEventListener('keydown', (e)=>{
+      // open with Cmd/Ctrl+K
+      if((e.metaKey || e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false'){ closeSearch(); }
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){
+        const top = results.querySelector('.result'); if(top) top.click();
+      }
+    });
   </script>
 </body>
 </html>
+
 
 
 
