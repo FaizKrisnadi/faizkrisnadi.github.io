@@ -1,254 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources | Faiz Krisnadi</title>
-    <style>
-        :root {
-            --bg: #f8f8f8;
-            --text: #333;
-            --accent: #2563eb;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-        a { 
-            color: var(--accent); 
-            text-decoration: none;
-            transition: opacity 0.2s ease;
-        }
-        a:hover { opacity: 0.7; }
-        h1 { font-weight: 500; margin-bottom: 0; }
-        .subtitle { opacity: 0.8; margin-top: 0.5rem; }
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resources | Faiz Krisnadi</title>
 
-        nav { margin: 2rem 0; }
-        nav a { margin-right: 1.5rem; }
+  <style>
+    :root {
+      --bg: #f8f8f8;
+      --text: #333;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; transition: opacity .2s ease; }
+    a:hover { opacity: .7; }
+    h1 { font-weight: 500; margin-bottom: 0; }
+    .subtitle { opacity: .8; margin-top: .5rem; }
 
-        section { margin: 3rem 0; }
-        footer { margin-top: 4rem; opacity: 0.6; }
-        
-        /* Profile image (same as Contact page) */
-        .profile-photo img {
-          width: 150px;
-          height: 150px;
-          object-fit: cover;
-          border-radius: 8px;
-          border: 1.5px solid #ccc;
-          display: block;
-          margin: 0 auto 1rem; /* centered */
-        }
+    nav { margin: 2rem 0; }
+    nav a { margin-right: 1.5rem; }
 
-        /* Resources-specific */
-        .hero {
-          background: rgba(37, 99, 235, 0.06);
-          border: 1px solid #e5e7eb;
-          padding: 1.25rem 1rem;
-          border-radius: 10px;
-        }
-        .hero h2 { 
-          margin: 0 0 .35rem; 
-          font-weight: 600; 
-          font-size: 2rem; 
-        }
-        .hero p { margin: 0; color: #666; }
+    section { margin: 3rem 0; }
+    footer { margin-top: 4rem; opacity: .6; }
 
-        .list { list-style: none; padding: 0; margin: 1rem 0 0; }
-        .item {
-          background: #fff;
-          border: 1px solid #e5e7eb;
-          border-radius: 10px;
-          padding: 1rem 1rem 1rem .9rem;
-          display: grid;
-          grid-template-columns: 28px 1fr auto;
-          gap: .9rem;
-          align-items: start;
-          margin-bottom: .8rem;
-        }
-        .item i { margin-top: .2rem; opacity: .9; }
-        .item-title { margin: 0; font-weight: 600; }
-        .item-desc { margin: .25rem 0 0; color: #666; font-size: .95rem; }
-        .item-cta a { font-size: .95rem; white-space: nowrap; }
+    /* Profile photo (same as other pages) */
+    .profile-photo img{
+      width:150px;height:150px;object-fit:cover;border-radius:8px;border:1.5px solid #ccc;
+      display:block;margin:0 auto 1rem;
+    }
 
-        .badge {
-          display: inline-block; font-size: .78rem; line-height: 1;
-          padding: .35rem .55rem; border-radius: 999px;
-          background: rgba(37,99,235,.08); border: 1px solid #e5e7eb; color: var(--accent);
-          margin-left: .4rem; vertical-align: middle;
-        }
-        .note {
-          background: rgba(37,99,235,.05); border: 1px solid #e5e7eb;
-          padding: .9rem 1rem; border-radius: 8px; color: #666; font-size: .95rem; margin-top: .8rem;
-        }
+    /* Hero */
+    .hero{
+      background: rgba(37,99,235,.06);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      border-radius: 10px;
+    }
+    .hero h2{ margin:0 0 .35rem; font-weight:600; font-size:2rem; }
+    .hero p{ margin:0; color:#666; }
 
-        @media (max-width: 420px){
-          .item { grid-template-columns: 24px 1fr; }
-          .item-cta { grid-column: 2; margin-top: .4rem; }
-        }
-        /* VIID mini-gallery */
-.viz-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:1rem;margin:1rem 0}
-.viz-card img{width:100%;height:auto;border-radius:6px;display:block}
-.viz-title{margin:.1rem 0 .25rem;font-weight:600;font-size:1.1rem}
-.viz-desc{color:#555;margin:.25rem 0 .25rem}
-.viz-meta{color:#666;font-size:.92rem;margin:.35rem 0 0}
+    /* List items (templates/datasets) */
+    .list{ list-style:none; padding:0; margin:1rem 0 0; }
+    .item{
+      background:#fff; border:1px solid var(--border); border-radius:10px;
+      padding:1rem 1rem 1rem .9rem; display:grid; grid-template-columns:28px 1fr auto;
+      gap:.9rem; align-items:start; margin-bottom:.8rem;
+    }
+    .item i{ margin-top:.2rem; opacity:.9; }
+    .item-title{ margin:0; font-weight:600; }
+    .item-desc{ margin:.25rem 0 0; color:#666; font-size:.95rem; }
+    .item-cta a{ font-size:.95rem; white-space:nowrap; }
 
-    </style>
+    .badge{
+      display:inline-block; font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px;
+      background:rgba(37,99,235,.08); border:1px solid var(--border); color:var(--accent);
+      margin-left:.4rem; vertical-align:middle;
+    }
+
+    /* —— Dataset slider —— */
+    .ds-slider{position:relative;margin:3rem 0}
+    .ds-track{
+      display:grid; grid-auto-flow:column; grid-auto-columns:100%;
+      overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border); border-radius:10px; background:#fff;
+    }
+    .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:center; padding:1rem}
+    .ds-media img{width:100%; height:280px; object-fit:cover; border-radius:8px; border:1px solid var(--border); display:block}
+    .ds-title{margin:.15rem 0 .35rem; font-weight:600; font-size:1.25rem}
+    .ds-desc{color:#555; margin:0}
+    .ds-nav{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:36px; height:36px; border-radius:999px; background:#fff; border:1px solid var(--border);
+      cursor:pointer; font-size:1.2rem; line-height:34px; text-align:center; color:#333;
+    }
+    .ds-prev{left:-12px} .ds-next{right:-12px}
+    .ds-dots{display:flex; gap:.35rem; justify-content:center; margin:.6rem 0 0}
+    .ds-dots button{width:8px; height:8px; border-radius:999px; border:none; background:#cbd5e1; cursor:pointer}
+    .ds-dots button.active{background:var(--accent)}
+    .viz-meta{color:#666; font-size:.92rem; margin:.6rem 0 0}
+
+    @media (max-width:720px){
+      .ds-slide{grid-template-columns:1fr}
+      .ds-media img{height:220px}
+      .ds-prev{left:4px} .ds-next{right:4px}
+    }
+
+    @media (max-width:420px){
+      .item{ grid-template-columns:24px 1fr; }
+      .item-cta{ grid-column:2; margin-top:.4rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Profile photo (centered) -->
-    <div class="profile-photo">
-      <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
-           alt="Faiz Krisnadi"
-           onerror="this.src='https://via.placeholder.com/150'">
-    </div>
+  <!-- Profile photo -->
+  <div class="profile-photo">
+    <img src="https://faizkrisnadi.github.io/assets/images/profile.jpg" alt="Faiz Krisnadi" onerror="this.src='https://via.placeholder.com/150'">
+  </div>
 
-    <!-- Personal header (left-aligned text) -->
-    <header>
-        <h1>Faiz Krisnadi</h1>
-        <p class="subtitle">Master's in International Affairs</p>
-        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </header>
+  <!-- Header -->
+  <header>
+    <h1>Faiz Krisnadi</h1>
+    <p class="subtitle">Master's in International Affairs</p>
+    <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+  </header>
 
-    <!-- Nav (same order; Resources highlighted) -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="research.html">Research</a>
-        <a href="cv.html">CV</a>
-        <a href="resources.html" style="font-weight:600">Resources</a>
-    </nav>
+  <!-- Nav -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="cv.html">CV</a>
+    <a href="resources.html" style="font-weight:600">Resources</a>
+  </nav>
 
-    <!-- Page hero -->
-    <div class="hero">
-      <h2>Resources</h2>
-      <p>Templates, datasets, code, and trackers I maintain dedicated for open-source.</p>
-    </div>
+  <!-- Hero -->
+  <div class="hero">
+    <h2>Resources</h2>
+    <p>Templates, datasets, code, and trackers I maintain for open use.</p>
+  </div>
 
-    <main>
-      <!-- Templates -->
-      <section aria-labelledby="templates">
-        <h3 id="templates">Templates</h3>
-        <ul class="list">
-          <li class="item">
-            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
-            <div>
-              <p class="item-title">CV Template (Overleaf)</p>
-              <p class="item-desc">
-                A lightweight, graduate-applications-ready CV built for quick edits and strict formatting.
-                Read the instructions page first; make changes via the variables, not the core code.
-              </p>
-            </div>
-            <div class="item-cta">
-              <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
-            </div>
-          </li>
-          <!-- Add more template items here if needed -->
-        </ul>
-      </section>
+  <main>
+    <!-- Templates -->
+    <section aria-labelledby="templates">
+      <h3 id="templates">Templates</h3>
+      <ul class="list">
+        <li class="item">
+          <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+          <div>
+            <p class="item-title">CV Template (Overleaf)</p>
+            <p class="item-desc">
+              A lightweight, graduate-applications-ready CV built for quick edits and strict formatting.
+              Read the instructions page first; make changes via the variables, not the core code.
+            </p>
+          </div>
+          <div class="item-cta">
+            <a href="https://www.overleaf.com/read/fjztbpcfpmrm#84d605" target="_blank" rel="noopener">Open template ↗</a>
+          </div>
+        </li>
+      </ul>
+    </section>
 
-      <!-- Datasets -->
-      <section aria-labelledby="datasets">
-        <h3 id="datasets">Datasets <span class="badge">Coming soon</span></h3>
-        <ul class="list">
-          <li class="item">
-            <i class="fa-solid fa-database" aria-hidden="true"></i>
-            <div>
-              <p class="item-title">Public dataset catalog</p>
-              <p class="item-desc">
-                Cleaned, well-documented tables with a short data dictionary and reproducible notes (sources, filters, version).
-                I’ll post downloads and codebooks here once they’re production-ready.
-              </p>
-            </div>
-            <div class="item-cta"><span class="badge">WIP</span></div>
-          </li>
-        </ul>
-          <!-- VIID 2025 — Visual Highlights -->
-<section id="viid-visuals" style="margin:3rem 0">
-  <h3>VIID 2025 — Visual Highlights</h3>
+    <!-- Datasets -->
+    <section aria-labelledby="datasets">
+      <h3 id="datasets">Datasets <span class="badge">Coming soon</span></h3>
+      <ul class="list">
+        <li class="item">
+          <i class="fa-solid fa-database" aria-hidden="true"></i>
+          <div>
+            <p class="item-title">Public dataset catalog</p>
+            <p class="item-desc">
+              Cleaned, well-documented tables with data dictionary and reproducible notes (sources, filters, versions).
+              Downloads and codebooks will appear here once production-ready.
+            </p>
+          </div>
+          <div class="item-cta"><span class="badge">WIP</span></div>
+        </li>
+      </ul>
+    </section>
 
-  <!-- Fig 1 -->
-  <figure class="viz-card">
-    <img src="assets/viid/viid_fig1_timeline.png" 
-         alt="Timeline for DS456 and DS593 from consultations to panel report; adoption markers">
-    <figcaption>
-      <div class="viz-title">Figure 1 — Dispute timelines (consultations → panel → report)</div>
-      <p class="viz-desc">
-        DS456 (US–India, solar) progressed 2013–2016. DS593 (Indonesia–EU, palm oil) shows a long panel phase (2020–2025), consistent with pandemic-era disruption and a heavier docket.
+    <!-- VIID 2025 — Slider -->
+    <section id="viid-slider" class="ds-slider" aria-label="VIID visuals carousel">
+      <h3>VIID 2025 — Visual Highlights</h3>
+
+      <button class="ds-nav ds-prev" aria-label="Previous slide">‹</button>
+      <div class="ds-track">
+        <!-- Slide 1 -->
+        <article class="ds-slide" role="group" aria-label="1 of 5">
+          <figure class="ds-media">
+            <img src="assets/viid/viid_fig1_timeline.png"
+                 alt="Timeline for DS456 and DS593 from consultations to panel report, with adoption markers">
+          </figure>
+          <div>
+            <div class="ds-title">Dispute timelines (consultations → panel → report)</div>
+            <p class="ds-desc">
+              DS456 (US–India, solar) progressed 2013–2016. DS593 (Indonesia–EU, palm oil) shows a long panel phase (2020–2025), consistent with pandemic-era disruption and a heavier docket.
+            </p>
+          </div>
+        </article>
+
+        <!-- Slide 2 -->
+        <article class="ds-slide" role="group" aria-label="2 of 5">
+          <figure class="ds-media">
+            <img src="assets/viid/viid_fig2_eu_palm_oil.png"
+                 alt="EU HS1511 imports from Indonesia with markers for RED II, 2019/807, DS593 steps, EUDR, panel report">
+          </figure>
+          <div>
+            <div class="ds-title">IDN→EU HS1511 (Palm oil) with policy & WTO markers</div>
+            <p class="ds-desc">
+              Imports peaked mid-2010s, dipped 2015–2016, recovered by 2021, then softened as sustainability rules tightened (RED II 2018, 2019/807, EUDR 2023) while DS593 advanced.
+            </p>
+          </div>
+        </article>
+
+        <!-- Slide 3 -->
+        <article class="ds-slide" role="group" aria-label="3 of 5">
+          <figure class="ds-media">
+            <img src="assets/viid/viid_fig3_phl_chn_bananas.png"
+                 alt="Philippines banana exports to China with shaded March–June 2012 episode">
+          </figure>
+          <div>
+            <div class="ds-title">PHL→CHN bananas (HS0803): 2012 maritime/SPS episode</div>
+            <p class="ds-desc">
+              Inspections/restrictions in Mar–Jun 2012 coincide with a sharp, short-run disruption. Manila did not file at the WTO; the issue resolved politically and trade later rebounded.
+            </p>
+          </div>
+        </article>
+
+        <!-- Slide 4 -->
+        <article class="ds-slide" role="group" aria-label="4 of 5">
+          <figure class="ds-media">
+            <img src="assets/viid/viid_fig4_ind_usa_solar.png"
+                 alt="US imports from India, HS854140, with DS456 milestones and US Section 201 safeguard markers">
+          </figure>
+          <div>
+            <div class="ds-title">IND→USA solar (HS854140): trend + numbered events</div>
+            <p class="ds-desc">
+              DS456 adoption (Oct 2016) and India’s DCR removal (2017) precede US Section 201 safeguards (2018–2022/extension), which shape much of the later pattern.
+            </p>
+          </div>
+        </article>
+
+        <!-- Slide 5 -->
+        <article class="ds-slide" role="group" aria-label="5 of 5">
+          <figure class="ds-media">
+            <img src="assets/viid/viid_fig5_gpr_scatter.png"
+                 alt="Scatter/line showing positive slope between GPR and filing/episode lags">
+          </figure>
+          <div>
+            <div class="ds-title">Geopolitical Risk (GPR) vs filing/episode lags</div>
+            <p class="ds-desc">
+              Higher geopolitical risk coincides with longer lags between consultations and panel requests—and a longer episode in the non-WTO case. Exploratory pattern; small N.
+            </p>
+          </div>
+        </article>
+      </div>
+      <button class="ds-nav ds-next" aria-label="Next slide">›</button>
+
+      <div class="ds-dots" aria-hidden="true"></div>
+
+      <p class="viz-meta">
+        <em>Sources:</em> WTO DS456 & DS593 dockets; EU legal acts (RED II, 2019/807, EUDR);
+        UN Comtrade/FAO; USITC DataWeb; Caldara–Iacoviello GPR. See VIID paper for details.
       </p>
-      <p class="viz-meta"><em>Sources:</em> WTO DS456 & DS593 dockets; adoption noted for DS456 (Oct 2016) and DS593 (Feb 2025) in the paper.</p>
-    </figcaption>
-  </figure>
+    </section>
+  </main>
 
-  <!-- Fig 2 -->
-  <figure class="viz-card">
-    <img src="assets/viid/viid_fig2_eu_palm_oil.png" 
-         alt="EU HS1511 imports from Indonesia with markers for RED II, 2019/807, DS593 steps, EUDR, and the panel report">
-    <figcaption>
-      <div class="viz-title">Figure 2 — IDN→EU HS1511 (Palm oil) with policy & WTO markers</div>
-      <p class="viz-desc">
-        Imports peaked mid-2010s, dipped in 2015–2016, recovered by 2021, then softened as sustainability rules tightened. Markers show RED II (2018), EU Delegated Reg. 2019/807 (2019), DS593 filings (2019–2020), EUDR entry into force (2023), and the 2025 panel report.
-      </p>
-      <p class="viz-meta"><em>Sources:</em> Eurostat/Comext series; EU legal acts; DS593 docket (as documented in the paper).</p>
-    </figcaption>
-  </figure>
+  <footer>© 2025 Faiz Krisnadi. All rights reserved.</footer>
 
-  <!-- Fig 3 -->
-  <figure class="viz-card">
-    <img src="assets/viid/viid_fig3_phl_chn_bananas.png" 
-         alt="Philippines banana exports to China with shaded March–June 2012 episode">
-    <figcaption>
-      <div class="viz-title">Figure 3 — PHL→CHN bananas (HS0803): 2012 maritime/SPS episode</div>
-      <p class="viz-desc">
-        Inspections/restrictions in Mar–Jun 2012 coincide with a short-run disruption. Manila did not file at the WTO; the issue was resolved politically and trade later rebounded.
-      </p>
-      <p class="viz-meta"><em>Sources:</em> UN Comtrade/FAO; episode window and narrative per the paper.</p>
-    </figcaption>
-  </figure>
+  <!-- Slider JS -->
+  <script>
+    (function(){
+      const slider = document.querySelector('#viid-slider');
+      if(!slider) return;
+      const track  = slider.querySelector('.ds-track');
+      const slides = [...slider.querySelectorAll('.ds-slide')];
+      const prev   = slider.querySelector('.ds-prev');
+      const next   = slider.querySelector('.ds-next');
+      const dotsW  = slider.querySelector('.ds-dots');
 
-  <!-- Fig 4 -->
-  <figure class="viz-card">
-    <img src="assets/viid/viid_fig4_ind_usa_solar.png" 
-         alt="US imports from India, HS854140, with DS456 milestones and US Section 201 safeguard markers">
-    <figcaption>
-      <div class="viz-title">Figure 4 — IND→USA solar (HS854140): trade trend + numbered events</div>
-      <p class="viz-desc">
-        DS456 adoption (Oct 2016) and India’s DCR removal (2017) precede US Section 201 safeguards (2018–2022/extension), which drive much of the later pattern.
-      </p>
-      <p class="viz-meta"><em>Sources:</em> USITC DataWeb; DS456 chronology & Section 201 dates (paper).</p>
-    </figcaption>
-  </figure>
+      let i = 0;
+      slides.forEach((_, idx) => {
+        const b = document.createElement('button');
+        b.addEventListener('click', () => go(idx));
+        dotsW.appendChild(b);
+      });
+      const dots = [...dotsW.children];
 
-  <!-- Fig 5 -->
-  <figure class="viz-card">
-    <img src="assets/viid/viid_fig5_gpr_scatter.png" 
-         alt="Scatter/line showing positive slope between GPR and filing/episode lags">
-    <figcaption>
-      <div class="viz-title">Figure 5 — Geopolitical Risk (GPR) vs filing/episode lags</div>
-      <p class="viz-desc">
-        Higher geopolitical risk is associated with longer lags between consultations and panel requests—and a longer episode in the non-WTO case. Exploratory pattern; small N.
-      </p>
-      <p class="viz-meta"><em>Sources:</em> Caldara & Iacoviello GPR (monthly headline); lag measures from WTO dockets and the 2012 PHL–CHN episode (paper).</p>
-    </figcaption>
-  </figure>
+      function go(n){
+        i = (n + slides.length) % slides.length;
+        track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+        dots.forEach((d,j)=>d.classList.toggle('active', j===i));
+      }
+      function nextSlide(){ go(i+1); }
+      function prevSlide(){ go(i-1); }
 
-  <p class="viz-meta" style="margin-top:.75rem">
-    <strong>Reference:</strong> Krisnadi, M. F. (2025). “Shrinking Space for WTO Dispute Settlement: Geopolitics, Forum Shopping, and Lessons for Developing Economies.” VIID Conference paper.
-  </p>
-</section>
+      next.addEventListener('click', nextSlide);
+      prev.addEventListener('click', prevSlide);
+      window.addEventListener('resize', () => go(i));
+      track.addEventListener('scroll', () => {
+        const guess = Math.round(track.scrollLeft / track.clientWidth);
+        dots.forEach((d,j)=>d.classList.toggle('active', j===guess));
+      });
 
-        
-      </section>
-    </main>
-
-    <footer>
-        © 2025 Faiz Krisnadi. All rights reserved.
-    </footer>
+      go(0);
+    })();
+  </script>
 </body>
 </html>
 
