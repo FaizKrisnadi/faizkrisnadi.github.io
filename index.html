@@ -152,20 +152,18 @@
       }
     }
 
-    /* Bottom-center analog clock */
-    #footer-clock{
-      position:fixed;
-      bottom:12px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:40;             /* below search button & overlay */
-      pointer-events:none;    /* do not block clicks */
-    }
-    #footer-clock svg{
-      width:150px;
-      height:150px;
-      display:block;
-    }
+    /* Bottom-center analog clock (static in the layout) */
+#footer-clock{
+  margin:1.5rem auto 0;
+  display:flex;
+  justify-content:center;
+}
+#footer-clock svg{
+  width:150px;
+  height:150px;
+  display:block;
+}
+
   </style>
 </head>
 <body>
