@@ -152,17 +152,19 @@
       }
     }
 
-    /* Bottom-center analog clock (static) */
-    #footer-clock{
-      margin:1.5rem auto 3rem;  /* extra bottom space */
-      display:flex;
-      justify-content:center;
-    }
-    #footer-clock svg{
-      width:150px;
-      height:150px;
-      display:block;
-    }
+    /* Bottom-center analog clock (static, with more breathing room) */
+#footer-clock{
+  display:flex;
+  justify-content:center;
+  margin-top:3rem;     /* more space above clock */
+  margin-bottom:3.5rem;/* more space below clock */
+}
+#footer-clock svg{
+  width:150px;
+  height:150px;
+  display:block;
+}
+
   </style>
 </head>
 <body>
