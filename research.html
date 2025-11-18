@@ -94,6 +94,19 @@
 
     footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px}
 
+    /* Bottom-center analog clock (static, more space below than above) */
+    #footer-clock{
+      display:flex;
+      justify-content:center;
+      margin-top:1.5rem;   /* small gap above clock */
+      margin-bottom:4.5rem;/* larger gap below clock */
+    }
+    #footer-clock svg{
+      width:150px;
+      height:150px;
+      display:block;
+    }
+
     /* Responsive header grid */
     @media (max-width:900px){
       .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
@@ -105,32 +118,32 @@
       .photo{margin-inline:auto}
       .name{text-align:left; margin-top:.6rem}
     }
-    /* --- Mobile segmented tabs: spacing + centering fix --- */
-@media (max-width: 560px){
-  .tabs { border-radius: 22px; }
-  .tabs ul{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;                 /* even gaps between pills */
-    padding: 6px;             /* small, even inset */
-  }
-  .tabs a{
-    display: flex;            /* perfect centering */
-    align-items: center;
-    justify-content: center;
-    height: 46px;             /* uniform pill height */
-    padding: 0;               /* remove side padding that caused mis-spacing */
-    min-width: 0;             /* allow shrink inside grid cell */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: clamp(14px, 3.8vw, 17px);
-    font-weight: 900;
-    letter-spacing: -0.01em;
-    -webkit-tap-highlight-color: transparent;
-  }
-}
 
+    /* --- Mobile segmented tabs: spacing + centering fix --- */
+    @media (max-width: 560px){
+      .tabs { border-radius: 22px; }
+      .tabs ul{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 6px;
+      }
+      .tabs a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 46px;
+        padding: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(14px, 3.8vw, 17px);
+        font-weight: 900;
+        letter-spacing: -0.01em;
+        -webkit-tap-highlight-color: transparent;
+      }
+    }
   </style>
 </head>
 <body>
@@ -285,6 +298,32 @@
 
   <footer><p>© 2025 Faiz Krisnadi. All rights reserved.</p></footer>
 
+  <!-- Static bottom-center analog clock -->
+  <div id="footer-clock" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
+      <g id="clock-ticks"></g>
+      <g id="clock-numbers"></g>
+
+      <line id="clock-hour-hand"
+            x1="100" y1="110" x2="100" y2="60"
+            stroke="#000000" stroke-width="4"
+            stroke-linecap="round" />
+
+      <line id="clock-minute-hand"
+            x1="100" y1="112" x2="100" y2="40"
+            stroke="#000000" stroke-width="3"
+            stroke-linecap="round" />
+
+      <line id="clock-second-hand"
+            x1="100" y1="115" x2="100" y2="30"
+            stroke="#cc0000" stroke-width="1.5"
+            stroke-linecap="round" />
+
+      <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
+    </svg>
+  </div>
+
   <!-- Search overlay -->
   <div class="search-overlay" id="searchOverlay" aria-hidden="true">
     <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
@@ -374,6 +413,79 @@
       if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
       if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
     });
+  </script>
+
+  <script>
+    // Analog clock drawing and movement
+    (function(){
+      const svgNS = "http://www.w3.org/2000/svg";
+      const ticksGroup = document.getElementById("clock-ticks");
+      const numbersGroup = document.getElementById("clock-numbers");
+      if (!ticksGroup || !numbersGroup) return;
+
+      // ticks
+      for (let i = 0; i < 60; i++) {
+        const angle = Math.PI / 30 * i;
+        const isHour = i % 5 === 0;
+        const outerR = 94;
+        const innerR = isHour ? 82 : 88;
+
+        const x1 = 100 + innerR * Math.sin(angle);
+        const y1 = 100 - innerR * Math.cos(angle);
+        const x2 = 100 + outerR * Math.sin(angle);
+        const y2 = 100 - outerR * Math.cos(angle);
+
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", "#000000");
+        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
+        ticksGroup.appendChild(line);
+      }
+
+      // numbers
+      for (let n = 1; n <= 12; n++) {
+        const angle = Math.PI / 6 * n;
+        const r = 70;
+
+        const x = 100 + r * Math.sin(angle);
+        const y = 100 - r * Math.cos(angle);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", x);
+        text.setAttribute("y", y + 1);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.setAttribute("font-size", "16");
+        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
+        text.textContent = n.toString();
+        numbersGroup.appendChild(text);
+      }
+
+      const hourHand   = document.getElementById("clock-hour-hand");
+      const minuteHand = document.getElementById("clock-minute-hand");
+      const secondHand = document.getElementById("clock-second-hand");
+
+      function updateClock(){
+        const now = new Date();
+        const s = now.getSeconds();
+        const m = now.getMinutes();
+        const h = now.getHours();
+
+        const secondAngle = s * 6;
+        const minuteAngle = (m + s / 60) * 6;
+        const hourAngle   = ((h % 12) + m / 60) * 30;
+
+        hourHand.setAttribute("transform",   "rotate(" + hourAngle   + " 100 100)");
+        minuteHand.setAttribute("transform", "rotate(" + minuteAngle + " 100 100)");
+        secondHand.setAttribute("transform", "rotate(" + secondAngle + " 100 100)");
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
   </script>
 </body>
 </html>
