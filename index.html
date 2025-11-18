@@ -132,16 +132,16 @@
       .tabs ul{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 6px;                 /* even gaps between pills */
-        padding: 6px;             /* small, even inset */
+        gap: 6px;
+        padding: 6px;
       }
       .tabs a{
-        display: flex;            /* perfect centering */
+        display: flex;
         align-items: center;
         justify-content: center;
-        height: 46px;             /* uniform pill height */
-        padding: 0;               /* remove side padding that caused mis-spacing */
-        min-width: 0;             /* allow shrink inside grid cell */
+        height: 46px;
+        padding: 0;
+        min-width: 0;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -152,18 +152,17 @@
       }
     }
 
-    /* Bottom-center analog clock (static in the layout) */
-#footer-clock{
-  margin:1.5rem auto 0;
-  display:flex;
-  justify-content:center;
-}
-#footer-clock svg{
-  width:150px;
-  height:150px;
-  display:block;
-}
-
+    /* Bottom-center analog clock (static) */
+    #footer-clock{
+      margin:1.5rem auto 3rem;  /* extra bottom space */
+      display:flex;
+      justify-content:center;
+    }
+    #footer-clock svg{
+      width:150px;
+      height:150px;
+      display:block;
+    }
   </style>
 </head>
 <body>
@@ -253,13 +252,10 @@
   <!-- Bottom-center analog clock -->
   <div id="footer-clock" aria-hidden="true">
     <svg viewBox="0 0 200 200">
-      <!-- clock face -->
       <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
-      <!-- tick marks and numbers populated by JS -->
       <g id="clock-ticks"></g>
       <g id="clock-numbers"></g>
 
-      <!-- hands -->
       <line id="clock-hour-hand"
             x1="100" y1="110" x2="100" y2="60"
             stroke="#000000" stroke-width="4"
@@ -275,7 +271,6 @@
             stroke="#cc0000" stroke-width="1.5"
             stroke-linecap="round" />
 
-      <!-- center -->
       <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
     </svg>
   </div>
@@ -380,7 +375,6 @@
       const numbersGroup = document.getElementById("clock-numbers");
       if (!ticksGroup || !numbersGroup) return;
 
-      // tick marks
       for (let i = 0; i < 60; i++) {
         const angle = Math.PI / 30 * i;
         const isHour = i % 5 === 0;
@@ -402,7 +396,6 @@
         ticksGroup.appendChild(line);
       }
 
-      // numbers 1–12
       for (let n = 1; n <= 12; n++) {
         const angle = Math.PI / 6 * n;
         const r = 70;
@@ -446,7 +439,6 @@
   </script>
 </body>
 </html>
-
 
 
 
