@@ -1,41 +1,834 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-        }
-        a {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            color: blue;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Projects | Faiz Krisnadi</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #1d2430;
+      --muted: #5f6978;
+      --accent: #1f66da;
+      --accent-strong: #1049b3;
+      --accent-soft: rgba(31, 102, 218, 0.16);
+      --line: rgba(255, 255, 255, 0.72);
+      --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, 0.66), rgba(250, 251, 255, 0.3));
+      --glass-shadow: 0 18px 44px rgba(40, 58, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+      --radius-xl: 24px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+
+    body {
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding: calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height: 1.72;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color .2s ease, opacity .2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      opacity: .95;
+    }
+
+    .tabs-outer {
+      max-width: 1100px;
+      margin: 0 auto 1.25rem;
+      padding: 0 .2rem;
+      position: sticky;
+      top: calc(8px + env(safe-area-inset-top));
+      z-index: 45;
+      transition: transform .25s ease;
+    }
+
+    .tabs-outer.scrolled { transform: translateY(10px); }
+
+    .tabs {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .tabs ul {
+      list-style: none;
+      margin: 0;
+      padding: .35rem;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .45rem;
+      align-items: center;
+    }
+
+    .tabs a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 44px;
+      border-radius: 12px;
+      color: #313a48;
+      font-weight: 700;
+      font-size: 1.05rem;
+      white-space: nowrap;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .tabs a:hover {
+      background: rgba(255, 255, 255, 0.34);
+      color: #1f3557;
+      transform: translateY(-1px);
+    }
+
+    .tabs a.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      margin: 1rem 0 1.35rem;
+      padding: 1.35rem 1.45rem;
+      border-radius: var(--radius-lg);
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, rgba(31, 102, 218, 0.06), transparent 38%);
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-title {
+      margin: 0 0 .35rem;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      font-weight: 900;
+      color: #121926;
+    }
+
+    .subtitle {
+      margin: .1rem 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: 1.2rem;
+    }
+
+    .intro {
+      margin: .8rem 0 .2rem;
+      font-size: 1.06rem;
+      font-weight: 400;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .78rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(31, 102, 218, 0.2);
+      font-weight: 700;
+      color: #0f4fb0;
+      background: rgba(31, 102, 218, 0.09);
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(31, 102, 218, 0.14);
+      color: #0c3f8d;
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, #1f66da, #0f4fb0);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(31, 102, 218, 0.28);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      padding: .75rem .85rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .stat .label {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 300;
+      font-size: .9rem;
+    }
+
+    .stat .value {
+      margin: .2rem 0 0;
+      color: #121926;
+      font-weight: 900;
+      font-size: 1.18rem;
+    }
+
+    .section-title {
+      margin: 0 0 .5rem;
+      font-weight: 700;
+      font-size: 1.45rem;
+      letter-spacing: -.01em;
+      color: #1d2a3b;
+    }
+
+    .section-note {
+      margin: 0 0 .85rem;
+      color: var(--muted);
+      font-size: .98rem;
+      font-weight: 400;
+    }
+
+    .map-wrap {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      min-height: 520px;
+      background: #edf4ee;
+    }
+
+    #investmentMap {
+      width: 100%;
+      min-height: 520px;
+    }
+
+    .heat-legend {
+      margin-top: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .heat-legend .scale {
+      width: 220px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #d9f99d, #86efac, #22c55e, #16a34a, #14532d);
+      border: 1px solid rgba(17, 24, 39, .12);
+    }
+
+    .data-source {
+      margin-top: .85rem;
+      font-size: .86rem;
+      color: #64748b;
+      font-weight: 400;
+    }
+
+    .search-fab {
+      position: fixed;
+      top: calc(76px + env(safe-area-inset-top));
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+      color: #1e3662;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 50;
+      padding: 0;
+      transition: transform .2s ease, box-shadow .2s ease, color .2s ease;
+    }
+
+    .search-fab:hover {
+      transform: translateY(-2px);
+      color: var(--accent-strong);
+      box-shadow: 0 16px 30px rgba(30, 52, 86, 0.18);
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 28, 48, 0.22);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: none;
+      z-index: 60;
+      padding: 4vh 14px;
+    }
+
+    .search-panel {
+      max-width: 900px;
+      margin: 3vh auto 0;
+      border-radius: 22px;
+      padding: .95rem;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .35rem .6rem;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.46);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      font-size: 1.05rem;
+      padding: .8rem .2rem;
+      outline: none;
+      background: transparent;
+      color: #1d2b3f;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .92rem;
+      margin: .65rem .15rem 0;
+      font-weight: 400;
+    }
+
+    .results {
+      margin: .35rem 0 0;
+      max-height: 52vh;
+      overflow: auto;
+    }
+
+    .result {
+      padding: .8rem .65rem;
+      border-radius: 10px;
+      display: block;
+      color: #1d2736;
+      transition: background .2s ease;
+    }
+
+    .result:hover { background: rgba(31, 102, 218, 0.1); }
+
+    .result small {
+      display: block;
+      color: #6b7280;
+      margin-top: .15rem;
+      font-size: .96rem;
+      font-weight: 400;
+    }
+
+    .nores {
+      color: #6b7280;
+      padding: 1rem .25rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    mark {
+      background: rgba(31, 102, 218, 0.18);
+      border-radius: 4px;
+      padding: 0 .15rem;
+    }
+
+    footer {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+      color: #6a7484;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    #footer-clock {
+      margin: 1.5rem auto 6rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    #footer-clock svg {
+      width: 150px;
+      height: 150px;
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .stats { grid-template-columns: 1fr; }
+      #investmentMap,
+      .map-wrap { min-height: 460px; }
+      .tabs ul { gap: .35rem; }
+      .tabs a { font-size: .96rem; }
+    }
+
+    @media (max-width: 560px) {
+      .tabs { border-radius: 22px; }
+      .tabs-outer.scrolled { transform: translateY(6px); }
+      .tabs ul {
+        gap: 6px;
+        padding: 6px;
+      }
+      .tabs a {
+        min-height: 46px;
+        font-size: clamp(13px, 3.6vw, 15px);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .search-fab { top: calc(72px + env(safe-area-inset-top)); }
+      #investmentMap,
+      .map-wrap { min-height: 420px; }
+      .heat-legend .scale { width: 160px; }
+    }
+
+    @supports not ((backdrop-filter: blur(1px))) {
+      .tabs,
+      .card,
+      .search-fab,
+      .search-panel {
+        background: rgba(250, 251, 255, 0.94);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>My Projects</h1>
-        <p>Here are some of my research projects and policy work:</p>
-        <ul>
-            <li>Capstone Project on Development Banks</li>
-            <li>Book Notes Project</li>
-            <li>Policy Proposal on Subsidized LPG</li>
-        </ul>
-        <a href="index.html">Go back to Home</a>
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a class="active" href="projects.html">Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="container">
+    <section class="card">
+      <h1 class="page-title">Indonesia-China Finance Dashboard</h1>
+      <p class="subtitle">A dedicated project page for my investment and development-finance dashboard.</p>
+      <p class="intro">
+        This page highlights province-level Chinese investment intensity in Indonesia. The visualization below uses the
+        dashboard's province report dataset and maps higher investment concentration with denser green heat signatures.
+      </p>
+      <div class="cta-row">
+        <a class="cta-btn primary" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-map-location-dot"></i>
+          Check the Interactive Map
+        </a>
+        <a class="cta-btn" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          Open Dashboard
+        </a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <p class="label">Total Province Exposure (USD, 2024)</p>
+          <p class="value" id="statTotalInvestment">-</p>
+        </div>
+        <div class="stat">
+          <p class="label">Provinces with Reported Investment</p>
+          <p class="value" id="statProvinceCount">-</p>
+        </div>
+        <div class="stat">
+          <p class="label">Highest Exposure Province</p>
+          <p class="value" id="statTopProvince">-</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Green Investment Heatmap</h2>
+      <p class="section-note">
+        Darker green clusters indicate provinces with larger reported China-linked project value.
+      </p>
+      <div class="map-wrap">
+        <div id="investmentMap" aria-label="Indonesia investment heatmap"></div>
+      </div>
+      <div class="heat-legend">
+        <span>Lower</span>
+        <span class="scale" aria-hidden="true"></span>
+        <span>Higher</span>
+      </div>
+      <p class="data-source">
+        Data source: Indonesia-China Finance Dashboard province report dataset (`DF_REPORT_PROJECTS`, 2024 USD billions).
+      </p>
+    </section>
+  </main>
+
+  <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
+
+  <div id="footer-clock" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
+      <g id="clock-ticks"></g>
+      <g id="clock-numbers"></g>
+      <line id="clock-hour-hand" x1="100" y1="110" x2="100" y2="60" stroke="#000000" stroke-width="4" stroke-linecap="round" />
+      <line id="clock-minute-hand" x1="100" y1="112" x2="100" y2="40" stroke="#000000" stroke-width="3" stroke-linecap="round" />
+      <line id="clock-second-hand" x1="100" y1="115" x2="100" y2="30" stroke="#cc0000" stroke-width="1.5" stroke-linecap="round" />
+      <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
+    </svg>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site" />
+        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="hint">Tip: press <strong>Enter</strong> to open top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
+      <div class="results" id="results"></div>
     </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+  <script>
+    const provinceInvestment = [
+      {"province":"Aceh","region":"Sumatra","value_usd_b":0.23,"project_count":12,"per_capita_usd":42.2,"lat":5.55,"lon":95.32},
+      {"province":"Bali","region":"Nusa Tenggara","value_usd_b":0.6,"project_count":7,"per_capita_usd":135.07,"lat":-8.65,"lon":115.22},
+      {"province":"Bangka Belitung Islands","region":"Sumatra","value_usd_b":0.0,"project_count":0,"per_capita_usd":0.0,"lat":-2.13,"lon":106.11},
+      {"province":"Banten","region":"Java","value_usd_b":4.28,"project_count":22,"per_capita_usd":344.05,"lat":-6.12,"lon":106.15},
+      {"province":"Bengkulu","region":"Sumatra","value_usd_b":0.36,"project_count":3,"per_capita_usd":168.86,"lat":-3.79,"lon":102.26},
+      {"province":"Central Java","region":"Java","value_usd_b":5.56,"project_count":12,"per_capita_usd":146.75,"lat":-6.99,"lon":110.42},
+      {"province":"Central Kalimantan","region":"Kalimantan","value_usd_b":0.03,"project_count":1,"per_capita_usd":11.01,"lat":-2.21,"lon":113.92},
+      {"province":"Central Papua","region":"Papua","value_usd_b":0.0,"project_count":2,"per_capita_usd":null,"lat":-3.4,"lon":135.5},
+      {"province":"Central Sulawesi","region":"Sulawesi","value_usd_b":5.76,"project_count":15,"per_capita_usd":1844.92,"lat":-0.89,"lon":119.87},
+      {"province":"East Java","region":"Java","value_usd_b":3.42,"project_count":22,"per_capita_usd":81.9,"lat":-7.25,"lon":112.75},
+      {"province":"East Kalimantan","region":"Kalimantan","value_usd_b":0.27,"project_count":5,"per_capita_usd":66.51,"lat":-0.5,"lon":117.15},
+      {"province":"East Nusa Tenggara","region":"Nusa Tenggara","value_usd_b":0.02,"project_count":2,"per_capita_usd":4.28,"lat":-10.17,"lon":123.61},
+      {"province":"Gorontalo","region":"Sulawesi","value_usd_b":0.0,"project_count":1,"per_capita_usd":1.3,"lat":0.54,"lon":123.06},
+      {"province":"Highland Papua","region":"Papua","value_usd_b":0.0,"project_count":0,"per_capita_usd":null,"lat":-4.1,"lon":138.9},
+      {"province":"Jakarta Special Capital Region","region":"Java","value_usd_b":3.53,"project_count":21,"per_capita_usd":330.54,"lat":-6.2,"lon":106.82},
+      {"province":"Jambi","region":"Sumatra","value_usd_b":0.0,"project_count":1,"per_capita_usd":0.43,"lat":-1.61,"lon":103.61},
+      {"province":"Lampung","region":"Sumatra","value_usd_b":0.03,"project_count":2,"per_capita_usd":3.24,"lat":-5.43,"lon":105.26},
+      {"province":"Maluku","region":"Maluku Islands","value_usd_b":0.02,"project_count":1,"per_capita_usd":12.38,"lat":-3.69,"lon":128.18},
+      {"province":"North Kalimantan","region":"Kalimantan","value_usd_b":0.02,"project_count":1,"per_capita_usd":21.32,"lat":2.84,"lon":117.37},
+      {"province":"North Maluku","region":"Maluku Islands","value_usd_b":0.71,"project_count":6,"per_capita_usd":523.21,"lat":0.78,"lon":127.38},
+      {"province":"North Sulawesi","region":"Sulawesi","value_usd_b":0.42,"project_count":6,"per_capita_usd":155.9,"lat":1.47,"lon":124.84},
+      {"province":"North Sumatra","region":"Sumatra","value_usd_b":3.17,"project_count":25,"per_capita_usd":203.56,"lat":3.59,"lon":98.67},
+      {"province":"Papua","region":"Papua","value_usd_b":0.02,"project_count":2,"per_capita_usd":5.31,"lat":-2.54,"lon":140.71},
+      {"province":"Riau","region":"Sumatra","value_usd_b":0.3,"project_count":2,"per_capita_usd":44.36,"lat":0.53,"lon":101.45},
+      {"province":"Riau Islands","region":"Sumatra","value_usd_b":0.26,"project_count":1,"per_capita_usd":117.18,"lat":0.92,"lon":104.45},
+      {"province":"South Kalimantan","region":"Kalimantan","value_usd_b":0.41,"project_count":4,"per_capita_usd":94.78,"lat":-3.31,"lon":114.59},
+      {"province":"South Papua","region":"Papua","value_usd_b":0.0,"project_count":0,"per_capita_usd":null,"lat":-8.5,"lon":140.4},
+      {"province":"South Sulawesi","region":"Sulawesi","value_usd_b":0.58,"project_count":5,"per_capita_usd":61.32,"lat":-5.14,"lon":119.41},
+      {"province":"South Sumatra","region":"Sumatra","value_usd_b":7.04,"project_count":9,"per_capita_usd":797.14,"lat":-2.99,"lon":104.76},
+      {"province":"Southeast Sulawesi","region":"Sulawesi","value_usd_b":1.46,"project_count":2,"per_capita_usd":521.81,"lat":-3.99,"lon":122.52},
+      {"province":"Southwest Papua","region":"Papua","value_usd_b":0.0,"project_count":0,"per_capita_usd":null,"lat":-0.86,"lon":131.25},
+      {"province":"Special Region of Yogyakarta","region":"Java","value_usd_b":0.01,"project_count":5,"per_capita_usd":2.68,"lat":-7.8,"lon":110.37},
+      {"province":"West Java","region":"Java","value_usd_b":6.58,"project_count":24,"per_capita_usd":130.79,"lat":-6.91,"lon":107.61},
+      {"province":"West Kalimantan","region":"Kalimantan","value_usd_b":0.53,"project_count":6,"per_capita_usd":93.18,"lat":-0.03,"lon":109.34},
+      {"province":"West Nusa Tenggara","region":"Nusa Tenggara","value_usd_b":0.06,"project_count":3,"per_capita_usd":11.28,"lat":-8.58,"lon":116.1},
+      {"province":"West Papua","region":"Papua","value_usd_b":3.69,"project_count":5,"per_capita_usd":3063.52,"lat":-0.86,"lon":134.08},
+      {"province":"West Sulawesi","region":"Sulawesi","value_usd_b":0.0,"project_count":0,"per_capita_usd":0.0,"lat":-2.67,"lon":118.89},
+      {"province":"West Sumatra","region":"Sumatra","value_usd_b":0.23,"project_count":2,"per_capita_usd":39.97,"lat":-0.95,"lon":100.35}
+    ];
+
+    function formatUsdBillions(v) {
+      return "$" + Number(v).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }) + "B";
+    }
+
+    function initInvestmentMap() {
+      const map = L.map("investmentMap", {
+        zoomControl: true,
+        attributionControl: true,
+      }).setView([-2.3, 118], 5);
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+        subdomains: "abcd",
+        maxZoom: 19,
+        attribution: "&copy; OpenStreetMap &copy; CARTO",
+      }).addTo(map);
+
+      const nonZero = provinceInvestment.filter((d) => d.value_usd_b > 0);
+      const maxValue = Math.max(...nonZero.map((d) => d.value_usd_b));
+
+      const heatPoints = nonZero.map((d) => {
+        const intensity = Math.min(1, Math.sqrt(d.value_usd_b / maxValue));
+        return [d.lat, d.lon, intensity];
+      });
+
+      L.heatLayer(heatPoints, {
+        radius: 34,
+        blur: 26,
+        maxZoom: 7,
+        minOpacity: 0.35,
+        gradient: {
+          0.0: "#d9f99d",
+          0.35: "#86efac",
+          0.6: "#22c55e",
+          0.85: "#16a34a",
+          1.0: "#14532d",
+        },
+      }).addTo(map);
+
+      nonZero.forEach((d) => {
+        const marker = L.circleMarker([d.lat, d.lon], {
+          radius: 5,
+          color: "#14532d",
+          weight: 1,
+          fillColor: "#22c55e",
+          fillOpacity: 0.75,
+        }).addTo(map);
+
+        marker.bindPopup(
+          "<strong>" + d.province + "</strong><br/>" +
+          "Investment: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
+          "Projects: " + d.project_count.toLocaleString()
+        );
+      });
+
+      const totalInvestment = nonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
+      const topProvince = nonZero.reduce((a, b) => (a.value_usd_b > b.value_usd_b ? a : b));
+
+      document.getElementById("statTotalInvestment").textContent = formatUsdBillions(totalInvestment);
+      document.getElementById("statProvinceCount").textContent = nonZero.length.toLocaleString();
+      document.getElementById("statTopProvince").textContent =
+        topProvince.province + " (" + formatUsdBillions(topProvince.value_usd_b) + ")";
+    }
+
+    initInvestmentMap();
+  </script>
+
+  <script>
+    /* ---------- In-page search ---------- */
+    const PAGE_LIST = [
+      { url: "index.html", title: "Home" },
+      { url: "research.html", title: "Research" },
+      { url: "cv.html", title: "CV" },
+      { url: "resources.html", title: "Resources" },
+      { url: "projects.html", title: "Projects" },
+    ];
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,"text/html");
+    function extract(doc){
+      const title=(doc.querySelector("title")?.textContent||"").trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute("content")||"";
+      const heads=[...doc.querySelectorAll("h1,h2,h3")].map(e=>e.textContent.trim()).join(" • ");
+      const links=[...doc.querySelectorAll("a")].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(" • ");
+      const body=(doc.body?.innerText||"").replace(/\s+/g," ").trim().slice(0,20000);
+      return { title, metas, heads, links, body };
+    }
+    const normalize=s=>(s||"").toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(" "));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp("\\b"+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"g"); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
+      return sc;
+    }
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(" ").replace(/\s+/g," ");
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?"…":"")+source.slice(start,end)+(end<source.length?"…":"") : (rec.metas||rec.heads||rec.body).slice(0,160);
+    }
+    async function buildIndex(){
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
+      }));
+      INDEX=pages.filter(x=>x.status==="fulfilled").map(x=>x.value); indexBuilt=true;
+    }
+    function hilite(text,q){
+      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp("("+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"); out=out.replace(re,"<mark>$1</mark>"); }
+      return out;
+    }
+    function search(q){
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
+    }
+
+    const openBtn=document.getElementById("openSearch");
+    const overlay=document.getElementById("searchOverlay");
+    const input=document.getElementById("searchInput");
+    const closeBtn=document.getElementById("closeSearch");
+    const results=document.getElementById("results");
+
+    function openSearch(){ overlay.style.display="block"; overlay.setAttribute("aria-hidden","false"); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display="none"; overlay.setAttribute("aria-hidden","true"); input.value=""; results.innerHTML=""; }
+    function render(q){
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,"")}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||"Untitled",q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join("");
+    }
+    openBtn.addEventListener("click",openSearch);
+    closeBtn.addEventListener("click",closeSearch);
+    overlay.addEventListener("click",e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener("input",e=>render(e.target.value));
+    document.addEventListener("keydown",e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){ e.preventDefault(); openSearch(); }
+      if(e.key==="Escape" && overlay.getAttribute("aria-hidden")==="false") closeSearch();
+      if(e.key==="Enter" && overlay.getAttribute("aria-hidden")==="false"){ const top=results.querySelector(".result"); if(top) top.click(); }
+    });
+  </script>
+
+  <script>
+    // Bottom-center analog clock
+    (function() {
+      const svgNS = "http://www.w3.org/2000/svg";
+      const ticksGroup = document.getElementById("clock-ticks");
+      const numbersGroup = document.getElementById("clock-numbers");
+      if (!ticksGroup || !numbersGroup) return;
+
+      for (let i = 0; i < 60; i++) {
+        const angle = Math.PI / 30 * i;
+        const isHour = i % 5 === 0;
+        const outerR = 94;
+        const innerR = isHour ? 82 : 88;
+
+        const x1 = 100 + innerR * Math.sin(angle);
+        const y1 = 100 - innerR * Math.cos(angle);
+        const x2 = 100 + outerR * Math.sin(angle);
+        const y2 = 100 - outerR * Math.cos(angle);
+
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", "#000000");
+        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
+        ticksGroup.appendChild(line);
+      }
+
+      for (let n = 1; n <= 12; n++) {
+        const angle = Math.PI / 6 * n;
+        const r = 70;
+
+        const x = 100 + r * Math.sin(angle);
+        const y = 100 - r * Math.cos(angle);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", x);
+        text.setAttribute("y", y + 1);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.setAttribute("font-size", "16");
+        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
+        text.textContent = n.toString();
+        numbersGroup.appendChild(text);
+      }
+
+      const hourHand = document.getElementById("clock-hour-hand");
+      const minuteHand = document.getElementById("clock-minute-hand");
+      const secondHand = document.getElementById("clock-second-hand");
+
+      function updateClock() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        const secondAngle = seconds * 6;
+        const minuteAngle = (minutes + seconds / 60) * 6;
+        const hourAngle = ((hours % 12) + minutes / 60) * 30;
+
+        hourHand.setAttribute("transform", "rotate(" + hourAngle + " 100 100)");
+        minuteHand.setAttribute("transform", "rotate(" + minuteAngle + " 100 100)");
+        secondHand.setAttribute("transform", "rotate(" + secondAngle + " 100 100)");
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+
+  <script>
+    // Top tabs: slight drop when page is scrolled
+    (function() {
+      const tabsOuter = document.querySelector(".tabs-outer");
+      if (!tabsOuter) return;
+
+      function updateTabsPosition() {
+        tabsOuter.classList.toggle("scrolled", window.scrollY > 12);
+      }
+
+      updateTabsPosition();
+      window.addEventListener("scroll", updateTabsPosition, { passive: true });
+    })();
+  </script>
 </body>
 </html>
