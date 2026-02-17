@@ -84,10 +84,10 @@
       list-style: none;
       margin: 0;
       padding: .35rem;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: .45rem;
+      display: flex;
+      gap: .6rem;
       align-items: center;
+      justify-content: flex-start;
     }
 
     .tabs a {
@@ -260,18 +260,35 @@
     .heat-legend {
       margin-top: .8rem;
       display: flex;
-      align-items: center;
-      gap: .65rem;
+      flex-wrap: wrap;
+      gap: .7rem;
       color: var(--muted);
       font-size: .9rem;
     }
 
-    .heat-legend .scale {
-      width: 220px;
-      height: 10px;
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem .55rem;
       border-radius: 999px;
-      background: linear-gradient(90deg, #d9f99d, #86efac, #22c55e, #16a34a, #14532d);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.46);
+    }
+
+    .legend-swatch {
+      width: 76px;
+      height: 8px;
+      border-radius: 999px;
       border: 1px solid rgba(17, 24, 39, .12);
+    }
+
+    .legend-swatch.df {
+      background: linear-gradient(90deg, #d9f99d, #86efac, #22c55e, #16a34a, #14532d);
+    }
+
+    .legend-swatch.fdi {
+      background: linear-gradient(90deg, #fee2e2, #fca5a5, #ef4444, #dc2626, #7f1d1d);
     }
 
     .data-source {
@@ -430,20 +447,22 @@
       .tabs { border-radius: 22px; }
       .tabs-outer.scrolled { transform: translateY(6px); }
       .tabs ul {
-        gap: 6px;
-        padding: 6px;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: .35rem;
+        padding: .35rem;
       }
       .tabs a {
         min-height: 46px;
         font-size: clamp(13px, 3.6vw, 15px);
         font-weight: 700;
         letter-spacing: -0.01em;
+        justify-content: center;
         -webkit-tap-highlight-color: transparent;
       }
       .search-fab { top: auto; bottom: 18px; right: 14px; }
       #investmentMap,
       .map-wrap { min-height: 420px; }
-      .heat-legend .scale { width: 160px; }
     }
 
     @supports not ((backdrop-filter: blur(1px))) {
@@ -478,8 +497,8 @@
       <h1 class="page-title">Indonesia-China Finance Dashboard</h1>
       <p class="subtitle">A dedicated project page for my investment and development-finance dashboard.</p>
       <p class="intro">
-        This page highlights province-level Chinese investment intensity in Indonesia. The visualization below uses the
-        dashboard's province report dataset and maps higher investment concentration with denser green heat signatures.
+        This page highlights Indonesia's China-linked capital footprint using both Development Finance (DF) and
+        Foreign Direct Investment (FDI) datasets from my dashboard repository.
       </p>
       <div class="cta-row">
         <a class="cta-btn primary" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
@@ -493,35 +512,34 @@
       </div>
       <div class="stats">
         <div class="stat">
-          <p class="label">Total Province Exposure (USD, 2024)</p>
+          <p class="label">Total Mapped Exposure (USD, 2024)</p>
           <p class="value" id="statTotalInvestment">-</p>
         </div>
         <div class="stat">
-          <p class="label">Provinces with Reported Investment</p>
+          <p class="label">Mapped Locations (DF Provinces + FDI Regions)</p>
           <p class="value" id="statProvinceCount">-</p>
         </div>
         <div class="stat">
-          <p class="label">Highest Exposure Province</p>
+          <p class="label">Highest Exposure Location</p>
           <p class="value" id="statTopProvince">-</p>
         </div>
       </div>
     </section>
 
     <section class="card">
-      <h2 class="section-title">Green Investment Heatmap</h2>
+      <h2 class="section-title">Investment Map</h2>
       <p class="section-note">
-        Darker green clusters indicate provinces with larger reported China-linked project value.
+        DF exposure is shown in green and FDI exposure in red. Darker intensity indicates larger reported value.
       </p>
       <div class="map-wrap">
-        <div id="investmentMap" aria-label="Indonesia investment heatmap"></div>
+        <div id="investmentMap" aria-label="Indonesia investment map"></div>
       </div>
       <div class="heat-legend">
-        <span>Lower</span>
-        <span class="scale" aria-hidden="true"></span>
-        <span>Higher</span>
+        <div class="legend-item"><span class="legend-swatch df" aria-hidden="true"></span><span>DF Heat (Green)</span></div>
+        <div class="legend-item"><span class="legend-swatch fdi" aria-hidden="true"></span><span>FDI Heat (Red)</span></div>
       </div>
       <p class="data-source">
-        Data source: Indonesia-China Finance Dashboard province report dataset (`DF_REPORT_PROJECTS`, 2024 USD billions).
+        Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level DF and FDI regional CAPEX table, constant 2024 USD billions).
       </p>
     </section>
   </main>
@@ -558,7 +576,7 @@
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 
   <script>
-    const provinceInvestment = [
+    const dfProvinceInvestment = [
       {"province":"Aceh","region":"Sumatra","value_usd_b":0.23,"project_count":12,"per_capita_usd":42.2,"lat":5.55,"lon":95.32},
       {"province":"Bali","region":"Nusa Tenggara","value_usd_b":0.6,"project_count":7,"per_capita_usd":135.07,"lat":-8.65,"lon":115.22},
       {"province":"Bangka Belitung Islands","region":"Sumatra","value_usd_b":0.0,"project_count":0,"per_capita_usd":0.0,"lat":-2.13,"lon":106.11},
@@ -599,6 +617,16 @@
       {"province":"West Sumatra","region":"Sumatra","value_usd_b":0.23,"project_count":2,"per_capita_usd":39.97,"lat":-0.95,"lon":100.35}
     ];
 
+    const fdiRegionInvestment = [
+      {"region":"Java","included_provinces":"Banten, Central Java, East Java, DKI Jakarta, DI Yogyakarta, West Java","value_usd_b":20.75,"lat":-7.2,"lon":110.4},
+      {"region":"Kalimantan","included_provinces":"Central, East, North, South, West Kalimantan","value_usd_b":11.21,"lat":0.3,"lon":114.8},
+      {"region":"Maluku","included_provinces":"Maluku, North Maluku","value_usd_b":7.58,"lat":-3.3,"lon":129.0},
+      {"region":"Nusa Tenggara","included_provinces":"Bali, West Nusa Tenggara, East Nusa Tenggara","value_usd_b":0.77,"lat":-8.7,"lon":117.8},
+      {"region":"Papua","included_provinces":"Central, Highland, Papua, South, Southwest, West Papua","value_usd_b":0.6,"lat":-3.8,"lon":136.6},
+      {"region":"Sulawesi","included_provinces":"Central, Gorontalo, North, South, Southeast, West Sulawesi","value_usd_b":13.24,"lat":-1.4,"lon":121.0},
+      {"region":"Sumatra","included_provinces":"Aceh, Babel, Bengkulu, Jambi, Lampung, North Sumatra, Riau, Kepri, South Sumatra, West Sumatra","value_usd_b":26.06,"lat":-0.5,"lon":101.0}
+    ];
+
     function formatUsdBillions(v) {
       return "$" + Number(v).toLocaleString(undefined, {
         minimumFractionDigits: 2,
@@ -618,51 +646,113 @@
         attribution: "&copy; OpenStreetMap &copy; CARTO",
       }).addTo(map);
 
-      const nonZero = provinceInvestment.filter((d) => d.value_usd_b > 0);
-      const maxValue = Math.max(...nonZero.map((d) => d.value_usd_b));
+      const dfNonZero = dfProvinceInvestment.filter((d) => d.value_usd_b > 0);
+      const fdiNonZero = fdiRegionInvestment.filter((d) => d.value_usd_b > 0 && d.lat != null && d.lon != null);
 
-      const heatPoints = nonZero.map((d) => {
-        const intensity = Math.min(1, Math.sqrt(d.value_usd_b / maxValue));
-        return [d.lat, d.lon, intensity];
-      });
+      const overlays = {};
 
-      L.heatLayer(heatPoints, {
-        radius: 34,
-        blur: 26,
-        maxZoom: 7,
-        minOpacity: 0.35,
-        gradient: {
-          0.0: "#d9f99d",
-          0.35: "#86efac",
-          0.6: "#22c55e",
-          0.85: "#16a34a",
-          1.0: "#14532d",
-        },
-      }).addTo(map);
+      if (dfNonZero.length) {
+        const dfMax = Math.max(...dfNonZero.map((d) => d.value_usd_b));
+        const dfHeatPoints = dfNonZero.map((d) => {
+          const intensity = Math.min(1, Math.sqrt(d.value_usd_b / dfMax));
+          return [d.lat, d.lon, intensity];
+        });
 
-      nonZero.forEach((d) => {
-        const marker = L.circleMarker([d.lat, d.lon], {
-          radius: 5,
-          color: "#14532d",
-          weight: 1,
-          fillColor: "#22c55e",
-          fillOpacity: 0.75,
-        }).addTo(map);
+        const dfHeatLayer = L.heatLayer(dfHeatPoints, {
+          radius: 34,
+          blur: 26,
+          maxZoom: 7,
+          minOpacity: 0.3,
+          gradient: {
+            0.0: "#d9f99d",
+            0.35: "#86efac",
+            0.6: "#22c55e",
+            0.85: "#16a34a",
+            1.0: "#14532d",
+          },
+        });
 
-        marker.bindPopup(
-          "<strong>" + d.province + "</strong><br/>" +
-          "Investment: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
-          "Projects: " + d.project_count.toLocaleString()
+        const dfMarkers = L.layerGroup(
+          dfNonZero.map((d) => {
+            const marker = L.circleMarker([d.lat, d.lon], {
+              radius: 5.5,
+              color: "#14532d",
+              weight: 1,
+              fillColor: "#22c55e",
+              fillOpacity: 0.78,
+            });
+            marker.bindPopup(
+              "<strong>" + d.province + "</strong><br/>" +
+              "Type: Development Finance (DF)<br/>" +
+              "Value: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
+              "Projects: " + d.project_count.toLocaleString()
+            );
+            return marker;
+          })
         );
-      });
 
-      const totalInvestment = nonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
-      const topProvince = nonZero.reduce((a, b) => (a.value_usd_b > b.value_usd_b ? a : b));
+        overlays["Development Finance (DF)"] = L.layerGroup([dfHeatLayer, dfMarkers]).addTo(map);
+      }
 
-      document.getElementById("statTotalInvestment").textContent = formatUsdBillions(totalInvestment);
-      document.getElementById("statProvinceCount").textContent = nonZero.length.toLocaleString();
+      if (fdiNonZero.length) {
+        const fdiMax = Math.max(...fdiNonZero.map((d) => d.value_usd_b));
+        const fdiHeatPoints = fdiNonZero.map((d) => {
+          const intensity = Math.min(1, Math.sqrt(d.value_usd_b / fdiMax));
+          return [d.lat, d.lon, intensity];
+        });
+
+        const fdiHeatLayer = L.heatLayer(fdiHeatPoints, {
+          radius: 58,
+          blur: 34,
+          maxZoom: 6,
+          minOpacity: 0.26,
+          gradient: {
+            0.0: "#fee2e2",
+            0.35: "#fca5a5",
+            0.6: "#ef4444",
+            0.85: "#dc2626",
+            1.0: "#7f1d1d",
+          },
+        });
+
+        const fdiMarkers = L.layerGroup(
+          fdiNonZero.map((d) => {
+            const marker = L.circleMarker([d.lat, d.lon], {
+              radius: 7 + 6 * Math.sqrt(d.value_usd_b / fdiMax),
+              color: "#7f1d1d",
+              weight: 1,
+              fillColor: "#ef4444",
+              fillOpacity: 0.8,
+            });
+            marker.bindPopup(
+              "<strong>" + d.region + "</strong><br/>" +
+              "Type: Foreign Direct Investment (FDI)<br/>" +
+              "CAPEX: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
+              "Coverage: " + d.included_provinces
+            );
+            return marker;
+          })
+        );
+
+        overlays["Foreign Direct Investment (FDI)"] = L.layerGroup([fdiHeatLayer, fdiMarkers]).addTo(map);
+      }
+
+      if (Object.keys(overlays).length > 1) {
+        L.control.layers(null, overlays, { collapsed: false }).addTo(map);
+      }
+
+      const totalDf = dfNonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
+      const totalFdi = fdiNonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
+      const allLocations = [
+        ...dfNonZero.map((d) => ({ name: d.province, type: "DF", value_usd_b: d.value_usd_b })),
+        ...fdiNonZero.map((d) => ({ name: d.region, type: "FDI", value_usd_b: d.value_usd_b })),
+      ];
+      const topLocation = allLocations.reduce((a, b) => (a.value_usd_b > b.value_usd_b ? a : b));
+
+      document.getElementById("statTotalInvestment").textContent = formatUsdBillions(totalDf + totalFdi);
+      document.getElementById("statProvinceCount").textContent = allLocations.length.toLocaleString();
       document.getElementById("statTopProvince").textContent =
-        topProvince.province + " (" + formatUsdBillions(topProvince.value_usd_b) + ")";
+        topLocation.name + " (" + topLocation.type + " • " + formatUsdBillions(topLocation.value_usd_b) + ")";
     }
 
     initInvestmentMap();
