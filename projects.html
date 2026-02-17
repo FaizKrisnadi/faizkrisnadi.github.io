@@ -59,7 +59,7 @@
     }
 
     .tabs-outer {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto 1.25rem;
       padding: 0 .2rem;
       position: sticky;
@@ -91,14 +91,11 @@
     }
 
     .tabs a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 44px;
+      display: inline-block;
+      padding: .65rem 1rem;
       border-radius: 12px;
       color: #313a48;
       font-weight: 700;
-      font-size: 1.05rem;
       white-space: nowrap;
       transition: background .2s ease, color .2s ease, transform .2s ease;
     }
@@ -242,6 +239,18 @@
       color: var(--muted);
       font-size: .98rem;
       font-weight: 400;
+    }
+
+    .metric-context {
+      margin: .95rem 0 .5rem;
+      color: #334155;
+      font-size: .98rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .stats.stats-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .map-wrap {
@@ -437,10 +446,9 @@
 
     @media (max-width: 900px) {
       .stats { grid-template-columns: 1fr; }
+      .stats.stats-4 { grid-template-columns: 1fr; }
       #investmentMap,
       .map-wrap { min-height: 460px; }
-      .tabs ul { gap: .35rem; }
-      .tabs a { font-size: .96rem; }
     }
 
     @media (max-width: 560px) {
@@ -453,11 +461,18 @@
         padding: .35rem;
       }
       .tabs a {
-        min-height: 46px;
-        font-size: clamp(13px, 3.6vw, 15px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 46px;
+        padding: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(14px, 3.8vw, 17px);
         font-weight: 700;
         letter-spacing: -0.01em;
-        justify-content: center;
         -webkit-tap-highlight-color: transparent;
       }
       .search-fab { top: auto; bottom: 18px; right: 14px; }
@@ -497,8 +512,8 @@
       <h1 class="page-title">Indonesia-China Finance Dashboard</h1>
       <p class="subtitle">A dedicated project page for my investment and development-finance dashboard.</p>
       <p class="intro">
-        This page highlights Indonesia's China-linked capital footprint using both Development Finance (DF) and
-        Foreign Direct Investment (FDI) datasets from my dashboard repository.
+        This page highlights Indonesia's China-linked capital footprint using both Development Finance and Foreign
+        Direct Investment datasets from my dashboard repository.
       </p>
       <div class="cta-row">
         <a class="cta-btn primary" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
@@ -510,18 +525,56 @@
           Open Dashboard
         </a>
       </div>
+      <p class="metric-context">Portfolio Snapshot</p>
       <div class="stats">
         <div class="stat">
-          <p class="label">Total Mapped Exposure (USD, 2024)</p>
-          <p class="value" id="statTotalInvestment">-</p>
+          <p class="label">Total Projects Tracked</p>
+          <p class="value">528</p>
         </div>
         <div class="stat">
-          <p class="label">Mapped Locations (DF Provinces + FDI Regions)</p>
-          <p class="value" id="statProvinceCount">-</p>
+          <p class="label">Total Committed Capital</p>
+          <p class="value">$158.97B</p>
         </div>
         <div class="stat">
-          <p class="label">Highest Exposure Location</p>
-          <p class="value" id="statTopProvince">-</p>
+          <p class="label">Realization Rate</p>
+          <p class="value">69.7%</p>
+        </div>
+      </div>
+      <p class="section-note">83% Development Finance and 17% Foreign Direct Investment, with a 69.7% realization rate indicating moderate implementation progress.</p>
+
+      <p class="metric-context">Development Finance</p>
+      <div class="stats">
+        <div class="stat">
+          <p class="label">Projects</p>
+          <p class="value">437</p>
+        </div>
+        <div class="stat">
+          <p class="label">Committed Capital</p>
+          <p class="value">$110.75B</p>
+        </div>
+        <div class="stat">
+          <p class="label">Disbursed Capital</p>
+          <p class="value">$110.75B</p>
+        </div>
+      </div>
+
+      <p class="metric-context">Foreign Direct Investment</p>
+      <div class="stats stats-4">
+        <div class="stat">
+          <p class="label">Projects</p>
+          <p class="value">91</p>
+        </div>
+        <div class="stat">
+          <p class="label">Committed Capital Expenditure</p>
+          <p class="value">$48.22B</p>
+        </div>
+        <div class="stat">
+          <p class="label">Median Deal Size</p>
+          <p class="value">$300.00M</p>
+        </div>
+        <div class="stat">
+          <p class="label">Active Year Range</p>
+          <p class="value">2006 - 2025</p>
         </div>
       </div>
     </section>
@@ -529,17 +582,19 @@
     <section class="card">
       <h2 class="section-title">Investment Map</h2>
       <p class="section-note">
-        DF exposure is shown in green and FDI exposure in red. Darker intensity indicates larger reported value.
+        Development Finance exposure is shown in green and Foreign Direct Investment exposure in red. Darker intensity
+        indicates larger reported value.
       </p>
       <div class="map-wrap">
         <div id="investmentMap" aria-label="Indonesia investment map"></div>
       </div>
       <div class="heat-legend">
-        <div class="legend-item"><span class="legend-swatch df" aria-hidden="true"></span><span>DF Heat (Green)</span></div>
-        <div class="legend-item"><span class="legend-swatch fdi" aria-hidden="true"></span><span>FDI Heat (Red)</span></div>
+        <div class="legend-item"><span class="legend-swatch df" aria-hidden="true"></span><span>Development Finance Heat (Green)</span></div>
+        <div class="legend-item"><span class="legend-swatch fdi" aria-hidden="true"></span><span>Foreign Direct Investment Heat (Red)</span></div>
       </div>
       <p class="data-source">
-        Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level DF and FDI regional CAPEX table, constant 2024 USD billions).
+        Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level development finance and
+        foreign direct investment regional capital expenditure table, constant 2024 USD billions).
       </p>
     </section>
   </main>
@@ -683,7 +738,7 @@
             });
             marker.bindPopup(
               "<strong>" + d.province + "</strong><br/>" +
-              "Type: Development Finance (DF)<br/>" +
+              "Type: Development Finance<br/>" +
               "Value: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
               "Projects: " + d.project_count.toLocaleString()
             );
@@ -691,7 +746,7 @@
           })
         );
 
-        overlays["Development Finance (DF)"] = L.layerGroup([dfHeatLayer, dfMarkers]).addTo(map);
+        overlays["Development Finance"] = L.layerGroup([dfHeatLayer, dfMarkers]).addTo(map);
       }
 
       if (fdiNonZero.length) {
@@ -726,7 +781,7 @@
             });
             marker.bindPopup(
               "<strong>" + d.region + "</strong><br/>" +
-              "Type: Foreign Direct Investment (FDI)<br/>" +
+              "Type: Foreign Direct Investment<br/>" +
               "CAPEX: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
               "Coverage: " + d.included_provinces
             );
@@ -734,25 +789,13 @@
           })
         );
 
-        overlays["Foreign Direct Investment (FDI)"] = L.layerGroup([fdiHeatLayer, fdiMarkers]).addTo(map);
+        overlays["Foreign Direct Investment"] = L.layerGroup([fdiHeatLayer, fdiMarkers]).addTo(map);
       }
 
       if (Object.keys(overlays).length > 1) {
         L.control.layers(null, overlays, { collapsed: false }).addTo(map);
       }
 
-      const totalDf = dfNonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
-      const totalFdi = fdiNonZero.reduce((sum, d) => sum + d.value_usd_b, 0);
-      const allLocations = [
-        ...dfNonZero.map((d) => ({ name: d.province, type: "DF", value_usd_b: d.value_usd_b })),
-        ...fdiNonZero.map((d) => ({ name: d.region, type: "FDI", value_usd_b: d.value_usd_b })),
-      ];
-      const topLocation = allLocations.reduce((a, b) => (a.value_usd_b > b.value_usd_b ? a : b));
-
-      document.getElementById("statTotalInvestment").textContent = formatUsdBillions(totalDf + totalFdi);
-      document.getElementById("statProvinceCount").textContent = allLocations.length.toLocaleString();
-      document.getElementById("statTopProvince").textContent =
-        topLocation.name + " (" + topLocation.type + " • " + formatUsdBillions(topLocation.value_usd_b) + ")";
     }
 
     initInvestmentMap();
