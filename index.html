@@ -348,7 +348,7 @@
       .tabs { border-radius: 22px; }
       .tabs ul {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 6px;
         padding: 6px;
       }
@@ -370,7 +370,7 @@
       .intro { font-size: 1.2rem; }
       .card p { font-size: 1.16rem; }
       .tabs-outer.scrolled { transform: translateY(6px); }
-      .search-fab { top: calc(72px + env(safe-area-inset-top)); }
+      .search-fab { top: auto; bottom: 18px; right: 14px; }
     }
 
     /* Bottom-center analog clock */
@@ -412,6 +412,7 @@
         <li><a href="research.html">Research</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="projects.html">Projects</a></li>
       </ul>
     </nav>
   </div>
@@ -442,7 +443,7 @@
       See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">CV</a>.
     </p>
     <p>
-      I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025).
+      I was a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025).
       I earned a Bachelor's in International Relations (with honors) from
       <a href="https://en.wikipedia.org/wiki/Muhammadiyah_University_of_Yogyakarta">Universitas Muhammadiyah Yogyakarta</a> (2022), where I also visited the
       <a href="https://en.wikipedia.org/wiki/University_of_Glasgow">University of Glasgow</a> (Fall 2021) and
@@ -528,7 +529,8 @@
       { url: 'index.html',     title: 'Home' },
       { url: 'research.html',  title: 'Research' },
       { url: 'cv.html',        title: 'CV' },
-      { url: 'resources.html', title: 'Resources' }
+      { url: 'resources.html', title: 'Resources' },
+      { url: 'projects.html',  title: 'Projects' }
     ];
     const cache = new Map(); let indexBuilt = false, INDEX = [];
     async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }

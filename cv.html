@@ -52,7 +52,7 @@
     .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
     .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent);}
     @media (max-width:560px){
-      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr); gap:.35rem; padding:.35rem;}
+      .tabs ul{display:grid; grid-template-columns:repeat(5,1fr); gap:.35rem; padding:.35rem;}
       .tabs a{text-align:center; padding:.85rem .2rem;}
     }
 
@@ -126,7 +126,7 @@
       .tabs { border-radius: 22px; }
       .tabs ul{
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         gap: 6px;
         padding: 6px;
       }
@@ -268,7 +268,7 @@
     @media (max-width:560px){
       .tabs-outer.scrolled{transform:translateY(6px)}
       .tabs a{font-weight:700}
-      .search-fab{top:calc(72px + env(safe-area-inset-top))}
+      .search-fab{top:auto;bottom:18px;right:14px}
     }
 
     @supports not ((backdrop-filter: blur(1px))) {
@@ -293,6 +293,7 @@
         <li><a href="research.html">Research</a></li>
         <li><a class="active" href="cv.html">CV</a></li>
         <li><a href="resources.html">Resources</a></li>
+        <li><a href="projects.html">Projects</a></li>
       </ul>
     </nav>
   </div>
@@ -367,7 +368,8 @@
       { url: 'index.html',     title: 'Home' },
       { url: 'research.html',  title: 'Research' },
       { url: 'cv.html',        title: 'CV' },
-      { url: 'resources.html', title: 'Resources' }
+      { url: 'resources.html', title: 'Resources' },
+      { url: 'projects.html',  title: 'Projects' }
     ];
     const cache = new Map(); let indexBuilt = false, INDEX = [];
     async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
