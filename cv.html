@@ -20,7 +20,7 @@
       --avatar-focus-y: 40%;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{min-height:100%}
     body{
       font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text); background:var(--bg);
@@ -280,7 +280,6 @@
     @media (max-width:560px){
       .tabs-outer.scrolled{transform:translateY(6px)}
       .tabs a{font-weight:700}
-      .search-fab{top:auto;bottom:18px;right:14px}
     }
 
     @supports not ((backdrop-filter: blur(1px))) {
