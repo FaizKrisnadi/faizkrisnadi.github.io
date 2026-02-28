@@ -678,7 +678,7 @@
     <section class="card">
       <h2 class="section-title">Investment Map</h2>
       <p class="section-note">
-        Choropleth preview by province. Toggle between DF and FDI to change the heatmap layer.
+        Choropleth preview for DF (province-level) and FDI (region-level). Toggle between DF and FDI to change the layer.
       </p>
       <div class="map-toolbar">
         <div class="map-toggle" role="group" aria-label="Map dataset toggle">
@@ -697,7 +697,7 @@
       </div>
       <p class="data-source">
         Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level development finance and
-        foreign direct investment regional capital expenditure table, constant 2024 USD billions). For FDI preview, regional values are distributed across listed provinces.
+        foreign direct investment regional capital expenditure table, constant 2024 USD billions). FDI is reported and visualized at region level (not province-specific).
       </p>
     </section>
   </main>
@@ -921,14 +921,20 @@
       }
     }
 
-    const fdiValueByProvince = new Map();
+    const fdiValueByRegion = new Map();
+    const fdiRegionByProvince = new Map();
+    const fdiRegionCenterByName = new Map();
+    const fdiIncludedProvincesByRegion = new Map();
     for (const row of fdiRegionInvestment) {
-      const pieces = row.included_provinces.split(",").map((x) => expandFDIProvinceToken(x, row.region));
-      const provinces = [...new Set(pieces.map(canonicalProvinceName).filter(Boolean))];
-      const share = provinces.length ? (Number(row.value_usd_b) || 0) / provinces.length : 0;
-      for (const province of provinces) {
-        fdiValueByProvince.set(province, (fdiValueByProvince.get(province) || 0) + share);
+      const region = row.region;
+      fdiValueByRegion.set(region, Number(row.value_usd_b) || 0);
+      if (Number.isFinite(row.lat) && Number.isFinite(row.lon)) {
+        fdiRegionCenterByName.set(region, [Number(row.lat), Number(row.lon)]);
       }
+      const pieces = row.included_provinces.split(",").map((x) => expandFDIProvinceToken(x, region));
+      const provinces = [...new Set(pieces.map(canonicalProvinceName).filter(Boolean))];
+      fdiIncludedProvincesByRegion.set(region, provinces);
+      for (const province of provinces) fdiRegionByProvince.set(province, region);
     }
 
     const mapSeries = {
@@ -942,11 +948,11 @@
       },
       fdi: {
         label: "Foreign Direct Investment (FDI)",
-        valueLabel: "FDI allocated CAPEX",
+        valueLabel: "FDI regional CAPEX",
         ramp: ["#faecea", "#f4c9c2", "#ef9388", "#ea5b4a", "#d63a2b"],
         border: "#EB9B92",
         hover: "#E04634",
-        values: fdiValueByProvince,
+        values: fdiValueByRegion,
       },
     };
 
@@ -958,6 +964,18 @@
 
     mapSeries.df.max = computeSeriesMax(mapSeries.df.values);
     mapSeries.fdi.max = computeSeriesMax(mapSeries.fdi.values);
+
+    function fdiRegionForProvince(province) {
+      return fdiRegionByProvince.get(province) || "";
+    }
+
+    function valueForProvince(seriesKey, province) {
+      if (seriesKey === "fdi") {
+        const region = fdiRegionForProvince(province);
+        return region ? (fdiValueByRegion.get(region) || 0) : 0;
+      }
+      return dfValueByProvince.get(province) || 0;
+    }
 
     function colorForValue(value, series) {
       const v = Number(value) || 0;
@@ -993,11 +1011,23 @@
       throw new Error("Unable to load province boundaries.");
     }
 
-    function popupHtml(series, province, value) {
+    function popupHtml(seriesKey, province) {
+      if (seriesKey === "fdi") {
+        const region = fdiRegionForProvince(province);
+        const value = valueForProvince("fdi", province);
+        const provinceCount = (fdiIncludedProvincesByRegion.get(region) || []).length;
+        return (
+          "<strong>" + province + "</strong><br/>" +
+          "Region: " + (region || "Not mapped") + "<br/>" +
+          mapSeries.fdi.valueLabel + ": " + formatUsdBillions(value) +
+          (region ? "<br/>Coverage: " + provinceCount.toLocaleString() + " provinces (regional aggregate)" : "<br/>No mapped regional value")
+        );
+      }
+      const value = valueForProvince("df", province);
       return (
         "<strong>" + province + "</strong><br/>" +
-        series.valueLabel + ": " + formatUsdBillions(value) +
-        (series === mapSeries.df ? "<br/>Projects: " + (dfProjectsByProvince.get(province) || 0).toLocaleString() : "")
+        mapSeries.df.valueLabel + ": " + formatUsdBillions(value) +
+        "<br/>Projects: " + (dfProjectsByProvince.get(province) || 0).toLocaleString()
       );
     }
 
@@ -1051,7 +1081,7 @@
       function styleForFeature(feature) {
         const series = getSeries();
         const province = featureProvinceName(feature);
-        const value = series.values.get(province) || 0;
+        const value = valueForProvince(activeKey, province);
         return {
           color: value > 0 ? series.border : "#d7cbc8",
           weight: value > 0 ? 1.2 : 0.9,
@@ -1062,29 +1092,45 @@
 
       function updateTopLabels() {
         labelsLayer.clearLayers();
-        const series = getSeries();
-        const ranked = [...series.values.entries()]
-          .filter(([, value]) => value > 0)
-          .sort((a, b) => b[1] - a[1]);
         const selected = [];
-        const maxLabels = window.innerWidth <= 640 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
         const minPixelDistance = window.innerWidth <= 640 ? 128 : 110;
 
-        for (const [province] of ranked) {
-          const layer = provinceToLayer.get(province);
-          if (!layer) continue;
-          const point = provinceCenterByName.get(province) || [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng];
-          const pixelPoint = map.latLngToLayerPoint([point[0], point[1]]);
-          if (selected.some((x) => x.pixelPoint.distanceTo(pixelPoint) < minPixelDistance)) continue;
-          selected.push({ province, lat: point[0], lng: point[1], pixelPoint });
-          if (selected.length === maxLabels) break;
+        if (activeKey === "fdi") {
+          const maxLabels = window.innerWidth <= 640 ? 2 : 4;
+          const rankedRegions = [...fdiValueByRegion.entries()]
+            .filter(([, value]) => value > 0)
+            .sort((a, b) => b[1] - a[1]);
+
+          for (const [region] of rankedRegions) {
+            const point = fdiRegionCenterByName.get(region);
+            if (!point) continue;
+            const pixelPoint = map.latLngToLayerPoint([point[0], point[1]]);
+            if (selected.some((x) => x.pixelPoint.distanceTo(pixelPoint) < minPixelDistance)) continue;
+            selected.push({ label: region, lat: point[0], lng: point[1], pixelPoint });
+            if (selected.length === maxLabels) break;
+          }
+        } else {
+          const maxLabels = window.innerWidth <= 640 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
+          const rankedProvinces = [...dfValueByProvince.entries()]
+            .filter(([, value]) => value > 0)
+            .sort((a, b) => b[1] - a[1]);
+
+          for (const [province] of rankedProvinces) {
+            const layer = provinceToLayer.get(province);
+            if (!layer) continue;
+            const point = provinceCenterByName.get(province) || [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng];
+            const pixelPoint = map.latLngToLayerPoint([point[0], point[1]]);
+            if (selected.some((x) => x.pixelPoint.distanceTo(pixelPoint) < minPixelDistance)) continue;
+            selected.push({ label: compactProvinceLabel(province), lat: point[0], lng: point[1], pixelPoint });
+            if (selected.length === maxLabels) break;
+          }
         }
 
         for (const item of selected) {
           const marker = L.marker([item.lat, item.lng], {
             icon: L.divIcon({
               className: "province-label",
-              html: "<span>" + compactProvinceLabel(item.province) + "</span>",
+              html: "<span>" + item.label + "</span>",
               iconSize: null,
             }),
             interactive: false,
@@ -1095,8 +1141,16 @@
 
       function updateUI() {
         const series = getSeries();
-        if (metaEl) metaEl.textContent = "Showing " + series.label;
-        if (legendTitleEl) legendTitleEl.textContent = series.label + " intensity";
+        if (metaEl) {
+          metaEl.textContent = activeKey === "fdi"
+            ? "Showing Foreign Direct Investment (FDI, region-level)"
+            : "Showing " + series.label;
+        }
+        if (legendTitleEl) {
+          legendTitleEl.textContent = activeKey === "fdi"
+            ? "FDI regional intensity"
+            : series.label + " intensity";
+        }
         if (legendRampEl) legendRampEl.style.background = "linear-gradient(90deg, " + series.ramp.join(", ") + ")";
         if (legendScaleEl) legendScaleEl.textContent = "$0B to " + formatUsdBillions(series.max);
         toggleButtons.forEach((btn) => {
@@ -1121,13 +1175,13 @@
           layer.on({
             mouseover() {
               const series = getSeries();
-              const value = series.values.get(province) || 0;
+              const value = valueForProvince(activeKey, province);
               layer.setStyle({
                 weight: 2,
                 color: series.hover,
                 fillOpacity: value > 0 ? 0.95 : 0.55,
               });
-              layer.bindPopup(popupHtml(series, province || "Unknown", value), {
+              layer.bindPopup(popupHtml(activeKey, province || "Unknown"), {
                 autoPan: false,
                 closeButton: false,
               }).openPopup();
@@ -1137,9 +1191,7 @@
               layer.closePopup();
             },
             click() {
-              const series = getSeries();
-              const value = series.values.get(province) || 0;
-              layer.bindPopup(popupHtml(series, province || "Unknown", value), {
+              layer.bindPopup(popupHtml(activeKey, province || "Unknown"), {
                 closeButton: true,
               }).openPopup();
             },
