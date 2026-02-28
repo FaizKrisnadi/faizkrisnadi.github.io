@@ -227,6 +227,12 @@
       color:var(--accent-strong);
       box-shadow:0 16px 30px rgba(80, 68, 40, 0.14);
     }
+    @media (min-width:561px){
+      .search-fab{
+        top:calc(8px + env(safe-area-inset-top));
+        right:max(18px, calc((100vw - 980px) / 2));
+      }
+    }
     .search-overlay{
       background:rgba(40, 35, 25, 0.20);
       backdrop-filter:blur(5px);
