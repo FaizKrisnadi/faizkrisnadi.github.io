@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet" />
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -18,15 +18,15 @@
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --text: #1d2430;
-      --muted: #5f6978;
-      --accent: #1f66da;
-      --accent-strong: #1049b3;
-      --accent-soft: rgba(31, 102, 218, 0.16);
-      --line: rgba(255, 255, 255, 0.72);
-      --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, 0.66), rgba(250, 251, 255, 0.3));
-      --glass-shadow: 0 18px 44px rgba(40, 58, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+      --bg: #F1EFE0;
+      --text: #2E2E2E;
+      --muted: #6E6358;
+      --accent: #996B1D;
+      --accent-strong: #7A5412;
+      --accent-soft: rgba(153, 107, 29, 0.14);
+      --line: rgba(229, 227, 209, 0.72);
+      --glass-fill: linear-gradient(150deg, rgba(255, 253, 245, 0.72), rgba(245, 242, 230, 0.34));
+      --glass-shadow: 0 18px 44px rgba(80, 68, 40, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.80);
       --radius-xl: 24px;
       --radius-lg: 20px;
       --radius-md: 16px;
@@ -94,15 +94,15 @@
       display: inline-block;
       padding: .65rem 1rem;
       border-radius: 12px;
-      color: #313a48;
+      color: #4A4035;
       font-weight: 700;
       white-space: nowrap;
       transition: background .2s ease, color .2s ease, transform .2s ease;
     }
 
     .tabs a:hover {
-      background: rgba(255, 255, 255, 0.34);
-      color: #1f3557;
+      background: rgba(229, 227, 209, 0.50);
+      color: #2A2520;
       transform: translateY(-1px);
     }
 
@@ -135,7 +135,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(110deg, rgba(31, 102, 218, 0.06), transparent 38%);
+      background: linear-gradient(110deg, rgba(153, 107, 29, 0.06), transparent 38%);
     }
 
     .card > * {
@@ -149,7 +149,7 @@
       line-height: 1.12;
       letter-spacing: -.01em;
       font-weight: 900;
-      color: #121926;
+      color: #2A2520;
     }
 
     .subtitle {
@@ -178,24 +178,24 @@
       gap: .55rem;
       padding: .78rem 1rem;
       border-radius: 12px;
-      border: 1px solid rgba(31, 102, 218, 0.2);
+      border: 1px solid rgba(153, 107, 29, 0.2);
       font-weight: 700;
-      color: #0f4fb0;
-      background: rgba(31, 102, 218, 0.09);
+      color: #7A5412;
+      background: rgba(153, 107, 29, 0.09);
       transition: transform .2s ease, background .2s ease, color .2s ease;
     }
 
     .cta-btn:hover {
       transform: translateY(-1px);
-      background: rgba(31, 102, 218, 0.14);
-      color: #0c3f8d;
+      background: rgba(153, 107, 29, 0.14);
+      color: #63450F;
     }
 
     .cta-btn.primary {
-      background: linear-gradient(135deg, #1f66da, #0f4fb0);
+      background: linear-gradient(135deg, #996B1D, #7A5412);
       border-color: transparent;
       color: #fff;
-      box-shadow: 0 10px 24px rgba(31, 102, 218, 0.28);
+      box-shadow: 0 10px 24px rgba(153, 107, 29, 0.28);
     }
 
     .stats {
@@ -208,7 +208,7 @@
     .stat {
       padding: .75rem .85rem;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(229, 227, 209, 0.72);
       background: rgba(255, 255, 255, 0.45);
     }
 
@@ -221,7 +221,7 @@
 
     .stat .value {
       margin: .2rem 0 0;
-      color: #121926;
+      color: #2A2520;
       font-weight: 900;
       font-size: 1.18rem;
     }
@@ -231,7 +231,7 @@
       font-weight: 700;
       font-size: 1.45rem;
       letter-spacing: -.01em;
-      color: #1d2a3b;
+      color: #2A2520;
     }
 
     .section-note {
@@ -258,7 +258,7 @@
       border: 1px solid rgba(255, 255, 255, 0.8);
       overflow: hidden;
       min-height: 520px;
-      background: #edf4ee;
+      background: #d6d6d6;
     }
 
     #investmentMap {
@@ -266,44 +266,120 @@
       min-height: 520px;
     }
 
-    .heat-legend {
+    .map-toolbar {
+      margin: .25rem 0 .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .map-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      padding: .3rem;
+      border-radius: 999px;
+      background: rgba(255, 253, 245, 0.72);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(10px) saturate(130%);
+      -webkit-backdrop-filter: blur(10px) saturate(130%);
+    }
+
+    .toggle-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: .42rem .9rem;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+      color: #5A4F42;
+      background: transparent;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .toggle-btn:hover {
+      color: var(--accent-strong);
+      transform: translateY(-1px);
+    }
+
+    .toggle-btn.active {
+      color: var(--accent-strong);
+      background: rgba(153, 107, 29, 0.16);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
+    }
+
+    .map-meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .choropleth-legend {
       margin-top: .8rem;
       display: flex;
       flex-wrap: wrap;
       gap: .7rem;
+      align-items: center;
       color: var(--muted);
       font-size: .9rem;
     }
 
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      padding: .4rem .55rem;
+    .legend-ramp {
+      width: 160px;
+      height: 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      background: rgba(255, 255, 255, 0.46);
+      border: 1px solid rgba(17, 24, 39, .16);
+      background: linear-gradient(90deg, #f6ece1, #e5bd7f, #996b1d, #7a5412);
     }
 
-    .legend-swatch {
-      width: 76px;
-      height: 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(17, 24, 39, .12);
+    .legend-scale {
+      color: var(--muted);
+      font-size: .86rem;
+      font-weight: 400;
     }
 
-    .legend-swatch.df {
-      background: linear-gradient(90deg, #d9f99d, #86efac, #22c55e, #16a34a, #14532d);
+    .leaflet-container {
+      background: #d6d6d6;
     }
 
-    .legend-swatch.fdi {
-      background: linear-gradient(90deg, #fee2e2, #fca5a5, #ef4444, #dc2626, #7f1d1d);
+    .leaflet-popup-content-wrapper {
+      border-radius: 10px;
+      box-shadow: 0 12px 26px rgba(40, 35, 25, 0.18);
+    }
+
+    .leaflet-popup-content {
+      margin: 10px 12px;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #2E2E2E;
+      line-height: 1.45;
+    }
+
+    .province-label {
+      pointer-events: none;
+    }
+
+    .province-label span {
+      display: inline-block;
+      color: #3F3A35;
+      font-size: clamp(1rem, 1.8vw, 1.45rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.01em;
+      text-shadow: -1px 0 0 rgba(255, 255, 255, 0.94), 1px 0 0 rgba(255, 255, 255, 0.94), 0 -1px 0 rgba(255, 255, 255, 0.94), 0 1px 0 rgba(255, 255, 255, 0.94);
+      white-space: nowrap;
+      padding: 1px 2px;
+      border-radius: 4px;
     }
 
     .data-source {
       margin-top: .85rem;
       font-size: .86rem;
-      color: #64748b;
+      color: #6E6358;
       font-weight: 400;
     }
 
@@ -319,7 +395,7 @@
       box-shadow: var(--glass-shadow);
       backdrop-filter: blur(19px) saturate(145%);
       -webkit-backdrop-filter: blur(19px) saturate(145%);
-      color: #1e3662;
+      color: #4A4035;
       cursor: pointer;
       display: grid;
       place-items: center;
@@ -331,13 +407,13 @@
     .search-fab:hover {
       transform: translateY(-2px);
       color: var(--accent-strong);
-      box-shadow: 0 16px 30px rgba(30, 52, 86, 0.18);
+      box-shadow: 0 16px 30px rgba(80, 68, 40, 0.14);
     }
 
     .search-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(16, 28, 48, 0.22);
+      background: rgba(40, 35, 25, 0.20);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       display: none;
@@ -374,7 +450,7 @@
       padding: .8rem .2rem;
       outline: none;
       background: transparent;
-      color: #1d2b3f;
+      color: #2E2E2E;
       font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-weight: 400;
     }
@@ -400,7 +476,7 @@
       transition: background .2s ease;
     }
 
-    .result:hover { background: rgba(31, 102, 218, 0.1); }
+    .result:hover { background: rgba(153, 107, 29, 0.09); }
 
     .result small {
       display: block;
@@ -418,7 +494,7 @@
     }
 
     mark {
-      background: rgba(31, 102, 218, 0.18);
+      background: rgba(181, 137, 0, 0.18);
       border-radius: 4px;
       padding: 0 .15rem;
     }
@@ -430,6 +506,18 @@
       font-size: 1rem;
       text-align: center;
       font-weight: 400;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     #footer-clock {
@@ -449,6 +537,7 @@
       .stats.stats-4 { grid-template-columns: 1fr; }
       #investmentMap,
       .map-wrap { min-height: 460px; }
+      .province-label span { font-size: 1rem; }
     }
 
     @media (max-width: 560px) {
@@ -485,13 +574,13 @@
       .card,
       .search-fab,
       .search-panel {
-        background: rgba(250, 251, 255, 0.94);
+        background: rgba(245, 242, 230, 0.96);
       }
     }
   </style>
 </head>
 <body>
-  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)" aria-label="Open search">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 
@@ -525,7 +614,10 @@
           Open Dashboard
         </a>
       </div>
-      <p class="metric-context">Portfolio Snapshot</p>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">Portfolio Snapshot</h2>
       <div class="stats">
         <div class="stat">
           <p class="label">Total Projects Tracked</p>
@@ -541,8 +633,10 @@
         </div>
       </div>
       <p class="section-note">83% Development Finance and 17% Foreign Direct Investment, with a 69.7% realization rate indicating moderate implementation progress.</p>
+    </section>
 
-      <p class="metric-context">Development Finance</p>
+    <section class="card">
+      <h2 class="section-title">Development Finance</h2>
       <div class="stats">
         <div class="stat">
           <p class="label">Projects</p>
@@ -557,8 +651,10 @@
           <p class="value">$110.75B</p>
         </div>
       </div>
+    </section>
 
-      <p class="metric-context">Foreign Direct Investment</p>
+    <section class="card">
+      <h2 class="section-title">Foreign Direct Investment</h2>
       <div class="stats stats-4">
         <div class="stat">
           <p class="label">Projects</p>
@@ -582,19 +678,26 @@
     <section class="card">
       <h2 class="section-title">Investment Map</h2>
       <p class="section-note">
-        Development Finance exposure is shown in green and Foreign Direct Investment exposure in red. Darker intensity
-        indicates larger reported value.
+        Choropleth preview by province. Toggle between DF and FDI to change the heatmap layer.
       </p>
+      <div class="map-toolbar">
+        <div class="map-toggle" role="group" aria-label="Map dataset toggle">
+          <button class="toggle-btn active" type="button" data-map-series="df" aria-pressed="true">DF</button>
+          <button class="toggle-btn" type="button" data-map-series="fdi" aria-pressed="false">FDI</button>
+        </div>
+        <p class="map-meta" id="mapMeta">Showing Development Finance (DF)</p>
+      </div>
       <div class="map-wrap">
         <div id="investmentMap" aria-label="Indonesia investment map"></div>
       </div>
-      <div class="heat-legend">
-        <div class="legend-item"><span class="legend-swatch df" aria-hidden="true"></span><span>Development Finance Heat (Green)</span></div>
-        <div class="legend-item"><span class="legend-swatch fdi" aria-hidden="true"></span><span>Foreign Direct Investment Heat (Red)</span></div>
+      <div class="choropleth-legend">
+        <span id="legendTitle">Intensity</span>
+        <span class="legend-ramp" id="legendRamp" aria-hidden="true"></span>
+        <span class="legend-scale" id="legendScale">$0B to $0B</span>
       </div>
       <p class="data-source">
         Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level development finance and
-        foreign direct investment regional capital expenditure table, constant 2024 USD billions).
+        foreign direct investment regional capital expenditure table, constant 2024 USD billions). For FDI preview, regional values are distributed across listed provinces.
       </p>
     </section>
   </main>
@@ -603,22 +706,23 @@
 
   <div id="footer-clock" aria-hidden="true">
     <svg viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
+      <circle cx="100" cy="100" r="96" fill="#FDFCF5" stroke="#D5D1C0" stroke-width="2" />
       <g id="clock-ticks"></g>
       <g id="clock-numbers"></g>
-      <line id="clock-hour-hand" x1="100" y1="110" x2="100" y2="60" stroke="#000000" stroke-width="4" stroke-linecap="round" />
-      <line id="clock-minute-hand" x1="100" y1="112" x2="100" y2="40" stroke="#000000" stroke-width="3" stroke-linecap="round" />
-      <line id="clock-second-hand" x1="100" y1="115" x2="100" y2="30" stroke="#cc0000" stroke-width="1.5" stroke-linecap="round" />
-      <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
+      <line id="clock-hour-hand" x1="100" y1="110" x2="100" y2="60" stroke="#2A2520" stroke-width="4" stroke-linecap="round" />
+      <line id="clock-minute-hand" x1="100" y1="112" x2="100" y2="40" stroke="#2A2520" stroke-width="3" stroke-linecap="round" />
+      <line id="clock-second-hand" x1="100" y1="115" x2="100" y2="30" stroke="#B58900" stroke-width="1.5" stroke-linecap="round" />
+      <circle cx="100" cy="100" r="3.5" fill="#FDFCF5" stroke="#2A2520" stroke-width="1" />
     </svg>
   </div>
 
   <div class="search-overlay" id="searchOverlay" aria-hidden="true">
     <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <h2 id="searchLabel" class="sr-only">Search this site</h2>
       <div class="search-bar">
-        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <i class="fa-solid fa-magnifying-glass" style="color:#928374"></i>
         <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site" />
-        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+        <button id="closeSearch" title="Close" aria-label="Close search" style="border:none;background:transparent;color:#928374;font-size:1.1rem;cursor:pointer">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -628,7 +732,6 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
 
   <script>
     const dfProvinceInvestment = [
@@ -689,113 +792,378 @@
       }) + "B";
     }
 
-    function initInvestmentMap() {
+    const GEOJSON_URLS = [
+      "https://cdn.jsdelivr.net/gh/superpikar/indonesia-geojson@master/indonesia-province-simple.json",
+      "https://cdn.jsdelivr.net/gh/superpikar/indonesia-geojson@master/indonesia-province.json",
+      "https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia-province-simple.json",
+      "https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia-province.json",
+      "https://super-duper.fr/geojson/indonesia/provinsi.geojson",
+    ];
+
+    function normalizeKey(name) {
+      return (name || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+    }
+
+    const PROVINCE_ALIASES = new Map([
+      ["aceh", "Aceh"],
+      ["nanggroeacehdarussalam", "Aceh"],
+      ["sumaterautara", "North Sumatra"],
+      ["northsumatra", "North Sumatra"],
+      ["sumaterabarat", "West Sumatra"],
+      ["westsumatra", "West Sumatra"],
+      ["riau", "Riau"],
+      ["jambi", "Jambi"],
+      ["sumateraselatan", "South Sumatra"],
+      ["southsumatra", "South Sumatra"],
+      ["bengkulu", "Bengkulu"],
+      ["lampung", "Lampung"],
+      ["kepulauanbangkabelitung", "Bangka Belitung Islands"],
+      ["bangkabelitung", "Bangka Belitung Islands"],
+      ["bangkabelitungislands", "Bangka Belitung Islands"],
+      ["babel", "Bangka Belitung Islands"],
+      ["kepulauanriau", "Riau Islands"],
+      ["riauislands", "Riau Islands"],
+      ["kepri", "Riau Islands"],
+      ["dkijakarta", "Jakarta Special Capital Region"],
+      ["daerahkhususibukotajakarta", "Jakarta Special Capital Region"],
+      ["jakarta", "Jakarta Special Capital Region"],
+      ["jakartaspecialcapitalregion", "Jakarta Special Capital Region"],
+      ["jawabarat", "West Java"],
+      ["westjava", "West Java"],
+      ["jawatengah", "Central Java"],
+      ["centraljava", "Central Java"],
+      ["jawatimur", "East Java"],
+      ["eastjava", "East Java"],
+      ["banten", "Banten"],
+      ["diyogyakarta", "Special Region of Yogyakarta"],
+      ["daerahistimewayogyakarta", "Special Region of Yogyakarta"],
+      ["daerahistimewayogyakartadiyogyakarta", "Special Region of Yogyakarta"],
+      ["specialregionofyogyakarta", "Special Region of Yogyakarta"],
+      ["yogyakarta", "Special Region of Yogyakarta"],
+      ["bali", "Bali"],
+      ["nusatenggarabarat", "West Nusa Tenggara"],
+      ["westnusatenggara", "West Nusa Tenggara"],
+      ["nusatenggaratimur", "East Nusa Tenggara"],
+      ["eastnusatenggara", "East Nusa Tenggara"],
+      ["kalimantanbarat", "West Kalimantan"],
+      ["westkalimantan", "West Kalimantan"],
+      ["kalimantantengah", "Central Kalimantan"],
+      ["centralkalimantan", "Central Kalimantan"],
+      ["kalimantanselatan", "South Kalimantan"],
+      ["southkalimantan", "South Kalimantan"],
+      ["kalimantantimur", "East Kalimantan"],
+      ["eastkalimantan", "East Kalimantan"],
+      ["kalimantanutara", "North Kalimantan"],
+      ["northkalimantan", "North Kalimantan"],
+      ["sulawesiutara", "North Sulawesi"],
+      ["northsulawesi", "North Sulawesi"],
+      ["gorontalo", "Gorontalo"],
+      ["sulawesitengah", "Central Sulawesi"],
+      ["centralsulawesi", "Central Sulawesi"],
+      ["sulawesibarat", "West Sulawesi"],
+      ["westsulawesi", "West Sulawesi"],
+      ["sulawesiselatan", "South Sulawesi"],
+      ["southsulawesi", "South Sulawesi"],
+      ["sulawesitenggara", "Southeast Sulawesi"],
+      ["southeastsulawesi", "Southeast Sulawesi"],
+      ["maluku", "Maluku"],
+      ["malukuutara", "North Maluku"],
+      ["northmaluku", "North Maluku"],
+      ["papua", "Papua"],
+      ["papuabarat", "West Papua"],
+      ["westpapua", "West Papua"],
+      ["papuabaratdaya", "Southwest Papua"],
+      ["southwestpapua", "Southwest Papua"],
+      ["papuaselatan", "South Papua"],
+      ["southpapua", "South Papua"],
+      ["papuatengah", "Central Papua"],
+      ["centralpapua", "Central Papua"],
+      ["papuapegunungan", "Highland Papua"],
+      ["highlandpapua", "Highland Papua"],
+    ]);
+
+    function canonicalProvinceName(name) {
+      const trimmed = (name || "").trim();
+      if (!trimmed) return "";
+      return PROVINCE_ALIASES.get(normalizeKey(trimmed)) || trimmed;
+    }
+
+    function expandFDIProvinceToken(token, region) {
+      const raw = (token || "").trim();
+      const k = normalizeKey(raw);
+      const direction = {
+        central: "Central",
+        east: "East",
+        north: "North",
+        south: "South",
+        west: "West",
+        highland: "Highland",
+        southwest: "Southwest",
+        southeast: "Southeast",
+      };
+      if (direction[k]) return direction[k] + " " + region;
+      if (k === "dkijakarta") return "Jakarta Special Capital Region";
+      if (k === "diyogyakarta") return "Special Region of Yogyakarta";
+      if (k === "babel") return "Bangka Belitung Islands";
+      if (k === "kepri") return "Riau Islands";
+      return raw;
+    }
+
+    const dfValueByProvince = new Map();
+    const dfProjectsByProvince = new Map();
+    const provinceCenterByName = new Map();
+    for (const row of dfProvinceInvestment) {
+      const province = canonicalProvinceName(row.province);
+      dfValueByProvince.set(province, Number(row.value_usd_b) || 0);
+      dfProjectsByProvince.set(province, Number(row.project_count) || 0);
+      if (Number.isFinite(row.lat) && Number.isFinite(row.lon)) {
+        provinceCenterByName.set(province, [Number(row.lat), Number(row.lon)]);
+      }
+    }
+
+    const fdiValueByProvince = new Map();
+    for (const row of fdiRegionInvestment) {
+      const pieces = row.included_provinces.split(",").map((x) => expandFDIProvinceToken(x, row.region));
+      const provinces = [...new Set(pieces.map(canonicalProvinceName).filter(Boolean))];
+      const share = provinces.length ? (Number(row.value_usd_b) || 0) / provinces.length : 0;
+      for (const province of provinces) {
+        fdiValueByProvince.set(province, (fdiValueByProvince.get(province) || 0) + share);
+      }
+    }
+
+    const mapSeries = {
+      df: {
+        label: "Development Finance (DF)",
+        valueLabel: "DF committed value",
+        ramp: ["#f7eee2", "#e9cfaa", "#d4a56b", "#b88236", "#7A5412"],
+        border: "#E79F95",
+        hover: "#996B1D",
+        values: dfValueByProvince,
+      },
+      fdi: {
+        label: "Foreign Direct Investment (FDI)",
+        valueLabel: "FDI allocated CAPEX",
+        ramp: ["#faecea", "#f4c9c2", "#ef9388", "#ea5b4a", "#d63a2b"],
+        border: "#EB9B92",
+        hover: "#E04634",
+        values: fdiValueByProvince,
+      },
+    };
+
+    function computeSeriesMax(values) {
+      let max = 0;
+      for (const v of values.values()) max = Math.max(max, Number(v) || 0);
+      return max;
+    }
+
+    mapSeries.df.max = computeSeriesMax(mapSeries.df.values);
+    mapSeries.fdi.max = computeSeriesMax(mapSeries.fdi.values);
+
+    function colorForValue(value, series) {
+      const v = Number(value) || 0;
+      if (!(v > 0)) return "#e6dedb";
+      const ratio = Math.min(1, v / (series.max || 1));
+      const idx = Math.min(series.ramp.length - 1, Math.floor(ratio * series.ramp.length));
+      return series.ramp[idx];
+    }
+
+    function extractProvinceFromFeature(feature) {
+      const props = feature && feature.properties ? feature.properties : {};
+      const candidate =
+        props.province || props.provinsi || props.Provinsi || props.PROVINSI ||
+        props.NAME_1 || props.name || props.Name || props.Propinsi || "";
+      if (candidate) return candidate;
+      for (const value of Object.values(props)) {
+        if (typeof value === "string" && value.trim()) return value;
+      }
+      return "";
+    }
+
+    async function loadIndonesiaProvinces() {
+      for (const url of GEOJSON_URLS) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) continue;
+          const data = await response.json();
+          if (data && Array.isArray(data.features) && data.features.length) return data;
+        } catch (_) {
+          // try next source
+        }
+      }
+      throw new Error("Unable to load province boundaries.");
+    }
+
+    function popupHtml(series, province, value) {
+      return (
+        "<strong>" + province + "</strong><br/>" +
+        series.valueLabel + ": " + formatUsdBillions(value) +
+        (series === mapSeries.df ? "<br/>Projects: " + (dfProjectsByProvince.get(province) || 0).toLocaleString() : "")
+      );
+    }
+
+    function compactProvinceLabel(name) {
+      const shortName = {
+        "Jakarta Special Capital Region": "Jakarta",
+        "Special Region of Yogyakarta": "Yogyakarta",
+        "Bangka Belitung Islands": "Bangka Belitung",
+        "Riau Islands": "Riau Is.",
+      };
+      return shortName[name] || name;
+    }
+
+    async function initInvestmentMap() {
+      const mapRoot = document.getElementById("investmentMap");
+      if (!mapRoot || typeof L === "undefined") return;
+
+      const metaEl = document.getElementById("mapMeta");
+      const legendTitleEl = document.getElementById("legendTitle");
+      const legendRampEl = document.getElementById("legendRamp");
+      const legendScaleEl = document.getElementById("legendScale");
+      const toggleButtons = [...document.querySelectorAll(".toggle-btn[data-map-series]")];
+
+      let geoData;
+      try {
+        geoData = await loadIndonesiaProvinces();
+      } catch (error) {
+        mapRoot.innerHTML = "<div style=\"display:grid;place-items:center;height:100%;color:#6E6358;font-weight:700;padding:1rem;text-align:center;\">Map boundary data could not be loaded right now.<br/>Try opening this page via a local server instead of <code>file://</code>.</div>";
+        return;
+      }
+
       const map = L.map("investmentMap", {
         zoomControl: true,
-        attributionControl: true,
-      }).setView([-2.3, 118], 5);
+        attributionControl: false,
+        scrollWheelZoom: false,
+      });
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-        subdomains: "abcd",
-        maxZoom: 19,
-        attribution: "&copy; OpenStreetMap &copy; CARTO",
+      let activeKey = "df";
+      let provinceLayer = null;
+      const labelsLayer = L.layerGroup().addTo(map);
+      const provinceToLayer = new Map();
+
+      function getSeries() {
+        return mapSeries[activeKey];
+      }
+
+      function featureProvinceName(feature) {
+        return canonicalProvinceName(extractProvinceFromFeature(feature));
+      }
+
+      function styleForFeature(feature) {
+        const series = getSeries();
+        const province = featureProvinceName(feature);
+        const value = series.values.get(province) || 0;
+        return {
+          color: value > 0 ? series.border : "#d7cbc8",
+          weight: value > 0 ? 1.2 : 0.9,
+          fillColor: colorForValue(value, series),
+          fillOpacity: value > 0 ? 0.9 : 0.45,
+        };
+      }
+
+      function updateTopLabels() {
+        labelsLayer.clearLayers();
+        const series = getSeries();
+        const ranked = [...series.values.entries()]
+          .filter(([, value]) => value > 0)
+          .sort((a, b) => b[1] - a[1]);
+        const selected = [];
+        const maxLabels = window.innerWidth <= 640 ? 2 : window.innerWidth <= 1024 ? 3 : 4;
+        const minPixelDistance = window.innerWidth <= 640 ? 128 : 110;
+
+        for (const [province] of ranked) {
+          const layer = provinceToLayer.get(province);
+          if (!layer) continue;
+          const point = provinceCenterByName.get(province) || [layer.getBounds().getCenter().lat, layer.getBounds().getCenter().lng];
+          const pixelPoint = map.latLngToLayerPoint([point[0], point[1]]);
+          if (selected.some((x) => x.pixelPoint.distanceTo(pixelPoint) < minPixelDistance)) continue;
+          selected.push({ province, lat: point[0], lng: point[1], pixelPoint });
+          if (selected.length === maxLabels) break;
+        }
+
+        for (const item of selected) {
+          const marker = L.marker([item.lat, item.lng], {
+            icon: L.divIcon({
+              className: "province-label",
+              html: "<span>" + compactProvinceLabel(item.province) + "</span>",
+              iconSize: null,
+            }),
+            interactive: false,
+          });
+          labelsLayer.addLayer(marker);
+        }
+      }
+
+      function updateUI() {
+        const series = getSeries();
+        if (metaEl) metaEl.textContent = "Showing " + series.label;
+        if (legendTitleEl) legendTitleEl.textContent = series.label + " intensity";
+        if (legendRampEl) legendRampEl.style.background = "linear-gradient(90deg, " + series.ramp.join(", ") + ")";
+        if (legendScaleEl) legendScaleEl.textContent = "$0B to " + formatUsdBillions(series.max);
+        toggleButtons.forEach((btn) => {
+          const isActive = btn.dataset.mapSeries === activeKey;
+          btn.classList.toggle("active", isActive);
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+        });
+      }
+
+      function applySeries(nextKey) {
+        activeKey = nextKey;
+        if (provinceLayer) provinceLayer.setStyle(styleForFeature);
+        updateUI();
+        updateTopLabels();
+      }
+
+      provinceLayer = L.geoJSON(geoData, {
+        style: styleForFeature,
+        onEachFeature(feature, layer) {
+          const province = featureProvinceName(feature);
+          if (province) provinceToLayer.set(province, layer);
+          layer.on({
+            mouseover() {
+              const series = getSeries();
+              const value = series.values.get(province) || 0;
+              layer.setStyle({
+                weight: 2,
+                color: series.hover,
+                fillOpacity: value > 0 ? 0.95 : 0.55,
+              });
+              layer.bindPopup(popupHtml(series, province || "Unknown", value), {
+                autoPan: false,
+                closeButton: false,
+              }).openPopup();
+            },
+            mouseout() {
+              provinceLayer.resetStyle(layer);
+              layer.closePopup();
+            },
+            click() {
+              const series = getSeries();
+              const value = series.values.get(province) || 0;
+              layer.bindPopup(popupHtml(series, province || "Unknown", value), {
+                closeButton: true,
+              }).openPopup();
+            },
+          });
+        },
       }).addTo(map);
 
-      const dfNonZero = dfProvinceInvestment.filter((d) => d.value_usd_b > 0);
-      const fdiNonZero = fdiRegionInvestment.filter((d) => d.value_usd_b > 0 && d.lat != null && d.lon != null);
-
-      const overlays = {};
-
-      if (dfNonZero.length) {
-        const dfMax = Math.max(...dfNonZero.map((d) => d.value_usd_b));
-        const dfHeatPoints = dfNonZero.map((d) => {
-          const intensity = Math.min(1, Math.sqrt(d.value_usd_b / dfMax));
-          return [d.lat, d.lon, intensity];
-        });
-
-        const dfHeatLayer = L.heatLayer(dfHeatPoints, {
-          radius: 34,
-          blur: 26,
-          maxZoom: 7,
-          minOpacity: 0.3,
-          gradient: {
-            0.0: "#d9f99d",
-            0.35: "#86efac",
-            0.6: "#22c55e",
-            0.85: "#16a34a",
-            1.0: "#14532d",
-          },
-        });
-
-        const dfMarkers = L.layerGroup(
-          dfNonZero.map((d) => {
-            const marker = L.circleMarker([d.lat, d.lon], {
-              radius: 5.5,
-              color: "#14532d",
-              weight: 1,
-              fillColor: "#22c55e",
-              fillOpacity: 0.78,
-            });
-            marker.bindPopup(
-              "<strong>" + d.province + "</strong><br/>" +
-              "Type: Development Finance<br/>" +
-              "Value: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
-              "Projects: " + d.project_count.toLocaleString()
-            );
-            return marker;
-          })
-        );
-
-        overlays["Development Finance"] = L.layerGroup([dfHeatLayer, dfMarkers]).addTo(map);
+      if (provinceLayer.getBounds().isValid()) {
+        map.fitBounds(provinceLayer.getBounds(), { padding: [18, 18] });
+      } else {
+        map.setView([-2.4, 118], 5);
       }
 
-      if (fdiNonZero.length) {
-        const fdiMax = Math.max(...fdiNonZero.map((d) => d.value_usd_b));
-        const fdiHeatPoints = fdiNonZero.map((d) => {
-          const intensity = Math.min(1, Math.sqrt(d.value_usd_b / fdiMax));
-          return [d.lat, d.lon, intensity];
+      updateUI();
+      updateTopLabels();
+      map.on("zoomend moveend", updateTopLabels);
+
+      toggleButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const key = btn.dataset.mapSeries;
+          if (!mapSeries[key] || key === activeKey) return;
+          applySeries(key);
         });
-
-        const fdiHeatLayer = L.heatLayer(fdiHeatPoints, {
-          radius: 58,
-          blur: 34,
-          maxZoom: 6,
-          minOpacity: 0.26,
-          gradient: {
-            0.0: "#fee2e2",
-            0.35: "#fca5a5",
-            0.6: "#ef4444",
-            0.85: "#dc2626",
-            1.0: "#7f1d1d",
-          },
-        });
-
-        const fdiMarkers = L.layerGroup(
-          fdiNonZero.map((d) => {
-            const marker = L.circleMarker([d.lat, d.lon], {
-              radius: 7 + 6 * Math.sqrt(d.value_usd_b / fdiMax),
-              color: "#7f1d1d",
-              weight: 1,
-              fillColor: "#ef4444",
-              fillOpacity: 0.8,
-            });
-            marker.bindPopup(
-              "<strong>" + d.region + "</strong><br/>" +
-              "Type: Foreign Direct Investment<br/>" +
-              "CAPEX: " + formatUsdBillions(d.value_usd_b) + "<br/>" +
-              "Coverage: " + d.included_provinces
-            );
-            return marker;
-          })
-        );
-
-        overlays["Foreign Direct Investment"] = L.layerGroup([fdiHeatLayer, fdiMarkers]).addTo(map);
-      }
-
-      if (Object.keys(overlays).length > 1) {
-        L.control.layers(null, overlays, { collapsed: false }).addTo(map);
-      }
-
+      });
     }
 
     initInvestmentMap();
@@ -844,10 +1212,14 @@
       }));
       INDEX=pages.filter(x=>x.status==="fulfilled").map(x=>x.value); indexBuilt=true;
     }
+    const normalizeForHilite=s=>(s||"").toLowerCase();
+    const escapeHtml=s=>(s||"").replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
     function hilite(text,q){
-      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
-      let out=text; for(const t of terms){ const re=new RegExp("("+t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","ig"); out=out.replace(re,"<mark>$1</mark>"); }
-      return out;
+      const terms=normalizeForHilite(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      const out=escapeHtml(text);
+      if(!terms.length) return out;
+      const re=new RegExp("("+terms.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join("|")+")","ig");
+      return out.replace(re,"<mark>$1</mark>");
     }
     function search(q){
       if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
@@ -864,7 +1236,7 @@
     function closeSearch(){ overlay.style.display="none"; overlay.setAttribute("aria-hidden","true"); input.value=""; results.innerHTML=""; }
     function render(q){
       const hits=search(q);
-      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,"")}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for "${escapeHtml(q)}".</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
       results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||"Untitled",q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join("");
     }
     openBtn.addEventListener("click",openSearch);
@@ -902,7 +1274,7 @@
         line.setAttribute("y1", y1);
         line.setAttribute("x2", x2);
         line.setAttribute("y2", y2);
-        line.setAttribute("stroke", "#000000");
+        line.setAttribute("stroke", "#2A2520");
         line.setAttribute("stroke-width", isHour ? "3" : "1.2");
         ticksGroup.appendChild(line);
       }

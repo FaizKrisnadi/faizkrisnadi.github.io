@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>CV | Faiz Krisnadi</title>
+  <title>Research | Faiz Krisnadi</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Lato -->
@@ -56,23 +56,20 @@
       .tabs a{text-align:center; padding:.85rem .2rem;}
     }
 
-    /* Main container */
+    /* Section container */
     .container{max-width:980px; margin:0 auto;}
 
+    /* Section titles */
     h2.section{margin:2.2rem 0 1rem; font-size:1.35rem; font-weight:900; letter-spacing:.01em}
 
-    /* CV card */
-    .cv-card{
-      background:#fff; border:1px solid var(--border); border-radius:12px;
-      padding:1.2rem 1.2rem 1.35rem; margin:1rem 0;
+    /* Research items */
+    .item{
+      background:#fff; border:1px solid var(--border); border-left:4px solid var(--accent);
+      border-radius:10px; padding:1rem 1.1rem; margin:.9rem 0;
     }
-    .dl{
-      display:inline-flex; align-items:center; gap:.55rem; font-weight:900;
-      background:var(--accent); color:#fff; padding:.8rem 1.15rem; border-radius:10px;
-      border:1px solid rgba(0,0,0,.03); box-shadow:0 2px 0 rgba(0,0,0,.03);
-    }
-    .dl:hover{opacity:.9}
-    .filesize{color:var(--muted); font-size:.9rem; margin-top:.45rem}
+    .item h3{margin:.1rem 0 .35rem; font-size:1.03rem; font-weight:900}
+    .meta{color:#6b7280; font-size:.92rem; margin:.1rem 0 .35rem}
+    .plink{font-style:italic}
 
     /* Floating search */
     .search-fab{
@@ -97,11 +94,12 @@
 
     footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px; text-align:center}
 
-    /* Bottom-center analog clock (static, extra space below) */
+    /* Bottom-center analog clock (static, more space below than above) */
     #footer-clock{
-      margin:1.5rem auto 6rem;  /* 1.5rem above, 6rem below */
       display:flex;
       justify-content:center;
+      margin-top:1.5rem;   /* small gap above clock */
+      margin-bottom:4.5rem;/* larger gap below clock */
     }
     #footer-clock svg{
       width:150px;
@@ -146,6 +144,132 @@
         -webkit-tap-highlight-color: transparent;
       }
     }
+
+    /* ===== Preview override: clean glass + top sticky tabs ===== */
+    :root{
+      --bg:#f5f7fb;
+      --text:#1d2430;
+      --accent:#1f66da;
+      --accent-strong:#1049b3;
+      --accent-soft:rgba(31,102,218,0.16);
+      --border:#dbe2ed;
+      --line:rgba(255,255,255,0.72);
+      --muted:#5f6978;
+      --glass-fill:linear-gradient(150deg, rgba(255,255,255,0.66), rgba(250,251,255,0.30));
+      --glass-shadow:0 18px 44px rgba(40,58,90,0.14), inset 0 1px 0 rgba(255,255,255,0.78);
+    }
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-weight:400;
+      overflow-x:hidden;
+    }
+    a{transition:color .2s ease, opacity .2s ease}
+    a:hover{color:var(--accent-strong); opacity:.95}
+
+    .tabs-outer{
+      margin:0 auto 1.25rem;
+      position:sticky;
+      top:calc(8px + env(safe-area-inset-top));
+      z-index:45;
+      transition:transform .25s ease;
+    }
+    .tabs-outer.scrolled{transform:translateY(10px)}
+    .tabs{
+      border-radius:24px;
+      background:var(--glass-fill);
+      border:1px solid var(--line);
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(19px) saturate(145%);
+      -webkit-backdrop-filter:blur(19px) saturate(145%);
+    }
+    .tabs a{
+      border-radius:12px;
+      color:#313a48;
+      font-weight:700;
+      transition:background .2s ease, color .2s ease, transform .2s ease;
+    }
+    .tabs a:hover{
+      background:rgba(255,255,255,0.34);
+      color:#1f3557;
+      transform:translateY(-1px);
+    }
+    .tabs a.active{
+      background:var(--accent-soft);
+      color:var(--accent-strong);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.82);
+    }
+
+    .search-fab{
+      top:calc(76px + env(safe-area-inset-top));
+      background:var(--glass-fill);
+      border:1px solid var(--line);
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(19px) saturate(145%);
+      -webkit-backdrop-filter:blur(19px) saturate(145%);
+      color:#1e3662;
+      transition:transform .2s ease, box-shadow .2s ease, color .2s ease;
+    }
+    .search-fab:hover{
+      transform:translateY(-2px);
+      color:var(--accent-strong);
+      box-shadow:0 16px 30px rgba(30,52,86,0.18);
+    }
+    .search-overlay{
+      background:rgba(16,28,48,0.22);
+      backdrop-filter:blur(5px);
+      -webkit-backdrop-filter:blur(5px);
+      padding:4vh 14px;
+    }
+    .search-panel{
+      margin:3vh auto 0;
+      border-radius:22px;
+      padding:.95rem;
+      background:var(--glass-fill);
+      border:1px solid var(--line);
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(19px) saturate(145%);
+      -webkit-backdrop-filter:blur(19px) saturate(145%);
+    }
+    .search-bar{
+      border:1px solid rgba(255,255,255,0.78);
+      border-radius:14px;
+      background:rgba(255,255,255,0.46);
+    }
+    .search-bar input{
+      background:transparent;
+      color:#1d2b3f;
+      font-family:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      font-weight:400;
+    }
+    .hint,.result small,.nores,.meta,footer{font-weight:400}
+    .result{border-radius:10px; color:#1d2736}
+    .result:hover{background:rgba(31,102,218,0.10)}
+    mark{background:rgba(31,102,218,0.18); border-radius:4px}
+
+    .item{
+      background:var(--glass-fill);
+      border:1px solid var(--line);
+      border-left:4px solid var(--accent);
+      border-radius:16px;
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(19px) saturate(145%);
+      -webkit-backdrop-filter:blur(19px) saturate(145%);
+    }
+    .item h3, h2.section{font-weight:700}
+    .container p, .item .meta, .item .plink{font-weight:400}
+
+    @media (max-width:560px){
+      .tabs-outer.scrolled{transform:translateY(6px)}
+      .tabs a{font-weight:700}
+      .search-fab{top:calc(72px + env(safe-area-inset-top))}
+    }
+
+    @supports not ((backdrop-filter: blur(1px))) {
+      .tabs,.item,.search-fab,.search-panel{
+        background:rgba(250,251,255,0.94);
+      }
+    }
   </style>
 </head>
 <body>
@@ -155,45 +279,137 @@
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 
-  <!-- Header -->
-  <section class="hero-wrap" aria-label="Profile">
-    <img class="photo"
-         src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
-         alt="Faiz Krisnadi"
-         onerror="this.src='https://via.placeholder.com/210'">
-    <div>
-      <h1 class="name">Faiz Krisnadi</h1>
-      <p class="subtitle">Master's in International Affairs</p>
-      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
-    </div>
-  </section>
-
   <!-- Tabs -->
   <div class="tabs-outer">
     <nav class="tabs" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a class="active" href="cv.html">CV</a></li>
+        <li><a class="active" href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
         <li><a href="resources.html">Resources</a></li>
       </ul>
     </nav>
   </div>
 
   <main class="container">
-    <h2 class="section">Curriculum Vitae</h2>
+    <p>
+      My research broadly focuses on international affairs and political economy. In my ongoing master's thesis, I examine stakeholders' attitudes toward Chinese investment in Indonesia, and I am honored to be advised by
+      <a href="https://lkyspp.nus.edu.sg/our-people/faculty/liu-yao-adam" target="_blank" rel="noopener">Adam Y. Liu</a> (Advisor) and
+      <a href="https://www.jonathanchu.org/" target="_blank" rel="noopener">Jonathan A. Chu</a> (Convenor).
+    </p>
 
-    <div class="cv-card">
-      <p style="margin-top:0">
-        You can download my CV here (last updated: November, 2025). For references or additional materials, feel free to <a href="mailto:hi@faizkrisnadi.com">email me</a>.
-      </p>
-      <p style="margin:.9rem 0 0">
-        <a class="dl" href="faiz-cv.pdf" target="_blank" rel="noopener">
-          <i class="fa-solid fa-file-pdf"></i> View CV (PDF)
-        </a>
-      </p>
-      <div class="filesize">File size: ~200 KB</div>
-    </div>
+      <h2 class="section">Peer-Reviewed Journal Articles</h2>
+     <article class="item">
+      <h3>Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities</h3>
+      <div class="meta">The Indonesian Quarterly by CSIS Indonesia</div>
+      <a class="plink" href="https://www.researchgate.net/publication/399538107_Reindustrializing_Indonesia_Lessons_from_China_Capital_Intensity_Paradox_and_Labor-Market_Realities" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand</h3>
+      <div class="meta">Perantau: Journal of Migration, Borders, and Belonging (2025)</div>
+      <a class="plink" href="https://journal.ygtmi.org/perantau/article/view/4" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan</h3>
+      <div class="meta">Journal of Paradiplomacy and City Networks (2024)</div>
+      <a class="plink" href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38" target="_blank" rel="noopener">(link)</a>
+    </article>
+    
+    <!-- Policy Report -->
+    <h2 class="section">Policy Report</h2>
+    <article class="item">
+      <h3>Balancing Risk and Reward: Who benefits from China's investments in Indonesia?</h3>
+      <div class="meta">AidData at William &amp; Mary (2025)</div>
+      <a class="plink" href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">(link)</a>
+    </article>
+
+    <!-- Work in Progress -->
+    <h2 class="section">Work in Progress</h2>
+    <article class="item">
+      <h3>City Solar Mandates and Paradiplomacy: A Difference-in-Differences Analysis of Five ASEAN Capitals</h3>
+      <div class="meta">Conditionally accepted at Journal of Paradiplomacy and City Networks</div>
+    </article>
+    <article class="item">
+      <h3>Commercial diplomacy in times of crisis: Lessons from Indonesia’s coffee exports to Egypt</h3>
+      <div class="meta">Submitted to Kasetsart Journal of Social Sciences</div>
+    </article>
+
+    <!-- Recent works -->
+    <h2 class="section">Recent Works (Unpublished)</h2>
+    <article class="item">
+      <h3>Research Assignments (2024–2025)</h3>
+      <a class="plink" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB" target="_blank" rel="noopener">(link)</a>
+    </article>
+
+    <!-- Book chapters -->
+    <h2 class="section">Book Chapters</h2>
+    <article class="item">
+      <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
+      <div class="meta">Mahidol University (2021)</div>
+      <a class="plink" href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" target="_blank" rel="noopener">(link)</a>
+    </article>
+    
+
+    <h2 class="section">Conference Proceedings</h2>
+    <article class="item">
+      <h3>Transforming Indonesia's Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>COVID-19 in Indonesia: Critics and Proposal</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2022)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015</h3>
+      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2021)</div>
+      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351" target="_blank" rel="noopener">(link)</a>
+    </article>
+
+    <!-- Thesis -->
+    <h2 class="section">Undergraduate Thesis</h2>
+    <article class="item">
+      <h3>Indonesia's Government's Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
+      <div class="meta">Undergraduate Thesis (2022)</div>
+      <a class="plink" href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" target="_blank" rel="noopener">(link)</a>
+    </article>
+
+    <!-- Op-eds -->
+    <h2 class="section">Op-Ed</h2>
+    <article class="item">
+      <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
+      <div class="meta">Citrakara Mandala (October 2020)</div>
+      <a class="plink" href="https://link.medium.com/agfcQ4L6oub" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k?__twitter_impression=true&shareID=dsaYY8XriM4R&utm_campaign=share&utm_source=kumApp" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9" target="_blank" rel="noopener">(link)</a>
+    </article>
+    <article class="item">
+      <h3>Politik Tata Ruang dalam Gemuruh Pandemi</h3>
+      <div class="meta">Kumparan (June 2020)</div>
+      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo" target="_blank" rel="noopener">(link)</a>
+    </article>
+
+    <!-- Podcast -->
+    <h2 class="section">Podcast</h2>
+    <article class="item">
+      <h3>Politik Lingkungan Global</h3>
+      <div class="meta">IPIREL Podcast (December 2020)</div>
+      <a class="plink" href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&nd=1&dlsi=829834af9f8c4e86" target="_blank" rel="noopener">(link)</a>
+    </article>
   </main>
 
   <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
@@ -201,14 +417,10 @@
   <!-- Static bottom-center analog clock -->
   <div id="footer-clock" aria-hidden="true">
     <svg viewBox="0 0 200 200">
-      <!-- clock face -->
       <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
-
-      <!-- tick marks and numbers populated by JS -->
       <g id="clock-ticks"></g>
       <g id="clock-numbers"></g>
 
-      <!-- hands -->
       <line id="clock-hour-hand"
             x1="100" y1="110" x2="100" y2="60"
             stroke="#000000" stroke-width="4"
@@ -224,7 +436,6 @@
             stroke="#cc0000" stroke-width="1.5"
             stroke-linecap="round" />
 
-      <!-- center cap -->
       <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
     </svg>
   </div>
@@ -245,7 +456,7 @@
   </div>
 
   <script>
-    /* ---------- In-page search (same as Home/Research) ---------- */
+    /* ---------- In-page search (shared with Home) ---------- */
     const PAGE_LIST = [
       { url: 'index.html',     title: 'Home' },
       { url: 'research.html',  title: 'Research' },
@@ -328,7 +539,7 @@
       const numbersGroup = document.getElementById("clock-numbers");
       if (!ticksGroup || !numbersGroup) return;
 
-      // tick marks
+      // ticks
       for (let i = 0; i < 60; i++) {
         const angle = Math.PI / 30 * i;
         const isHour = i % 5 === 0;
@@ -383,13 +594,27 @@
         const minuteAngle = (m + s / 60) * 6;
         const hourAngle   = ((h % 12) + m / 60) * 30;
 
-        hourHand.setAttribute("transform","rotate("+hourAngle+" 100 100)");
-        minuteHand.setAttribute("transform","rotate("+minuteAngle+" 100 100)");
-        secondHand.setAttribute("transform","rotate("+secondAngle+" 100 100)");
+        hourHand.setAttribute("transform",   "rotate(" + hourAngle   + " 100 100)");
+        minuteHand.setAttribute("transform", "rotate(" + minuteAngle + " 100 100)");
+        secondHand.setAttribute("transform", "rotate(" + secondAngle + " 100 100)");
       }
 
       updateClock();
       setInterval(updateClock, 1000);
+    })();
+  </script>
+  <script>
+    // Top tabs: slight drop when page is scrolled
+    (function() {
+      const tabsOuter = document.querySelector(".tabs-outer");
+      if (!tabsOuter) return;
+
+      function updateTabsPosition() {
+        tabsOuter.classList.toggle("scrolled", window.scrollY > 12);
+      }
+
+      updateTabsPosition();
+      window.addEventListener("scroll", updateTabsPosition, { passive: true });
     })();
   </script>
 </body>

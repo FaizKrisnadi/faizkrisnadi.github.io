@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: indonesia-china-finance-dashboard
+    runtime: python
+    rootDir: indonesia-china-finance-dashboard
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app/Home.py --server.address 0.0.0.0 --server.port $PORT

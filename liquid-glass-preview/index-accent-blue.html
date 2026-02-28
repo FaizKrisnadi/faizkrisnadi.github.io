@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Liquid Glass Neutral + Blue Accent | Faiz Krisnadi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --text: #1d2430;
+      --muted: #5f6978;
+      --line: rgba(255, 255, 255, 0.72);
+      --accent: #1f66da;
+      --accent-strong: #1049b3;
+      --accent-soft: rgba(31, 102, 218, 0.16);
+      --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, 0.66), rgba(250, 251, 255, 0.30));
+      --glass-shadow: 0 18px 44px rgba(40, 58, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+      --radius-xl: 24px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Lato", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      line-height: 1.72;
+      padding: calc(18px + env(safe-area-inset-top)) calc(18px + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(18px + env(safe-area-inset-left));
+      background: #f5f7fb;
+      overflow-x: hidden;
+    }
+
+    .shell {
+      max-width: 980px;
+      margin: 0 auto;
+      animation: reveal 0.6s ease;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .glass {
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    @supports not ((backdrop-filter: blur(1px))) {
+      .glass {
+        background: rgba(250, 251, 255, 0.94);
+      }
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      opacity: 0.95;
+    }
+
+    .top-nav {
+      border-radius: var(--radius-xl);
+      padding: 6px;
+      margin-bottom: 14px;
+      position: sticky;
+      top: 10px;
+      z-index: 30;
+    }
+
+    .top-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .top-nav a {
+      min-height: 42px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 13px;
+      color: #313a48;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+
+    .top-nav a:hover {
+      background: rgba(255, 255, 255, 0.34);
+      color: #1f3557;
+      transform: translateY(-1px);
+    }
+
+    .top-nav a.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
+    .hero {
+      border-radius: calc(var(--radius-xl) + 5px);
+      padding: 1.4rem;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 1.35rem;
+      align-items: center;
+    }
+
+    .photo {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% 40%;
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.44), 0 14px 28px rgba(36, 53, 84, 0.2);
+    }
+
+    .name {
+      margin: 0 0 6px;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.14;
+      letter-spacing: -0.01em;
+      font-weight: 900;
+      color: #1d2633;
+    }
+
+    .subtitle {
+      margin: 4px 0;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .intro {
+      margin: 18px 2px 0;
+    }
+
+    .intro p {
+      margin: 0 0 14px;
+    }
+
+    .section-card {
+      margin-top: 18px;
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, rgba(31, 102, 218, 0.06), transparent 38%);
+    }
+
+    .section-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.14rem;
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      color: #253244;
+    }
+
+    .section-card p {
+      margin: 0.62rem 0;
+    }
+
+    footer {
+      margin: 28px auto 0;
+      text-align: center;
+      color: #6a7484;
+      font-size: 0.92rem;
+    }
+
+    .search-fab {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: #1e3662;
+      cursor: pointer;
+      z-index: 90;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    }
+
+    .search-fab:hover {
+      transform: translateY(-2px);
+      color: var(--accent-strong);
+      box-shadow: 0 16px 30px rgba(30, 52, 86, 0.18);
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      padding: 4vh 14px;
+      background: rgba(16, 28, 48, 0.22);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .search-overlay.open {
+      display: block;
+    }
+
+    .search-panel {
+      max-width: 900px;
+      margin: 3vh auto 0;
+      border-radius: 22px;
+      padding: 0.95rem;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.62rem;
+      border-radius: 14px;
+      padding: 0.38rem 0.64rem;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.46);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 1.03rem;
+      color: #1d2b3f;
+      padding: 0.72rem 0.22rem;
+    }
+
+    .search-hint {
+      margin: 0.58rem 0.2rem 0;
+      color: #5d6777;
+      font-size: 0.9rem;
+    }
+
+    kbd {
+      background: rgba(31, 102, 218, 0.14);
+      color: #174aa8;
+      border-radius: 6px;
+      border: 1px solid rgba(31, 102, 218, 0.26);
+      padding: 0.05rem 0.35rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .photo {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: calc(14px + env(safe-area-inset-top)) 12px calc(24px + env(safe-area-inset-bottom));
+      }
+
+      .top-nav ul {
+        gap: 6px;
+      }
+
+      .top-nav a {
+        min-height: 44px;
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding: 1.08rem;
+      }
+
+      .section-card {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="search-fab glass" id="openSearch" title="Search (Ctrl/Cmd + K)" aria-label="Open Search">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <div class="shell">
+    <nav class="top-nav glass" aria-label="Primary">
+      <ul>
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#">Research</a></li>
+        <li><a href="#">CV</a></li>
+        <li><a href="#">Resources</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero glass" aria-label="Profile">
+      <img
+        class="photo"
+        src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+        alt="Faiz Krisnadi"
+        onerror="this.src='https://via.placeholder.com/240'"
+      />
+      <div>
+        <h1 class="name">Faiz Krisnadi</h1>
+        <p class="subtitle">Master's in International Affairs</p>
+        <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+      </div>
+    </section>
+
+    <section class="intro">
+      <p style="font-size: 1.2rem; font-weight: 900; margin-bottom: 0.5rem">Hello there!</p>
+      <p>
+        I am a <a href="https://ltkfoundation.org/" target="_blank" rel="noopener">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the
+        <a href="https://lkyspp.nus.edu.sg/" target="_blank" rel="noopener">Lee Kuan Yew School of Public Policy (LKYSPP)</a>, National University of Singapore (NUS).
+        I am also a Young Leader with the
+        <a href="https://pacforum.org/young-leaders-program/" target="_blank" rel="noopener">Pacific Forum Young Leaders Program</a>.
+      </p>
+      <p>
+        I'm interested in evidence-based international affairs, political economy, and economic development.
+        See my research, explore resources, or view my CV.
+      </p>
+    </section>
+
+    <section class="section-card glass">
+      <h3>Latest Publication</h3>
+      <p>
+        I’m proud to co-author the AidData policy report
+        <a href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">
+          “Balancing Risk and Reward: Who benefits from China’s investments in Indonesia?”
+        </a>
+        (June 12, 2025).
+      </p>
+      <p>
+        The report decodes two decades of Beijing’s state-backed development finance and private FDI flows in Indonesia.
+      </p>
+    </section>
+
+    <section class="section-card glass">
+      <h3>Let's Connect</h3>
+      <p>I am actively seeking research assistantship in policy research, economic development, or international affairs.</p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com</a></p>
+    </section>
+
+    <footer>
+      <p>© 2026 Faiz Krisnadi. Neutral glass with blue accents prototype.</p>
+    </footer>
+  </div>
+
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel glass" role="dialog" aria-modal="true" aria-label="Site search demo">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color: #244d91"></i>
+        <input id="searchInput" type="text" placeholder="Search preview content..." />
+      </div>
+      <p class="search-hint">Neutral base, blue as accent only. Press <kbd>Esc</kbd> to close.</p>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById("openSearch");
+    const overlay = document.getElementById("searchOverlay");
+    const searchInput = document.getElementById("searchInput");
+
+    function openSearch() {
+      overlay.classList.add("open");
+      overlay.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => searchInput.focus());
+    }
+
+    function closeSearch() {
+      overlay.classList.remove("open");
+      overlay.setAttribute("aria-hidden", "true");
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener("click", openSearch);
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        closeSearch();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      const openShortcut = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k";
+
+      if (openShortcut) {
+        event.preventDefault();
+        if (overlay.classList.contains("open")) {
+          closeSearch();
+        } else {
+          openSearch();
+        }
+      }
+
+      if (event.key === "Escape" && overlay.classList.contains("open")) {
+        closeSearch();
+      }
+    });
+  </script>
+</body>
+</html>

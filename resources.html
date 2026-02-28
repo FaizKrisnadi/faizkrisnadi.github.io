@@ -9,11 +9,11 @@
   <!-- Lato -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg:#f8f8f8; --text:#333; --accent:#2563eb; --border:#e5e7eb; --muted:#6b7280;
+      --bg:#F1EFE0; --text:#333; --accent:#996B1D; --border:#e5e7eb; --muted:#6b7280;
 
       --avatar: 190px;
       --avatar-mobile: 160px;
@@ -50,7 +50,7 @@
     .tabs{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); overflow:hidden;}
     .tabs ul{list-style:none; margin:0; padding:.35rem; display:flex; gap:.6rem; align-items:center;}
     .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
-    .tabs a.active{background:rgba(37,99,235,.1); color:var(--accent);}
+    .tabs a.active{background:rgba(153, 107, 29, .1); color:var(--accent);}
     @media (max-width:560px){
       .tabs ul{display:grid; grid-template-columns:repeat(5,1fr); gap:.35rem; padding:.35rem;}
       .tabs a{text-align:center; padding:.85rem .2rem;}
@@ -82,52 +82,24 @@
 
     .badge{
       display:inline-block; font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px;
-      background:rgba(37,99,235,.08); border:1px solid var(--border); color:var(--accent);
+      background:rgba(153, 107, 29, .08); border:1px solid var(--border); color:var(--accent);
       margin-left:.4rem; vertical-align:middle;
     }
 
-    /* —— Dataset slider (no cropping) —— */
-    .ds-slider{position:relative; margin:2rem 0}
-    .ds-slider h3{margin:0 0 .75rem; font-size:1.25rem; font-weight:900}
-    .ds-track{
-      display:grid; grid-auto-flow:column; grid-auto-columns:100%;
-      overflow:hidden; scroll-behavior:smooth; border:1px solid var(--border);
-      border-radius:10px; background:#fff;
-    }
-    .ds-slide{display:grid; grid-template-columns:1.05fr 1fr; gap:1rem; align-items:start; padding:1rem}
-    .ds-media{display:flex; align-items:center; justify-content:center}
-    .ds-media img{
-      width:100%; height:auto; object-fit:contain; background:#fff;
-      border-radius:8px; border:1px solid var(--border);
-      max-height: clamp(220px, 44vh, 520px);
-    }
-    .ds-title{margin:.15rem 0 .35rem; font-weight:700; font-size:1.1rem}
-    .ds-desc{color:#555; margin:0}
-    .ds-nav{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:36px; height:36px; border-radius:999px; background:#fff; border:1px solid var(--border);
-      cursor:pointer; font-size:1.2rem; line-height:34px; text-align:center; color:#333;
-    }
-    .ds-prev{left:-12px} .ds-next{right:-12px}
-    .ds-dots{display:flex; gap:.35rem; justify-content:center; margin:.6rem 0 0}
-    .ds-dots button{width:8px; height:8px; border-radius:999px; border:none; background:#cbd5e1; cursor:pointer}
-    .ds-dots button.active{background:var(--accent)}
-    .viz-meta{color:#666; font-size:.92rem; margin:.75rem 0 0}
-
-    /* Intro slide inside slider */
-    .intro{grid-template-columns:1fr; background:linear-gradient(180deg, rgba(37,99,235,.06), rgba(37,99,235,.03)); border-radius:10px;}
-    .intro .intro-wrap{padding:.25rem .3rem .5rem .3rem}
-    .kicker{letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; color:#4463b5; background:rgba(37,99,235,.08); border:1px solid var(--border); display:inline-block; padding:.25rem .5rem; border-radius:999px; margin-bottom:.5rem}
-    .intro h3{margin:.15rem 0 .4rem; font-size:1.45rem; line-height:1.25; font-weight:900}
-    .lead{color:#4b5563; margin:.35rem 0 .6rem}
-    .chips{display:flex; gap:.4rem; flex-wrap:wrap}
-    .chip{font-size:.78rem; line-height:1; padding:.35rem .55rem; border-radius:999px; background:#fff; border:1px solid var(--border); color:#475569}
-
     @media (max-width:720px){
-      .ds-slide{grid-template-columns:1fr}
-      .ds-prev{left:4px} .ds-next{right:4px}
-      .ds-media img{max-height: clamp(200px, 38vh, 420px)}
-      .intro h3{font-size:1.35rem}
+      .item{
+        grid-template-columns:24px 1fr;
+        gap:.75rem;
+        padding:.95rem .9rem;
+      }
+      .item-cta{
+        grid-column:2;
+        margin-top:.35rem;
+      }
+      .item-cta a{
+        white-space:normal;
+        display:inline-flex;
+      }
     }
 
     /* Floating search */
@@ -136,7 +108,7 @@
       background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
       color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
     }
-    .search-fab:hover{background:rgba(37,99,235,.05); color:var(--accent)}
+    .search-fab:hover{background:rgba(153, 107, 29, .05); color:var(--accent)}
 
     /* Search overlay */
     .search-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px); display:none; z-index:60; }
@@ -149,9 +121,21 @@
     .result:hover{background:#f2f5ff}
     .result small{display:block; color:#6b7280; margin-top:.15rem}
     .nores{color:#6b7280; padding:1rem .25rem}
-    mark{background:rgba(37,99,235,.18); border-radius:3px; padding:0 .15rem}
+    mark{background:rgba(153, 107, 29, .18); border-radius:3px; padding:0 .15rem}
 
     footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px; text-align:center}
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
     /* Bottom-center analog clock (static, extra space below) */
     #footer-clock{
@@ -204,16 +188,16 @@
 
     /* ===== Preview override: clean glass + top sticky tabs ===== */
     :root{
-      --bg:#f5f7fb;
-      --text:#1d2430;
-      --accent:#1f66da;
-      --accent-strong:#1049b3;
-      --accent-soft:rgba(31,102,218,0.16);
-      --border:#dbe2ed;
-      --line:rgba(255,255,255,0.72);
-      --muted:#5f6978;
-      --glass-fill:linear-gradient(150deg, rgba(255,255,255,0.66), rgba(250,251,255,0.30));
-      --glass-shadow:0 18px 44px rgba(40,58,90,0.14), inset 0 1px 0 rgba(255,255,255,0.78);
+      --bg:#F1EFE0;
+      --text:#2E2E2E;
+      --accent:#996B1D;
+      --accent-strong:#7A5412;
+      --accent-soft:rgba(153, 107, 29, 0.14);
+      --border:#E5E3D1;
+      --line:rgba(229, 227, 209, 0.72);
+      --muted:#6E6358;
+      --glass-fill:linear-gradient(150deg, rgba(255, 253, 245, 0.72), rgba(245, 242, 230, 0.34));
+      --glass-shadow:0 18px 44px rgba(80, 68, 40, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.80);
     }
     body{
       background:var(--bg);
@@ -242,13 +226,13 @@
     }
     .tabs a{
       border-radius:12px;
-      color:#313a48;
+      color:#4A4035;
       font-weight:700;
       transition:background .2s ease, color .2s ease, transform .2s ease;
     }
     .tabs a:hover{
-      background:rgba(255,255,255,0.34);
-      color:#1f3557;
+      background:rgba(229, 227, 209, 0.50);
+      color:#2A2520;
       transform:translateY(-1px);
     }
     .tabs a.active{
@@ -264,16 +248,16 @@
       box-shadow:var(--glass-shadow);
       backdrop-filter:blur(19px) saturate(145%);
       -webkit-backdrop-filter:blur(19px) saturate(145%);
-      color:#1e3662;
+      color:#4A4035;
       transition:transform .2s ease, box-shadow .2s ease, color .2s ease;
     }
     .search-fab:hover{
       transform:translateY(-2px);
       color:var(--accent-strong);
-      box-shadow:0 16px 30px rgba(30,52,86,0.18);
+      box-shadow:0 16px 30px rgba(80, 68, 40, 0.14);
     }
     .search-overlay{
-      background:rgba(16,28,48,0.22);
+      background:rgba(40, 35, 25, 0.20);
       backdrop-filter:blur(5px);
       -webkit-backdrop-filter:blur(5px);
       padding:4vh 14px;
@@ -295,17 +279,17 @@
     }
     .search-bar input{
       background:transparent;
-      color:#1d2b3f;
+      color:#2E2E2E;
       font-family:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       font-weight:400;
     }
-    .hint,.result small,.nores,.item-desc,.lead,.viz-meta,footer{font-weight:400}
+    .hint,.result small,.nores,.item-desc,footer{font-weight:400}
     .result{border-radius:10px; color:#1d2736}
-    .result:hover{background:rgba(31,102,218,0.10)}
-    mark{background:rgba(31,102,218,0.18); border-radius:4px}
-    h3.section,.intro-card h2,.ds-slider h3,.intro h3,.item-title,.ds-title{font-weight:700}
+    .result:hover{background:rgba(153, 107, 29, 0.09)}
+    mark{background:rgba(181, 137, 0, 0.18); border-radius:4px}
+    h3.section,.intro-card h2,.item-title{font-weight:700}
 
-    .intro-card,.item,.ds-track{
+    .intro-card,.item{
       background:var(--glass-fill);
       border:1px solid var(--line);
       border-radius:16px;
@@ -313,23 +297,11 @@
       backdrop-filter:blur(19px) saturate(145%);
       -webkit-backdrop-filter:blur(19px) saturate(145%);
     }
-    .intro-card p,.item-desc,.ds-desc,.lead{color:var(--muted)}
-    .badge,.kicker{
-      background:rgba(31,102,218,0.10);
+    .intro-card p,.item-desc{color:var(--muted)}
+    .badge{
+      background:rgba(153, 107, 29, 0.09);
       color:var(--accent-strong);
-      border:1px solid rgba(31,102,218,0.20);
-    }
-    .chip{
-      background:rgba(255,255,255,0.7);
-      border:1px solid var(--line);
-      color:#475569;
-    }
-    .ds-media img{border:1px solid var(--line)}
-    .ds-nav{
-      background:var(--glass-fill);
-      border:1px solid var(--line);
-      box-shadow:var(--glass-shadow);
-      color:#1f3557;
+      border:1px solid rgba(153, 107, 29, 0.24);
     }
 
     @media (max-width:560px){
@@ -339,8 +311,8 @@
     }
 
     @supports not ((backdrop-filter: blur(1px))) {
-      .tabs,.intro-card,.item,.ds-track,.ds-nav,.search-fab,.search-panel{
-        background:rgba(250,251,255,0.94);
+      .tabs,.intro-card,.item,.search-fab,.search-panel{
+        background:rgba(245, 242, 230, 0.96);
       }
     }
   </style>
@@ -348,7 +320,7 @@
 <body>
 
   <!-- Search -->
-  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)" aria-label="Open search">
     <i class="fa-solid fa-magnifying-glass"></i>
   </button>
 
@@ -398,6 +370,16 @@
         <li class="item">
           <i class="fa-brands fa-github" aria-hidden="true"></i>
           <div>
+            <p class="item-title">sustainability-gleif-matching-network</p>
+            <p class="item-desc">Sustainability and GLEIF matching pipeline to build network-ready entity linkages for ownership and corporate structure analysis.</p>
+          </div>
+          <div class="item-cta">
+            <a href="https://github.com/faizkrisnadi/sustainability-gleif-matching-network" target="_blank" rel="noopener">View repository ↗</a>
+          </div>
+        </li>
+        <li class="item">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <div>
             <p class="item-title">trade-dispute-viid-dataset</p>
             <p class="item-desc">Replication dataset and supporting files for my VIID trade-dispute research workflow.</p>
           </div>
@@ -428,114 +410,6 @@
       </ul>
     </section>
 
-    <!-- Datasets -->
-    <section aria-labelledby="datasets">
-      <h3 class="section" id="datasets">Datasets <span class="badge">Coming soon</span></h3>
-      <ul class="list">
-        <li class="item">
-          <i class="fa-solid fa-database" aria-hidden="true"></i>
-          <div>
-            <p class="item-title">Public dataset catalog</p>
-            <p class="item-desc">Downloads and codebooks will appear here once production-ready.</p>
-          </div>
-          <div class="item-cta"><span class="badge">WIP</span></div>
-        </li>
-      </ul>
-    </section>
-
-    <!-- VIID slider -->
-    <section id="viid-slider" class="ds-slider" aria-label="VIID visuals carousel">
-      <h3>VIID 2025 — Visual Highlights</h3>
-
-      <button class="ds-nav ds-prev" aria-label="Previous slide">‹</button>
-      <div class="ds-track">
-        <!-- Intro slide -->
-        <article class="ds-slide intro" role="group" aria-label="Intro">
-          <div class="intro-wrap">
-            <span class="kicker">WTO • Trade • Risk</span>
-            <h3>Trade, Disputes &amp; Risk: quick visuals from my VIID 2025 paper</h3>
-            <p class="lead">
-              A five-slide tour: dispute timelines, policy-annotated trade trends, a non-WTO comparator,
-              and how geopolitical risk (GPR) stretches filing lags. Swipe or use the arrows.
-            </p>
-            <div class="chips">
-              <span class="chip">DS456 / DS593</span>
-              <span class="chip">Eurostat / USITC</span>
-              <span class="chip">UN Comtrade</span>
-              <span class="chip">GPR index</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Slide 1 -->
-        <article class="ds-slide" role="group" aria-label="1 of 5">
-          <figure class="ds-media">
-            <img loading="lazy" src="assets/viid/viid_fig1_timeline.png"
-                 alt="Timeline for DS456 and DS593 from consultations to panel report, with adoption markers">
-          </figure>
-          <div>
-            <div class="ds-title">Dispute timelines (consultations → panel → report)</div>
-            <p class="ds-desc">DS456 (US–India, solar) progressed 2013–2016. DS593 (Indonesia–EU, palm oil) shows a long panel phase (2020–2025), consistent with pandemic-era disruption.</p>
-          </div>
-        </article>
-
-        <!-- Slide 2 -->
-        <article class="ds-slide" role="group" aria-label="2 of 5">
-          <figure class="ds-media">
-            <img loading="lazy" src="assets/viid/viid_fig2_eu_palm_oil.png"
-                 alt="EU HS1511 imports from Indonesia with markers for RED II, 2019/807, DS593 steps, EUDR, panel report">
-          </figure>
-          <div>
-            <div class="ds-title">IDN→EU HS1511 (Palm oil) with policy &amp; WTO markers</div>
-            <p class="ds-desc">Imports peaked mid-2010s, dipped 2015–2016, recovered by 2021, then softened as sustainability rules tightened (RED II 2018, 2019/807, EUDR 2023) while DS593 advanced.</p>
-          </div>
-        </article>
-
-        <!-- Slide 3 -->
-        <article class="ds-slide" role="group" aria-label="3 of 5">
-          <figure class="ds-media">
-            <img loading="lazy" src="assets/viid/viid_fig3_phl_chn_bananas.png"
-                 alt="Philippines banana exports to China with shaded March–June 2012 episode">
-          </figure>
-          <div>
-            <div class="ds-title">PHL→CHN bananas (HS0803): 2012 maritime/SPS episode</div>
-            <p class="ds-desc">Mar–Jun 2012 inspections/restrictions coincide with a sharp, short-run disruption. No WTO filing; the issue resolved politically and trade later rebounded.</p>
-          </div>
-        </article>
-
-        <!-- Slide 4 -->
-        <article class="ds-slide" role="group" aria-label="4 of 5">
-          <figure class="ds-media">
-            <img loading="lazy" src="assets/viid/viid_fig4_ind_usa_solar.png"
-                 alt="US imports from India, HS854140, with DS456 milestones and US Section 201 safeguard markers">
-          </figure>
-          <div>
-            <div class="ds-title">IND→USA solar (HS854140): trend + numbered events</div>
-            <p class="ds-desc">DS456 adoption (Oct 2016) and India’s DCR removal (2017) precede US Section 201 safeguards (2018–2022/extension), which shape much of the later pattern.</p>
-          </div>
-        </article>
-
-        <!-- Slide 5 -->
-        <article class="ds-slide" role="group" aria-label="5 of 5">
-          <figure class="ds-media">
-            <img loading="lazy" src="assets/viid/viid_fig5_gpr_scatter.png"
-                 alt="Scatter/line showing positive slope between GPR and filing/episode lags">
-          </figure>
-          <div>
-            <div class="ds-title">Geopolitical Risk (GPR) vs filing/episode lags</div>
-            <p class="ds-desc">Higher geopolitical risk coincides with longer lags between consultations and panel requests—and a longer episode in the non-WTO case. Exploratory; small N.</p>
-          </div>
-        </article>
-      </div>
-      <button class="ds-nav ds-next" aria-label="Next slide">›</button>
-
-      <div class="ds-dots" aria-hidden="true"></div>
-
-      <p class="viz-meta">
-        <em>Sources:</em> WTO DS456 & DS593 dockets; EU legal acts (RED II, 2019/807, EUDR);
-        UN Comtrade/FAO; USITC DataWeb; Caldara–Iacoviello GPR. See VIID paper for details.
-      </p>
-    </section>
   </main>
 
   <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
@@ -544,7 +418,7 @@
   <div id="footer-clock" aria-hidden="true">
     <svg viewBox="0 0 200 200">
       <!-- clock face -->
-      <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
+      <circle cx="100" cy="100" r="96" fill="#FDFCF5" stroke="#D5D1C0" stroke-width="2" />
 
       <!-- tick marks and numbers populated by JS -->
       <g id="clock-ticks"></g>
@@ -553,63 +427,26 @@
       <!-- hands -->
       <line id="clock-hour-hand"
             x1="100" y1="110" x2="100" y2="60"
-            stroke="#000000" stroke-width="4"
+            stroke="#2A2520" stroke-width="4"
             stroke-linecap="round" />
 
       <line id="clock-minute-hand"
             x1="100" y1="112" x2="100" y2="40"
-            stroke="#000000" stroke-width="3"
+            stroke="#2A2520" stroke-width="3"
             stroke-linecap="round" />
 
       <line id="clock-second-hand"
             x1="100" y1="115" x2="100" y2="30"
-            stroke="#cc0000" stroke-width="1.5"
+            stroke="#B58900" stroke-width="1.5"
             stroke-linecap="round" />
 
       <!-- center cap -->
-      <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
+      <circle cx="100" cy="100" r="3.5" fill="#FDFCF5" stroke="#2A2520" stroke-width="1" />
     </svg>
   </div>
 
-  <!-- Slider + Search JS -->
+  <!-- Search JS -->
   <script>
-    /* ---------- Slider ---------- */
-    (function(){
-      const slider = document.querySelector('#viid-slider');
-      if(!slider) return;
-      const track  = slider.querySelector('.ds-track');
-      const slides = [...slider.querySelectorAll('.ds-slide')];
-      const prev   = slider.querySelector('.ds-prev');
-      const next   = slider.querySelector('.ds-next');
-      const dotsW  = slider.querySelector('.ds-dots');
-
-      let i = 0;
-      slides.forEach((_, idx) => {
-        const b = document.createElement('button');
-        b.addEventListener('click', () => go(idx));
-        dotsW.appendChild(b);
-      });
-      const dots = [...dotsW.children];
-
-      function go(n){
-        i = (n + slides.length) % slides.length;
-        track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
-        dots.forEach((d,j)=>d.classList.toggle('active', j===i));
-      }
-      function nextSlide(){ go(i+1); }
-      function prevSlide(){ go(i-1); }
-
-      next.addEventListener('click', nextSlide);
-      prev.addEventListener('click', prevSlide);
-      window.addEventListener('resize', () => go(i));
-      track.addEventListener('scroll', () => {
-        const guess = Math.round(track.scrollLeft / track.clientWidth);
-        dots.forEach((d,j)=>d.classList.toggle('active', j===guess));
-      });
-
-      go(0);
-    })();
-
     /* ---------- In-page search (same component as other pages) ---------- */
     const PAGE_LIST = [
       { url: 'index.html',     title: 'Home' },
@@ -652,10 +489,14 @@
       }));
       INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
     }
+    const normalizeForHilite=s=>(s||'').toLowerCase();
+    const escapeHtml=s=>(s||'').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
     function hilite(text,q){
-      const terms=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
-      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
-      return out;
+      const terms=normalizeForHilite(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      const out=escapeHtml(text);
+      if(!terms.length) return out;
+      const re=new RegExp('('+terms.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','ig');
+      return out.replace(re,'<mark>$1</mark>');
     }
     function search(q){
       if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
@@ -668,10 +509,11 @@
     overlay.id='searchOverlay';
     overlay.innerHTML=`
       <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+        <h2 id="searchLabel" class="sr-only">Search this site</h2>
         <div class="search-bar">
-          <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+          <i class="fa-solid fa-magnifying-glass" style="color:#928374"></i>
           <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
-          <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <button id="closeSearch" title="Close" aria-label="Close search" style="border:none;background:transparent;color:#928374;font-size:1.1rem;cursor:pointer">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -688,7 +530,7 @@
     function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
     function render(q){
       const hits=search(q);
-      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for "${escapeHtml(q)}".</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
       results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
     }
     openBtn.addEventListener('click',openSearch);
@@ -727,7 +569,7 @@
         line.setAttribute("y1", y1);
         line.setAttribute("x2", x2);
         line.setAttribute("y2", y2);
-        line.setAttribute("stroke", "#000000");
+        line.setAttribute("stroke", "#2A2520");
         line.setAttribute("stroke-width", isHour ? "3" : "1.2");
         ticksGroup.appendChild(line);
       }

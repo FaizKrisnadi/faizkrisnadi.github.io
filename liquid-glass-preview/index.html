@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <title>Home | Faiz Krisnadi</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #1d2430;
+      --muted: #5f6978;
+      --accent: #1f66da;
+      --accent-strong: #1049b3;
+      --accent-soft: rgba(31, 102, 218, 0.16);
+      --line: rgba(255, 255, 255, 0.72);
+      --glass-fill: linear-gradient(150deg, rgba(255, 255, 255, 0.66), rgba(250, 251, 255, 0.30));
+      --glass-shadow: 0 18px 44px rgba(40, 58, 90, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.78);
+      --radius-xl: 24px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
+      --avatar: 190px;
+      --avatar-mobile: 160px;
+      --avatar-focus-y: 40%;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; margin: 0; }
+
+    body {
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      margin: 0;
+      padding: calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color .2s ease, opacity .2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      opacity: .95;
+    }
+
+    /* Header row */
+    .hero-wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: calc(var(--avatar) + 30px) 1fr;
+      gap: 1.6rem;
+      align-items: center;
+      padding: 1.45rem;
+      border-radius: calc(var(--radius-xl) + 5px);
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .photo {
+      width: var(--avatar);
+      aspect-ratio: 1/1;
+      height: auto;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 50% var(--avatar-focus-y);
+      border: 2px solid rgba(255, 255, 255, .8);
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, .44), 0 14px 28px rgba(36, 53, 84, .2);
+      display: block;
+    }
+
+    .name {
+      margin: 0 0 .3rem;
+      font-size: clamp(2.4rem, 4.6vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -.01em;
+      line-height: 1.12;
+      color: #121926;
+    }
+
+    .subtitle {
+      margin: .15rem 0;
+      color: var(--muted);
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* Tabs container */
+    .tabs-outer {
+      max-width: 980px;
+      margin: 0 auto 1.25rem;
+      padding: 0 .2rem;
+      position: sticky;
+      top: calc(8px + env(safe-area-inset-top));
+      z-index: 45;
+      transition: transform .25s ease;
+    }
+
+    .tabs-outer.scrolled {
+      transform: translateY(10px);
+    }
+
+    .tabs {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .tabs ul {
+      list-style: none;
+      margin: 0;
+      padding: .35rem;
+      display: flex;
+      gap: .6rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .tabs a {
+      display: inline-block;
+      padding: .6rem 1rem;
+      border-radius: 12px;
+      color: #313a48;
+      font-weight: 700;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      transition: background .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .tabs a:hover {
+      background: rgba(255, 255, 255, 0.34);
+      color: #1f3557;
+      transform: translateY(-1px);
+    }
+
+    .tabs a.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
+    /* Body text blocks */
+    .intro {
+      max-width: 980px;
+      margin: 0 auto;
+      font-size: 1.28rem;
+      font-weight: 400;
+    }
+
+    .intro p { margin: .4rem 0 1rem; }
+
+    /* Cards */
+    .card {
+      max-width: 980px;
+      margin: 1.75rem auto;
+      padding: 1.35rem 1.5rem;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(110deg, rgba(31, 102, 218, 0.06), transparent 38%);
+    }
+
+    .card h2,
+    .card h3 {
+      margin: 0;
+      color: #253244;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+
+    .card p {
+      margin: .72rem 0;
+      font-size: 1.24rem;
+      font-weight: 400;
+    }
+
+    /* Floating search button */
+    .search-fab {
+      position: fixed;
+      top: calc(76px + env(safe-area-inset-top));
+      right: 18px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+      color: #1e3662;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 50;
+      padding: 0;
+      transition: transform .2s ease, box-shadow .2s ease, color .2s ease;
+    }
+
+    .search-fab:hover {
+      transform: translateY(-2px);
+      color: var(--accent-strong);
+      box-shadow: 0 16px 30px rgba(30, 52, 86, 0.18);
+    }
+
+    /* Overlay search */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 28, 48, 0.22);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      display: none;
+      z-index: 60;
+      padding: 4vh 14px;
+    }
+
+    .search-panel {
+      max-width: 900px;
+      margin: 3vh auto 0;
+      border-radius: 22px;
+      padding: .95rem;
+      background: var(--glass-fill);
+      border: 1px solid var(--line);
+      box-shadow: var(--glass-shadow);
+      backdrop-filter: blur(19px) saturate(145%);
+      -webkit-backdrop-filter: blur(19px) saturate(145%);
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .35rem .6rem;
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.46);
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      font-size: 1.2rem;
+      padding: .8rem .2rem;
+      outline: none;
+      background: transparent;
+      color: #1d2b3f;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: .65rem .15rem 0;
+      font-weight: 400;
+    }
+
+    .results { margin: .35rem 0 0; max-height: 52vh; overflow: auto; }
+
+    .result {
+      padding: .8rem .65rem;
+      border-radius: 10px;
+      display: block;
+      color: #1d2736;
+      transition: background .2s ease;
+    }
+
+    .result:hover { background: rgba(31, 102, 218, 0.10); }
+
+    .result small {
+      display: block;
+      color: #6b7280;
+      margin-top: .15rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .nores {
+      color: #6b7280;
+      padding: 1rem .25rem;
+      font-size: 1.05rem;
+      font-weight: 400;
+    }
+
+    mark {
+      background: rgba(31, 102, 218, 0.18);
+      border-radius: 4px;
+      padding: 0 .15rem;
+    }
+
+    footer {
+      max-width: 980px;
+      margin: 2rem auto 0;
+      color: #6a7484;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 400;
+    }
+
+    /* Responsive header grid */
+    @media (max-width: 900px) {
+      .hero-wrap { grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr; }
+      .photo { width: var(--avatar-mobile); }
+      .name { font-size: clamp(2.2rem, 6vw, 2.7rem); }
+    }
+
+    @media (max-width: 680px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .photo { margin-inline: auto; }
+      .name { text-align: left; margin-top: .6rem; }
+    }
+
+    /* Mobile segmented tabs */
+    @media (max-width: 560px) {
+      .tabs { border-radius: 22px; }
+      .tabs ul {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 6px;
+      }
+      .tabs a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 46px;
+        padding: 0;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: clamp(16px, 4vw, 18px);
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .intro { font-size: 1.2rem; }
+      .card p { font-size: 1.16rem; }
+      .tabs-outer.scrolled { transform: translateY(6px); }
+      .search-fab { top: calc(72px + env(safe-area-inset-top)); }
+    }
+
+    /* Bottom-center analog clock */
+    #footer-clock {
+      margin: 1.5rem auto 6rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    #footer-clock svg {
+      width: 150px;
+      height: 150px;
+      display: block;
+    }
+
+    @supports not ((backdrop-filter: blur(1px))) {
+      .hero-wrap,
+      .tabs,
+      .card,
+      .search-fab,
+      .search-panel {
+        background: rgba(250, 251, 255, 0.94);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Search button -->
+  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <!-- Tabs -->
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="resources.html">Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Header -->
+  <section class="hero-wrap" aria-label="Profile">
+    <img class="photo"
+         src="https://faizkrisnadi.github.io/assets/images/profile.jpg"
+         alt="Faiz Krisnadi"
+         onerror="this.src='https://via.placeholder.com/210'">
+    <div>
+      <h1 class="name">Faiz Krisnadi</h1>
+      <p class="subtitle">Master's in International Affairs</p>
+      <p class="subtitle">Lee Kuan Yew School of Public Policy</p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <div class="intro">
+    <p style="font-size:1.25rem; font-weight:700; margin:.25rem 0 .15rem">Hello there!</p>
+    <p>
+      I am a <a href="https://ltkfoundation.org/">Low Tuck Kwong Foundation</a> Scholar in the Master in International Affairs at the
+      <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy (LKYSPP)</a>, National University of Singapore (NUS).
+      I am also a Young Leader with the <a href="https://pacforum.org/young-leaders-program/">Pacific Forum Young Leaders Program</a>.
+    </p>
+    <p>
+      I'm interested in evidence-based international affairs, political economy, and economic development.
+      See my <a href="research.html">research</a>, explore <a href="resources.html">resources</a>, or view my <a href="cv.html">CV</a>.
+    </p>
+    <p>
+      I am currently a guest student at the <a href="https://en.wikipedia.org/wiki/University_of_St._Gallen">University of St. Gallen</a> (Fall 2025).
+      I earned a Bachelor's in International Relations (with honors) from
+      <a href="https://en.wikipedia.org/wiki/Muhammadiyah_University_of_Yogyakarta">Universitas Muhammadiyah Yogyakarta</a> (2022), where I also visited the
+      <a href="https://en.wikipedia.org/wiki/University_of_Glasgow">University of Glasgow</a> (Fall 2021) and
+      <a href="https://en.wikipedia.org/wiki/Asia_University_(Taiwan)">Asia University</a> (Fall 2020).
+    </p>
+    <p>
+      Having educated across Singapore, Switzerland, the United Kingdom, Taiwan, and Indonesia, my academic training spans research methods,
+      political economy, development, behavioral economics, comparative politics, impact investment, and business–government relations.
+    </p>
+    <p>Outside of work, I enjoy the outdoors (though I’m most often in the gym), and in my free time I play FPS and strategy games.</p>
+  </div>
+
+  <!-- Latest publication -->
+  <section class="card">
+    <h3 style="margin:0 0 .5rem">Latest Publication</h3>
+    <p>
+      I’m proud to co-author the AidData policy report
+      <a href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">
+        “Balancing Risk and Reward: Who benefits from China’s investments in Indonesia?”
+      </a> (June 12, 2025).
+    </p>
+    <p>The report decodes over two decades of Beijing’s state-backed development finance (nearly $70 billion from 2000–2023) and private FDI (over $94 billion from 2010–2024), revealing which actors truly benefit.</p>
+    <p>Coverage: South China Morning Post —
+      <a href="https://www.scmp.com/week-asia/economics/article/3318306/how-indonesia-can-maximise-benefits-chinese-investments" target="_blank" rel="noopener">
+        “Should Indonesia scrutinise China-funded projects?”
+      </a> (July 16, 2025).
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section class="card">
+    <h3 style="margin:0 0 .5rem">Let's Connect</h3>
+    <p>I am actively seeking research assistantship in policy research, economic development, or international affairs.</p>
+    <p><i class="fas fa-envelope"></i> <a href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com</a></p>
+  </section>
+
+  <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
+
+  <!-- Bottom-center analog clock -->
+  <div id="footer-clock" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="96" fill="white" stroke="#e5e7eb" stroke-width="2" />
+      <g id="clock-ticks"></g>
+      <g id="clock-numbers"></g>
+
+      <line id="clock-hour-hand"
+            x1="100" y1="110" x2="100" y2="60"
+            stroke="#000000" stroke-width="4"
+            stroke-linecap="round" />
+
+      <line id="clock-minute-hand"
+            x1="100" y1="112" x2="100" y2="40"
+            stroke="#000000" stroke-width="3"
+            stroke-linecap="round" />
+
+      <line id="clock-second-hand"
+            x1="100" y1="115" x2="100" y2="30"
+            stroke="#cc0000" stroke-width="1.5"
+            stroke-linecap="round" />
+
+      <circle cx="100" cy="100" r="3.5" fill="white" stroke="#000000" stroke-width="1" />
+    </svg>
+  </div>
+
+  <!-- Search overlay -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass" style="color:#64748b"></i>
+        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
+        <button id="closeSearch" title="Close" style="border:none;background:transparent;color:#64748b;font-size:1.1rem;cursor:pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
+      <div class="results" id="results"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ---------- In-page search (same across pages) ---------- */
+    const PAGE_LIST = [
+      { url: 'index.html',     title: 'Home' },
+      { url: 'research.html',  title: 'Research' },
+      { url: 'cv.html',        title: 'CV' },
+      { url: 'resources.html', title: 'Resources' }
+    ];
+    const cache = new Map(); let indexBuilt = false, INDEX = [];
+    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
+    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
+    function extract(doc){
+      const title=(doc.querySelector('title')?.textContent||'').trim();
+      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
+      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
+      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
+      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
+      return { title, metas, heads, links, body };
+    }
+    const normalize=s=>(s||'').toLowerCase();
+    function score(q,rec){
+      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
+      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
+      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
+      if(normalize(rec.title).includes(normalize(q))) sc+=30;
+      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
+      return sc;
+    }
+    function snippet(rec,q){
+      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
+      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
+      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
+      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
+      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
+    }
+    async function buildIndex(){
+      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
+        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
+        return { url:p.url, title:p.title||rec.title, ...rec };
+      }));
+      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
+    }
+    const normalizeForHilite=s=>(s||'').toLowerCase();
+    function hilite(text,q){
+      const terms=normalizeForHilite(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
+      let out=text; for(const t of terms){ const re=new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'); out=out.replace(re,'<mark>$1</mark>'); }
+      return out;
+    }
+    function search(q){
+      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
+      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
+    }
+
+    const openBtn=document.getElementById('openSearch');
+    const overlay=document.getElementById('searchOverlay');
+    const input=document.getElementById('searchInput');
+    const closeBtn=document.getElementById('closeSearch');
+    const results=document.getElementById('results');
+
+    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
+    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
+    function render(q){
+      const hits=search(q);
+      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for “${q.replace(/[<>&]/g,'')}”.</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
+      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
+    }
+    openBtn.addEventListener('click',openSearch);
+    closeBtn.addEventListener('click',closeSearch);
+    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
+    input.addEventListener('input',e=>render(e.target.value));
+    document.addEventListener('keydown',e=>{
+      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
+      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
+      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
+    });
+  </script>
+
+  <script>
+    // Bottom-center analog clock
+    (function() {
+      const svgNS = "http://www.w3.org/2000/svg";
+      const ticksGroup = document.getElementById("clock-ticks");
+      const numbersGroup = document.getElementById("clock-numbers");
+      if (!ticksGroup || !numbersGroup) return;
+
+      for (let i = 0; i < 60; i++) {
+        const angle = Math.PI / 30 * i;
+        const isHour = i % 5 === 0;
+        const outerR = 94;
+        const innerR = isHour ? 82 : 88;
+
+        const x1 = 100 + innerR * Math.sin(angle);
+        const y1 = 100 - innerR * Math.cos(angle);
+        const x2 = 100 + outerR * Math.sin(angle);
+        const y2 = 100 - outerR * Math.cos(angle);
+
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", "#000000");
+        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
+        ticksGroup.appendChild(line);
+      }
+
+      for (let n = 1; n <= 12; n++) {
+        const angle = Math.PI / 6 * n;
+        const r = 70;
+
+        const x = 100 + r * Math.sin(angle);
+        const y = 100 - r * Math.cos(angle);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", x);
+        text.setAttribute("y", y + 1);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.setAttribute("font-size", "16");
+        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
+        text.textContent = n.toString();
+        numbersGroup.appendChild(text);
+      }
+
+      const hourHand = document.getElementById("clock-hour-hand");
+      const minuteHand = document.getElementById("clock-minute-hand");
+      const secondHand = document.getElementById("clock-second-hand");
+
+      function updateClock() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        const secondAngle = seconds * 6;
+        const minuteAngle = (minutes + seconds / 60) * 6;
+        const hourAngle = ((hours % 12) + minutes / 60) * 30;
+
+        hourHand.setAttribute("transform", "rotate(" + hourAngle + " 100 100)");
+        minuteHand.setAttribute("transform", "rotate(" + minuteAngle + " 100 100)");
+        secondHand.setAttribute("transform", "rotate(" + secondAngle + " 100 100)");
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
+  </script>
+
+  <script>
+    // Top tabs: slight drop when page is scrolled
+    (function() {
+      const tabsOuter = document.querySelector(".tabs-outer");
+      if (!tabsOuter) return;
+
+      function updateTabsPosition() {
+        tabsOuter.classList.toggle("scrolled", window.scrollY > 12);
+      }
+
+      updateTabsPosition();
+      window.addEventListener("scroll", updateTabsPosition, { passive: true });
+    })();
+  </script>
+</body>
+</html>
