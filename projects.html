@@ -930,8 +930,11 @@
       if (Number.isFinite(row.lat) && Number.isFinite(row.lon)) {
         fdiRegionCenterByName.set(region, [Number(row.lat), Number(row.lon)]);
       }
-      const pieces = row.included_provinces.split(",").map((x) => expandFDIProvinceToken(x, region));
-      const provinces = [...new Set(pieces.map(canonicalProvinceName).filter(Boolean))];
+      const provinces = row.included_provinces
+        .split(",")
+        .map((x) => expandFDIProvinceToken(x, region))
+        .map(canonicalProvinceName)
+        .filter(Boolean);
       fdiIncludedProvincesByRegion.set(region, provinces);
       for (const province of provinces) fdiRegionByProvince.set(province, region);
     }
@@ -963,18 +966,6 @@
 
     mapSeries.df.max = computeSeriesMax(mapSeries.df.values);
     mapSeries.fdi.max = computeSeriesMax(mapSeries.fdi.values);
-
-    function fdiRegionForProvince(province) {
-      return fdiRegionByProvince.get(province) || "";
-    }
-
-    function valueForProvince(seriesKey, province) {
-      if (seriesKey === "fdi") {
-        const region = fdiRegionForProvince(province);
-        return region ? (fdiValueByRegion.get(region) || 0) : 0;
-      }
-      return dfValueByProvince.get(province) || 0;
-    }
 
     function colorForValue(value, series) {
       const v = Number(value) || 0;
@@ -1012,17 +1003,17 @@
 
     function popupHtml(seriesKey, province) {
       if (seriesKey === "fdi") {
-        const region = fdiRegionForProvince(province);
-        const value = valueForProvince("fdi", province);
-        const provinceCount = (fdiIncludedProvincesByRegion.get(region) || []).length;
+        const region = fdiRegionByProvince.get(province) || "";
+        const value = region ? (fdiValueByRegion.get(region) || 0) : 0;
+        const provinces = fdiIncludedProvincesByRegion.get(region) || [];
         return (
-          "<strong>" + province + "</strong><br/>" +
-          "Region: " + (region || "Not mapped") + "<br/>" +
-          mapSeries.fdi.valueLabel + ": " + formatUsdBillions(value) +
-          (region ? "<br/>Coverage: " + provinceCount.toLocaleString() + " provinces (regional aggregate)" : "<br/>No mapped regional value")
+          "<strong>" + (region ? (region + " (Region)") : "Region not mapped") + "</strong><br/>" +
+          (region ? (mapSeries.fdi.valueLabel + ": " + formatUsdBillions(value) + "<br/>") : "") +
+          "Hovered province: " + province +
+          (region ? "<br/>Coverage: " + provinces.length.toLocaleString() + " provinces (regional aggregate)" : "<br/>FDI is reported only at region level.")
         );
       }
-      const value = valueForProvince("df", province);
+      const value = dfValueByProvince.get(province) || 0;
       return (
         "<strong>" + province + "</strong><br/>" +
         mapSeries.df.valueLabel + ": " + formatUsdBillions(value) +
@@ -1078,9 +1069,20 @@
       }
 
       function styleForFeature(feature) {
+        if (activeKey === "fdi") {
+          const province = featureProvinceName(feature);
+          const region = fdiRegionByProvince.get(province) || "";
+          const value = region ? (fdiValueByRegion.get(region) || 0) : 0;
+          const fill = value > 0 ? colorForValue(value, mapSeries.fdi) : "#e9e1df";
+          return {
+            stroke: false,
+            fillColor: fill,
+            fillOpacity: value > 0 ? 0.88 : 0.55,
+          };
+        }
         const series = getSeries();
         const province = featureProvinceName(feature);
-        const value = valueForProvince(activeKey, province);
+        const value = dfValueByProvince.get(province) || 0;
         return {
           color: value > 0 ? series.border : "#d7cbc8",
           weight: value > 0 ? 1.2 : 0.9,
@@ -1173,8 +1175,15 @@
           if (province) provinceToLayer.set(province, layer);
           layer.on({
             mouseover() {
+              if (activeKey === "fdi") {
+                layer.bindPopup(popupHtml("fdi", province || "Unknown"), {
+                  autoPan: false,
+                  closeButton: false,
+                }).openPopup();
+                return;
+              }
               const series = getSeries();
-              const value = valueForProvince(activeKey, province);
+              const value = dfValueByProvince.get(province) || 0;
               layer.setStyle({
                 weight: 2,
                 color: series.hover,
@@ -1190,6 +1199,12 @@
               layer.closePopup();
             },
             click() {
+              if (activeKey === "fdi") {
+                layer.bindPopup(popupHtml("fdi", province || "Unknown"), {
+                  closeButton: true,
+                }).openPopup();
+                return;
+              }
               layer.bindPopup(popupHtml(activeKey, province || "Unknown"), {
                 closeButton: true,
               }).openPopup();
