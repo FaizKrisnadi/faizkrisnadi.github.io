@@ -113,7 +113,7 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto;
     }
 
@@ -145,7 +145,7 @@
 
     .page-title {
       margin: 0 0 .35rem;
-      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-size: clamp(1.9rem, 3.4vw, 2.45rem);
       line-height: 1.12;
       letter-spacing: -.01em;
       font-weight: 900;
@@ -156,12 +156,12 @@
       margin: .1rem 0;
       color: var(--muted);
       font-weight: 300;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .intro {
       margin: .8rem 0 .2rem;
-      font-size: 1.06rem;
+      font-size: 1.02rem;
       font-weight: 400;
     }
 
@@ -500,7 +500,7 @@
     }
 
     footer {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 2rem auto 0;
       color: #6a7484;
       font-size: 1rem;
@@ -563,6 +563,10 @@
         font-weight: 700;
         letter-spacing: -0.01em;
         -webkit-tap-highlight-color: transparent;
+      }
+      .search-fab {
+        top: calc(74px + env(safe-area-inset-top));
+        right: 14px;
       }
       #investmentMap,
       .map-wrap { min-height: 420px; }
