@@ -120,11 +120,12 @@
 
         .cta {
             display: inline-flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%;
-            min-height: 3.25rem;
-            padding: 0.85rem 1.3rem;
+            min-height: 4.1rem;
+            padding: 0.7rem 1.2rem;
             border: 1px solid var(--accent);
             border-radius: var(--radius);
             background: transparent;
@@ -132,6 +133,21 @@
             font-weight: 700;
             text-decoration: none;
             text-align: center;
+            gap: 0.18rem;
+        }
+
+        .cta-label {
+            display: block;
+            font-size: 1.05rem;
+            line-height: 1.08;
+        }
+
+        .cta-meta {
+            display: block;
+            color: var(--muted);
+            font-size: 0.68rem;
+            line-height: 1.12;
+            font-weight: 500;
         }
 
         main {
@@ -244,17 +260,26 @@
                     class="cta"
                     href="https://github.com/FaizKrisnadi/master-thesis/blob/main/docs/thesis_submitted_draft.pdf"
                     target="_blank"
-                    rel="noopener noreferrer">Thesis PDF</a>
+                    rel="noopener noreferrer">
+                    <span class="cta-label">Thesis PDF</span>
+                    <span class="cta-meta">Working draft, Feb 2026</span>
+                </a>
                 <a
                     class="cta"
                     href="https://github.com/FaizKrisnadi/master-thesis"
                     target="_blank"
-                    rel="noopener noreferrer">Replication Repo</a>
+                    rel="noopener noreferrer">
+                    <span class="cta-label">Replication Repo</span>
+                    <span class="cta-meta">Code, metadata, diagnostics</span>
+                </a>
                 <a
                     class="cta"
                     href="https://investment.faizkrisnadi.com/"
                     target="_blank"
-                    rel="noopener noreferrer">Finance Dashboard</a>
+                    rel="noopener noreferrer">
+                    <span class="cta-label">Finance Dashboard</span>
+                    <span class="cta-meta">Interactive project mapping</span>
+                </a>
             </div>
             <p class="intro">
                 Companion page for the thesis on how Indonesian elite narratives collapse Chinese
