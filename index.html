@@ -475,7 +475,7 @@
                 <li><a href="research.html">Research</a></li>
                 <li><a href="cv.html">CV</a></li>
                 <li><a href="resources.html">Resources</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li><a href="projects.html">Dashboards</a></li>
             </ul>
         </nav>
     </div>
@@ -603,7 +603,7 @@
             { url: 'research.html', title: 'Research' },
             { url: 'cv.html', title: 'CV' },
             { url: 'resources.html', title: 'Resources' },
-            { url: 'projects.html', title: 'Projects' }
+            { url: 'projects.html', title: 'Dashboards' }
         ];
         const cache = new Map(); let indexBuilt = false, INDEX = [];
         async function fetchPage(u) { if (cache.has(u)) return cache.get(u); const r = await fetch(u); const t = await r.text(); cache.set(u, t); return t; }
@@ -635,7 +635,7 @@
         async function buildIndex() {
             const pages = await Promise.allSettled(PAGE_LIST.map(async p => {
                 const html = await fetchPage(p.url); const doc = buildDoc(html); const rec = extract(doc);
-                return { url: p.url, title: p.title || rec.title, ...rec };
+                return { url: p.url, ...rec, title: p.title || rec.title };
             }));
             INDEX = pages.filter(x => x.status === 'fulfilled').map(x => x.value); indexBuilt = true;
         }

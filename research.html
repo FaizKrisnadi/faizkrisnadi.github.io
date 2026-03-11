@@ -4,6 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Research | Faiz Krisnadi</title>
+  <meta name="description" content="Research by Faiz Krisnadi on international political economy, Chinese investment in Indonesia, peer-reviewed articles, and current work in progress."/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Lato -->
@@ -271,6 +272,267 @@
     .item h3, h2.section{font-weight:700}
     .container p, .item .meta, .item .plink{font-weight:400}
 
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible{
+      outline:2px solid var(--accent-strong);
+      outline-offset:3px;
+    }
+
+    .hero-card,
+    .featured-card,
+    .archive{
+      position:relative;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background:var(--glass-fill);
+      box-shadow:var(--glass-shadow);
+      backdrop-filter:blur(19px) saturate(145%);
+      -webkit-backdrop-filter:blur(19px) saturate(145%);
+    }
+
+    .hero-card{
+      padding:1.55rem 1.65rem 1.45rem;
+      border-radius:30px;
+      isolation:isolate;
+    }
+    .hero-card::before,
+    .featured-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(120deg, rgba(153, 107, 29, 0.10), transparent 42%);
+      z-index:-1;
+    }
+    .eyebrow{
+      margin:0 0 .55rem;
+      color:var(--accent-strong);
+      font-size:.76rem;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+    }
+    .hero-title{
+      margin:0;
+      max-width:none;
+      color:#40372d;
+      font-size:clamp(1.7rem, 3.8vw, 2.45rem);
+      font-weight:700;
+      line-height:1.16;
+      letter-spacing:-.03em;
+    }
+    .hero-copy{
+      margin:.85rem 0 0;
+      max-width:48rem;
+      color:#4A4035;
+      font-size:1.05rem;
+    }
+    .hero-support{
+      margin:.7rem 0 0;
+      color:var(--muted);
+      font-size:.96rem;
+    }
+    .badge,
+    .status-chip{
+      display:inline-flex;
+      align-items:center;
+      gap:.4rem;
+      padding:.42rem .78rem;
+      border-radius:999px;
+      font-size:.82rem;
+      line-height:1;
+    }
+    .badge{
+      border:1px solid rgba(153, 107, 29, 0.22);
+      background:rgba(153, 107, 29, 0.14);
+      color:var(--accent-strong);
+      font-weight:700;
+    }
+    .status-chip{
+      border:1px solid rgba(229, 227, 209, 0.82);
+      background:rgba(255, 255, 255, 0.45);
+      color:#5B4A39;
+      font-weight:700;
+    }
+    .status-chip--soft{
+      background:rgba(255, 253, 245, 0.5);
+      color:var(--muted);
+    }
+    .section-block{margin-top:1.8rem}
+    .section-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:1.2rem;
+      margin:2.35rem 0 1rem;
+    }
+    h2.section{
+      margin:0;
+      color:#2A2520;
+      font-size:1.45rem;
+      letter-spacing:-.02em;
+    }
+    .section-intro{
+      margin:0;
+      max-width:29rem;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+    .featured-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:1rem;
+    }
+    .featured-card{
+      display:flex;
+      flex-direction:column;
+      border-radius:24px;
+      padding:1.35rem;
+    }
+    .featured-card h3{
+      margin:0;
+      color:#2A2520;
+      font-size:1.42rem;
+      line-height:1.2;
+      text-wrap:balance;
+    }
+    .card-topline{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      margin-bottom:.9rem;
+    }
+    .meta-line{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.45rem .9rem;
+      margin:.8rem 0 0;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+    .meta-line span{
+      display:inline-flex;
+      align-items:center;
+    }
+    .meta-line span + span::before{
+      content:"•";
+      margin-right:.9rem;
+      color:rgba(74, 64, 53, 0.45);
+    }
+    .card-copy,
+    .item-copy{
+      margin:.9rem 0 0;
+      color:#3A3229;
+    }
+    .support-line{
+      margin:.85rem 0 0;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+    .support-label{
+      color:#43392E;
+      font-weight:700;
+      margin-right:.35rem;
+    }
+    .cta-row,
+    .link-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      margin-top:1rem;
+    }
+    .featured-card .cta-row{
+      margin-top:auto;
+      padding-top:1rem;
+    }
+    .cta-link,
+    .item-link{
+      display:inline-flex;
+      align-items:center;
+      gap:.42rem;
+      color:var(--accent-strong);
+      font-weight:700;
+    }
+    .cta-link::after,
+    .item-link::after{
+      content:"↗";
+      font-size:.92em;
+    }
+    .cta-link:hover,
+    .item-link:hover{
+      color:#5E3F0A;
+    }
+    .list-grid{
+      display:grid;
+      gap:.9rem;
+    }
+    .compact-item{
+      padding:1.1rem 1.15rem;
+      margin:0;
+      border-radius:18px;
+    }
+    .item-head{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .item-head .status-chip{flex-shrink:0}
+    .compact-item h3{
+      margin:0;
+      color:#2A2520;
+      font-size:1.06rem;
+      line-height:1.35;
+    }
+    .archive{
+      margin-top:2.5rem;
+      border-radius:24px;
+    }
+    .archive summary{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      padding:1.15rem 1.35rem;
+      cursor:pointer;
+      list-style:none;
+      color:#2A2520;
+      font-weight:700;
+    }
+    .archive summary::-webkit-details-marker{display:none}
+    .archive summary::after{
+      content:"+";
+      color:var(--accent-strong);
+      font-size:1.15rem;
+      line-height:1;
+    }
+    .archive[open] summary::after{content:"−"}
+    .archive-count{
+      margin-left:auto;
+      color:var(--muted);
+      font-size:.92rem;
+      font-weight:600;
+    }
+    .archive-body{
+      padding:0 1.35rem 1.35rem;
+      border-top:1px solid rgba(229, 227, 209, 0.72);
+    }
+    .archive-group{margin-top:1.15rem}
+    .archive-group h3{
+      margin:0 0 .75rem;
+      color:#4A4035;
+      font-size:1rem;
+      font-weight:700;
+    }
+    .archive-item{
+      margin:.7rem 0 0;
+      padding:1rem 1.05rem;
+      border-radius:16px;
+    }
+    .archive-item .item-link{font-weight:600}
+
     @media (max-width:560px){
       .tabs-outer.scrolled{transform:translateY(6px)}
       .tabs a{font-weight:700}
@@ -278,10 +540,27 @@
         top:calc(74px + env(safe-area-inset-top));
         right:14px;
       }
+      .hero-card,
+      .featured-card,
+      .archive-body{
+        padding-left:1rem;
+        padding-right:1rem;
+      }
+      .archive summary{padding:1rem}
+      .hero-title{max-width:none}
+      .meta-line span + span::before{margin-right:.6rem}
+    }
+
+    @media (max-width:820px){
+      .section-header{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+      .featured-grid{grid-template-columns:1fr}
     }
 
     @supports not ((backdrop-filter: blur(1px))) {
-      .tabs,.item,.search-fab,.search-panel{
+      .tabs,.item,.search-fab,.search-panel,.hero-card,.featured-card,.archive{
         background:rgba(245, 242, 230, 0.96);
       }
     }
@@ -302,130 +581,332 @@
         <li><a class="active" href="research.html">Research</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><a href="resources.html">Resources</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="projects.html">Dashboards</a></li>
       </ul>
     </nav>
   </div>
 
   <main class="container">
-    <p>
-      My research broadly focuses on international affairs and political economy. In my ongoing master's thesis, I examine stakeholders' attitudes toward Chinese investment in Indonesia, and I am honored to be advised by
-      <a href="https://lkyspp.nus.edu.sg/our-people/faculty/liu-yao-adam" target="_blank" rel="noopener">Adam Y. Liu</a> (Advisor) and
-      <a href="https://www.jonathanchu.org/" target="_blank" rel="noopener">Jonathan A. Chu</a> (Convenor).
-    </p>
+    <section class="hero-card" aria-labelledby="research-title">
+      <p class="eyebrow">Research</p>
+      <h1 class="hero-title" id="research-title">International political economy,<br>Chinese capital in Indonesia,<br>and state-business relations.</h1>
+      <p class="hero-copy">I study how investment, industrial policy, and public narratives shape who benefits from cross-border capital in Indonesia. My current work focuses on Chinese development finance, foreign direct investment, and the politics of elite narratives.</p>
+    </section>
 
-      <h2 class="section">Peer-Reviewed Journal Articles</h2>
-     <article class="item">
-      <h3>Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities</h3>
-      <div class="meta">The Indonesian Quarterly by CSIS Indonesia</div>
-      <a class="plink" href="https://www.researchgate.net/publication/399538107_Reindustrializing_Indonesia_Lessons_from_China_Capital_Intensity_Paradox_and_Labor-Market_Realities" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand</h3>
-      <div class="meta">Perantau: Journal of Migration, Borders, and Belonging (2025)</div>
-      <a class="plink" href="https://journal.ygtmi.org/perantau/article/view/4" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan</h3>
-      <div class="meta">Journal of Paradiplomacy and City Networks (2024)</div>
-      <a class="plink" href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38" target="_blank" rel="noopener">(link)</a>
-    </article>
-    
-    <!-- Policy Report -->
-    <h2 class="section">Policy Report</h2>
-    <article class="item">
-      <h3>Balancing Risk and Reward: Who benefits from China's investments in Indonesia?</h3>
-      <div class="meta">AidData at William &amp; Mary (2025)</div>
-      <a class="plink" href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">(link)</a>
-    </article>
+    <section class="section-block" aria-labelledby="featured-work">
+      <div class="section-header">
+        <h2 class="section" id="featured-work">Featured Work</h2>
+        <p class="section-intro">The two pieces that define the current research agenda.</p>
+      </div>
 
-    <!-- Work in Progress -->
-    <h2 class="section">Work in Progress</h2>
-    <article class="item">
-      <h3>City Solar Mandates and Paradiplomacy: A Difference-in-Differences Analysis of Five ASEAN Capitals</h3>
-      <div class="meta">Conditionally accepted at Journal of Paradiplomacy and City Networks</div>
-    </article>
-    <article class="item">
-      <h3>Commercial diplomacy in times of crisis: Lessons from Indonesia’s coffee exports to Egypt</h3>
-      <div class="meta">Submitted to Kasetsart Journal of Social Sciences</div>
-    </article>
+      <div class="featured-grid">
+        <article class="featured-card">
+          <div class="card-topline">
+            <span class="badge">Featured Report</span>
+            <span class="status-chip">Co-author</span>
+          </div>
+          <h3>Balancing Risk and Reward: Who benefits from China&rsquo;s investments in Indonesia?</h3>
+          <p class="meta-line">
+            <span>AidData at William &amp; Mary</span>
+            <span>June 12, 2025</span>
+            <span>~$164B tracked</span>
+          </p>
+          <p class="card-copy">Tracked nearly $70 billion in Beijing-backed development finance from 2000&ndash;2023 and over $94 billion in Chinese FDI from 2010&ndash;2024, showing which actors benefited from Chinese capital in Indonesia.</p>
+          <p class="support-line"><span class="support-label">Coverage:</span>South China Morning Post, July 16, 2025.</p>
+          <div class="cta-row">
+            <a class="cta-link" href="https://www.aiddata.org/publications/balancing-risk-and-reward" target="_blank" rel="noopener">Read report</a>
+            <a class="cta-link" href="https://www.scmp.com/week-asia/economics/article/3318306/how-indonesia-can-maximise-benefits-chinese-investments" target="_blank" rel="noopener">Press coverage</a>
+          </div>
+        </article>
 
-    <!-- Recent works -->
-    <h2 class="section">Recent Works (Unpublished)</h2>
-    <article class="item">
-      <h3>Research Assignments (2024–2025)</h3>
-      <a class="plink" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB" target="_blank" rel="noopener">(link)</a>
-    </article>
+        <article class="featured-card">
+          <div class="card-topline">
+            <span class="badge">Master&rsquo;s Thesis</span>
+            <span class="status-chip">In progress</span>
+            <span class="status-chip">Independent Research</span>
+          </div>
+          <h3><em>Does the Label Matter?</em> Explaining When Chinese Development Finance and FDI Blur in Indonesian Elite Narratives</h3>
+          <p class="meta-line">
+            <span>Master&rsquo;s thesis</span>
+            <span>NUS LKYSPP</span>
+          </p>
+          <p class="card-copy">Mixed-method study combining project-level data mapping, media framing analysis (2013&ndash;2024), and semi-structured elite interviews.</p>
+          <p class="support-line"><span class="support-label">Advisers:</span><a href="https://lkyspp.nus.edu.sg/our-people/faculty/liu-yao-adam" target="_blank" rel="noopener">Adam Y. Liu</a>; <a href="https://www.jonathanchu.org/" target="_blank" rel="noopener">Jonathan A. Chu</a>.</p>
+          <div class="cta-row">
+            <a class="cta-link" href="https://faizkrisnadi.com/thesis-materials/" target="_blank" rel="noopener">View thesis materials</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <!-- Book chapters -->
-    <h2 class="section">Book Chapters</h2>
-    <article class="item">
-      <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
-      <div class="meta">Mahidol University (2021)</div>
-      <a class="plink" href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" target="_blank" rel="noopener">(link)</a>
-    </article>
-    
+    <section class="section-block" aria-labelledby="peer-reviewed">
+      <div class="section-header">
+        <h2 class="section" id="peer-reviewed">Peer-Reviewed Articles</h2>
+        <p class="section-intro">Peer-reviewed work on political economy and governance.</p>
+      </div>
 
-    <h2 class="section">Conference Proceedings</h2>
-    <article class="item">
-      <h3>Transforming Indonesia's Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
-      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
-      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State</h3>
-      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2023)</div>
-      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>COVID-19 in Indonesia: Critics and Proposal</h3>
-      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2022)</div>
-      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015</h3>
-      <div class="meta">Universitas Muhammadiyah Yogyakarta Conference Proceeding (2021)</div>
-      <a class="plink" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351" target="_blank" rel="noopener">(link)</a>
-    </article>
+      <div class="list-grid">
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities</h3>
+          </div>
+          <p class="meta-line">
+            <span>The Indonesian Quarterly by CSIS Indonesia</span>
+            <span>2025</span>
+          </p>
+          <div class="link-row">
+            <a class="item-link" href="https://www.researchgate.net/publication/399538107_Reindustrializing_Indonesia_Lessons_from_China_Capital_Intensity_Paradox_and_Labor-Market_Realities" target="_blank" rel="noopener">Read article</a>
+          </div>
+        </article>
 
-    <!-- Thesis -->
-    <h2 class="section">Undergraduate Thesis</h2>
-    <article class="item">
-      <h3>Indonesia's Government's Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
-      <div class="meta">Undergraduate Thesis (2022)</div>
-      <a class="plink" href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" target="_blank" rel="noopener">(link)</a>
-    </article>
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand</h3>
+          </div>
+          <p class="meta-line">
+            <span>Perantau: Journal of Migration, Borders, and Belonging</span>
+            <span>2025</span>
+          </p>
+          <div class="link-row">
+            <a class="item-link" href="https://journal.ygtmi.org/perantau/article/view/4" target="_blank" rel="noopener">Read article</a>
+          </div>
+        </article>
 
-    <!-- Op-eds -->
-    <h2 class="section">Op-Ed</h2>
-    <article class="item">
-      <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
-      <div class="meta">Citrakara Mandala (October 2020)</div>
-      <a class="plink" href="https://link.medium.com/agfcQ4L6oub" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi</h3>
-      <div class="meta">Kumparan (June 2020)</div>
-      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k?__twitter_impression=true&shareID=dsaYY8XriM4R&utm_campaign=share&utm_source=kumApp" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan</h3>
-      <div class="meta">Kumparan (June 2020)</div>
-      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9" target="_blank" rel="noopener">(link)</a>
-    </article>
-    <article class="item">
-      <h3>Politik Tata Ruang dalam Gemuruh Pandemi</h3>
-      <div class="meta">Kumparan (June 2020)</div>
-      <a class="plink" href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo" target="_blank" rel="noopener">(link)</a>
-    </article>
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan</h3>
+          </div>
+          <p class="meta-line">
+            <span>Journal of Paradiplomacy and City Networks</span>
+            <span>2024</span>
+          </p>
+          <div class="link-row">
+            <a class="item-link" href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38" target="_blank" rel="noopener">Read article</a>
+          </div>
+        </article>
+      </div>
+    </section>
 
-    <!-- Podcast -->
-    <h2 class="section">Podcast</h2>
-    <article class="item">
-      <h3>Politik Lingkungan Global</h3>
-      <div class="meta">IPIREL Podcast (December 2020)</div>
-      <a class="plink" href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&nd=1&dlsi=829834af9f8c4e86" target="_blank" rel="noopener">(link)</a>
-    </article>
+    <section class="section-block" aria-labelledby="presentations">
+      <div class="section-header">
+        <h2 class="section" id="presentations">Presentations</h2>
+        <p class="section-intro">Recent and upcoming conference presentations.</p>
+      </div>
+
+      <div class="list-grid">
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>Shrinking Space for WTO Dispute Settlement: Geopolitics, Forum Shopping, and Lessons for Developing Economies</h3>
+            <span class="status-chip status-chip--soft">Presented</span>
+          </div>
+          <p class="meta-line">
+            <span>Conference on Innovation and Integration for Development (VIID)</span>
+            <span>Asia Competitiveness Institute &amp; Vietnam&rsquo;s Foreign Trade University</span>
+            <span>Singapore</span>
+            <span>12 December 2025</span>
+          </p>
+        </article>
+
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>Trade Pressure, Green Regulation, and the Politics of Legitimacy: Evidence from Foreign-Financed Development in Indonesia</h3>
+            <span class="status-chip status-chip--soft">Accepted for June 2026</span>
+          </div>
+          <p class="meta-line">
+            <span>5th Annual Green Trade Lab Workshop</span>
+            <span>University of Basel</span>
+            <span>Switzerland</span>
+            <span>June 2026</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="work-in-progress">
+      <div class="section-header">
+        <h2 class="section" id="work-in-progress">Work in Progress</h2>
+        <p class="section-intro">Current manuscripts and ongoing projects.</p>
+      </div>
+
+      <div class="list-grid">
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>City Solar Mandates and Paradiplomacy: A Difference-in-Differences Analysis of Five ASEAN Capitals</h3>
+            <span class="status-chip status-chip--soft">Conditionally accepted</span>
+          </div>
+          <p class="meta-line">
+            <span>Journal of Paradiplomacy and City Networks</span>
+          </p>
+        </article>
+
+        <article class="item compact-item">
+          <div class="item-head">
+            <h3>Commercial diplomacy in times of crisis: Lessons from Indonesia&rsquo;s coffee exports to Egypt</h3>
+            <span class="status-chip status-chip--soft">Submitted</span>
+          </div>
+          <p class="meta-line">
+            <span>Kasetsart Journal of Social Sciences</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <details class="archive">
+      <summary>
+        <span>Earlier Writing</span>
+        <span class="archive-count">11 items</span>
+      </summary>
+
+      <div class="archive-body">
+        <section class="archive-group" aria-labelledby="archive-early">
+          <h3 id="archive-early">Book chapter and unpublished materials</h3>
+
+          <article class="item archive-item">
+            <h3>Research Assignments (2024&ndash;2025)</h3>
+            <div class="link-row">
+              <a class="item-link" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB" target="_blank" rel="noopener">Open folder</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Concealing Data During the Pandemic: A Human Security Threat in Indonesia</h3>
+            <p class="meta-line">
+              <span>Mahidol University</span>
+              <span>2021</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf" target="_blank" rel="noopener">Read chapter</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="archive-group" aria-labelledby="archive-conference">
+          <h3 id="archive-conference">Conference proceedings</h3>
+
+          <article class="item archive-item">
+            <h3>Transforming Indonesia&rsquo;s Informal Sector: The Role of Industrialization in Manufacturing Industry</h3>
+            <p class="meta-line">
+              <span>Universitas Muhammadiyah Yogyakarta Conference Proceeding</span>
+              <span>2023</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530" target="_blank" rel="noopener">Read proceeding</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State</h3>
+            <p class="meta-line">
+              <span>Universitas Muhammadiyah Yogyakarta Conference Proceeding</span>
+              <span>2023</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529" target="_blank" rel="noopener">Read proceeding</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>COVID-19 in Indonesia: Critics and Proposal</h3>
+            <p class="meta-line">
+              <span>Universitas Muhammadiyah Yogyakarta Conference Proceeding</span>
+              <span>2022</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503" target="_blank" rel="noopener">Read proceeding</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015</h3>
+            <p class="meta-line">
+              <span>Universitas Muhammadiyah Yogyakarta Conference Proceeding</span>
+              <span>2021</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351" target="_blank" rel="noopener">Read proceeding</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="archive-group" aria-labelledby="archive-thesis">
+          <h3 id="archive-thesis">Undergraduate thesis</h3>
+
+          <article class="item archive-item">
+            <h3>Indonesia&rsquo;s Government&rsquo;s Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy</h3>
+            <p class="meta-line">
+              <span>Undergraduate Thesis</span>
+              <span>2022</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk" target="_blank" rel="noopener">Read thesis</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="archive-group" aria-labelledby="archive-writing">
+          <h3 id="archive-writing">Public writing</h3>
+
+          <article class="item archive-item">
+            <h3>Green Capitalism: The Manipulative Way to a Climate Death</h3>
+            <p class="meta-line">
+              <span>Citrakara Mandala</span>
+              <span>October 2020</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://link.medium.com/agfcQ4L6oub" target="_blank" rel="noopener">Read essay</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi</h3>
+            <p class="meta-line">
+              <span>Kumparan</span>
+              <span>June 2020</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k?__twitter_impression=true&amp;shareID=dsaYY8XriM4R&amp;utm_campaign=share&amp;utm_source=kumApp" target="_blank" rel="noopener">Read essay</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan</h3>
+            <p class="meta-line">
+              <span>Kumparan</span>
+              <span>June 2020</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9" target="_blank" rel="noopener">Read essay</a>
+            </div>
+          </article>
+
+          <article class="item archive-item">
+            <h3>Politik Tata Ruang dalam Gemuruh Pandemi</h3>
+            <p class="meta-line">
+              <span>Kumparan</span>
+              <span>June 2020</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo" target="_blank" rel="noopener">Read essay</a>
+            </div>
+          </article>
+        </section>
+
+        <section class="archive-group" aria-labelledby="archive-podcast">
+          <h3 id="archive-podcast">Podcast</h3>
+
+          <article class="item archive-item">
+            <h3>Politik Lingkungan Global</h3>
+            <p class="meta-line">
+              <span>IPIREL Podcast</span>
+              <span>December 2020</span>
+            </p>
+            <div class="link-row">
+              <a class="item-link" href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp?si=gHvdkAETQUmU9YADt8pEhg&amp;nd=1&amp;dlsi=829834af9f8c4e86" target="_blank" rel="noopener">Listen</a>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
   </main>
 
   <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
@@ -479,7 +960,7 @@
       { url: 'research.html',  title: 'Research' },
       { url: 'cv.html',        title: 'CV' },
       { url: 'resources.html', title: 'Resources' },
-      { url: 'projects.html',  title: 'Projects' }
+      { url: 'projects.html',  title: 'Dashboards' }
     ];
     const cache = new Map(); let indexBuilt = false, INDEX = [];
     async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
@@ -511,7 +992,7 @@
     async function buildIndex(){
       const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
         const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
-        return { url:p.url, title:p.title||rec.title, ...rec };
+        return { url:p.url, ...rec, title:p.title||rec.title };
       }));
       INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
     }
