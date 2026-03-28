@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .f-stem {
+      stroke: #0f172a;
+    }
+
+    .k-arm {
+      stroke: #2563eb;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .f-stem {
+        stroke: #f8fafc;
+      }
+
+      .k-arm {
+        stroke: #60a5fa;
+      }
+    }
+  </style>
+
+  <path class="f-stem" d="M 25 26 L 25 74" fill="none" stroke-width="12" stroke-linecap="round"/>
+  <path class="f-stem" d="M 25 26 L 43 26" fill="none" stroke-width="12" stroke-linecap="round"/>
+  <path class="f-stem" d="M 25 50 L 39 50" fill="none" stroke-width="12" stroke-linecap="round"/>
+  <path class="f-stem" d="M 55 26 L 55 74" fill="none" stroke-width="12" stroke-linecap="round"/>
+  <path class="k-arm" d="M 75 26 L 58 50 L 75 74" fill="none" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
