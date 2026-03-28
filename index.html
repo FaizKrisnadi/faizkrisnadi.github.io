@@ -218,6 +218,154 @@
             font-weight: 400;
         }
 
+        .updates-card {
+            padding-bottom: 1.15rem;
+        }
+
+        .updates-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .updates-head p {
+            margin: .42rem 0 0;
+            color: var(--muted);
+            font-size: .95rem;
+        }
+
+        .updates-shell {
+            position: relative;
+            border-radius: calc(var(--radius-md) + 2px);
+            background: rgba(255, 252, 244, 0.46);
+            border: 1px solid rgba(229, 227, 209, 0.88);
+            overflow: hidden;
+        }
+
+        .updates-shell::before,
+        .updates-shell::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 24px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .updates-shell::before {
+            top: 0;
+            background: linear-gradient(180deg, rgba(252, 249, 240, 0.96), rgba(252, 249, 240, 0));
+        }
+
+        .updates-shell::after {
+            bottom: 0;
+            background: linear-gradient(0deg, rgba(252, 249, 240, 0.98), rgba(252, 249, 240, 0));
+        }
+
+        .updates-scroll {
+            max-height: 460px;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: .6rem;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(153, 107, 29, 0.40) rgba(255, 253, 245, 0.38);
+            scroll-behavior: smooth;
+        }
+
+        .updates-scroll::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .updates-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 253, 245, 0.40);
+            border-radius: 999px;
+        }
+
+        .updates-scroll::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, rgba(153, 107, 29, 0.52), rgba(122, 84, 18, 0.38));
+            border-radius: 999px;
+            border: 2px solid rgba(255, 253, 245, 0.52);
+        }
+
+        .updates-timeline {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .update-item {
+            position: relative;
+            padding: .95rem 1rem .95rem 1.35rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.26);
+            border: 1px solid transparent;
+            transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease;
+        }
+
+        .update-item+.update-item {
+            margin-top: .65rem;
+        }
+
+        .update-item::before {
+            content: "";
+            position: absolute;
+            top: 1.15rem;
+            left: .7rem;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 0 0 4px rgba(153, 107, 29, 0.10);
+        }
+
+        .update-item:hover {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.40);
+            border-color: rgba(153, 107, 29, 0.14);
+            box-shadow: 0 12px 22px rgba(80, 68, 40, 0.07);
+        }
+
+        .update-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: .55rem .7rem;
+            margin-bottom: .4rem;
+        }
+
+        .update-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 28px;
+            padding: .28rem .7rem;
+            border-radius: 999px;
+            background: rgba(153, 107, 29, 0.12);
+            color: var(--accent-strong);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+        }
+
+        .update-date {
+            color: var(--muted);
+            font-size: .92rem;
+            font-weight: 700;
+            letter-spacing: -.01em;
+        }
+
+        .update-body {
+            margin: 0;
+            color: #352f28;
+            font-size: .98rem;
+            line-height: 1.62;
+        }
+
         /* Floating search button */
         .search-fab {
             position: fixed;
@@ -425,6 +573,24 @@
                 font-size: .96rem;
             }
 
+            .updates-head {
+                flex-direction: column;
+                gap: .35rem;
+            }
+
+            .updates-scroll {
+                max-height: 400px;
+                padding: .45rem;
+            }
+
+            .update-item {
+                padding: .9rem .9rem .9rem 1.25rem;
+            }
+
+            .update-body {
+                font-size: .95rem;
+            }
+
             .tabs-outer.scrolled {
                 transform: translateY(6px);
             }
@@ -534,6 +700,148 @@
         </p>
     </div>
 
+    <!-- Recent updates -->
+    <section class="card updates-card" aria-labelledby="recent-updates-title">
+        <div class="updates-head">
+            <div>
+                <h3 id="recent-updates-title">Recent Updates</h3>
+                <p>A compact timeline of roles, awards, projects, and milestones.</p>
+            </div>
+        </div>
+        <div class="updates-shell">
+            <div class="updates-scroll">
+                <ol class="updates-timeline">
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Presentation</span>
+                            <span class="update-date">June 2026</span>
+                        </div>
+                        <p class="update-body">Scheduled Presenter at The 5th Annual Green Trade Lab Workshop, University of Basel.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Job</span>
+                            <span class="update-date">March 2026</span>
+                        </div>
+                        <p class="update-body">Joined NUS Civic Resilience Laboratory at the School of Architecture as Research Assistant.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Project</span>
+                            <span class="update-date">March 2026</span>
+                        </div>
+                        <p class="update-body">Launched Peta Banjir Indonesia.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Program</span>
+                            <span class="update-date">March 2026</span>
+                        </div>
+                        <p class="update-body">Selected for Leaders of Tomorrow by St. Gallen Symposium.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Award</span>
+                            <span class="update-date">March 2026</span>
+                        </div>
+                        <p class="update-body">Placed in the Top 25 of the Global Essay Competition by St. Gallen Symposium.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Award</span>
+                            <span class="update-date">March 2026</span>
+                        </div>
+                        <p class="update-body">Won Third Place in the Op-Eds Competition by Bridging GAP LKYSPP.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Project</span>
+                            <span class="update-date">February 2026</span>
+                        </div>
+                        <p class="update-body">Launched the Indonesia-China Finance Dashboard.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Workshop</span>
+                            <span class="update-date">February 2026</span>
+                        </div>
+                        <p class="update-body">Organized NariTalk: Policy for Sustainable Development.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Job</span>
+                            <span class="update-date">Date to confirm</span>
+                        </div>
+                        <p class="update-body">Teaching Assistant for PP5203 Behavioural Economics and Public Policy and PP5530 Introduction to Coding for Public Policy Using Python (Instructor: Lawrence Jin).</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Presentation</span>
+                            <span class="update-date">December 2025</span>
+                        </div>
+                        <p class="update-body">Presenter at the Trade Conference by Asia Competitiveness Institute LKYSPP and Foreign Trade University Viet Nam.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Conference</span>
+                            <span class="update-date">Date to confirm</span>
+                        </div>
+                        <p class="update-body">Attended the Conference on Trade and Services at WTO Headquarters, Geneva.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Certification</span>
+                            <span class="update-date">November 2025</span>
+                        </div>
+                        <p class="update-body">Certified in Problem Solving at the Leadership Camp by Swiss Armed Forces.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Program</span>
+                            <span class="update-date">December 2025</span>
+                        </div>
+                        <p class="update-body">Selected as a Global Leadership Challenge Fellow by Oxford University and St. Gallen Symposium.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Study</span>
+                            <span class="update-date">September-December 2025</span>
+                        </div>
+                        <p class="update-body">Joined the University of St. Gallen, Switzerland, as a guest student.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Program</span>
+                            <span class="update-date">June 2025</span>
+                        </div>
+                        <p class="update-body">Joined the Pacific Forum Young Leaders Program.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Workshop</span>
+                            <span class="update-date">January 2025</span>
+                        </div>
+                        <p class="update-body">Organized Coffee Chat on Energy Transition.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Job</span>
+                            <span class="update-date">April 2025</span>
+                        </div>
+                        <p class="update-body">Joined AidData as Research Assistant.</p>
+                    </li>
+                    <li class="update-item">
+                        <div class="update-meta">
+                            <span class="update-chip">Study</span>
+                            <span class="update-date">August 2024</span>
+                        </div>
+                        <p class="update-body">Joined Lee Kuan Yew School of Public Policy.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact -->
     <section class="card">
         <h3 style="margin:0 0 .5rem">Let's Connect</h3>
@@ -541,6 +849,7 @@
             affairs.</p>
         <p><i class="fas fa-envelope"></i> <a href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com</a></p>
         <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/faiz-krisnadi/">linkedin.com/in/faiz-krisnadi</a></p>
+        <p><i class="fab fa-github"></i> <a href="https://github.com/FaizKrisnadi">github.com/FaizKrisnadi</a></p>
     </section>
 
     <footer>
