@@ -44,7 +44,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       padding: calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
-      line-height: 1.72;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -95,6 +95,7 @@
       display: inline-block;
       padding: .65rem 1rem;
       border-radius: 12px;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #4A4035;
       font-weight: 700;
       white-space: nowrap;
@@ -146,22 +147,25 @@
 
     .page-title {
       margin: 0 0 .35rem;
-      font-size: clamp(1.9rem, 3.4vw, 2.45rem);
-      line-height: 1.12;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: clamp(2.3rem, 4.6vw, 2.8rem);
+      line-height: 1.2;
       letter-spacing: -.01em;
       font-weight: 900;
-      color: #2A2520;
+      color: #333;
     }
 
     .subtitle {
       margin: .1rem 0;
-      color: var(--muted);
-      font-weight: 300;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #777;
+      font-weight: 400;
       font-size: 1.1rem;
     }
 
     .intro {
       margin: .8rem 0 .2rem;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       font-size: 1.02rem;
       font-weight: 400;
     }
@@ -199,59 +203,21 @@
       box-shadow: 0 10px 24px rgba(153, 107, 29, 0.28);
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .75rem;
-      margin-top: 1rem;
-    }
-
-    .stat {
-      padding: .75rem .85rem;
-      border-radius: 12px;
-      border: 1px solid rgba(229, 227, 209, 0.72);
-      background: rgba(255, 255, 255, 0.45);
-    }
-
-    .stat .label {
-      margin: 0;
-      color: var(--muted);
-      font-weight: 300;
-      font-size: .9rem;
-    }
-
-    .stat .value {
-      margin: .2rem 0 0;
-      color: #2A2520;
-      font-weight: 900;
-      font-size: 1.18rem;
-    }
-
     .section-title {
       margin: 0 0 .5rem;
-      font-weight: 700;
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 900;
       font-size: 1.45rem;
       letter-spacing: -.01em;
-      color: #2A2520;
+      color: #333;
     }
 
     .section-note {
       margin: 0 0 .85rem;
-      color: var(--muted);
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #6b7280;
       font-size: .98rem;
       font-weight: 400;
-    }
-
-    .metric-context {
-      margin: .95rem 0 .5rem;
-      color: #334155;
-      font-size: .98rem;
-      font-weight: 700;
-      letter-spacing: -.01em;
-    }
-
-    .stats.stats-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .dashboard-preview {
@@ -267,6 +233,14 @@
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .dashboard-preview.interactive {
+      padding: 1rem;
+    }
+
+    .project-embed {
+      margin-top: 1.15rem;
     }
 
     .map-wrap {
@@ -330,7 +304,8 @@
 
     .map-meta {
       margin: 0;
-      color: var(--muted);
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #6b7280;
       font-size: .9rem;
       font-weight: 700;
     }
@@ -354,7 +329,8 @@
     }
 
     .legend-scale {
-      color: var(--muted);
+      font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #6b7280;
       font-size: .86rem;
       font-weight: 400;
     }
@@ -390,13 +366,6 @@
       white-space: nowrap;
       padding: 1px 2px;
       border-radius: 4px;
-    }
-
-    .data-source {
-      margin-top: .85rem;
-      font-size: .86rem;
-      color: #6E6358;
-      font-weight: 400;
     }
 
     .search-fab {
@@ -549,8 +518,6 @@
     }
 
     @media (max-width: 900px) {
-      .stats { grid-template-columns: 1fr; }
-      .stats.stats-4 { grid-template-columns: 1fr; }
       #investmentMap,
       .map-wrap { min-height: 460px; }
       .province-label span { font-size: 1rem; }
@@ -577,7 +544,6 @@
         text-overflow: ellipsis;
         font-size: clamp(14px, 3.8vw, 17px);
         font-weight: 700;
-        letter-spacing: -0.01em;
         -webkit-tap-highlight-color: transparent;
       }
       .search-fab {
@@ -610,74 +576,72 @@
         <li><a href="research.html">Research</a></li>
         <li><a href="cv.html">CV</a></li>
         <li><a href="resources.html">Resources</a></li>
-        <li><a class="active" href="projects.html">Dashboards</a></li>
+        <li><a class="active" href="projects.html">Projects</a></li>
       </ul>
     </nav>
   </div>
 
   <main class="container">
     <section class="card">
+      <h1 class="page-title">Paper to Power</h1>
+      <p class="subtitle">A public geospatial audit of announced renewable energy projects across Southeast Asia.</p>
+      <p class="intro">
+        This project compares public claims about utility-scale wind and solar projects with observed build evidence,
+        turning regional energy announcements into a public-facing map, evidence explorer, and country comparison.
+      </p>
+      <div class="cta-row">
+        <a class="cta-btn primary" href="https://energy.faizkrisnadi.com/" target="_blank" rel="noopener">
+          <i class="fa-solid fa-bolt"></i>
+          Open Live Map
+        </a>
+        <a class="cta-btn" href="https://github.com/FaizKrisnadi/paper-to-power" target="_blank" rel="noopener">
+          <i class="fa-brands fa-github"></i>
+          View Repository
+        </a>
+      </div>
+      <a class="dashboard-preview" href="https://energy.faizkrisnadi.com/" target="_blank" rel="noopener" aria-label="Open Paper to Power">
+        <img src="assets/images/paper-to-power-preview.png" alt="Screen capture of the Paper to Power map showing renewable energy project markers across Southeast Asia with a project status legend." />
+      </a>
+    </section>
+
+    <section class="card">
       <h1 class="page-title">Indonesia-China Finance Dashboard</h1>
       <p class="subtitle">A dedicated project page for my investment and development-finance dashboard.</p>
       <p class="intro">
-        This page highlights Indonesia's China-linked capital footprint using both Development Finance and Foreign
-        Direct Investment datasets from my dashboard repository.
+        Explore Indonesia's China-linked capital footprint through combined development finance and foreign direct
+        investment views from the dashboard.
       </p>
       <div class="cta-row">
         <a class="cta-btn primary" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
           <i class="fa-solid fa-map-location-dot"></i>
-          Check the Interactive Map
+          Open Finance Dashboard
         </a>
         <a class="cta-btn" href="https://investment.faizkrisnadi.com" target="_blank" rel="noopener">
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          Open Dashboard
+          Explore Investment Map
         </a>
       </div>
-    </section>
-
-    <section class="card">
-      <h2 class="section-title">Portfolio Snapshot</h2>
-      <div class="stats">
-        <div class="stat">
-          <p class="label">Total Projects Tracked</p>
-          <p class="value">528</p>
+      <div class="dashboard-preview interactive project-embed">
+        <h2 class="section-title">Investment map</h2>
+        <p class="section-note">
+          Toggle between Development Finance and Foreign Direct Investment to compare the geographic footprint.
+        </p>
+        <div class="map-toolbar">
+          <div class="map-toggle" role="group" aria-label="Map dataset toggle">
+            <button class="toggle-btn active" type="button" data-map-series="df" aria-pressed="true">DF</button>
+            <button class="toggle-btn" type="button" data-map-series="fdi" aria-pressed="false">FDI</button>
+          </div>
+          <p class="map-meta" id="mapMeta">Showing Development Finance (DF)</p>
         </div>
-        <div class="stat">
-          <p class="label">Total Committed Capital</p>
-          <p class="value">$158.97B</p>
+        <div class="map-wrap">
+          <div id="investmentMap" aria-label="Indonesia investment map"></div>
         </div>
-        <div class="stat">
-          <p class="label">Realization Rate</p>
-          <p class="value">69.7%</p>
+        <div class="choropleth-legend">
+          <span id="legendTitle">Intensity</span>
+          <span class="legend-ramp" id="legendRamp" aria-hidden="true"></span>
+          <span class="legend-scale" id="legendScale">$0B to $0B</span>
         </div>
       </div>
-      <p class="section-note">83% Development Finance and 17% Foreign Direct Investment, with a 69.7% realization rate indicating moderate implementation progress.</p>
-    </section>
-
-    <section class="card">
-      <h2 class="section-title">Investment Map</h2>
-      <p class="section-note">
-        Choropleth preview for DF (province-level) and FDI (region-level). Toggle between DF and FDI to change the layer.
-      </p>
-      <div class="map-toolbar">
-        <div class="map-toggle" role="group" aria-label="Map dataset toggle">
-          <button class="toggle-btn active" type="button" data-map-series="df" aria-pressed="true">DF</button>
-          <button class="toggle-btn" type="button" data-map-series="fdi" aria-pressed="false">FDI</button>
-        </div>
-        <p class="map-meta" id="mapMeta">Showing Development Finance (DF)</p>
-      </div>
-      <div class="map-wrap">
-        <div id="investmentMap" aria-label="Indonesia investment map"></div>
-      </div>
-      <div class="choropleth-legend">
-        <span id="legendTitle">Intensity</span>
-        <span class="legend-ramp" id="legendRamp" aria-hidden="true"></span>
-        <span class="legend-scale" id="legendScale">$0B to $0B</span>
-      </div>
-      <p class="data-source">
-        Data source: Indonesia-China Finance Dashboard (`DF_REPORT_PROJECTS` for province-level development finance and
-        foreign direct investment regional capital expenditure table, constant 2024 USD billions). FDI is reported and visualized at region level (not province-specific).
-      </p>
     </section>
 
     <section class="card">
@@ -704,11 +668,10 @@
 
     <section class="card">
       <h1 class="page-title">Sustainability GLEIF Matching Network</h1>
-      <p class="subtitle">An entity-resolution and ownership-network explainer for tracing corporate sustainability pledges into the GLEIF graph.</p>
+      <p class="subtitle">A public explainer for tracing sustainability commitments into verified company and ownership records.</p>
       <p class="intro">
-        This project links sustainability initiative rosters such as SBTi, RE100, EV100, and EP100 to verified legal
-        entities in GLEIF, then checks which commitments remain traceable through the reported corporate ownership
-        network.
+        This project matches major sustainability initiative rosters to GLEIF entities, then shows how far those
+        commitments can be followed through reported ownership networks.
       </p>
       <div class="cta-row">
         <a class="cta-btn primary" href="https://pledges.faizkrisnadi.com/" target="_blank" rel="noopener">
@@ -720,25 +683,6 @@
           View Repository
         </a>
       </div>
-    </section>
-
-    <section class="card">
-      <h2 class="section-title">Matching Snapshot</h2>
-      <div class="stats">
-        <div class="stat">
-          <p class="label">Sustainability Entities</p>
-          <p class="value">14,180</p>
-        </div>
-        <div class="stat">
-          <p class="label">Auto-Matched to GLEIF</p>
-          <p class="value">7,641</p>
-        </div>
-        <div class="stat">
-          <p class="label">Auto-Match Rate</p>
-          <p class="value">53.9%</p>
-        </div>
-      </div>
-      <p class="section-note">Only 13.0% of entities in the wider GLEIF universe report ownership relationships, so even verified matches still face a structural traceability ceiling.</p>
     </section>
   </main>
 
@@ -1283,7 +1227,7 @@
       { url: "research.html", title: "Research" },
       { url: "cv.html", title: "CV" },
       { url: "resources.html", title: "Resources" },
-      { url: "projects.html", title: "Dashboards" },
+      { url: "projects.html", title: "Projects" },
     ];
     const cache = new Map(); let indexBuilt = false, INDEX = [];
     async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
