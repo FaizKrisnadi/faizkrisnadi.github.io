@@ -332,14 +332,15 @@
         (hover: none),
         (pointer: coarse) {
             .update-item {
-                background: rgba(255, 255, 255, 0.40);
-                border-color: rgba(153, 107, 29, 0.14);
-                box-shadow: 0 12px 22px rgba(80, 68, 40, 0.07);
+                transform: translateY(-1px);
+                background: rgba(255, 255, 255, 0.58);
+                border-color: rgba(153, 107, 29, 0.20);
+                box-shadow: 0 16px 30px rgba(80, 68, 40, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.78);
             }
 
             .update-item:active {
-                transform: translateY(-1px);
-                box-shadow: 0 16px 26px rgba(80, 68, 40, 0.10);
+                transform: translateY(0);
+                box-shadow: 0 10px 20px rgba(80, 68, 40, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.72);
             }
         }
 
@@ -599,7 +600,7 @@
             }
 
             .update-item {
-                padding: .9rem .9rem .9rem 1.25rem;
+                padding: .95rem .95rem .95rem 1.3rem;
             }
 
             .update-body {
