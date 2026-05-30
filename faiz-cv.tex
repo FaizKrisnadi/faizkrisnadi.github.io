@@ -1,0 +1,163 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[a4paper,margin=0.58in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{accent}{HTML}{7A5412}
+\definecolor{text}{HTML}{222222}
+\definecolor{muted}{HTML}{5F5A52}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=1.1em,itemsep=1.5pt,topsep=2pt,parsep=0pt}
+\renewcommand{\arraystretch}{1.05}
+
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0pt}{}
+  [\vspace{2pt}\titlerule]
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+
+\newcommand{\cvsection}[1]{\section*{#1}}
+\newcommand{\entry}[4]{%
+  \begin{tabularx}{\textwidth}{@{}p{0.17\textwidth}X@{}}
+    \textcolor{muted}{#1} & \textbf{#2}\\
+    & \textit{#3}\\
+    & #4
+  \end{tabularx}\vspace{5pt}
+}
+\newcommand{\simpleentry}[3]{%
+  \begin{tabularx}{\textwidth}{@{}p{0.17\textwidth}X@{}}
+    \textcolor{muted}{#1} & \textbf{#2}\\
+    & #3
+  \end{tabularx}\vspace{4pt}
+}
+\newcommand{\project}[2]{%
+  \textbf{#1} \textbar{} \textit{Developer}\\
+  #2\par\vspace{5pt}
+}
+\newcommand{\refbox}[4]{%
+  \begin{minipage}[t]{\linewidth}
+  \textbf{#1}\\
+  #2\\
+  #3\\
+  \href{mailto:#4}{#4}
+  \end{minipage}
+}
+
+\begin{document}
+\color{text}
+
+{\LARGE \textbf{FAIZ KRISNADI}}\\[3pt]
+\small
+\href{mailto:faiz.krisnadi@u.nus.edu}{faiz.krisnadi@u.nus.edu}
+\; \textbar{} \; +65 8898 7649
+\; \textbar{} \; \href{https://faizkrisnadi.com}{faizkrisnadi.com}\\
+\href{https://linkedin.com/in/faiz-krisnadi}{linkedin.com/in/faiz-krisnadi}
+\; \textbar{} \; \href{https://github.com/FaizKrisnadi}{github.com/FaizKrisnadi}
+\normalsize
+
+\cvsection{Profile Summary}
+Master's candidate in International Affairs at the NUS Lee Kuan Yew School of Public Policy with research experience in international political economy, Chinese capital in Indonesia, urban sustainability, and empirical policy analysis. Builds reproducible workflows for multi-source data collection, cleaning, analysis, and public-facing research outputs. Strong in mixed-method research, policy writing, applied data work, and translating complex evidence into clear analytical arguments for research, advisory, and policy audiences.
+
+\cvsection{Education}
+\entry{08/2024--Present}{National University of Singapore (NUS)}{Master in International Affairs, Lee Kuan Yew School of Public Policy}{GPA: 4.13/5.00 \textbar{} Specialization: International Economics and Development}
+\entry{09/2025--01/2026}{University of St. Gallen (HSG), Switzerland}{School of Economics and Political Science}{GPA: 5.00/6.00}
+\entry{09/2018--04/2022}{Universitas Muhammadiyah Yogyakarta (UMY)}{B.A. Political Science (International Relations), Honours}{GPA: 3.88/4.00 \textbar{} Student Exchange: Asia University, Taiwan}
+\entry{09/2021--12/2021}{University of Glasgow, United Kingdom}{Visiting Student, School of Social and Political Science}{}
+
+\cvsection{Research Experience}
+\entry{03/2026--Present}{Research Assistant}{Civic Resilience Laboratory, School of Architecture, NUS}{\begin{itemize}
+  \item Working on urban sustainability and the application of AI in climate resilience.
+\end{itemize}}
+\entry{04/2025--07/2025}{Research Assistant}{AidData Global Research Institute, William \& Mary, USA}{\begin{itemize}
+  \item Integrated and cleaned multi-source tables for an Indonesia investment report using AidData's Global Chinese Development Finance Dataset v3.0.
+  \item Conducted source verification, extracted cited evidence, and supported policy-facing report drafting.
+  \item Co-authored \textit{Balancing Risk and Reward: Who Benefits from China's Investments in Indonesia?} (2025).
+\end{itemize}}
+\entry{03/2025--05/2025}{Research Assistant, Independent Project}{Universitas Muhammadiyah Yogyakarta}{\begin{itemize}
+  \item Co-authored a submitted article; handled data and literature workstream from evidence collection to final write-up.
+  \item Built cleaned datasets and reproducible tables and figures to support empirical claims.
+\end{itemize}}
+\entry{03/2021--04/2021}{Research Assistant}{Semar Sentinel, Singapore}{Produced situation reports and stakeholder maps on Indonesian socio-political developments and policy risk.}
+
+\cvsection{Publications \& Research Output}
+\simpleentry{2025}{\href{https://www.aiddata.org/publications/balancing-risk-and-reward}{Balancing Risk and Reward: Who Benefits from China's Investments in Indonesia?}}{AidData at William \& Mary, Policy Report. Custer, S., Burgess, B., Kim, H.K., Krisnadi, M.F., Marshall, K., Mathew, D., Patrick, F., Saputra, A.D., Solis, J.A., and N. Sritharan.}
+\simpleentry{2025}{Reindustrializing Indonesia: Lessons from China, Capital Intensity Paradox, and Labor-Market Realities}{\textit{The Indonesian Quarterly}, 53(2), Centre for Strategic and International Studies. Krisnadi, M.F., and D.R. Adhipramana.}
+\simpleentry{2025}{Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand}{\textit{Perantau}, 1(1), 1--12. Krisnadi, M.F., and D.R. Adhipramana.}
+\simpleentry{In Progress}{Does the Label Matter? Explaining When Chinese Development Finance and FDI Blur in Indonesian Elite Narratives}{Master's thesis, NUS Lee Kuan Yew School of Public Policy. Mixed-method study combining project-level data mapping, media framing analysis, and semi-structured elite interviews. Advisor: Adam Y. Liu. Convener: Jonathan A. Chu.}
+
+\cvsection{Presentations}
+\simpleentry{Scheduled 06/2026}{Trade Pressure, Green Regulation, and the Politics of Legitimacy: Evidence from Foreign-Financed Development in Indonesia}{5th Annual Green Trade Lab Workshop, University of Basel, Switzerland.}
+\simpleentry{12/2025}{Shrinking Space for WTO Dispute Settlement: Geopolitics, Forum Shopping, and Lessons for Developing Economies}{VIID Conference, Asia Competitiveness Institute and Foreign Trade University, Singapore. Paper targeting submission to \textit{Economic Modelling}.}
+
+\cvsection{Data Projects}
+\project{Master's Thesis Research Repository}{Structured repository with coded article-level data, metadata, codebooks, and documented workflows for research on Chinese development finance and FDI narratives in Indonesia.}
+\project{\href{https://flood.faizkrisnadi.com}{Peta Banjir Indonesia (Flood Explorer)}}{Flood-data dashboard enabling district-level analysis in Indonesia using 26 years of historical data and integrated administrative boundaries. Featured by \href{https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai}{Harian Kompas} and \href{https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy}{LKYSPP}.}
+\project{Indonesia--China Finance Dashboard}{Reproducible dashboard covering 23 years of Chinese capital flows across Indonesian provinces and sectors, with cleaned multi-source data and documented data lineage.}
+\project{Sustainability--GLEIF Matching Network}{Firm-matching workflow using 3.85 million+ records for entity resolution and ownership-network analysis with auditable processing steps.}
+
+\cvsection{Teaching Experience}
+\entry{01/2026--Present}{Graduate Teaching Assistant}{Lee Kuan Yew School of Public Policy, NUS}{PP5203 Behavioural Economics and Public Policy; PP5530 Introduction to Coding for Public Policy Using Python.}
+\entry{02/2022--07/2022}{Undergraduate Teaching Assistant}{Universitas Muhammadiyah Yogyakarta}{International Security Studies, 90+ students.}
+
+\cvsection{Additional Professional Experience}
+\entry{10/2022--07/2024}{Consultant}{PT IDP Consulting, Yogyakarta}{British Council certified; managed placement pipeline and CRM, achieved 120\% annual targets in FY2023--FY2024, and coordinated partnerships with 100+ university contacts across Indonesia, the UK, and Ireland.}
+\entry{01/2020--12/2022}{Website Manager \& Lead Content Writer}{ipirel.umy.ac.id, Yogyakarta}{Produced 200+ reports, news pieces, op-eds, and fact sheets; increased website traffic by 10,000+ visitors through targeted content strategies.}
+
+\cvsection{Service}
+Reviewer, \textit{Journal Borneo Administrator}; Impact Evaluation Associate, Global Empowerment Network; Member, HSG Business Club.
+
+\cvsection{Awards \& Honors}
+\begin{itemize}
+  \item Second Place, Global Essay Competition, 55th St. Gallen Symposium, 2026.
+  \item Leaders of Tomorrow, 55th St. Gallen Symposium, 2026.
+  \item Third Place, Bridging GAP Op-Ed Competition, Lee Kuan Yew School of Public Policy, 2026.
+  \item Young Leader, Pacific Forum, 2025.
+  \item Global Leadership Challenge Fellow, University of Oxford and St. Gallen Symposium, 2025.
+  \item Glasgow Policy Hackathon, 2021.
+\end{itemize}
+
+\cvsection{Merit Scholarships \& Grants}
+\begin{itemize}
+  \item Low Tuck Kwong Foundation Scholarship, approx. SGD 142,000, 2024--2026.
+  \item Pacific Forum Young Leaders Program Grant, approx. SGD 2,500, 2025.
+  \item Lee Kuan Yew School of Public Policy Field Study Grant, SGD 1,600, 2025.
+  \item IISMA Scholarship, approx. GBP 20,000, Government of Indonesia, 2021.
+  \item Additional postgraduate scholarship offers: LPDP and merit awards from ANU, Melbourne, Queensland, Sydney, and Sheffield, 2023--2024.
+\end{itemize}
+
+\cvsection{Certifications}
+Certified in Problem Solving, Leadership Camp, Swiss Armed Forces, 2025.
+
+\cvsection{Core Skills}
+\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}X@{}}
+\textbf{Research Methods} & Quantitative policy research, literature review, policy analysis, media framing analysis, descriptive statistics, survey and interview support.\\
+\textbf{Data \& Tools} & Python, pandas, text processing, regex, data cleaning pipelines, Git/GitHub, Jupyter/Notebooks, Bash/CLI, LaTeX, Microsoft 365, Google Workspace, Qualtrics.\\
+\textbf{Languages} & Bahasa Indonesia (Native), Javanese (Native), English (Advanced), Arabic (Basic).
+\end{tabularx}
+
+\cvsection{Referees}
+\begin{tabularx}{\textwidth}{@{}X@{\hspace{1.2em}}X@{}}
+\refbox{Lawrence Jin}{TA Supervisor}{Assistant Professor in Economics, Lee Kuan Yew School of Public Policy, NUS}{ijin@nus.edu.sg}
+&
+\refbox{Adam Yao Liu}{Thesis Advisor}{Assistant Professor, Lee Kuan Yew School of Public Policy, NUS}{adam.y.liu@nus.edu.sg}
+\\[1.1em]
+\refbox{Faris Al-Fadhat}{Faculty Mentor}{Professor of International Political Economy, Universitas Muhammadiyah Yogyakarta}{farisalfadh@umy.ac.id}
+&
+\refbox{Emmanuel Skoufias}{Faculty Mentor}{Visiting Professor, Lee Kuan Yew School of Public Policy, NUS}{skoufias@nus.edu.sg}
+\\[1.1em]
+\refbox{Indradi Soemardjan}{Professional Mentor}{Consultant, Asian Development Bank}{isoemardjan.consultant@adb.org}
+&
+\end{tabularx}
+
+\end{document}
