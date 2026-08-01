@@ -112,6 +112,15 @@
       margin: 0 auto;
     }
 
+    .projects-heading {
+      margin: .35rem 0 .85rem;
+      color: #2A2520;
+      font-size: clamp(2rem, 4vw, 2.45rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -.025em;
+    }
+
     .card {
       margin: 1rem 0 1.35rem;
       padding: 1.35rem 1.45rem;
@@ -141,10 +150,10 @@
     .page-title {
       margin: 0 0 .35rem;
       font-family: "Lato", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: clamp(2.3rem, 4.6vw, 2.8rem);
+      font-size: clamp(1.75rem, 3.4vw, 2.2rem);
       line-height: 1.2;
       letter-spacing: -.01em;
-      font-weight: 900;
+      font-weight: 700;
       color: #333;
     }
 
@@ -435,8 +444,10 @@
   </div>
 
   <main class="container">
+    <h1 class="projects-heading">Projects</h1>
+
     <section class="card">
-      <h1 class="page-title">Paper to Power</h1>
+      <h2 class="page-title">Paper to Power</h2>
       <p class="subtitle">A public geospatial audit of announced renewable energy projects across Southeast Asia.</p>
       <p class="intro">
         This project compares public claims about utility-scale wind and solar projects with observed build evidence,
@@ -458,7 +469,7 @@
     </section>
 
     <section class="card">
-      <h1 class="page-title">Peta Banjir Indonesia</h1>
+      <h2 class="page-title">Peta Banjir Indonesia</h2>
       <p class="subtitle">A bilingual flood-event explorer for tracing how flood intensity shifts across Indonesia over time.</p>
       <p class="intro">
         This dashboard combines map-based browsing, searchable administrative boundaries, and a 26-year timeline so
@@ -480,7 +491,7 @@
     </section>
 
     <section class="card">
-      <h1 class="page-title">Sustainability GLEIF Matching Network</h1>
+      <h2 class="page-title">Sustainability GLEIF Matching Network</h2>
       <p class="subtitle">A public explainer for tracing sustainability commitments into verified company and ownership records.</p>
       <p class="intro">
         This project matches major sustainability initiative rosters to GLEIF entities, then shows how far those
