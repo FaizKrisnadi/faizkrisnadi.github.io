@@ -369,6 +369,32 @@
       }
     }
 
+  
+    /* ===== Primary nav separators ===== */
+    .tabs li {
+      position: relative;
+    }
+
+    .tabs li + li::before {
+      content: "";
+      position: absolute;
+      left: calc(-.3rem - .5px);
+      top: 50%;
+      width: 1px;
+      height: 18px;
+      background: rgba(74, 64, 53, .14);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 560px) {
+      .tabs li + li::before {
+        left: calc(-3px - .5px);
+        height: 16px;
+        background: rgba(74, 64, 53, .12);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -386,7 +412,6 @@
         <li><a href="migunani.html">Migunani</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a class="active" href="cv.html">CV</a></li>
       </ul>
     </nav>
   </div>
