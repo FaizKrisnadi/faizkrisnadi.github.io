@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="The people, communities, and opportunities that have shaped Faiz Krisnadi's work in research, policy, and public life." />
+  <title>Migunani | Faiz Krisnadi</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F1EFE0;
+      --text: #2E2E2E;
+      --accent: #996B1D;
+      --accent-strong: #7A5412;
+      --accent-soft: rgba(153, 107, 29, .14);
+      --line: rgba(229, 227, 209, .72);
+      --muted: #6E6358;
+      --surface: #FBFAF5;
+      --shadow: 0 18px 44px rgba(80, 68, 40, .08), inset 0 1px 0 rgba(255, 255, 255, .8);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      padding: calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+      background: var(--bg);
+      color: var(--text);
+      font: 400 17px/1.75 "Lato", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent-strong); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
+    .tabs-outer { max-width: 980px; margin: 0 auto 1.25rem; padding: 0 .2rem; position: sticky; top: calc(8px + env(safe-area-inset-top)); z-index: 45; }
+    .tabs { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+    .tabs ul { display: flex; gap: .6rem; align-items: center; list-style: none; margin: 0; padding: .35rem; }
+    .tabs a { display: inline-block; padding: .65rem 1rem; border-radius: 12px; color: #4A4035; font-weight: 700; white-space: nowrap; }
+    .tabs a:hover { background: rgba(229, 227, 209, .5); color: var(--text); text-decoration: none; }
+    .tabs a.active { background: var(--accent-soft); color: var(--accent-strong); }
+    main, footer { max-width: 980px; margin-inline: auto; }
+    .hero, .recognition article, .proof article { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .hero { border-radius: 28px; padding: clamp(1.4rem, 4vw, 2.5rem); }
+    .eyebrow, .card-label, .chapter-meta { color: var(--accent-strong); font-size: .78rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+    .eyebrow { margin: 0 0 .65rem; }
+    h1 { margin: 0 0 1.1rem; font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.07; letter-spacing: -.04em; }
+    .hero p:not(.eyebrow) { max-width: 820px; margin: 0; font-size: 1.08rem; }
+    .hero p + p { margin-top: 1rem !important; }
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 2.7rem 0 1.15rem; }
+    h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.05rem); line-height: 1.2; letter-spacing: -.025em; }
+    .section-note { margin: 0; color: var(--muted); font-size: .9rem; }
+    .recognition, .proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .recognition article, .proof article { border-radius: 18px; padding: 1.3rem 1.4rem; }
+    .recognition article { display: flex; flex-direction: column; justify-content: space-between; min-height: 205px; }
+    .card-label { display: block; margin-bottom: 1.1rem; }
+    h3 { margin: 0; font-size: 1.35rem; line-height: 1.3; }
+    .recognition p, .proof p { margin: .5rem 0 0; color: var(--muted); font-size: .96rem; }
+    .recognition a, .proof a { font-weight: 700; }
+    .proof { margin-top: 1rem; }
+    .chapter { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 1.7rem; padding: 1.6rem 0 1.85rem; border-top: 1px solid var(--line); }
+    .chapter:last-of-type { border-bottom: 1px solid var(--line); }
+    .chapter h3 { font-size: 1.5rem; }
+    .chapter p { max-width: 730px; margin: .7rem 0 0; }
+    .chapter p + p { margin-top: .95rem; }
+    .flood-preview { display: block; width: 100%; max-height: 330px; margin: 1.3rem 0 .4rem; object-fit: cover; border: 1px solid var(--line); border-radius: 14px; }
+    .image-caption { display: block; color: var(--muted); font-size: .83rem; }
+    .further { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .further a { min-height: 110px; padding: 1.15rem .8rem 1.15rem 0; }
+    .further a + a { padding-left: 1rem; border-left: 1px solid var(--line); }
+    .further strong, .further span { display: block; }
+    .further span { margin-top: .25rem; color: var(--muted); font-size: .87rem; }
+    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; text-align: center; }
+    footer a { margin-left: .5rem; }
+    .search-fab { position: fixed; top: calc(16px + env(safe-area-inset-top)); right: 18px; width: 52px; height: 52px; z-index: 50; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: #4A4035; box-shadow: var(--shadow); cursor: pointer; }
+    .search-fab:hover { color: var(--accent-strong); }
+    .search-dialog { width: min(900px, calc(100% - 28px)); max-height: 85vh; margin: 8vh auto 0; padding: 1rem; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: 0 30px 60px rgba(0,0,0,.15); }
+    .search-dialog::backdrop { background: rgba(40,35,25,.22); backdrop-filter: blur(5px); }
+    .search-bar { display: flex; align-items: center; gap: .6rem; padding: .35rem .6rem; border: 1px solid var(--line); border-radius: 14px; }
+    .search-bar input { flex: 1; min-width: 0; padding: .65rem 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; }
+    .search-bar button { border: 0; background: none; color: var(--muted); font-size: 1.2rem; cursor: pointer; }
+    .search-results { max-height: 55vh; overflow: auto; margin-top: .5rem; }
+    .search-results a { display: block; padding: .65rem; border-radius: 8px; color: var(--text); }
+    .search-results a:hover { background: var(--accent-soft); text-decoration: none; }
+    .search-results small { display: block; color: var(--muted); }
+    @media (max-width: 700px) {
+      .section-head { display: block; }
+      .section-note { margin-top: .3rem; }
+      .recognition, .proof { grid-template-columns: 1fr; }
+      .recognition article { min-height: auto; }
+      .chapter { grid-template-columns: 1fr; gap: .35rem; }
+      .further { grid-template-columns: 1fr; }
+      .further a, .further a + a { min-height: auto; padding: .85rem 0; border-left: 0; }
+      .further a + a { border-top: 1px solid var(--line); }
+    }
+    @media (max-width: 560px) {
+      .tabs ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; padding: 6px; }
+      .tabs a { display: flex; align-items: center; justify-content: center; min-width: 0; height: 46px; padding: 0; overflow: hidden; font-size: clamp(13px, 3.8vw, 17px); }
+      .search-fab { top: calc(74px + env(safe-area-inset-top)); right: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <button class="search-fab" id="openSearch" aria-label="Open search" title="Search (⌘/Ctrl + K)"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
+  <div class="tabs-outer">
+    <nav class="tabs" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a class="active" aria-current="page" href="migunani.html">Migunani</a></li>
+        <li><a href="projects.html">Projects</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main>
+    <header class="hero">
+      <p class="eyebrow">Faiz Krisnadi · Beyond the CV</p>
+      <h1>Migunani</h1>
+      <p>Two Javanese sayings have lived rent-free in my head: <em>urip iku urup</em>—a life should bring light to others—and <em>ngelmu iku kalakone kanthi laku</em>—knowledge has to be lived, not just learned. I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p>
+      <p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. This page brings those experiences together with the opportunities and recognition I’ve received. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p>
+    </header>
+
+    <section aria-labelledby="highlights-title">
+      <div class="section-head">
+        <h2 id="highlights-title">Selected highlights</h2>
+        <p class="section-note">Recognition, engagement, and work in public</p>
+      </div>
+      <div class="recognition">
+        <article>
+          <div><span class="card-label">NUS · 2026</span><h3>NUS Achievement Awards recipient</h3><p>Recognised under Competitions (General) for the St. Gallen Global Essay Competition result.</p></div>
+          <p><a href="https://osa.nus.edu.sg/naa/naa-recipients/">View NUS listing ↗</a></p>
+        </article>
+        <article>
+          <div><span class="card-label">St. Gallen Symposium · 2026</span><h3>Second place, Global Essay Competition</h3><p>Selected as a Leader of Tomorrow; one of three winners from approximately 1,000 graduate and postgraduate submissions.</p></div>
+          <p><a href="https://symposium.org/initiatives/global-essay-competition/">View competition ↗</a></p>
+        </article>
+      </div>
+      <div class="proof">
+        <article><span class="card-label">Regional policy engagement</span><h3>Pacific Forum Young Leader</h3><p>Later selected for its delegation to the <a href="https://apr.isis.org.my/">39th Asia-Pacific Roundtable</a>, convened by ISIS Malaysia.</p></article>
+        <article><span class="card-label">Public-facing work</span><h3>Peta Banjir Indonesia</h3><p>A free way to explore about 26 years of flood records across Indonesia. <a href="https://flood.faizkrisnadi.com/">Explore the map ↗</a></p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="story-title">
+      <div class="section-head"><h2 id="story-title">The story behind the highlights</h2></div>
+      <article class="chapter">
+        <div class="chapter-meta">01 · High school</div>
+        <div><h3>Starting with community work</h3>
+          <p>I was a natural science student in high school, but much of my time outside class went into organisations, volunteering, and youth programmes. Through Mubaligh Hijrah, I was placed in a rural village in Java and worked with local leaders to help organise activities for the community. I also took part in student initiatives that encouraged other young people to volunteer.</p>
+          <p>Those experiences were often small and practical. They taught me that contributing did not always mean starting something myself. Sometimes it meant joining a team, listening to people who knew the place better than I did, and taking responsibility for the part I could do.</p>
+        </div>
+      </article>
+      <article class="chapter">
+        <div class="chapter-meta">02 · UMY and after</div>
+        <div><h3>Learning to build with others</h3>
+          <p>At Universitas Muhammadiyah Yogyakarta, I moved between student government, advocacy, external relations, and event organising. I helped put together public discussions, seminars, and programmes that depended on many people doing their part. During the pandemic, I founded Ruang Virtual and worked on its partnerships, content, and communications.</p>
+          <p>I enjoyed the work behind an event as much as the event itself: contacting people, working out what a discussion should cover, and making sure it actually happened. Years later, I was still doing versions of that work through Coffee Chat on Energy Transition and NariTalk: Policy for Sustainable Development.</p>
+        </div>
+      </article>
+      <article class="chapter">
+        <div class="chapter-meta">03 · Across borders</div>
+        <div><h3>Taking opportunities further</h3>
+          <p>My studies took me from Indonesia to Taiwan, the United Kingdom, Singapore, and Switzerland. The route to postgraduate study involved many applications; eventually I received scholarship offers in Australia, Indonesia, Singapore, and the UK. I chose the Low Tuck Kwong Foundation Scholarship to pursue my master’s at NUS.</p>
+          <p>The opportunities extended beyond university. I joined Pacific Forum’s Young Leaders programme and its delegation to the Asia-Pacific Roundtable, participated in other policy forums, and began presenting my own work in Singapore and Switzerland. I had spent years helping organise and join discussions. I was now contributing more of my own ideas to them.</p>
+        </div>
+      </article>
+      <article class="chapter">
+        <div class="chapter-meta">04 · Work in public</div>
+        <div><h3>Making the work useful</h3>
+          <p>Some of the work I care about most is made for people who may never read an academic paper. I built <a href="https://flood.faizkrisnadi.com/">Peta Banjir Indonesia</a> so that researchers, officials, and communities could explore long-term flood patterns at the district level. My Care Sovereignty Protocol began with a different, less visible problem: the long-term financial costs borne by unpaid caregivers. I presented that proposal at St. Gallen, where it placed second in the Global Essay Competition and was subsequently recognised by NUS.</p>
+          <p>These projects are different in form, but both reflect a question I keep returning to: once we understand a problem, how can we make that knowledge useful to someone else?</p>
+          <img class="flood-preview" src="assets/images/flood-dashboard-preview.png" alt="Preview of Peta Banjir Indonesia's flood data map" loading="lazy" />
+          <span class="image-caption">Peta Banjir Indonesia · launched 2026</span>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="elsewhere-title">
+      <div class="section-head"><h2 id="elsewhere-title">Elsewhere</h2><p class="section-note">Profiles and coverage of the work</p></div>
+      <div class="further">
+        <a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact"><strong>NUS Giving ↗</strong><span>Inspired for Regional Impact</span></a>
+        <a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy"><strong>LKYSPP ↗</strong><span>Flooding and caregiving policy</span></a>
+        <a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai"><strong>Harian Kompas ↗</strong><span>Coverage of the flood map</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>© 2026 Faiz Krisnadi. <a href="resources.html">Resources</a></p></footer>
+
+  <dialog class="search-dialog" id="searchDialog" aria-label="Search this site">
+    <div class="search-bar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site" /><button id="closeSearch" aria-label="Close search">×</button></div>
+    <div class="search-results" id="searchResults"></div>
+  </dialog>
+  <script>
+    const pages = [
+      { url: 'index.html', title: 'Home' },
+      { url: 'research.html', title: 'Research' },
+      { url: 'cv.html', title: 'CV' },
+      { url: 'migunani.html', title: 'Migunani' },
+      { url: 'projects.html', title: 'Projects' }
+    ];
+    const dialog = document.getElementById('searchDialog');
+    const input = document.getElementById('searchInput');
+    const results = document.getElementById('searchResults');
+    let index = null;
+    async function buildIndex() {
+      if (index) return index;
+      index = await Promise.all(pages.map(async page => {
+        try {
+          const response = await fetch(page.url);
+          if (!response.ok) throw new Error('Page unavailable');
+          const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+          return { ...page, body: (doc.querySelector('main')?.textContent || '').replace(/\s+/g, ' ').trim() };
+        } catch { return { ...page, body: '' }; }
+      }));
+      return index;
+    }
+    function render(query) {
+      results.replaceChildren();
+      const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
+      const matches = (index || pages).filter(page => terms.every(term => `${page.title} ${page.body || ''}`.toLowerCase().includes(term)));
+      for (const page of matches) {
+        const link = document.createElement('a');
+        link.href = page.url;
+        const title = document.createElement('strong');
+        title.textContent = page.title;
+        const description = document.createElement('small');
+        description.textContent = page.body?.slice(0, 145) || 'Open page';
+        link.append(title, description);
+        results.append(link);
+      }
+      if (!matches.length) results.textContent = 'No matching pages.';
+    }
+    async function openSearch() { dialog.showModal(); input.focus(); await buildIndex(); render(input.value); }
+    document.getElementById('openSearch').addEventListener('click', openSearch);
+    document.getElementById('closeSearch').addEventListener('click', () => dialog.close());
+    input.addEventListener('input', () => render(input.value));
+    input.addEventListener('keydown', event => { if (event.key === 'Enter') results.querySelector('a')?.click(); });
+    document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); if (!dialog.open) openSearch(); } });
+  </script>
+</body>
+</html>
