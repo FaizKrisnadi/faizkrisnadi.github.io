@@ -639,7 +639,34 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
-</style>
+
+    /* ===== Mobile visual parity with desktop ===== */
+    @media (max-width: 700px) {
+      .tabs,
+      .hero-card,
+      .featured-card,
+      .archive,
+      .item,
+      .search-fab,
+      .search-panel {
+        background: var(--surface);
+        border-color: var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .hero-card { border-radius: 30px; }
+      .featured-card,
+      .archive,
+      .item { border-radius: 16px; }
+      .tabs a.active {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        box-shadow: none;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
