@@ -752,18 +752,18 @@
     .work-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
+      gap: 2rem;
     }
 
     .work-card {
-      min-height: 190px;
-      padding: 1.3rem 1.4rem;
+      min-height: 0;
+      padding: 0;
       display: flex;
       flex-direction: column;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
     }
 
     .work-card h3 {
@@ -794,9 +794,13 @@
 
       .work-card {
         min-height: auto;
-        background: var(--surface);
-        border-color: var(--line);
-        box-shadow: var(--shadow);
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .work-card + .work-card {
+        margin-top: .35rem;
       }
     }
 
@@ -840,7 +844,7 @@
             I’m a policy and applied researcher working on investment, development, sustainability, and political economy in Southeast Asia. I use research, data, and public-facing tools to understand how economic change affects people, institutions, and places.
         </p>
         <p>
-            I hold a Master’s in International Affairs from the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy</a> at NUS and have worked with NUS, <a href="https://www.aiddata.org/">AidData at William &amp; Mary</a>, and the <a href="https://www.unisg.ch/en/">University of St. Gallen</a>.
+            I hold a Master’s in International Affairs from the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy</a> at NUS and have worked with the <a href="https://nuscivicresilience.org/">NUS Civic Resilience Laboratory</a>, <a href="https://www.aiddata.org/">AidData at William &amp; Mary</a>, and the <a href="https://www.unisg.ch/en/">University of St. Gallen</a>.
         </p>
     </div>
 
@@ -852,17 +856,17 @@
         <div class="work-grid">
             <article class="work-card">
                 <h3>Migunani</h3>
-                <p>Why I do this work, and the experiences that shaped it.</p>
+                <p>Why I do this work, and what shaped it.</p>
                 <a href="migunani.html">Read the story →</a>
             </article>
             <article class="work-card">
                 <h3>Research</h3>
-                <p>Work on investment, development finance, industrial policy, sustainability, and political economy.</p>
+                <p>Research on investment, development finance, sustainability, and political economy.</p>
                 <a href="research.html">Explore research →</a>
             </article>
             <article class="work-card">
                 <h3>Projects</h3>
-                <p>Public-facing tools and applied data projects built to make research more useful.</p>
+                <p>Public tools and applied data projects.</p>
                 <a href="projects.html">View projects →</a>
             </article>
         </div>
