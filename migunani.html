@@ -120,6 +120,29 @@
       height: 150px;
       display: block;
     }
+  
+    /* ===== Mobile visual parity with desktop ===== */
+    @media (max-width: 700px) {
+      .tabs,
+      .hero,
+      .recognition article,
+      .proof article,
+      .next-step,
+      .search-fab,
+      .search-dialog {
+        background: var(--surface);
+        border-color: var(--line);
+        box-shadow: var(--shadow);
+      }
+      .hero { border-radius: 28px; }
+      .recognition article,
+      .proof article { border-radius: 18px; }
+      .tabs a.active {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+      }
+    }
+
   </style>
 </head>
 <body>
