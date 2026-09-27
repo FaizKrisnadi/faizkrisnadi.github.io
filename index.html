@@ -811,6 +811,43 @@
       }
     }
 
+  
+    /* ===== Primary nav separators ===== */
+    .tabs li {
+      position: relative;
+    }
+
+    .tabs li + li::before {
+      content: "";
+      position: absolute;
+      left: calc(-.3rem - .5px);
+      top: 50%;
+      width: 1px;
+      height: 18px;
+      background: rgba(74, 64, 53, .14);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 560px) {
+      .tabs li + li::before {
+        left: calc(-3px - .5px);
+        height: 16px;
+        background: rgba(74, 64, 53, .12);
+      }
+    }
+
+  
+    .cv-shortcut {
+      margin: .45rem 0 0;
+      font-size: .86rem;
+    }
+
+    .cv-shortcut a {
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
   </style>
 </head>
 
@@ -829,7 +866,6 @@
         <li><a href="migunani.html">Migunani</a></li>
         <li><a href="research.html">Research</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="cv.html">CV</a></li>
             </ul>
         </nav>
     </div>
@@ -853,6 +889,7 @@
         <p>
             I hold a Master’s in International Affairs from the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy</a> at NUS and have worked with the <a href="https://nuscivicresilience.org/">NUS Civic Resilience Laboratory</a>, <a href="https://www.aiddata.org/">AidData at William &amp; Mary</a>, and the <a href="https://www.unisg.ch/en/">University of St. Gallen</a>.
         </p>
+        <p class="cv-shortcut"><a href="cv.html">View CV →</a></p>
     </div>
 
     <!-- Explore -->
