@@ -666,6 +666,44 @@
       }
     }
 
+  
+    /* ===== Primary nav separators ===== */
+    .tabs li {
+      position: relative;
+    }
+
+    .tabs li + li::before {
+      content: "";
+      position: absolute;
+      left: calc(-.3rem - .5px);
+      top: 50%;
+      width: 1px;
+      height: 18px;
+      background: rgba(74, 64, 53, .14);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    @media (max-width: 560px) {
+      .tabs li + li::before {
+        left: calc(-3px - .5px);
+        height: 16px;
+        background: rgba(74, 64, 53, .12);
+      }
+    }
+
+  
+    .cv-shortcut {
+      margin: .8rem 0 0;
+      font-size: .84rem;
+      line-height: 1.35;
+    }
+
+    .cv-shortcut a {
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
   </style>
 </head>
 <body>
@@ -683,7 +721,6 @@
         <li><a href="migunani.html">Migunani</a></li>
         <li><a class="active" href="research.html">Research</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="cv.html">CV</a></li>
       </ul>
     </nav>
   </div>
@@ -692,6 +729,7 @@
     <section class="hero-card" aria-labelledby="research-title">
       <h1 class="hero-title" id="research-title">Capital, Governance,<br>and Public Narratives<br>in Development.</h1>
       <p class="hero-copy">I study how money, institutions, and public narratives shape development outcomes in Indonesia and beyond. My work connects international political economy, Chinese capital, industrial policy, sustainability, and applied data methods to ask who benefits from investment and how governance systems respond.</p>
+      <p class="cv-shortcut"><a href="cv.html">View full CV →</a></p>
     </section>
 
     <section class="section-block" aria-labelledby="featured-work">
