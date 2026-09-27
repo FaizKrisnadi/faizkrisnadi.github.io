@@ -108,6 +108,18 @@
     .cta-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.15rem; padding: .7rem .9rem; border-radius: 10px; background: var(--accent-soft); color: var(--accent-strong); font-weight: 700; }
     .cta-link:hover { background: rgba(153, 107, 29, .19); text-decoration: none; }
 
+  
+    /* Bottom-center analog clock */
+    #footer-clock {
+      margin: 1.5rem auto 6rem;
+      display: flex;
+      justify-content: center;
+    }
+    #footer-clock svg {
+      width: 150px;
+      height: 150px;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -223,6 +235,24 @@
 
   <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
 
+  <!-- Bottom-center analog clock -->
+  <div id="footer-clock" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="96" fill="#FDFCF5" stroke="#D5D1C0" stroke-width="2" />
+      <g id="clock-ticks"></g>
+      <g id="clock-numbers"></g>
+
+      <line id="clock-hour-hand" x1="100" y1="110" x2="100" y2="60" stroke="#2A2520" stroke-width="4"
+        stroke-linecap="round" />
+      <line id="clock-minute-hand" x1="100" y1="112" x2="100" y2="40" stroke="#2A2520" stroke-width="3"
+        stroke-linecap="round" />
+      <line id="clock-second-hand" x1="100" y1="115" x2="100" y2="30" stroke="#B58900" stroke-width="1.5"
+        stroke-linecap="round" />
+
+      <circle cx="100" cy="100" r="3.5" fill="#FDFCF5" stroke="#2A2520" stroke-width="1" />
+    </svg>
+  </div>
+
   <dialog class="search-dialog" id="searchDialog" aria-label="Search this site">
     <div class="search-bar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site" /><button id="closeSearch" aria-label="Close search">×</button></div>
     <div class="search-results" id="searchResults"></div>
@@ -273,6 +303,72 @@
     input.addEventListener('input', () => render(input.value));
     input.addEventListener('keydown', event => { if (event.key === 'Enter') results.querySelector('a')?.click(); });
     document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); if (!dialog.open) openSearch(); } });
+  </script>
+
+  <script>
+    // Bottom-center analog clock
+    (function () {
+      const svgNS = "http://www.w3.org/2000/svg";
+      const ticksGroup = document.getElementById("clock-ticks");
+      const numbersGroup = document.getElementById("clock-numbers");
+      if (!ticksGroup || !numbersGroup) return;
+
+      for (let i = 0; i < 60; i++) {
+        const angle = Math.PI / 30 * i;
+        const isHour = i % 5 === 0;
+        const outerR = 94;
+        const innerR = isHour ? 82 : 88;
+
+        const x1 = 100 + innerR * Math.sin(angle);
+        const y1 = 100 - innerR * Math.cos(angle);
+        const x2 = 100 + outerR * Math.sin(angle);
+        const y2 = 100 - outerR * Math.cos(angle);
+
+        const line = document.createElementNS(svgNS, "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke", "#2A2520");
+        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
+        ticksGroup.appendChild(line);
+      }
+
+      for (let n = 1; n <= 12; n++) {
+        const angle = Math.PI / 6 * n;
+        const radius = 70;
+        const x = 100 + radius * Math.sin(angle);
+        const y = 100 - radius * Math.cos(angle);
+
+        const text = document.createElementNS(svgNS, "text");
+        text.setAttribute("x", x);
+        text.setAttribute("y", y + 1);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.setAttribute("font-size", "16");
+        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
+        text.textContent = n.toString();
+        numbersGroup.appendChild(text);
+      }
+
+      const hourHand = document.getElementById("clock-hour-hand");
+      const minuteHand = document.getElementById("clock-minute-hand");
+      const secondHand = document.getElementById("clock-second-hand");
+
+      function updateClock() {
+        const now = new Date();
+        const seconds = now.getSeconds();
+        const minutes = now.getMinutes();
+        const hours = now.getHours();
+
+        hourHand.setAttribute("transform", "rotate(" + (((hours % 12) + minutes / 60) * 30) + " 100 100)");
+        minuteHand.setAttribute("transform", "rotate(" + ((minutes + seconds / 60) * 6) + " 100 100)");
+        secondHand.setAttribute("transform", "rotate(" + (seconds * 6) + " 100 100)");
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+    })();
   </script>
 </body>
 </html>
