@@ -520,7 +520,32 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
-</style>
+
+    /* ===== Mobile visual parity with desktop ===== */
+    @media (max-width: 700px) {
+      .tabs,
+      .card,
+      .search-fab,
+      .search-panel {
+        background: var(--surface);
+        border-color: var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .card { border-radius: 18px; }
+      .dashboard-preview {
+        background: var(--surface);
+        border-color: var(--line);
+      }
+      .tabs a.active {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        box-shadow: none;
+      }
+    }
+
+  </style>
 </head>
 <body>
   <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)" aria-label="Open search">
