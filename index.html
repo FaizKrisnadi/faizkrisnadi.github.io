@@ -697,7 +697,34 @@
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }
-</style>
+
+    /* ===== Mobile visual parity with desktop ===== */
+    @media (max-width: 700px) {
+      .tabs,
+      .hero-wrap,
+      .card,
+      .search-fab,
+      .search-panel {
+        background: var(--surface);
+        border-color: var(--line);
+        box-shadow: var(--shadow);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+      .hero-wrap { border-radius: 28px; }
+      .card { border-radius: 20px; }
+      .updates-shell {
+        background: rgba(255, 252, 244, .46);
+        border-color: rgba(229, 227, 209, .88);
+      }
+      .tabs a.active {
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        box-shadow: none;
+      }
+    }
+
+  </style>
 </head>
 
 <body>
