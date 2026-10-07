@@ -169,6 +169,56 @@
       }
     }
 
+  
+    /* ===== St. Gallen highlight photo ===== */
+    .highlight-photo {
+      width: min(720px, 100%);
+      margin: 1.25rem auto .35rem;
+    }
+    .highlight-photo a {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: 0 14px 34px rgba(80, 68, 40, .07);
+      text-decoration: none;
+      transition: box-shadow .25s ease, transform .25s ease;
+    }
+    .highlight-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 720 / 454;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+    .highlight-photo a:hover {
+      box-shadow: 0 18px 38px rgba(80, 68, 40, .10);
+      transform: translateY(-1px);
+    }
+    .highlight-photo a:hover img {
+      transform: scale(1.006);
+    }
+    .highlight-photo figcaption {
+      margin: .55rem .15rem 0;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.45;
+    }
+    @media (max-width: 700px) {
+      .highlight-photo {
+        margin: 1rem 0 .25rem;
+      }
+      .highlight-photo a {
+        border-radius: 14px;
+      }
+      .highlight-photo figcaption {
+        margin-top: .45rem;
+        font-size: .8rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -207,6 +257,27 @@
           <p><a href="https://symposium.org/initiatives/global-essay-competition/">View competition ↗</a></p>
         </article>
       </div>
+
+      <figure class="highlight-photo">
+        <a href="https://symposium.org/initiatives/global-essay-competition/" aria-label="Global Essay Competition at the St. Gallen Symposium">
+          <img id="stgallen-highlight-photo" width="720" height="454" alt="Three Global Essay Competition winners holding certificates on stage at the St. Gallen Symposium" decoding="async">
+        </a>
+        <figcaption>Global Essay Competition winners at the 55th St. Gallen Symposium · 2026</figcaption>
+      </figure>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_1__</script>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_2__</script>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_3__</script>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_4__</script>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_5__</script>
+      <script type="text/plain" class="stgallen-image-data">__STG_CHUNK_6__</script>
+      <script>
+        (() => {
+          const photo = document.getElementById('stgallen-highlight-photo');
+          const data = [...document.querySelectorAll('.stgallen-image-data')].map(el => el.textContent.trim()).join('');
+          if (photo && data) photo.src = 'data:image/webp;base64,' + data;
+        })();
+      </script>
+
       <div class="proof">
         <article>
           <span class="card-label">Regional policy engagement</span>
