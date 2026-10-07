@@ -67,9 +67,10 @@
     .chapter p + p { margin-top: .95rem; }
     .flood-preview { display: block; width: 100%; max-height: 330px; margin: 1.3rem 0 .4rem; object-fit: cover; border: 1px solid var(--line); border-radius: 14px; }
     .image-caption { display: block; color: var(--muted); font-size: .83rem; }
-    .further { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .further a { min-height: 110px; padding: 1.15rem .8rem 1.15rem 0; }
-    .further a + a { padding-left: 1rem; border-left: 1px solid var(--line); }
+    .further { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .further a { min-width: 0; padding: 1.15rem 1rem 1.15rem 0; }
+    .further a:nth-child(even) { padding-left: 1.15rem; border-left: 1px solid var(--line); }
+    .further a:nth-child(n + 3) { border-top: 1px solid var(--line); }
     .further strong, .further span { display: block; }
     .further span { margin-top: .25rem; color: var(--muted); font-size: .87rem; }
     footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; text-align: center; }
@@ -92,7 +93,7 @@
       .recognition article { min-height: auto; }
       .chapter { grid-template-columns: 1fr; gap: .35rem; }
       .further { grid-template-columns: 1fr; }
-      .further a, .further a + a { min-height: auto; padding: .85rem 0; border-left: 0; }
+      .further a, .further a:nth-child(even) { min-height: auto; padding: .85rem 0; border-left: 0; }
       .further a + a { border-top: 1px solid var(--line); }
     }
     @media (max-width: 560px) {
