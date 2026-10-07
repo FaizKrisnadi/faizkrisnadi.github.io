@@ -731,19 +731,21 @@
       letter-spacing: -.045em;
     }
 
-    .hero-copy {
-      max-width: 720px;
-      margin-top: 1.15rem;
+    .hero-copy,
+    .hero-support {
+      max-width: 760px;
+      color: #4A4035;
       font-size: 1.04rem;
       line-height: 1.65;
+      font-weight: 400;
+    }
+
+    .hero-copy {
+      margin-top: 1.15rem;
     }
 
     .hero-support {
-      max-width: 760px;
       margin-top: .7rem;
-      color: #7A6A58;
-      font-size: .94rem;
-      line-height: 1.62;
     }
 
     .cv-shortcut {
@@ -959,12 +961,11 @@
         font-size: clamp(2rem, 10vw, 2.7rem);
       }
 
-      .hero-copy {
-        font-size: 1rem;
-      }
-
+      .hero-copy,
       .hero-support {
-        font-size: .92rem;
+        font-size: 1rem;
+        color: #4A4035;
+        line-height: 1.65;
       }
 
       .section-block {
