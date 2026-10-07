@@ -23,6 +23,7 @@
     }
     *{box-sizing:border-box}
     html,body{min-height:100%}
+    html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
     body{
       font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text); background:var(--bg);
@@ -725,7 +726,9 @@
       max-width: 52rem;
       margin: .7rem 0 0;
       color: #4A4035;
-      line-height: 1.7;
+      font-size: .96rem;
+      line-height: 1.65;
+      font-weight: 400;
     }
 
     .research-background .cv-shortcut {
@@ -740,11 +743,12 @@
       }
 
       .research-background h2 {
-        font-size: 1.22rem;
+        font-size: 1.18rem;
       }
 
       .research-background p {
-        line-height: 1.65;
+        font-size: .96rem;
+        line-height: 1.6;
       }
     }
 
