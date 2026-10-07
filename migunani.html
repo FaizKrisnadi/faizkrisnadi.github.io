@@ -170,6 +170,52 @@
     }
 
   
+    /* ===== APR delegation photo ===== */
+    .delegation-photo {
+      width: min(860px, calc(100% - 1.5rem));
+      margin: 1.35rem auto 0;
+    }
+    .delegation-photo .photo-frame {
+      overflow: hidden;
+      border-radius: 4px;
+      background: #ddd7c8;
+      box-shadow: 0 16px 36px rgba(80, 68, 40, .075);
+    }
+    .delegation-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .delegation-photo figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin: .58rem 0 0;
+      color: var(--muted);
+      font-size: .79rem;
+      line-height: 1.45;
+    }
+    .delegation-photo figcaption span:last-child {
+      color: var(--accent-strong);
+      white-space: nowrap;
+    }
+    @media (max-width: 700px) {
+      .delegation-photo {
+        width: calc(100% - 1rem);
+        margin-top: 1rem;
+      }
+      .delegation-photo figcaption {
+        display: block;
+        font-size: .78rem;
+      }
+      .delegation-photo figcaption span:last-child {
+        display: block;
+        margin-top: .08rem;
+      }
+    }
+
     /* ===== St. Gallen editorial moment ===== */
     .highlight-photo {
       width: min(780px, calc(100% - 3rem));
@@ -295,6 +341,19 @@
           <h3>Pacific Forum Young Leader</h3>
           <p>Selected for Pacific Forum’s Young Leaders delegation to the <a href="https://apr.isis.org.my/">39th Asia-Pacific Roundtable</a> in Kuala Lumpur, convened by ISIS Malaysia. During the same visit, I also joined the NextGen Masterclass on Track II diplomacy facilitated by the Asia New Zealand Foundation.</p>
         </article>
+        <figure class="delegation-photo">
+          <div class="photo-frame">
+            <img id="apr-delegation-photo" width="1400" height="1050" alt="Pacific Forum Young Leaders delegation gathered at the 39th Asia-Pacific Roundtable in Kuala Lumpur" loading="lazy" decoding="async">
+          </div>
+          <figcaption><span>Pacific Forum Young Leaders delegation · 39th Asia-Pacific Roundtable</span><span>Kuala Lumpur, 2026</span></figcaption>
+        </figure>
+        <script>
+          (() => {
+            const photo = document.getElementById('apr-delegation-photo');
+            const data = [...document.querySelectorAll('.apr-image-data')].map(el => el.textContent.trim()).join('');
+            if (photo && data) photo.src = 'data:image/webp;base64,' + data;
+          })();
+        </script>
         <article><span class="card-label">Public-facing work</span><h3>Peta Banjir Indonesia</h3><p>A free way to explore about 26 years of flood records across Indonesia. <a href="https://flood.faizkrisnadi.com/">Explore the map ↗</a></p></article>
       </div>
     </section>
