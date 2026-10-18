@@ -202,3 +202,23 @@
 /* Keep decorative flowers as typography rather than platform emoji. */
 .note-flower{font-size:0}
 .note-flower::before{content:"✳︎";font-family:Georgia,"Times New Roman",serif;font-size:33px;font-style:normal;font-weight:400;color:var(--rust)}
+
+/* Responsive service category disclosure; external services CTA stays outside. */
+.service-group{min-width:0}
+.service-group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:var(--serif);font-size:31px;line-height:1.15;color:var(--ink);margin-bottom:26px}
+.service-group>summary::-webkit-details-marker{display:none}
+.service-group>summary:focus-visible{outline:2px solid var(--rust);outline-offset:5px}
+.service-toggle{display:none}
+@media(max-width:620px){
+  .service-audiences{gap:0}
+  .service-group{border-top:1px solid var(--line)}
+  .service-group:last-child{border-bottom:1px solid var(--line)}
+  .service-group>summary{font-size:29px;margin:0;padding:23px 0;min-height:76px}
+  .service-toggle{display:block;position:relative;flex:none;width:16px;height:16px}
+  .service-toggle::before,.service-toggle::after{content:"";position:absolute;background:var(--rust);top:7px;left:0;width:16px;height:1.5px}
+  .service-toggle::after{transform:rotate(90deg);transition:transform .15s}
+  .service-group[open] .service-toggle::after{transform:rotate(0)}
+  .service-group .service-items{padding-bottom:15px}
+  .service-group .service-items article:first-child{border-top:0}
+  .services-main-link{display:inline-block;margin-top:26px;font-size:13px}
+}
