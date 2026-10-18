@@ -1,16 +1,18 @@
 import {readFileSync, writeFileSync, mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolve, dirname} from 'node:path';
+import {createHash} from 'node:crypto';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const source = resolve(root, '_site-source');
 const output = resolve(root, 'assets/redesign');
 mkdirSync(output, {recursive: true});
+const assetVersion = createHash('sha256').update(readFileSync(resolve(source, 'style.css'))).update(readFileSync(resolve(source, 'script.js'))).digest('hex').slice(0, 10);
 
 const links = new Map([
-  ['#home', 'index.html'], ['#about', 'about.html'], ['#migunani', 'migunani.html'],
+  ['#home', 'index.html'], ['#about', 'about.html'], ['#migunani', 'migunani.html'], ['#news', 'news.html'],
   ['#work', 'research.html'], ['#work/research', 'research.html'],
-  ['#work/projects', 'projects.html'], ['#work/cv', 'cv.html'],
+  ['#work/projects', 'projects.html'], ['#work/cv', 'cv.html'], ['#work/services', 'services.html'],
   ...['reports', 'journals', 'writing', 'talks'].map(id => [`#work/research/${id}`, `research.html#${id}`]),
 ]);
 function translateLinks(html) {
@@ -21,10 +23,16 @@ function translateLinks(html) {
     return whole;
   });
 }
-let template = translateLinks(readFileSync(resolve(source, 'index.html'), 'utf8'))
+const news = JSON.parse(readFileSync(resolve(source, 'news.json'), 'utf8'));
+const newsItems = entries => `<ol class="news-list">${entries.map(item => `<li><time datetime="${item.date}">${item.label}</time><p>${item.html}</p></li>`).join('\n')}</ol>`;
+const years = [...new Set(news.map(item => item.date.slice(0, 4)))];
+const newsArchive = years.map(year => `<section class="news-year" aria-labelledby="year-${year}"><h2 id="year-${year}">${year}</h2>${newsItems(news.filter(item => item.date.startsWith(year)))}</section>`).join('\n');
+let template = translateLinks(readFileSync(resolve(source, 'index.html'), 'utf8')
+  .replace('<!-- NEWS_PREVIEW -->', newsItems(news.slice(0, 4)))
+  .replace('<!-- NEWS_ARCHIVE -->', newsArchive))
   .replaceAll('src="assets/', 'src="assets/redesign/')
-  .replace('href="style.css"', 'href="assets/redesign/site.css"')
-  .replace('src="script.js"', 'src="assets/redesign/site.js"')
+  .replace('href="style.css"', `href="assets/redesign/site.css?v=${assetVersion}"`)
+  .replace('src="script.js"', `src="assets/redesign/site.js?v=${assetVersion}"`)
   .replaceAll('href="assets/newsreader.ttf"', 'href="assets/redesign/newsreader.ttf"')
   .replace('href="faiz-professional-cv.pdf">View CV ↗', 'href="cv.html">View CV →')
   .replace(/data="(landscape|migunani-motif|community-motif)\.svg"/g, 'data="assets/redesign/$1.svg"');
@@ -36,6 +44,8 @@ const pages = [
   {file: 'research.html', page: 'work', panel: 'research', title: 'Research', description: 'Policy reports, peer-reviewed articles, public writing, and presentations by Faiz Krisnadi.'},
   {file: 'projects.html', page: 'work', panel: 'projects', title: 'Projects', description: 'Public maps and tools by Faiz Krisnadi, including Peta Banjir Indonesia and Paper to Power.'},
   {file: 'cv.html', page: 'work', panel: 'cv', title: 'CV', description: 'Download Faiz Krisnadi’s academic CV or professional CV.'},
+  {file: 'services.html', page: 'work', panel: 'services', title: 'Services', description: 'Mentoring, talks, workshops, and policy research support from Faiz Krisnadi.'},
+  {file: 'news.html', page: 'news', title: 'News', description: 'Updates on Faiz Krisnadi’s research, publications, projects, and activities.'},
 ];
 
 for (const page of pages) {
@@ -49,10 +59,10 @@ for (const page of pages) {
       const clean = tag.replace(/ hidden(?=>)/, '');
       return name === (page.panel || 'research') ? clean : clean.replace(/>$/, ' hidden>');
     })
-    .replace(/(<a\b[^>]*data-nav="([^"]+)")/g, (match, tag, name) => name === page.page ? `${tag} aria-current="page"` : tag)
+    .replace(/(<a\b[^>]*data-nav="([^"]+)")/g, (match, tag, name) => name === (page.page === 'news' ? 'about' : page.page) ? `${tag} aria-current="page"` : tag)
     .replace(/(<a\b[^>]*data-work-nav="([^"]+)")/g, (match, tag, name) => name === (page.panel || 'research') ? `${tag} aria-current="page"` : tag);
-  const workTitle = page.panel === 'projects' ? 'Projects' : page.panel === 'cv' ? 'CV' : 'Research';
-  const workDescription = page.panel === 'projects' ? 'Maps and tools for exploring public data.' : page.panel === 'cv' ? 'Academic and professional versions.' : 'Investment, sustainability, and political economy in Southeast Asia.';
+  const workTitle = page.panel === 'projects' ? 'Projects' : page.panel === 'cv' ? 'CV' : page.panel === 'services' ? 'Services' : 'Research';
+  const workDescription = page.panel === 'projects' ? 'Maps and tools for exploring public data.' : page.panel === 'cv' ? 'Academic and professional versions.' : page.panel === 'services' ? 'Mentoring, speaking, workshops, and research support.' : 'Investment, sustainability, and political economy in Southeast Asia.';
   html = html.replace(/(<h1 id="work-title">)[^<]+/, `$1${workTitle}`)
     .replace(/(<p class="page-deck" id="work-description">)[^<]+/, `$1${workDescription}`);
   const canonical = `https://faizkrisnadi.com/${page.file === 'index.html' ? '' : page.file}`;

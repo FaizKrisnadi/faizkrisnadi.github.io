@@ -2,7 +2,9 @@
 
 The approved redesign is maintained here. Run `node scripts/build-redesign.mjs` from the repository root after editing the template, stylesheet, script, or illustrations.
 
-The generator writes the six root HTML pages and the corresponding `assets/redesign/` code. Each page has its own initial visible content, title, description, and canonical URL, and remains readable without JavaScript. Navigation uses the established `.html` URLs. Prototype hash routes remain supported for previously shared links. The CV chooser links to the existing academic `faiz-cv.pdf` and the separately preserved `faiz-professional-cv.pdf`.
+The generator writes the root HTML pages and the corresponding `assets/redesign/` code. Each page has its own initial visible content, title, description, and canonical URL, and remains readable without JavaScript. Navigation uses the established `.html` URLs. Prototype hash routes remain supported for previously shared links. The CV chooser links to the existing academic `faiz-cv.pdf` and the separately preserved `faiz-professional-cv.pdf`.
+
+Work includes Research, Projects, CV, and Services. The service overview links to the existing Work with Faiz site and does not publish pricing. `news.json` supplies the four latest About updates and the separate News archive; keep it in reverse chronological order. The main navigation remains About, Migunani, Work. Footer social icons are from Simple Icons (CC0 license preserved in `assets/redesign/icons/`).
 
 The `_site-source` directory is source-only: GitHub Pages/Jekyll does not publish underscore-prefixed source directories. Keep the generated output committed because this repository uses the standard GitHub Pages branch build, not a separate Node build workflow.
 

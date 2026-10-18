@@ -1,10 +1,10 @@
 const pages = [...document.querySelectorAll('[data-page]')];
-const pageNames = {home: 'Policy researcher', work: 'Work', migunani: 'Migunani', about: 'About'};
-const fileRoutes = {'index.html': 'home', 'about.html': 'about', 'migunani.html': 'migunani', 'research.html': 'work/research', 'projects.html': 'work/projects', 'cv.html': 'work/cv'};
+const pageNames = {home: 'Policy researcher', work: 'Work', migunani: 'Migunani', about: 'About', news: 'News'};
+const fileRoutes = {'index.html': 'home', 'about.html': 'about', 'migunani.html': 'migunani', 'research.html': 'work/research', 'projects.html': 'work/projects', 'cv.html': 'work/cv', 'services.html': 'work/services', 'news.html': 'news'};
 function currentRoute() {
   const fragment = location.hash.slice(1);
   // Keep links shared during the prototype working alongside the permanent URLs.
-  if (/^(home|about|migunani|work)(\/|$)/.test(fragment)) return fragment;
+  if (/^(home|about|migunani|work|news)(\/|$)/.test(fragment)) return fragment;
   const file = location.pathname.split('/').pop() || 'index.html';
   const route = fileRoutes[file] || 'home';
   if (route === 'work/research' && ['reports', 'journals', 'writing', 'talks'].includes(fragment)) return `${route}/${fragment}`;
@@ -13,11 +13,11 @@ function currentRoute() {
 function showPage({focus = true} = {}) {
   const [requested = 'home', workView = 'research', section] = currentRoute().split('/');
   const name = Object.hasOwn(pageNames, requested) ? requested : 'home';
-  const panel = ['research', 'projects', 'cv'].includes(workView) ? workView : 'research';
-  const workTitles = {research: 'Research', projects: 'Projects', cv: 'CV'};
+  const panel = ['research', 'projects', 'cv', 'services'].includes(workView) ? workView : 'research';
+  const workTitles = {research: 'Research', projects: 'Projects', cv: 'CV', services: 'Services'};
   pages.forEach(page => { page.hidden = page.dataset.page !== name; });
   document.querySelectorAll('[data-nav]').forEach(link => {
-    if (link.dataset.nav === name) link.setAttribute('aria-current', 'page');
+    if (link.dataset.nav === (name === 'news' ? 'about' : name)) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
   document.querySelectorAll('[data-work-panel]').forEach(view => { view.hidden = view.dataset.workPanel !== panel; });
@@ -29,6 +29,7 @@ function showPage({focus = true} = {}) {
   document.getElementById('work-description').textContent = panel === 'projects'
     ? 'Maps and tools for exploring public data.'
     : panel === 'cv' ? 'Academic and professional versions.'
+    : panel === 'services' ? 'Mentoring, speaking, workshops, and research support.'
     : 'Investment, sustainability, and political economy in Southeast Asia.';
   document.title = `Faiz Krisnadi — ${name === 'work' ? workTitles[panel] : pageNames[name]}`;
   const target = name === 'work' && panel === 'research' && ['reports', 'journals', 'writing', 'talks'].includes(section)
@@ -52,11 +53,6 @@ document.querySelector('.about-layout .text-link').textContent = 'View CV →';
 document.querySelector('.skip').addEventListener('click', event => {
   event.preventDefault(); document.getElementById('main').focus();
 });
-
-const colophon = document.getElementById('colophon');
-document.getElementById('colophon-open').addEventListener('click', () => colophon.showModal());
-colophon.querySelector('.dialog-close').addEventListener('click', () => colophon.close());
-colophon.addEventListener('click', event => { if (event.target === colophon) { const rect = colophon.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) colophon.close(); } });
 
 // Short, self-contained movement: play once on entry, or again by request.
 const visibleMotifs = new WeakMap();
