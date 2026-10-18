@@ -68,11 +68,13 @@ for (const page of pages) {
   const canonical = `https://faizkrisnadi.com/${page.file === 'index.html' ? '' : page.file}`;
   const metadata = `  <link rel="canonical" href="${canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:title" content="Faiz Krisnadi — ${page.title}">\n  <meta property="og:description" content="${page.description}">\n  <meta property="og:url" content="${canonical}">\n  <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait.jpg">\n`;
   html = html.replace('</head>', `${metadata}</head>`);
+  if (page.page !== 'home') html = html.replace(/(<video id="landscape-video"[^>]*)(>)/, (_, tag, end) => tag.replace(' autoplay', '').replace('preload="auto"', 'preload="none"') + end);
   writeFileSync(resolve(root, page.file), html);
 }
 
 writeFileSync(resolve(output, 'site.css'), readFileSync(resolve(source, 'style.css'), 'utf8').replaceAll("url('assets/", "url('"));
 writeFileSync(resolve(output, 'site.js'), readFileSync(resolve(source, 'script.js')));
+for (const name of ['home-video.js', 'home-video.css']) writeFileSync(resolve(output, name), readFileSync(resolve(source, name)));
 writeFileSync(resolve(root, 'favicon.svg'), readFileSync(resolve(source, 'favicon.svg')));
 for (const name of ['landscape', 'migunani-motif', 'community-motif']) {
   let svg = readFileSync(resolve(source, `${name}.svg`), 'utf8');

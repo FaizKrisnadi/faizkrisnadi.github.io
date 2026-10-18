@@ -10,6 +10,8 @@
   <link rel="preload" href="assets/newsreader.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
+  <link rel="stylesheet" href="assets/redesign/home-video.css?v=1">
+  <script src="/assets/redesign/home-video.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -37,14 +39,18 @@
         </div>
 
         <section class="ways-in" aria-label="Explore the website">
-          <object class="landscape" data="landscape.svg" type="image/svg+xml" aria-label="Explore About me, Migunani, then Research and tools">
-            <p><a href="#about">About me</a> · <a href="#migunani">Migunani</a> · <a href="#work">Research &amp; tools</a></p>
-          </object>
-          <button class="landscape-toggle" type="button" hidden aria-pressed="false">Pause illustration</button>
+          <div class="video-landscape">
+            <video id="landscape-video" autoplay muted loop playsinline preload="auto" poster="/assets/redesign/video/poster.png?v=2" aria-label="Animated drawing of research, community, and public tools">
+              <source src="/assets/redesign/video/landscape.webm?v=2" type="video/webm">
+              <source src="/assets/redesign/video/landscape.mp4?v=2" type="video/mp4">
+            </video>
+            <img class="video-still" src="/assets/redesign/video/poster.png?v=2" alt="A person writing, people gathered beneath a tree, and a research workshop">
+            <button type="button" id="video-toggle" aria-label="Pause illustration" aria-pressed="false" title="Pause illustration"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg></button>
+          </div>
           <div class="explore-links" aria-label="Explore the website">
-            <a href="#about"><span class="index-number">01</span><span>About me</span><span aria-hidden="true">↗</span></a>
-            <a href="#migunani"><span class="index-number">02</span><span>Migunani</span><span aria-hidden="true">↗</span></a>
-            <a href="#work"><span class="index-number">03</span><span>Research &amp; tools</span><span aria-hidden="true">↗</span></a>
+            <a href="#about"><span>About me</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
+            <a href="#migunani"><span>Migunani</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
+            <a href="#work"><span>Research &amp; tools</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
           </div>
         </section>
 

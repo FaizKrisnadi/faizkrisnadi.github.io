@@ -16,6 +16,8 @@
   <meta property="og:description" content="Community work, research, and policy: the people and experiences behind Faiz Krisnadi’s work.">
   <meta property="og:url" content="https://faizkrisnadi.com/migunani.html">
   <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait.jpg">
+  <link rel="stylesheet" href="assets/redesign/home-video.css?v=1">
+  <script src="assets/redesign/home-video.js?v=1" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -43,14 +45,18 @@
         </div>
 
         <section class="ways-in" aria-label="Explore the website">
-          <object class="landscape" data="assets/redesign/landscape.svg?v=6eee278" type="image/svg+xml" aria-label="Explore About me, Migunani, then Research and tools">
-            <p><a href="about.html">About me</a> · <a href="migunani.html">Migunani</a> · <a href="research.html">Research &amp; tools</a></p>
-          </object>
-          <button class="landscape-toggle" type="button" hidden aria-pressed="false">Pause illustration</button>
+          <div class="video-landscape">
+            <video id="landscape-video" muted loop playsinline preload="none" poster="/assets/redesign/video/poster.png?v=2" aria-label="Animated drawing of research, community, and public tools">
+              <source src="/assets/redesign/video/landscape.webm?v=2" type="video/webm">
+              <source src="/assets/redesign/video/landscape.mp4?v=2" type="video/mp4">
+            </video>
+            <img class="video-still" src="/assets/redesign/video/poster.png?v=2" alt="A person writing, people gathered beneath a tree, and a research workshop">
+            <button type="button" id="video-toggle" aria-label="Pause illustration" aria-pressed="false" title="Pause illustration"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg></button>
+          </div>
           <div class="explore-links" aria-label="Explore the website">
-            <a href="about.html"><span class="index-number">01</span><span>About me</span><span aria-hidden="true">↗</span></a>
-            <a href="migunani.html"><span class="index-number">02</span><span>Migunani</span><span aria-hidden="true">↗</span></a>
-            <a href="research.html"><span class="index-number">03</span><span>Research &amp; tools</span><span aria-hidden="true">↗</span></a>
+            <a href="about.html"><span>About me</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
+            <a href="migunani.html"><span>Migunani</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
+            <a href="research.html"><span>Research &amp; tools</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
           </div>
         </section>
 
