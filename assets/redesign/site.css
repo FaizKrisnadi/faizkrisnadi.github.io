@@ -180,3 +180,21 @@
  .news-archive{margin-bottom:50px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.replay-motion{display:none}}
+
+/* Mobile hero refinement: desktop layout remains unchanged. */
+.wordmark-star{font-size:0;line-height:1}
+.wordmark-star::before{content:"✳︎";font-family:Georgia,"Times New Roman",serif;font-size:28px;font-style:normal;font-weight:400;color:var(--rust)}
+@media(max-width:620px){
+  .masthead .wordmark{gap:8px;font-size:clamp(23px,6.2vw,26px);white-space:nowrap}
+  .wordmark-star::before{font-size:22px}
+  .home-intro{padding:36px 0 46px;gap:29px}
+  .home-intro h1{font-size:clamp(51px,12.9vw,66px);line-height:1.01;letter-spacing:-.045em}
+  .home-intro .intro-deck{font-size:clamp(20px,5.3vw,23px);line-height:1.34;margin-top:25px;max-width:31rem}
+  .home-intro .portrait{width:min(66%,238px);justify-self:center;margin:5px 0 0;padding:0}
+  .home-intro .photo-mat{padding:7px}
+  .home-intro .portrait img{width:100%;height:auto;aspect-ratio:4/4.8;object-fit:cover;object-position:center 52%}
+}
+@media(max-width:360px){
+  .masthead nav{gap:23px}
+  .home-intro h1{font-size:clamp(46px,12.5vw,53px)}
+}
