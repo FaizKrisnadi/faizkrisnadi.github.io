@@ -272,3 +272,12 @@
  .news-scroll .news-list p{font-size:14px;line-height:1.6}
  .elsewhere>.eyebrow{font-size:13px}
 }
+
+/* Make the About news feed visibly scrollable. */
+.news-scroll{position:relative;border:1px solid #c7ccc8;background:#f2f3ed;border-radius:5px;padding:0 12px 0 17px;box-shadow:inset 0 1px 2px rgba(51,59,99,.025)}
+.news-scroll-inner{padding-right:8px}
+.news-scroll::-webkit-scrollbar{width:7px}
+.news-scroll::-webkit-scrollbar-thumb{background:#a8ada8;border-radius:8px;border:1px solid #f2f3ed}
+.news-scroll::-webkit-scrollbar-track{background:#e8ebe4}
+.news-scroll + .news-scroll-hint{display:flex;align-items:center;justify-content:flex-end;gap:7px;margin-top:9px;color:var(--rust);font-size:11px;letter-spacing:.02em}
+@media(max-width:620px){.news-scroll{padding:0 10px 0 13px}.news-scroll-inner{padding-right:8px}}
