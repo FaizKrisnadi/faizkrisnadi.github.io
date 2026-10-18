@@ -35,7 +35,7 @@ let template = translateLinks(readFileSync(resolve(source, 'index.html'), 'utf8'
   .replace('src="script.js"', `src="assets/redesign/site.js?v=${assetVersion}"`)
   .replaceAll('href="assets/newsreader.ttf"', 'href="assets/redesign/newsreader.ttf"')
   .replace('href="faiz-professional-cv.pdf">View CV ↗', 'href="cv.html">View CV →')
-  .replace(/data="(landscape|migunani-motif|community-motif)\.svg"/g, 'data="assets/redesign/$1.svg"');
+  .replace(/data="(landscape|migunani-motif|community-motif)\.svg"/g, `data="assets/redesign/$1.svg?v=${assetVersion}"`);
 
 const pages = [
   {file: 'index.html', page: 'home', title: 'Policy researcher', description: 'Faiz Krisnadi is a policy researcher working on investment, sustainability, and political economy in Southeast Asia.'},
