@@ -1,604 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="description" content="Migunani: the experiences, people, and public-facing work that have shaped Faiz Krisnadi's approach to research, policy, and service." />
-  <title>Migunani | Faiz Krisnadi</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #F1EFE0;
-      --text: #2E2E2E;
-      --accent: #996B1D;
-      --accent-strong: #7A5412;
-      --accent-soft: rgba(153, 107, 29, .14);
-      --line: rgba(229, 227, 209, .72);
-      --muted: #6E6358;
-      --surface: #FBFAF5;
-      --shadow: 0 18px 44px rgba(80, 68, 40, .08), inset 0 1px 0 rgba(255, 255, 255, .8);
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      padding: calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
-      background: var(--bg);
-      color: var(--text);
-      font: 400 17px/1.75 "Lato", system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--accent-strong); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 3px; }
-    .tabs-outer { max-width: 980px; margin: 0 auto 1.25rem; padding: 0 .2rem; position: sticky; top: calc(8px + env(safe-area-inset-top)); z-index: 45; }
-    .tabs { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
-    .tabs ul { display: flex; gap: .6rem; align-items: center; list-style: none; margin: 0; padding: .35rem; }
-    .tabs a { display: inline-block; padding: .65rem 1rem; border-radius: 12px; color: #4A4035; font-weight: 700; white-space: nowrap; }
-    .tabs a:hover { background: rgba(229, 227, 209, .5); color: var(--text); text-decoration: none; }
-    .tabs a.active { background: var(--accent-soft); color: var(--accent-strong); }
-    main, footer { max-width: 980px; margin-inline: auto; }
-    .hero, .recognition article, .proof article { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
-    .hero { border-radius: 28px; padding: clamp(1.4rem, 4vw, 2.5rem); }
-    .eyebrow, .card-label, .chapter-meta { color: var(--accent-strong); font-size: .78rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
-    .eyebrow { margin: 0 0 .65rem; }
-    h1 { margin: 0 0 1.1rem; font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.07; letter-spacing: -.04em; }
-    .hero p:not(.eyebrow) { max-width: 820px; margin: 0; font-size: 1.08rem; }
-    .hero p + p { margin-top: 1rem !important; }
-    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 2.7rem 0 1.15rem; }
-    h2 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.05rem); line-height: 1.2; letter-spacing: -.025em; }
-    .section-note { margin: 0; color: var(--muted); font-size: .9rem; }
-    .recognition, .proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-    .recognition article, .proof article { border-radius: 18px; padding: 1.3rem 1.4rem; }
-    .recognition article { display: flex; flex-direction: column; justify-content: space-between; min-height: 205px; }
-    .card-label { display: block; margin-bottom: 1.1rem; }
-    h3 { margin: 0; font-size: 1.35rem; line-height: 1.3; }
-    .recognition p, .proof p { margin: .5rem 0 0; color: var(--muted); font-size: .96rem; }
-    .recognition a, .proof a { font-weight: 700; }
-    .proof { margin-top: 1rem; }
-    .chapter { display: grid; grid-template-columns: 145px minmax(0, 1fr); gap: 1.7rem; padding: 1.6rem 0 1.85rem; border-top: 1px solid var(--line); }
-    .chapter:last-of-type { border-bottom: 1px solid var(--line); }
-    .chapter h3 { font-size: 1.5rem; }
-    .chapter p { max-width: 730px; margin: .7rem 0 0; }
-    .chapter p + p { margin-top: .95rem; }
-    .flood-preview { display: block; width: 100%; max-height: 330px; margin: 1.3rem 0 .4rem; object-fit: cover; border: 1px solid var(--line); border-radius: 14px; }
-    .image-caption { display: block; color: var(--muted); font-size: .83rem; }
-    .further { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    .further a { min-width: 0; padding: 1.15rem 1rem 1.15rem 0; }
-    .further a:nth-child(even) { padding-left: 1.15rem; border-left: 1px solid var(--line); }
-    .further a:nth-child(n + 3) { border-top: 1px solid var(--line); }
-    .further strong, .further span { display: block; }
-    .further span { margin-top: .25rem; color: var(--muted); font-size: .87rem; }
-    footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; text-align: center; }
-    footer a { margin-left: .5rem; }
-    .search-fab { position: fixed; top: calc(16px + env(safe-area-inset-top)); right: 18px; width: 52px; height: 52px; z-index: 50; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--surface); color: #4A4035; box-shadow: var(--shadow); cursor: pointer; }
-    .search-fab:hover { color: var(--accent-strong); }
-    .search-dialog { width: min(900px, calc(100% - 28px)); max-height: 85vh; margin: 8vh auto 0; padding: 1rem; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); box-shadow: 0 30px 60px rgba(0,0,0,.15); }
-    .search-dialog::backdrop { background: rgba(40,35,25,.22); backdrop-filter: blur(5px); }
-    .search-bar { display: flex; align-items: center; gap: .6rem; padding: .35rem .6rem; border: 1px solid var(--line); border-radius: 14px; }
-    .search-bar input { flex: 1; min-width: 0; padding: .65rem 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; }
-    .search-bar button { border: 0; background: none; color: var(--muted); font-size: 1.2rem; cursor: pointer; }
-    .search-results { max-height: 55vh; overflow: auto; margin-top: .5rem; }
-    .search-results a { display: block; padding: .65rem; border-radius: 8px; color: var(--text); }
-    .search-results a:hover { background: var(--accent-soft); text-decoration: none; }
-    .search-results small { display: block; color: var(--muted); }
-    @media (max-width: 700px) {
-      .section-head { display: block; }
-      .section-note { margin-top: .3rem; }
-      .recognition, .proof { grid-template-columns: 1fr; }
-      .recognition article { min-height: auto; }
-      .chapter { grid-template-columns: 1fr; gap: .35rem; }
-      .further { grid-template-columns: 1fr; }
-      .further a, .further a:nth-child(even) { min-height: auto; padding: .85rem 0; border-left: 0; }
-      .further a + a { border-top: 1px solid var(--line); }
-    }
-    @media (max-width: 560px) {
-      .tabs ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 6px; }
-      .tabs a { display: flex; align-items: center; justify-content: center; min-width: 0; height: 46px; padding: 0; overflow: hidden; font-size: clamp(13px, 3.8vw, 17px); }
-      .search-fab { top: calc(74px + env(safe-area-inset-top)); right: 14px; }
-    }
-  
-    .meaning { margin: -.45rem 0 1.15rem !important; color: var(--muted); font-size: .96rem !important; }
-    .next-step { margin-top: 2.7rem; padding: clamp(1.35rem, 4vw, 2rem); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
-    .next-step h2 { margin-bottom: .85rem; }
-    .next-step p { max-width: 780px; margin: .7rem 0 0; }
-    .cta-link { display: inline-flex; align-items: center; gap: .4rem; margin-top: 1.15rem; padding: .7rem .9rem; border-radius: 10px; background: var(--accent-soft); color: var(--accent-strong); font-weight: 700; }
-    .cta-link:hover { background: rgba(153, 107, 29, .19); text-decoration: none; }
-
-  
-    /* Bottom-center analog clock */
-    #footer-clock {
-      margin: 1.5rem auto 6rem;
-      display: flex;
-      justify-content: center;
-    }
-    #footer-clock svg {
-      width: 150px;
-      height: 150px;
-      display: block;
-    }
-  
-    /* ===== Mobile visual parity with desktop ===== */
-    @media (max-width: 700px) {
-      .tabs,
-      .hero,
-      .recognition article,
-      .proof article,
-      .next-step,
-      .search-fab,
-      .search-dialog {
-        background: var(--surface);
-        border-color: var(--line);
-        box-shadow: var(--shadow);
-      }
-      .hero { border-radius: 28px; }
-      .recognition article,
-      .proof article { border-radius: 18px; }
-      .tabs a.active {
-        background: var(--accent-soft);
-        color: var(--accent-strong);
-      }
-    }
-
-  
-    /* ===== Primary nav separators ===== */
-    .tabs li {
-      position: relative;
-    }
-
-    .tabs li + li::before {
-      content: "";
-      position: absolute;
-      left: calc(-.3rem - .5px);
-      top: 50%;
-      width: 1px;
-      height: 18px;
-      background: rgba(74, 64, 53, .14);
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    @media (max-width: 560px) {
-      .tabs li + li::before {
-        left: calc(-3px - .5px);
-        height: 16px;
-        background: rgba(74, 64, 53, .12);
-      }
-    }
-
-  
-    /* ===== APR delegation photo ===== */
-    .delegation-photo {
-      grid-column: 1 / -1;
-      width: min(800px, calc(100% - 1.5rem));
-      margin: 1.35rem auto 0;
-    }
-    .delegation-photo .photo-frame {
-      overflow: hidden;
-      border-radius: 4px;
-      background: #ddd7c8;
-      box-shadow: 0 16px 36px rgba(80, 68, 40, .075);
-    }
-    .delegation-photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-    }
-    .delegation-photo figcaption {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: .58rem 0 0;
-      color: var(--muted);
-      font-size: .79rem;
-      line-height: 1.45;
-    }
-    .delegation-photo figcaption span:last-child {
-      color: var(--accent-strong);
-      white-space: nowrap;
-    }
-    @media (max-width: 700px) {
-      .delegation-photo {
-        width: calc(100% - 1rem);
-        margin-top: 1rem;
-      }
-      .delegation-photo figcaption {
-        display: block;
-        font-size: .78rem;
-      }
-      .delegation-photo figcaption span:last-child {
-        display: block;
-        margin-top: .08rem;
-      }
-    }
-
-    /* ===== St. Gallen editorial moment ===== */
-    .highlight-photo {
-      width: min(780px, calc(100% - 3rem));
-      margin: 1.6rem auto 1.8rem;
-    }
-    .highlight-photo a {
-      position: relative;
-      display: block;
-      overflow: hidden;
-      border-radius: 4px;
-      background: #ddd7c8;
-      box-shadow: 0 18px 42px rgba(80, 68, 40, .09);
-      text-decoration: none;
-    }
-    .highlight-photo a::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(46, 46, 46, .08);
-      pointer-events: none;
-    }
-    .highlight-photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 720 / 454;
-      object-fit: cover;
-      transition: transform .45s cubic-bezier(.2,.7,.2,1);
-    }
-    .highlight-photo a:hover img { transform: scale(1.008); }
-    .highlight-photo figcaption {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: .62rem 0 0;
-      color: var(--muted);
-      font-size: .79rem;
-      line-height: 1.45;
-    }
-    .highlight-photo figcaption span:last-child {
-      color: var(--accent-strong);
-      white-space: nowrap;
-    }
-    @media (max-width: 700px) {
-      .highlight-photo {
-        width: calc(100% - 1rem);
-        margin: 1.25rem auto 1.55rem;
-      }
-      .highlight-photo a { border-radius: 3px; }
-      .highlight-photo figcaption {
-        display: block;
-        margin-top: .5rem;
-        font-size: .78rem;
-      }
-      .highlight-photo figcaption span:last-child {
-        display: block;
-        margin-top: .08rem;
-      }
-    }
-
-    /* Keep each photograph and its context together at every screen size. */
-    .recognition, .proof { grid-template-columns: minmax(0, 1fr); }
-    .recognition article { min-height: auto; }
-    .photo-card, .proof article.photo-card {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      align-items: center;
-      gap: 1.7rem;
-      margin-top: 1rem;
-      padding: 1.3rem 1.4rem;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-    .proof article.photo-card { margin-top: 0; }
-    .photo-card-copy { min-width: 0; }
-    .photo-card-copy p { margin: .7rem 0 0; color: var(--muted); font-size: .96rem; }
-    .photo-card-copy a { font-weight: 700; }
-    .photo-card .highlight-photo, .photo-card .delegation-photo {
-      grid-column: auto;
-      grid-row: 1;
-      width: 100%;
-      min-width: 0;
-      margin: 0;
-    }
-    .photo-card .delegation-photo { grid-column: 1; }
-    .photo-card .delegation-photo + * { min-width: 0; }
-    .photo-card .photo-frame, .photo-card .highlight-photo a {
-      border-radius: 10px;
-      box-shadow: none;
-    }
-    .photo-card img { height: auto; object-fit: contain; }
-    .photo-card figcaption { display: block; font-size: .75rem; }
-    .photo-card figcaption span { display: block; }
-    .photo-card figcaption span:last-child { margin-top: .15rem; white-space: normal; }
-    @media (max-width: 700px) {
-      .photo-card, .proof article.photo-card { grid-template-columns: minmax(0, 1fr); gap: 1.15rem; }
-      .photo-card .highlight-photo, .photo-card .delegation-photo { grid-column: 1; grid-row: 1; }
-      .photo-card-copy { grid-column: 1; grid-row: 2; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta name="description" content="Community work, research, and policy: the people and experiences behind Faiz Krisnadi’s work.">
+  <title>Faiz Krisnadi — Migunani</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/redesign/newsreader.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/redesign/site.css">
+  <script src="assets/redesign/site.js" defer></script>
+  <link rel="canonical" href="https://faizkrisnadi.com/migunani.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Faiz Krisnadi — Migunani">
+  <meta property="og:description" content="Community work, research, and policy: the people and experiences behind Faiz Krisnadi’s work.">
+  <meta property="og:url" content="https://faizkrisnadi.com/migunani.html">
+  <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait.jpg">
 </head>
 <body>
-  <button class="search-fab" id="openSearch" aria-label="Open search" title="Search (⌘/Ctrl + K)"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></button>
-  <div class="tabs-outer">
-    <nav class="tabs" aria-label="Primary">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a class="active" aria-current="page" href="migunani.html">Migunani</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="projects.html">Projects</a></li>
-      </ul>
-    </nav>
-  </div>
-
-
-  <main>
-    <header class="hero">
-      <h1>Migunani</h1>
-      <p class="meaning"><em>Migunani</em> is a Javanese word for being useful or beneficial to others.</p>
-      <p>Growing up, two Javanese sayings have lived rent-free in my head: <em>urip iku urup</em>—a life should bring light to others—and <em>ngelmu iku kalakone kanthi laku</em>—knowledge has to be lived, not just learned. I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p>
-      <p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. This page brings those experiences together with the opportunities and recognition I’ve received. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="masthead">
+      <a class="wordmark" href="index.html" aria-label="Faiz Krisnadi, home">faiz krisnadi<span class="wordmark-star" aria-hidden="true">✳</span></a>
+      <nav aria-label="Main navigation">
+        <a href="about.html" data-nav="about">About</a>
+        <a href="migunani.html" data-nav="migunani" aria-current="page">Migunani</a>
+        <a href="research.html" data-nav="work">Work</a>
+      </nav>
+      <a class="hello" href="mailto:hi@faizkrisnadi.com">Say hello <span aria-hidden="true">↗</span></a>
     </header>
 
-    <section aria-labelledby="highlights-title">
-      <div class="section-head">
-        <h2 id="highlights-title">Selected highlights</h2>
-      </div>
-      <div class="recognition">
-        <article>
-          <div><span class="card-label">NUS · 2026</span><h3>NUS Achievement Awards recipient</h3><p>Recognised under Competitions (General) for the St. Gallen Global Essay Competition result.</p></div>
-          <p><a href="https://osa.nus.edu.sg/naa/naa-recipients/">View NUS listing ↗</a></p>
-        </article>
-      </div>
-
-      <article class="photo-card">
-      <figure class="highlight-photo">
-        <a href="https://symposium.org/initiatives/global-essay-competition/" aria-label="Global Essay Competition at the St. Gallen Symposium">
-          <img id="stgallen-highlight-photo" width="720" height="454" alt="Three Global Essay Competition winners holding certificates on stage at the St. Gallen Symposium" decoding="async">
-        </a>
-        <figcaption><span>Global Essay Competition winners · 55th St. Gallen Symposium</span><span>St. Gallen, 2026</span></figcaption>
-      </figure>
-        <div class="photo-card-copy">
-          <span class="card-label">St. Gallen Symposium · 2026</span><h3>Second place, Global Essay Competition</h3><p>Selected as a Leader of Tomorrow; one of three winners from approximately 1,000 graduate and postgraduate submissions.</p>
-          <p><a href="https://symposium.org/initiatives/global-essay-competition/">View competition ↗</a></p>
-        </div>
-      </article>
-      <script type="text/plain" class="stgallen-image-data">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</script>
-      <script type="text/plain" class="stgallen-image-data">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</script>
-      <script type="text/plain" class="stgallen-image-data">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</script>
-      <script type="text/plain" class="stgallen-image-data">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</script>
-      <script type="text/plain" class="stgallen-image-data">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</script>
-      <script type="text/plain" class="stgallen-image-data">+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</script>
-      <script>
-        (() => {
-          const photo = document.getElementById('stgallen-highlight-photo');
-          const data = [...document.querySelectorAll('.stgallen-image-data')].map(el => el.textContent.trim()).join('');
-          if (photo && data) photo.src = 'data:image/webp;base64,' + data;
-        })();
-      </script>
-
-      <div class="proof">
-        <article class="photo-card">
-        <div class="photo-card-copy">
-          <span class="card-label">Regional policy engagement</span>
-          <h3>Pacific Forum Young Leader</h3>
-          <p>Selected for Pacific Forum’s Young Leaders delegation to the <a href="https://apr.isis.org.my/">39th Asia-Pacific Roundtable</a> in Kuala Lumpur, convened by ISIS Malaysia. During the same visit, I also joined the NextGen Masterclass on Track II diplomacy facilitated by the Asia New Zealand Foundation.</p>
-        </div>
-        <figure class="delegation-photo">
-          <div class="photo-frame">
-            <img id="apr-delegation-photo" src="assets/pacific-forum-apr-2026.webp" width="800" height="600" alt="Pacific Forum Young Leaders delegation gathered at the 39th Asia-Pacific Roundtable in Kuala Lumpur" loading="lazy" decoding="async">
+    <main id="main" tabindex="-1">
+      <section class="page home-page" data-page="home" aria-labelledby="home-title" hidden>
+        <div class="home-intro">
+          <div class="intro-copy">
+            <h1 id="home-title">Curiosity,<br><em>put to work.</em></h1>
+            <p class="intro-deck">I’m a policy researcher working on investment, sustainability, and political economy in Southeast Asia.</p>
           </div>
-          <figcaption><span>Pacific Forum Young Leaders delegation · 39th Asia-Pacific Roundtable</span><span>Kuala Lumpur, 2026</span></figcaption>
-        </figure>
-        </article>
-        <article><span class="card-label">Public-facing work</span><h3>Peta Banjir Indonesia</h3><p>A free way to explore about 26 years of flood records across Indonesia. <a href="https://flood.faizkrisnadi.com/">Explore the map ↗</a></p></article>
-      </div>
-    </section>
-
-    <section aria-labelledby="story-title">
-      <div class="section-head"><h2 id="story-title">The story behind the highlights</h2></div>
-
-      <article class="chapter">
-        <div class="chapter-meta">01 · High school</div>
-        <div><h3>Starting with community work</h3>
-          <p>I was a natural science student in high school, but much of my time outside class went into organisations, volunteering, and youth programmes. Through Mubaligh Hijrah, I spent time in two rural communities, one in Central Java and another in Kulon Progo, where we lived alongside local communities and worked with local leaders on activities for residents.</p>
-          <p>That was only one part of the community work I joined. Through <em>bakti sosial</em> and similar initiatives, we also raised or collected money and other resources to be distributed to people who needed them. These were usually simple activities, but they gave me some of my earliest experiences of working outside school with communities very different from my own.</p>
-          <p>I was also drawn to programmes that pushed me outside the classroom. I joined the Social Youth Camp, reached the final stage of Forum Pelajar Indonesia, and entered a university-level MUN while still in high school.</p>
-          <p>At school, I was involved in Mu’allimin Scientific Community (MSC), where we introduced the school’s <a href="https://hai.grid.id/read/07602233/keren-di-sekolah-ini-ada-ekskulnya-kelompok-penerbang-roket-">first water-rocket activity</a>. What began as a small science initiative continued after I graduated, with MSC still <a href="https://www.kweeksnews.com/posts/kompetisi-roket-air-msc-sebarkan-nilai-nilai-saintifik-lewat-media-yang-asyik">organising water-rocket activities years later</a>.</p>
-          <p>None of this felt like a career plan at the time. I simply liked being involved, trying things that had not been done before, and taking responsibility when something needed to get done.</p>
+          <figure class="portrait">
+            <div class="photo-mat"><img src="assets/redesign/portrait.jpg" alt="Faiz smiling on a boat, with a lake and mountains behind him" width="1368" height="1824"></div>
+          </figure>
         </div>
-      </article>
 
-      <article class="chapter">
-        <div class="chapter-meta">02 · UMY and after</div>
-        <div><h3>Learning to build with others</h3>
-          <p>At Universitas Muhammadiyah Yogyakarta, I moved between student government, research, external relations, communications, teaching support, and event organising. I helped put together public discussions, seminars, and programmes that depended on many people doing their part.</p>
-          <p>During the pandemic, I founded Ruang Virtual and worked on its partnerships, content, and communications. I also became increasingly involved in research and policy work through IPIREL and other academic and organisational roles.</p>
-          <p>I enjoyed the work behind an event as much as the event itself: contacting people, working out what a discussion should cover, finding the right partners, and making sure the whole thing actually happened. Years later, I was still doing versions of that work through Coffee Chat on Energy Transition and NariTalk: Policy for Sustainable Development.</p>
-          <p>That period taught me that I enjoyed not only joining conversations, but helping create the conditions for useful conversations to happen.</p>
+        <section class="ways-in" aria-labelledby="ways-title">
+          <div class="small-section-head"><h2 id="ways-title">A few ways in</h2></div>
+          <object class="landscape" data="assets/redesign/landscape.svg" type="image/svg+xml" aria-label="Explore About me, Migunani, then Research and tools">
+            <p><a href="about.html">About me</a> · <a href="migunani.html">Migunani</a> · <a href="research.html">Research &amp; tools</a></p>
+          </object>
+          <div class="explore-links" aria-label="Explore the website">
+            <a href="about.html"><span class="index-number">01</span><span>About me</span><span aria-hidden="true">↗</span></a>
+            <a href="migunani.html"><span class="index-number">02</span><span>Migunani</span><span aria-hidden="true">↗</span></a>
+            <a href="research.html"><span class="index-number">03</span><span>Research &amp; tools</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+
+        <section class="home-bottom" aria-label="A recent feature">
+          <aside class="margin-note">
+            <span class="note-flower" aria-hidden="true">✳</span>
+            <p class="eyebrow">In good company</p>
+            <p>NUS Giving recently told part of my story, from scholarship opportunities to research and public-interest projects.</p>
+            <a class="text-link" href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact">Inspired for Regional Impact ↗</a>
+          </aside>
+        </section>
+      </section>
+
+      <section class="page" data-page="work" aria-labelledby="work-title" hidden>
+        <header class="page-heading work-heading"><h1 id="work-title">Research</h1><p class="page-deck" id="work-description">Investment, sustainability, and political economy in Southeast Asia.</p></header>
+        <nav class="work-switch" aria-label="Work navigation"><a href="research.html" data-work-nav="research" aria-current="page">Research</a><a href="projects.html" data-work-nav="projects">Projects</a><a href="cv.html" data-work-nav="cv">CV</a></nav>
+
+        <div data-work-panel="research">
+          <nav class="research-index" aria-label="Research sections"><a href="research.html#reports">Reports &amp; thesis</a><a href="research.html#journals">Journal articles</a><a href="research.html#writing">Public writing</a><a href="research.html#talks">Presentations</a></nav>
+          <section class="research-group" id="reports" aria-labelledby="reports-title">
+            <h2 class="research-group-title" id="reports-title">Reports &amp; thesis</h2>
+            <article class="work-entry research-entry">
+              <div class="work-meta"><span>Policy report · Co-author</span><span>AidData · 2025</span></div>
+              <div><h3 class="feature-title"><a href="https://www.aiddata.org/publications/balancing-risk-and-reward">Balancing Risk<br><em>and Reward</em> <span class="title-arrow" aria-hidden="true">↗</span></a></h3><p class="research-subtitle">Who benefits from China’s investments in Indonesia?</p><p>A policy report examining the beneficiaries of Chinese development finance and foreign direct investment in Indonesia.</p></div>
+            </article>
+            <article class="work-entry research-entry">
+              <div class="work-meta"><span>Master’s thesis</span><span>NUS · International Affairs</span></div>
+              <div><h3 class="feature-title"><a href="https://faizkrisnadi.com/thesis-materials/">Does the<br><em>Label Matter?</em> <span class="title-arrow" aria-hidden="true">↗</span></a></h3><p class="research-subtitle">Explaining When Chinese Development Finance and FDI Blur in Indonesian Elite Narratives</p><p>A mixed-method study bringing together project-level data, media framing, and elite interviews.</p></div>
+            </article>
+          </section>
+          <section class="research-group" id="journals" aria-labelledby="journals-title">
+            <h2 class="research-group-title" id="journals-title">Peer-reviewed articles</h2>
+            <article class="publication"><p class="pub-meta">2026 · Journal of Paradiplomacy and City Networks</p><h3><a href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/107">Rooftop Solar Policy and Metropolitan Governance: Paradiplomacy as a Policy Channel in Five Southeast Asian Cities <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2025 · The Indonesian Quarterly, CSIS Indonesia</p><h3><a href="https://www.researchgate.net/publication/399538107_Reindustrializing_Indonesia_Lessons_from_China_Capital_Intensity_Paradox_and_Labor-Market_Realities">Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2025 · Perantau: Journal of Migration, Borders, and Belonging</p><h3><a href="https://journal.ygtmi.org/perantau/article/view/4">Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2024 · Journal of Paradiplomacy and City Networks</p><h3><a href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38">The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan <span aria-hidden="true">↗</span></a></h3></article>
+          </section>
+          <section class="research-group" id="writing" aria-labelledby="writing-title">
+            <h2 class="research-group-title" id="writing-title">Public writing</h2>
+            <article class="publication"><p class="pub-meta">October 2026 · East Asia Forum</p><h3><a href="https://eastasiaforum.org/2026/10/17/indonesia-needs-predictable-rules-to-keep-chinese-capital/">Indonesia needs predictable rules to keep Chinese capital <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">October 2020 · Citrakara Mandala</p><h3><a href="https://link.medium.com/agfcQ4L6oub">Green Capitalism: The Manipulative Way to a Climate Death <span aria-hidden="true">↗</span></a></h3></article>
+          </section>
+          <section class="research-group" id="talks" aria-labelledby="talks-title">
+            <h2 class="research-group-title" id="talks-title">Presentations</h2>
+            <article class="publication"><p class="pub-meta">October 2026 · Sakola Kita · Online Diplomacy Training</p><h3>Global Economic Systems and Poverty: Understanding the Foundation of SDG 1 No Poverty</h3></article>
+            <article class="publication"><p class="pub-meta">June 2026 · 5th Annual Green Trade Lab Workshop · University of Basel</p><h3>Trade Pressure, Green Regulation, and the Politics of Legitimacy: Evidence from Foreign-Financed Development in Indonesia</h3></article>
+            <article class="publication"><p class="pub-meta">December 2025 · Conference on Innovation and Integration for Development · Singapore</p><h3>Shrinking Space for WTO Dispute Settlement: Geopolitics, Forum Shopping, and Lessons for Developing Economies</h3></article>
+          </section>
+          <details class="earlier-research"><summary>Earlier writing &amp; other work <span aria-hidden="true">+</span></summary>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k">Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9">Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo">Politik Tata Ruang dalam Gemuruh Pandemi <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2021 · Mahidol University · Book chapter</p><h3><a href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf">Concealing Data During the Pandemic: A Human Security Threat in Indonesia ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2023 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530">Transforming Indonesia’s Informal Sector: The Role of Industrialization in Manufacturing Industry ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2023 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529">Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2022 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503">COVID-19 in Indonesia: Critics and Proposal ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2021 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351">Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015 ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2022 · Undergraduate thesis</p><h3><a href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk">Indonesia’s Government’s Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">December 2020 · IPIREL Podcast</p><h3><a href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp">Politik Lingkungan Global ↗</a></h3></article>
+            <p class="archive-materials"><a class="text-link" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB">Research assignments, 2024–2025 ↗</a></p>
+          </details>
         </div>
-      </article>
 
-      <article class="chapter">
-        <div class="chapter-meta">03 · Across borders</div>
-        <div><h3>Taking opportunities further</h3>
-          <p>My studies eventually took me from Indonesia to Taiwan, the United Kingdom, Singapore, and Switzerland. The route to postgraduate study involved many applications and plenty of rejection. Eventually, I received several competitive, merit-based scholarship awards and offers across Australia, Indonesia, Singapore, and the UK. I chose the Low Tuck Kwong Foundation Scholarship to pursue my master’s at NUS.</p>
-          <p>The opportunities extended beyond university. I joined Pacific Forum’s Young Leaders programme and its delegation to the Asia-Pacific Roundtable, participated in the Asia New Zealand Foundation’s NextGen Masterclass on Track II diplomacy, and began presenting my own work in Singapore and Switzerland.</p>
-          <p>Research also became a much clearer part of what I wanted to do. Through AidData, NUS, my master’s thesis, and later independent projects, I became increasingly interested in how investment, development finance, institutions, and public narratives shape who benefits from economic change.</p>
-          <p>I had spent years helping organise and join discussions. I was now contributing more of my own ideas to them, and beginning to build a research agenda of my own.</p>
+        <div class="work-list" data-work-panel="projects" hidden>
+          <article class="work-entry visual-entry">
+            <a class="project-image flood-image" href="https://flood.faizkrisnadi.com/" aria-label="Open Peta Banjir Indonesia"><img src="assets/redesign/flood.png" alt="Peta Banjir Indonesia, showing flood records across the Indonesian archipelago" loading="lazy"></a>
+            <div class="work-copy"><h2>Peta Banjir<br>Indonesia</h2><p>A district-level view of about 26 years of historical flood records. Built to make long-term patterns easier to explore, whether you work in research, policy, or a community affected by flooding.</p><a class="text-link" href="https://flood.faizkrisnadi.com/">Explore the map ↗</a><div class="project-coverage"><p class="eyebrow">Featured in</p><a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai">Harian Kompas ↗</a><a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy">LKYSPP ↗</a><a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact">NUS Giving ↗</a></div></div>
+          </article>
+          <article class="work-entry visual-entry">
+            <a class="project-image energy-image" href="https://energy.faizkrisnadi.com/" aria-label="Open Paper to Power"><img src="assets/redesign/energy.png" alt="Paper to Power interface tracking Southeast Asian renewable-energy projects" loading="lazy"></a>
+            <div class="work-copy"><h2>Paper to Power</h2><p>A public-facing project following the development of utility-scale renewable energy across Southeast Asia, from announcements toward implementation.</p><a class="text-link" href="https://energy.faizkrisnadi.com/">Explore the project ↗</a></div>
+          </article>
         </div>
-      </article>
-
-      <article class="chapter">
-        <div class="chapter-meta">04 · Work in public</div>
-        <div><h3>Making the work useful</h3>
-          <p>Some of the work I care about most is made for people who may never read an academic paper. I built <a href="https://flood.faizkrisnadi.com/">Peta Banjir Indonesia</a> so that researchers, officials, and communities could explore long-term flood patterns at the district level. My Care Sovereignty Protocol began with a different, less visible problem: the long-term financial costs borne by unpaid caregivers. I presented that proposal at St. Gallen, where it placed second in the Global Essay Competition and was subsequently recognised by NUS.</p>
-          <p>I have also tried to make other parts of my research more accessible through dashboards, datasets, and public-facing tools. The format changes depending on the problem, but the question is usually similar: once we understand something better, how can we make that knowledge useful to someone else?</p>
-          <p>That question is probably the closest thing I have to a through-line.</p>
-          <img class="flood-preview" src="assets/images/flood-dashboard-preview.png" alt="Preview of Peta Banjir Indonesia's flood data map" loading="lazy" />
-          <span class="image-caption">Peta Banjir Indonesia · launched 2026</span>
+        <div class="cv-options" data-work-panel="cv" hidden>
+          <article><p class="eyebrow">4 pages</p><h2>Academic CV</h2><p>Research, publications, teaching, education, and academic activities.</p><a class="text-link" href="faiz-cv.pdf" target="_blank" rel="noopener">Open academic CV (PDF) ↗</a></article>
+          <article><p class="eyebrow">2 pages</p><h2>Professional CV</h2><p>A shorter overview of experience, education, and skills.</p><a class="text-link" href="faiz-professional-cv.pdf" target="_blank" rel="noopener">Open professional CV (PDF) ↗</a></article>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <section aria-labelledby="coverage-title">
-      <div class="section-head"><h2 id="coverage-title">Selected coverage</h2></div>
-      <div class="further">
-        <a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact"><strong>NUS Giving ↗</strong><span>Inspired for Regional Impact</span></a>
-        <a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy"><strong>Lee Kuan Yew School of Public Policy ↗</strong><span>Flooding and caregiving policy</span></a>
-        <a href="https://www.scmp.com/week-asia/economics/article/3318306/how-indonesia-can-maximise-benefits-chinese-investments"><strong>South China Morning Post ↗</strong><span>Should Indonesia scrutinise China-funded projects?</span></a>
-        <a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai"><strong>Harian Kompas ↗</strong><span>Coverage of the flood map</span></a>
-      </div>
-    </section>
+      <section class="page story-page" data-page="migunani" aria-labelledby="story-title">
+        <header class="page-heading"><p class="eyebrow">A Javanese word: to be useful to others</p><h1 id="story-title">Migunani<span class="title-period">.</span></h1><p class="page-deck">Two sayings have lived rent-free in my head.</p></header>
+        <div class="sayings">
+          <blockquote><p>Urip iku urup.</p><footer>A life should bring light to others.</footer></blockquote>
+          <div class="sayings-art"><object class="saying-illustration motion-illustration" data="assets/redesign/migunani-motif.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object></div>
+          <blockquote><p>Ngelmu iku kalakone<br>kanthi laku.</p><footer>Knowledge has to be lived, not just learned.</footer></blockquote>
+        </div>
+        <div class="story-lead"><div class="saying-art community-art"><object id="community-illustration" class="community-illustration motion-illustration" data="assets/redesign/community-motif.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object><button type="button" class="replay-motion" data-replay="community-illustration" aria-label="Replay community illustration" title="Replay illustration">↻</button></div>
+        <div class="story-opening reading"><p>I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p><p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p></div></div>
+        <article class="story-chapter"><div class="chapter-side"><span>01</span><p>Before there<br>was a plan</p></div><div class="reading"><h2>Starting with people.</h2><p>I was a natural science student in high school, but much of my time outside class went into organisations, volunteering, and youth programmes.</p><p>Through Mubaligh Hijrah, I spent time in two rural communities, one in Central Java and another in Kulon Progo. We worked with local leaders on activities for residents. Through <em>bakti sosial</em> and similar initiatives, we also collected money and other resources for people who needed them.</p><p>None of this felt like a career plan at the time. I simply liked being involved, trying things that had not been done before, and taking responsibility when something needed to get done.</p></div></article>
+        <article class="story-chapter"><div class="chapter-side"><span>02</span><p>Learning to build<br>with others</p></div><div class="reading"><h2>Making room for a conversation.</h2><p>At Universitas Muhammadiyah Yogyakarta, I moved between student government, research, external relations, communications, teaching support, and event organising. During the pandemic, I founded Ruang Virtual and worked on its partnerships, content, and communications.</p><p>I enjoyed the work behind an event as much as the event itself: contacting people, finding the right partners, and making sure the whole thing actually happened. Years later, I was still doing versions of that work through Coffee Chat on Energy Transition and NariTalk: Policy for Sustainable Development.</p></div></article>
+        <article class="story-chapter"><div class="chapter-side"><span>03</span><p>A wider world</p></div><div class="reading"><h2>Taking opportunities further.</h2><p>My studies eventually took me from Indonesia to Taiwan, the United Kingdom, Singapore, and Switzerland. The route to postgraduate study involved many applications and plenty of rejection. I chose the Low Tuck Kwong Foundation Scholarship to pursue my master’s at NUS.</p><p>I also joined Pacific Forum’s Young Leaders delegation to the Asia-Pacific Roundtable in Kuala Lumpur.</p>
+          <figure class="story-photo"><img src="assets/redesign/pacific.webp" alt="Faiz with the Pacific Forum Young Leaders delegation in Kuala Lumpur" loading="lazy" width="800" height="600"><figcaption><span>Pacific Forum Young Leaders · Asia-Pacific Roundtable</span><span>Kuala Lumpur, 2026</span></figcaption></figure>
+          <p>Through AidData, NUS, my master’s thesis, and independent projects, I became increasingly interested in how investment, institutions, and public narratives shape who benefits from economic change.</p><p>I had spent years helping organise and join discussions. I was now contributing more of my own ideas to them.</p></div></article>
+        <aside class="recognition-note recognition-with-photo"><div><span class="note-flower" aria-hidden="true">✳</span><p class="eyebrow">Recognition along the way</p><h2>Second place at St. Gallen.<br>A NUS Achievement Award.</h2><p>My Care Sovereignty Protocol proposal addressed the long-term financial costs borne by unpaid caregivers. It placed second in the 2026 Global Essay Competition at the St. Gallen Symposium, and was subsequently recognised by NUS.</p><a class="text-link" href="https://symposium.org/initiatives/global-essay-competition/">St. Gallen Symposium ↗</a><a class="text-link" href="https://osa.nus.edu.sg/naa/naa-recipients/">NUS award recipients ↗</a></div><figure><img src="assets/redesign/stgallen.webp" alt="Faiz with the other Global Essay Competition winners holding their certificates at St. Gallen" width="720" height="454" loading="lazy"><figcaption>Global Essay Competition winners · St. Gallen, 2026</figcaption></figure></aside>
+        <div class="story-close reading"><p>Some of the work I care about most is made for people who may never read an academic paper. The format changes depending on the problem, but the question is usually similar:</p><p class="closing-question">Once we understand something better, how can we make that knowledge useful to someone else?</p><a class="text-link" href="research.html">Some attempts at an answer →</a></div>
+      </section>
 
-    <section class="next-step" aria-labelledby="next-title">
-      <h2 id="next-title">What comes next</h2>
-      <p>I am still figuring out where this work will take me. I want to keep working on questions that matter, especially around investment, development, sustainability, and political economy. I also want to keep building things people can actually use, not only things that sit on a shelf or behind a paywall.</p>
-      <p>More than anything, I want to keep learning from people who know more than I do, take good opportunities seriously, and make the work count for something beyond myself.</p>
-      <p>If any of this overlaps with what you are working on, or if you think we share a similar mission, I would be glad to hear from you.</p>
-      <a class="cta-link" href="mailto:hi@faizkrisnadi.com">Get in touch ↗</a>
-    </section>
-  </main>
-
-  <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
-
-  <!-- Bottom-center analog clock -->
-  <div id="footer-clock" aria-hidden="true">
-    <svg viewBox="0 0 200 200">
-      <circle cx="100" cy="100" r="96" fill="#FDFCF5" stroke="#D5D1C0" stroke-width="2" />
-      <g id="clock-ticks"></g>
-      <g id="clock-numbers"></g>
-
-      <line id="clock-hour-hand" x1="100" y1="110" x2="100" y2="60" stroke="#2A2520" stroke-width="4"
-        stroke-linecap="round" />
-      <line id="clock-minute-hand" x1="100" y1="112" x2="100" y2="40" stroke="#2A2520" stroke-width="3"
-        stroke-linecap="round" />
-      <line id="clock-second-hand" x1="100" y1="115" x2="100" y2="30" stroke="#B58900" stroke-width="1.5"
-        stroke-linecap="round" />
-
-      <circle cx="100" cy="100" r="3.5" fill="#FDFCF5" stroke="#2A2520" stroke-width="1" />
-    </svg>
+      <section class="page about-page" data-page="about" aria-labelledby="about-title" hidden>
+        <header class="page-heading"><h1 id="about-title">Well, hello<br><em>there.</em></h1></header>
+        <div class="about-layout"><figure class="about-portrait"><img src="assets/redesign/portrait.jpg" alt="Faiz on a boat, smiling against a mountain and lake backdrop" width="1368" height="1824"></figure><div class="reading"><p>I’m a policy researcher working on investment, development, sustainability, and political economy in Southeast Asia.</p><p>I use research, data, and public-facing tools to understand how economic change affects people, institutions, and places.</p><p>I hold a Master’s in International Affairs from the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy</a> at the National University of Singapore, where I was a Low Tuck Kwong Foundation scholar. During my master’s, I spent a semester as a guest student at the University of St. Gallen.</p><p>I recently completed a Research Assistant appointment at the <a href="https://nuscivicresilience.org/">NUS Civic Resilience Laboratory</a>, working on urban sustainability and AI applications in climate resilience. I also co-authored AidData’s <a href="https://www.aiddata.org/publications/balancing-risk-and-reward"><em>Balancing Risk and Reward</em></a>.</p><p>Before that, I studied International Relations at Universitas Muhammadiyah Yogyakarta, with study experiences at Asia University in Taiwan and the University of Glasgow in the UK.</p><a class="text-link" href="cv.html">View CV →</a></div></div>
+        <section class="elsewhere"><p class="eyebrow">Selected coverage</p><div><a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact"><span>NUS Giving</span><h2>Inspired for Regional Impact <span aria-hidden="true">↗</span></h2></a><a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy"><span>Lee Kuan Yew School of Public Policy</span><h2>Beyond the classroom <span aria-hidden="true">↗</span></h2></a><a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai"><span>Harian Kompas</span><h2>Making flood data useful <span aria-hidden="true">↗</span></h2></a></div></section>
+        <section class="contact-section" id="contact"><p class="eyebrow">Leave a note</p><h2>Something on your mind?</h2><p>For research, a useful project, or a conversation.</p><a class="contact-address" href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com <span aria-hidden="true">↗</span></a></section>
+      </section>
+    </main>
+    <footer class="site-footer"><a class="footer-email" href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com ↗</a><div><a href="https://www.linkedin.com/in/faiz-krisnadi/">LinkedIn ↗</a><a href="cv.html">CV</a><button id="colophon-open">About this site</button></div></footer>
   </div>
-
-  <dialog class="search-dialog" id="searchDialog" aria-label="Search this site">
-    <div class="search-bar"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site" /><button id="closeSearch" aria-label="Close search">×</button></div>
-    <div class="search-results" id="searchResults"></div>
-  </dialog>
-  <script>
-    const pages = [
-      { url: 'index.html', title: 'Home' },
-      { url: 'research.html', title: 'Research' },
-      { url: 'cv.html', title: 'CV' },
-      { url: 'migunani.html', title: 'Migunani' },
-      { url: 'projects.html', title: 'Projects' }
-    ];
-    const dialog = document.getElementById('searchDialog');
-    const input = document.getElementById('searchInput');
-    const results = document.getElementById('searchResults');
-    let index = null;
-    async function buildIndex() {
-      if (index) return index;
-      index = await Promise.all(pages.map(async page => {
-        try {
-          const response = await fetch(page.url);
-          if (!response.ok) throw new Error('Page unavailable');
-          const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
-          return { ...page, body: (doc.querySelector('main')?.textContent || '').replace(/\s+/g, ' ').trim() };
-        } catch { return { ...page, body: '' }; }
-      }));
-      return index;
-    }
-    function render(query) {
-      results.replaceChildren();
-      const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
-      const matches = (index || pages).filter(page => terms.every(term => `${page.title} ${page.body || ''}`.toLowerCase().includes(term)));
-      for (const page of matches) {
-        const link = document.createElement('a');
-        link.href = page.url;
-        const title = document.createElement('strong');
-        title.textContent = page.title;
-        const description = document.createElement('small');
-        description.textContent = page.body?.slice(0, 145) || 'Open page';
-        link.append(title, description);
-        results.append(link);
-      }
-      if (!matches.length) results.textContent = 'No matching pages.';
-    }
-    async function openSearch() { dialog.showModal(); input.focus(); await buildIndex(); render(input.value); }
-    document.getElementById('openSearch').addEventListener('click', openSearch);
-    document.getElementById('closeSearch').addEventListener('click', () => dialog.close());
-    input.addEventListener('input', () => render(input.value));
-    input.addEventListener('keydown', event => { if (event.key === 'Enter') results.querySelector('a')?.click(); });
-    document.addEventListener('keydown', event => { if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); if (!dialog.open) openSearch(); } });
-  </script>
-
-  <script>
-    // Bottom-center analog clock
-    (function () {
-      const svgNS = "http://www.w3.org/2000/svg";
-      const ticksGroup = document.getElementById("clock-ticks");
-      const numbersGroup = document.getElementById("clock-numbers");
-      if (!ticksGroup || !numbersGroup) return;
-
-      for (let i = 0; i < 60; i++) {
-        const angle = Math.PI / 30 * i;
-        const isHour = i % 5 === 0;
-        const outerR = 94;
-        const innerR = isHour ? 82 : 88;
-
-        const x1 = 100 + innerR * Math.sin(angle);
-        const y1 = 100 - innerR * Math.cos(angle);
-        const x2 = 100 + outerR * Math.sin(angle);
-        const y2 = 100 - outerR * Math.cos(angle);
-
-        const line = document.createElementNS(svgNS, "line");
-        line.setAttribute("x1", x1);
-        line.setAttribute("y1", y1);
-        line.setAttribute("x2", x2);
-        line.setAttribute("y2", y2);
-        line.setAttribute("stroke", "#2A2520");
-        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
-        ticksGroup.appendChild(line);
-      }
-
-      for (let n = 1; n <= 12; n++) {
-        const angle = Math.PI / 6 * n;
-        const radius = 70;
-        const x = 100 + radius * Math.sin(angle);
-        const y = 100 - radius * Math.cos(angle);
-
-        const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", x);
-        text.setAttribute("y", y + 1);
-        text.setAttribute("text-anchor", "middle");
-        text.setAttribute("dominant-baseline", "middle");
-        text.setAttribute("font-size", "16");
-        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
-        text.textContent = n.toString();
-        numbersGroup.appendChild(text);
-      }
-
-      const hourHand = document.getElementById("clock-hour-hand");
-      const minuteHand = document.getElementById("clock-minute-hand");
-      const secondHand = document.getElementById("clock-second-hand");
-
-      function updateClock() {
-        const now = new Date();
-        const seconds = now.getSeconds();
-        const minutes = now.getMinutes();
-        const hours = now.getHours();
-
-        hourHand.setAttribute("transform", "rotate(" + (((hours % 12) + minutes / 60) * 30) + " 100 100)");
-        minuteHand.setAttribute("transform", "rotate(" + ((minutes + seconds / 60) * 6) + " 100 100)");
-        secondHand.setAttribute("transform", "rotate(" + (seconds * 6) + " 100 100)");
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
+  <dialog id="colophon"><button class="dialog-close" aria-label="Close site information">×</button><h2>About this site</h2><p>Set in Newsreader and DM Sans, with illustrated navigation and photographs from my travels and work.</p><p class="colophon-foot">Built with HTML, CSS, and JavaScript.<br>No analytics or tracking.</p></dialog>
 </body>
 </html>

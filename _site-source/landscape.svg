@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" fill="none" role="img" aria-labelledby="landscape-title landscape-desc">
+  <title id="landscape-title">A small landscape to explore</title>
+  <desc id="landscape-desc">A winding river connects a person writing in an open notebook, four people gathered around a shared table beneath a tree, and a policy-research workshop with a solar roof and a chart in its window. Choose About me, Migunani, or Research and tools.</desc>
+  <style>
+    .line{stroke:#333b63;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .fine{stroke-width:1.3}
+    .paper{fill:#f7f7f2}
+    .sage{fill:#dde3d5}
+    .clay{stroke:#b85e45}
+    .destination{cursor:pointer;outline:none}
+    .wash{fill:#dde3d5;fill-opacity:0;transition:fill-opacity .18s ease}
+    .destination:hover .wash,.destination:focus .wash{fill-opacity:.7}
+    .focus-ring{stroke:#b85e45;stroke-width:1.6;stroke-dasharray:3 5;opacity:0}
+    .destination:focus .focus-ring,.destination:focus-visible .focus-ring{opacity:1}
+    .label{fill:#333b63;font-family:Georgia,'Times New Roman',serif;font-size:18px;letter-spacing:.15px}
+    .arrow{stroke:#b85e45;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+    @media(max-width:620px){.label,.arrow{display:none}}
+    @media(prefers-reduced-motion:reduce){.wash{transition:none}}
+  </style>
+
+  <!-- The river is the shared ground, not a fourth destination. -->
+  <g aria-hidden="true">
+    <path d="M32 192C119 176 179 204 259 193S378 158 442 176 511 215 594 202 709 172 766 188 861 219 967 196" class="line fine"/>
+    <path d="M32 220C112 204 184 230 262 219S373 184 434 200 513 240 597 228 710 197 769 211 875 245 967 220" fill="#dde3d5" fill-opacity=".5"/>
+    <path d="M32 220C112 204 184 230 262 219S373 184 434 200 513 240 597 228 710 197 769 211 875 245 967 220" class="line fine"/>
+    <path d="m74 204 31-2m49 10 23 1m133-14 24-6m67-5 20 3m166 24 29-2m109-18 22-1m100 24 32 5m55 0 30-3" class="line fine" opacity=".5"/>
+    <path d="M53 174q15-7 26-4m227-16q17-6 29-3m374 16q13-5 23-2m190 6q17-6 28-2" class="line fine"/>
+    <path d="m371 191 8-34 34-4 8 35m-47-8 43-4m-41-9 39-4" class="line paper"/>
+    <path d="m376 163 2-20m36 17-2-20m-34 4 34-4" class="line fine"/>
+    <path d="m56 178 1-12m-1 5-5-6m6 3 5-7m854 24 1-12m-1 5-5-6m6 3 5-7" class="line fine"/>
+    <path d="M416 59q6-6 12 0 6-6 12 0m249 7q5-5 10 0 5-5 10 0" class="line fine"/>
+  </g>
+
+  <a href="index.html#about" target="_top" class="destination" aria-label="About me" tabindex="0">
+    <title>About me</title>
+    <rect x="79" y="50" width="247" height="231" rx="25" class="wash"/>
+    <rect x="79" y="50" width="247" height="231" rx="25" class="focus-ring"/>
+    <g class="line" aria-hidden="true">
+      <path d="M109 174q45-12 102-5 49 6 88-5" class="fine"/>
+      <!-- A person, a notebook, and a few things carried along the way. -->
+      <path d="M147 94c-2-11 5-19 15-18 11 0 16 9 13 19-1 9-8 14-14 13-8-1-13-6-14-14Z" class="paper"/>
+      <path d="M147 88q2-16 16-15 12 2 12 14l-9-4-10 4m-9 7h9m5 0h10m-15 0 5 0m1 9 5-1" class="fine"/>
+      <path d="m153 109-9 10-3 29 34 2 2-33-10-8" class="sage"/>
+      <path d="m175 117 15 15 24-2m-69-8 16 17 33 1m-47 11 27 1 14 18m-34-19-5 21m39-2h9m-48 2h-8"/>
+      <path d="m133 124-3 26 9 4m-11 0h45m-42 0-4 19m43-19 5 19" class="fine"/>
+      <path d="M182 141h99m-91 1-4 32m87-32 4 32"/>
+      <path d="m202 134 1-12q12-3 23 2 11-5 22-2l-1 12q-10-1-21 3-11-4-24-3Zm24-10v13" class="paper"/>
+      <path d="m208 126 11 1m-11 3 9 1m17-5 9-1m-9 5 7-1m-24-4 8-10" class="fine clay"/>
+      <path d="M262 136v-14m-10 15h20m-10-50c-14 0-24 15-18 28 5 12 23 15 33 5m-15-32c-12 0-20 9-20 19s8 18 20 18 20-8 20-18-8-19-20-19Z" class="fine"/>
+      <path d="M262 89c-10 8-11 27 0 36 10-9 10-27 0-36Zm-19 18h38m-35-9q16 7 32 0m-31 18q15-6 30 0" class="fine"/>
+      <path d="M104 153h21v20h-21Zm5 0v-6h11v6m-8 0v20m-8-12h21" class="paper"/>
+      <path d="M295 167v-32m0 14-7-9m7 1 8-10m-8 2q-15-2-17-13 10-5 17 4 3-17 15-16 7 12-5 21" class="fine"/>
+    </g>
+    <text x="188" y="263" text-anchor="middle" class="label">About me</text>
+    <path d="M245 257h15m-5-5 5 5-5 5" class="arrow" aria-hidden="true"/>
+  </a>
+
+  <a href="index.html#migunani" target="_top" class="destination" aria-label="Migunani" tabindex="0">
+    <title>Visit Migunani</title>
+    <rect x="439" y="47" width="237" height="234" rx="25" class="wash"/>
+    <rect x="439" y="47" width="237" height="234" rx="25" class="focus-ring"/>
+    <g class="line" aria-hidden="true">
+      <path d="M459 184q33-10 74-3 67 11 123-3" class="fine"/>
+      <path d="M480 180v-65m0 31-14-18m14 4 18-24"/>
+      <path d="M480 125c-23 6-41-8-36-25-14-15-1-38 16-35 7-21 35-20 42-1 20-3 35 17 24 33 4 17-15 29-32 22" class="sage"/>
+      <path d="m461 91 5 8m32-21 7 5m-52 25 8 2" class="fine"/>
+      <!-- Four people bring different perspectives to the same table. -->
+      <path d="M548 119c-9 0-12-15-5-20 8-6 17 0 16 9 0 7-4 11-11 11Z" class="paper"/>
+      <path d="M540 105q5-13 16-5m-13 22-9 9 1 18h30l-1-18-11-10" class="paper"/>
+      <path d="m541 131 10 9 17-3" class="fine"/>
+      <path d="M589 117c-8 1-13-7-12-14 2-10 15-13 20-3 4 8-1 17-8 17Z" class="paper"/>
+      <path d="M578 103q-1-14 10-15 12 2 10 17m-15 14-11 11 1 17h30l-4-20-9-8" class="sage"/>
+      <path d="m592 130-10 12-13-3" class="fine"/>
+      <path d="M520 137c-4-11-18-9-19 1 0 7 5 11 10 11 6 0 10-5 9-12Z" class="paper"/>
+      <path d="m509 150-5 18 16 1 4-14 15-3-1-6-18 2-6 7" class="sage"/>
+      <path d="m505 169-5 13m18-12 1 13m-13-52q7-7 13 0m-21 30h7m-9 1v17h9" class="fine"/>
+      <path d="M627 138c0-12 17-13 19-2 2 6-2 12-8 13-6 0-11-5-11-11Z" class="paper"/>
+      <path d="m638 150 6 18-16 1-9-15-12-1 1-6 16 1 10 9" class="paper"/>
+      <path d="m644 169 5 13m-19-12-1 13m-1-51q8-7 16 0m1 29 9-1m2 2v17h-10" class="fine"/>
+      <path d="M527 146h89l-7 8h-75Zm11 9-5 27m73-27 5 28" class="paper"/>
+      <path d="m547 144 12-7 17 5-11 6Zm12-7 6 11m18-5h11v-9h-11Zm11-7h4v4h-4" class="fine clay"/>
+      <path d="m562 178 4-16m12 17-2-17" class="fine"/>
+    </g>
+    <text x="547" y="263" text-anchor="middle" class="label">Migunani</text>
+    <path d="M603 257h15m-5-5 5 5-5 5" class="arrow" aria-hidden="true"/>
+  </a>
+
+  <a href="index.html#work" target="_top" class="destination" aria-label="Research and tools" tabindex="0">
+    <title>Explore research and tools</title>
+    <rect x="729" y="50" width="219" height="231" rx="25" class="wash"/>
+    <rect x="729" y="50" width="219" height="231" rx="25" class="focus-ring"/>
+    <g class="line" aria-hidden="true">
+      <path d="M745 177q44-8 84-2 40 6 100-1" class="fine"/>
+      <!-- A policy workshop: evidence, maps, and an energy-conscious roof. -->
+      <path d="M770 174v-68l68-38 69 38v70" class="paper"/>
+      <path d="m758 109 80-48 81 48m-149-8 68-40 69 40"/>
+      <path d="m793 91 42-25 39 23-43 25Z" class="sage"/>
+      <path d="m807 83 39 23m-25-31 39 23m-54 0 42-24m-28 32 42-25" class="fine"/>
+      <path d="M784 124h57v38h-57Zm4 4h49v30h-49Z" class="paper"/>
+      <path d="M794 133v19h36m-32-2v-6m8 6v-12m8 12v-8m8 8v-18" class="fine"/>
+      <path d="m796 141 10-8 9 3 13-8" class="fine clay"/>
+      <path d="M854 176v-55h39v55" class="paper"/>
+      <path d="m860 147 9-5 9 3 9-4v16l-9 4-9-3-9 5Zm9-5v16m9-13v16" class="fine"/>
+      <path d="M858 164h32m-28 0-2 12m27-12 2 12m-8-38h8m-6-2v-5" class="fine"/>
+      <path d="M778 177h120m-117 5h113m-46-66h53" class="fine"/>
+      <path d="M927 175v-35m0 13-8-10m8-1 8-10m-8 2q-13-1-17-12 8-7 17 3 1-17 14-17 7 12-5 23" class="fine"/>
+      <path d="M749 172v-10m-6 0h12l-2 11h-8Z" class="paper"/>
+      <path d="m749 162-2-10m2 7 6-7m-6 3-7-5" class="fine"/>
+    </g>
+    <text x="817" y="263" text-anchor="middle" class="label">Research &amp; tools</text>
+    <path d="M912 257h15m-5-5 5 5-5 5" class="arrow" aria-hidden="true"/>
+  </a>
+</svg>

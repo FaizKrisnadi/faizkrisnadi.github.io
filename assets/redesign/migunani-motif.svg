@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 160" fill="none" role="img" aria-labelledby="motif-title motif-desc">
+  <title id="motif-title">Knowledge carried into light</title>
+  <desc id="motif-desc">An open book and a small oil lamp, joined by a wandering path. The lamp's flame and rays gently appear once, then remain still.</desc>
+  <style>
+    .ink{stroke:#333b63;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+    .fine{stroke-width:1.2}
+    .paper{fill:#f7f7f2}
+    .clay{stroke:#a74d38}
+    .flame{transform-box:fill-box;transform-origin:50% 100%}
+    .rays{opacity:.8}
+    svg.play .flame{animation:kindle 2.2s ease-out both}
+    svg.play .rays{animation:light 2.5s ease-out both}
+    @keyframes kindle{from{opacity:.3;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+    @keyframes light{0%,20%{opacity:0}100%{opacity:.8}}
+    @media(prefers-reduced-motion:reduce){svg.play .flame,svg.play .rays{animation:none}}
+  </style>
+
+  <!-- The path is intentionally unhurried, connecting the two ideas. -->
+  <path d="M116 123c22 2 24-20 46-18 19 1 22 22 44 17 13-3 17-11 32-10" class="ink fine" stroke-dasharray="2 6"/>
+  <path d="M33 130q42 8 84-1m123 2q39 6 83-1" class="ink fine" opacity=".45"/>
+
+  <!-- An open book, with just enough marks to suggest a page of thought. -->
+  <path d="m36 113 7-45q19-3 38 7 17-11 37-7l7 45q-23-5-44 5-21-9-45-5Z" fill="#dde3d5"/>
+  <path d="m31 118 8-48 5-1m74 0 5 1 8 48q-28-5-50 5-24-9-50-5Z" class="ink"/>
+  <path d="m40 110 6-47q17-1 35 10 17-11 34-10l7 47q-22-3-41 7-20-9-41-7Z" class="ink paper"/>
+  <path d="M81 73v44m-29-42q12 0 21 6m-23 3q13 0 23 6m-24 3q14 0 24 6m16-17q10-6 20-6m-20 15q11-6 22-6m-22 15q11-6 23-6" class="ink fine"/>
+  <path d="m100 112 1 15 5-4 5 2-2-16" class="ink fine clay"/>
+
+  <!-- A modest wick lamp: warmth carried outward, not a decorative glow. -->
+  <path d="M253 104q23 7 48 0l-7 15q-16 9-32 0Z" fill="#dde3d5" class="ink"/>
+  <path d="M250 103q26-9 54 0-27 10-54 0Z" class="ink paper"/>
+  <path d="m269 120-3 7h23l-3-7m-23 8h30m-16-27V91" class="ink"/>
+  <path d="M277 92c-13-4-12-15-6-22 4-5 7-9 7-15 10 10 17 26 5 35" class="ink clay flame" fill="#a74d38" fill-opacity=".12"/>
+  <path d="M277 88q-4-6 1-12" class="ink fine clay flame"/>
+  <g class="ink fine clay rays">
+    <path d="m277 35 1 9m-23 0 5 8m-22 8 9 4m-10 18 9-1m56-36-5 8m22 8-9 4m10 18-9-1"/>
+  </g>
+  <path d="m218 135 2-8m-2 4-4-4m6 3 4-5m101 4 2-8m-2 4-4-4" class="ink fine"/>
+</svg>

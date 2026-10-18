@@ -1,651 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>CV | Faiz Krisnadi</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Lato -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#F1EFE0; --text:#333; --accent:#996B1D; --border:#e5e7eb; --muted:#6b7280;
-
-      --avatar: 190px;
-      --avatar-mobile: 160px;
-      --avatar-focus-y: 40%;
-    }
-    *{box-sizing:border-box}
-    html,body{min-height:100%}
-    body{
-      font-family:'Lato',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text); background:var(--bg);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      margin:0; padding:calc(16px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-left)) calc(28px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-right));
-      line-height:1.75;
-    }
-    a{color:var(--accent); text-decoration:none; transition:opacity .2s}
-    a:hover{opacity:.8}
-
-    /* Header */
-    .hero-wrap{
-      max-width:980px; margin:0 auto;
-      display:grid; grid-template-columns: calc(var(--avatar) + 30px) 1fr;
-      gap:1.6rem; align-items:center;
-    }
-    .photo{
-      width:var(--avatar); aspect-ratio:1/1; height:auto; border-radius:50%;
-      object-fit:cover; object-position:50% var(--avatar-focus-y);
-      border:2px solid #fff; box-shadow:0 0 0 3px #e6e9ef; display:block;
-    }
-    .name{margin:0 0 .3rem; font-size:2.8rem; font-weight:900; letter-spacing:-.01em; line-height:1.2}
-    .subtitle{margin:.15rem 0; color:#777; font-weight:400}
-
-    /* Tabs */
-    .tabs-outer{max-width:980px; margin:1.1rem auto 1.6rem; padding:0 .2rem;}
-    .tabs{background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:0 1px 0 rgba(0,0,0,.02); overflow:hidden;}
-    .tabs ul{list-style:none; margin:0; padding:.35rem; display:flex; gap:.6rem; align-items:center;}
-    .tabs a{display:inline-block; padding:.65rem 1rem; border-radius:10px; color:#1f2937; font-weight:900; white-space:nowrap;}
-    .tabs a.active{background:rgba(153, 107, 29, .1); color:var(--accent);}
-    @media (max-width:560px){
-      .tabs ul{display:grid; grid-template-columns:repeat(4,1fr); gap:.35rem; padding:.35rem;}
-      .tabs a{text-align:center; padding:.85rem .2rem;}
-    }
-
-    /* Main container */
-    .container{max-width:980px; margin:0 auto;}
-
-    h2.section{margin:2.2rem 0 1rem; font-size:1.35rem; font-weight:900; letter-spacing:.01em}
-
-    /* CV card */
-    .cv-card{
-      background:#fff; border:1px solid var(--border); border-radius:12px;
-      padding:1.2rem 1.2rem 1.35rem; margin:1rem 0;
-    }
-    .dl{
-      display:inline-flex; align-items:center; gap:.55rem; font-weight:900;
-      background:var(--accent); color:#fff; padding:.8rem 1.15rem; border-radius:10px;
-      border:1px solid rgba(0,0,0,.03); box-shadow:0 2px 0 rgba(0,0,0,.03);
-    }
-    .dl:hover{opacity:.9}
-    .filesize{color:var(--muted); font-size:.9rem; margin-top:.45rem}
-
-    /* Floating search */
-    .search-fab{
-      position:fixed; top:18px; right:18px; width:52px; height:52px; border-radius:50%;
-      background:#fff; border:1px solid var(--border); box-shadow:0 6px 18px rgba(0,0,0,.06);
-      color:#374151; cursor:pointer; display:grid; place-items:center; z-index:50;
-    }
-    .search-fab:hover{background:rgba(153, 107, 29, .05); color:var(--accent)}
-
-    /* Search overlay */
-    .search-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.45); backdrop-filter:blur(2px); display:none; z-index:60; }
-    .search-panel{ max-width:900px; margin:8vh auto 0; background:#fff; border:1px solid var(--border); border-radius:12px; padding:1rem 1rem 1.1rem; box-shadow:0 30px 60px rgba(0,0,0,.15);}
-    .search-bar{ display:flex; align-items:center; gap:.6rem; padding:.35rem .6rem; border:1px solid var(--border); border-radius:12px;}
-    .search-bar input{ flex:1; border:none; font-size:1.05rem; padding:.8rem .2rem; outline:none; background:#fff;}
-    .hint{color:var(--muted); font-size:.9rem; margin:.65rem .15rem 0}
-    .results{margin:.35rem 0 0; max-height:52vh; overflow:auto}
-    .result{ padding:.8rem .65rem; border-radius:8px; display:block; color:#111827;}
-    .result:hover{background:#f2f5ff}
-    .result small{display:block; color:#6b7280; margin-top:.15rem}
-    .nores{color:#6b7280; padding:1rem .25rem}
-    mark{background:rgba(153, 107, 29, .18); border-radius:3px; padding:0 .15rem}
-
-    footer{max-width:980px; margin:2rem auto 0; color:#888; font-size:14px; text-align:center}
-
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* Bottom-center analog clock (static, extra space below) */
-    #footer-clock{
-      margin:1.5rem auto 6rem;  /* 1.5rem above, 6rem below */
-      display:flex;
-      justify-content:center;
-    }
-    #footer-clock svg{
-      width:150px;
-      height:150px;
-      display:block;
-    }
-
-    /* Responsive header grid */
-    @media (max-width:900px){
-      .hero-wrap{grid-template-columns: calc(var(--avatar-mobile) + 30px) 1fr}
-      .photo{width:var(--avatar-mobile)}
-      .name{font-size:2.35rem}
-    }
-    @media (max-width:680px){
-      .hero-wrap{grid-template-columns:1fr}
-      .photo{margin-inline:auto}
-      .name{text-align:left; margin-top:.6rem}
-    }
-
-    /* --- Mobile segmented tabs: spacing + centering fix --- */
-    @media (max-width: 560px){
-      .tabs { border-radius: 22px; }
-      .tabs ul{
-        display: grid;
-        grid-template-columns:repeat(4,1fr);
-        gap: 6px;
-        padding: 6px;
-      }
-      .tabs a{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 46px;
-        padding: 0;
-        min-width: 0;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: clamp(14px, 3.8vw, 17px);
-        font-weight: 900;
-        letter-spacing: -0.01em;
-        -webkit-tap-highlight-color: transparent;
-      }
-    }
-
-    /* ===== Preview override: clean glass + top sticky tabs ===== */
-    :root{
-      --bg:#F1EFE0;
-      --text:#2E2E2E;
-      --accent:#996B1D;
-      --accent-strong:#7A5412;
-      --accent-soft:rgba(153, 107, 29, 0.14);
-      --border:#E5E3D1;
-      --line:rgba(229, 227, 209, 0.72);
-      --muted:#6E6358;
-      --glass-fill:linear-gradient(150deg, rgba(255, 253, 245, 0.72), rgba(245, 242, 230, 0.34));
-      --glass-shadow:0 18px 44px rgba(80, 68, 40, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.80);
-    }
-    body{
-      background:var(--bg);
-      color:var(--text);
-      font-weight:400;
-      overflow-x:hidden;
-    }
-    a{transition:color .2s ease, opacity .2s ease}
-    a:hover{color:var(--accent-strong); opacity:.95}
-
-    .tabs-outer{
-      margin:0 auto 1.25rem;
-      position:sticky;
-      top:calc(8px + env(safe-area-inset-top));
-      z-index:45;
-      transition:transform .25s ease;
-    }
-    .tabs-outer.scrolled{transform:translateY(10px)}
-    .tabs{
-      border-radius:24px;
-      background:var(--glass-fill);
-      border:1px solid var(--line);
-      box-shadow:var(--glass-shadow);
-      backdrop-filter:blur(19px) saturate(145%);
-      -webkit-backdrop-filter:blur(19px) saturate(145%);
-    }
-    .tabs a{
-      border-radius:12px;
-      color:#4A4035;
-      font-weight:700;
-      transition:background .2s ease, color .2s ease, transform .2s ease;
-    }
-    .tabs a:hover{
-      background:rgba(229, 227, 209, 0.50);
-      color:#2A2520;
-      transform:translateY(-1px);
-    }
-    .tabs a.active{
-      background:var(--accent-soft);
-      color:var(--accent-strong);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,0.82);
-    }
-
-    .search-fab{
-      top:calc(16px + env(safe-area-inset-top));
-      background:var(--glass-fill);
-      border:1px solid var(--line);
-      box-shadow:var(--glass-shadow);
-      backdrop-filter:blur(19px) saturate(145%);
-      -webkit-backdrop-filter:blur(19px) saturate(145%);
-      color:#4A4035;
-      transition:transform .2s ease, box-shadow .2s ease, color .2s ease;
-    }
-    .search-fab:hover{
-      transform:translateY(-2px);
-      color:var(--accent-strong);
-      box-shadow:0 16px 30px rgba(80, 68, 40, 0.14);
-    }
-    .search-overlay{
-      background:rgba(40, 35, 25, 0.20);
-      backdrop-filter:blur(5px);
-      -webkit-backdrop-filter:blur(5px);
-      padding:4vh 14px;
-    }
-    .search-panel{
-      margin:3vh auto 0;
-      border-radius:22px;
-      padding:.95rem;
-      background:var(--glass-fill);
-      border:1px solid var(--line);
-      box-shadow:var(--glass-shadow);
-      backdrop-filter:blur(19px) saturate(145%);
-      -webkit-backdrop-filter:blur(19px) saturate(145%);
-    }
-    .search-bar{
-      border:1px solid rgba(255,255,255,0.78);
-      border-radius:14px;
-      background:rgba(255,255,255,0.46);
-    }
-    .search-bar input{
-      background:transparent;
-      color:#2E2E2E;
-      font-family:"Lato",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      font-weight:400;
-    }
-    .hint,.result small,.nores,.filesize,footer{font-weight:400}
-    .result{border-radius:10px; color:#1d2736}
-    .result:hover{background:rgba(153, 107, 29, 0.09)}
-    mark{background:rgba(181, 137, 0, 0.18); border-radius:4px}
-
-    .cv-card{
-      background:var(--glass-fill);
-      border:1px solid var(--line);
-      border-radius:18px;
-      box-shadow:var(--glass-shadow);
-      backdrop-filter:blur(19px) saturate(145%);
-      -webkit-backdrop-filter:blur(19px) saturate(145%);
-    }
-    .dl{
-      font-weight:700;
-      border-radius:12px;
-      box-shadow:0 6px 16px rgba(153, 107, 29, 0.24);
-    }
-    h2.section{font-weight:700}
-    .container p{font-weight:400}
-
-    @media (max-width:560px){
-      .tabs-outer.scrolled{transform:translateY(6px)}
-      .tabs a{font-weight:700}
-      .search-fab{
-        top:calc(74px + env(safe-area-inset-top));
-        right:14px;
-      }
-    }
-
-    @supports not ((backdrop-filter: blur(1px))) {
-      .tabs,.cv-card,.search-fab,.search-panel{
-        background:rgba(245, 242, 230, 0.96);
-      }
-    }
-  
-    /* ===== Typography system: aligned with Migunani ===== */
-    body { font-size: 17px; }
-    .tabs a { font-weight: 700; }
-    h2.section {
-      font-size: clamp(1.45rem, 2.6vw, 1.8rem);
-      line-height: 1.2;
-      letter-spacing: -.025em;
-      font-weight: 700;
-    }
-    .dl { font-weight: 700; }
-    .filesize { font-size: .9rem; }
-    footer { font-size: .85rem; }
-
-  
-    /* ===== Surface colors: aligned with Migunani ===== */
-    :root {
-      --surface: #FBFAF5;
-      --line: rgba(229, 227, 209, .72);
-      --shadow: 0 18px 44px rgba(80, 68, 40, .08), inset 0 1px 0 rgba(255, 255, 255, .8);
-    }
-
-    .tabs {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .tabs a:hover {
-      background: rgba(229, 227, 209, .5);
-    }
-
-    .tabs a.active {
-      background: var(--accent-soft);
-      color: var(--accent-strong);
-      box-shadow: none;
-    }
-
-    .search-fab,
-    .search-panel {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    .cv-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-
-    /* ===== Mobile visual parity with desktop ===== */
-    @media (max-width: 700px) {
-      .tabs,
-      .cv-card,
-      .search-fab,
-      .search-panel {
-        background: var(--surface);
-        border-color: var(--line);
-        box-shadow: var(--shadow);
-        backdrop-filter: none;
-        -webkit-backdrop-filter: none;
-      }
-      .cv-card { border-radius: 18px; }
-      .tabs a.active {
-        background: var(--accent-soft);
-        color: var(--accent-strong);
-        box-shadow: none;
-      }
-    }
-
-  
-    /* ===== Primary nav separators ===== */
-    .tabs li {
-      position: relative;
-    }
-
-    .tabs li + li::before {
-      content: "";
-      position: absolute;
-      left: calc(-.3rem - .5px);
-      top: 50%;
-      width: 1px;
-      height: 18px;
-      background: rgba(74, 64, 53, .14);
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    @media (max-width: 560px) {
-      .tabs li + li::before {
-        left: calc(-3px - .5px);
-        height: 16px;
-        background: rgba(74, 64, 53, .12);
-      }
-    }
-
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f7f7f2">
+  <meta name="description" content="Download Faiz Krisnadi’s academic CV or professional CV.">
+  <title>Faiz Krisnadi — CV</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/redesign/newsreader.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="assets/redesign/site.css">
+  <script src="assets/redesign/site.js" defer></script>
+  <link rel="canonical" href="https://faizkrisnadi.com/cv.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Faiz Krisnadi — CV">
+  <meta property="og:description" content="Download Faiz Krisnadi’s academic CV or professional CV.">
+  <meta property="og:url" content="https://faizkrisnadi.com/cv.html">
+  <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait.jpg">
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="masthead">
+      <a class="wordmark" href="index.html" aria-label="Faiz Krisnadi, home">faiz krisnadi<span class="wordmark-star" aria-hidden="true">✳</span></a>
+      <nav aria-label="Main navigation">
+        <a href="about.html" data-nav="about">About</a>
+        <a href="migunani.html" data-nav="migunani">Migunani</a>
+        <a href="research.html" data-nav="work" aria-current="page">Work</a>
+      </nav>
+      <a class="hello" href="mailto:hi@faizkrisnadi.com">Say hello <span aria-hidden="true">↗</span></a>
+    </header>
 
-  <!-- Search button -->
-  <button class="search-fab" id="openSearch" title="Search (⌘/Ctrl + K)" aria-label="Open search">
-    <i class="fa-solid fa-magnifying-glass"></i>
-  </button>
+    <main id="main" tabindex="-1">
+      <section class="page home-page" data-page="home" aria-labelledby="home-title" hidden>
+        <div class="home-intro">
+          <div class="intro-copy">
+            <h1 id="home-title">Curiosity,<br><em>put to work.</em></h1>
+            <p class="intro-deck">I’m a policy researcher working on investment, sustainability, and political economy in Southeast Asia.</p>
+          </div>
+          <figure class="portrait">
+            <div class="photo-mat"><img src="assets/redesign/portrait.jpg" alt="Faiz smiling on a boat, with a lake and mountains behind him" width="1368" height="1824"></div>
+          </figure>
+        </div>
 
-  <!-- Tabs -->
-  <div class="tabs-outer">
-    <nav class="tabs" aria-label="Primary">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="migunani.html">Migunani</a></li>
-        <li><a href="research.html">Research</a></li>
-        <li><a href="projects.html">Projects</a></li>
-      </ul>
-    </nav>
+        <section class="ways-in" aria-labelledby="ways-title">
+          <div class="small-section-head"><h2 id="ways-title">A few ways in</h2></div>
+          <object class="landscape" data="assets/redesign/landscape.svg" type="image/svg+xml" aria-label="Explore About me, Migunani, then Research and tools">
+            <p><a href="about.html">About me</a> · <a href="migunani.html">Migunani</a> · <a href="research.html">Research &amp; tools</a></p>
+          </object>
+          <div class="explore-links" aria-label="Explore the website">
+            <a href="about.html"><span class="index-number">01</span><span>About me</span><span aria-hidden="true">↗</span></a>
+            <a href="migunani.html"><span class="index-number">02</span><span>Migunani</span><span aria-hidden="true">↗</span></a>
+            <a href="research.html"><span class="index-number">03</span><span>Research &amp; tools</span><span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+
+        <section class="home-bottom" aria-label="A recent feature">
+          <aside class="margin-note">
+            <span class="note-flower" aria-hidden="true">✳</span>
+            <p class="eyebrow">In good company</p>
+            <p>NUS Giving recently told part of my story, from scholarship opportunities to research and public-interest projects.</p>
+            <a class="text-link" href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact">Inspired for Regional Impact ↗</a>
+          </aside>
+        </section>
+      </section>
+
+      <section class="page" data-page="work" aria-labelledby="work-title">
+        <header class="page-heading work-heading"><h1 id="work-title">CV</h1><p class="page-deck" id="work-description">Academic and professional versions.</p></header>
+        <nav class="work-switch" aria-label="Work navigation"><a href="research.html" data-work-nav="research">Research</a><a href="projects.html" data-work-nav="projects">Projects</a><a href="cv.html" data-work-nav="cv" aria-current="page">CV</a></nav>
+
+        <div data-work-panel="research" hidden>
+          <nav class="research-index" aria-label="Research sections"><a href="research.html#reports">Reports &amp; thesis</a><a href="research.html#journals">Journal articles</a><a href="research.html#writing">Public writing</a><a href="research.html#talks">Presentations</a></nav>
+          <section class="research-group" id="reports" aria-labelledby="reports-title">
+            <h2 class="research-group-title" id="reports-title">Reports &amp; thesis</h2>
+            <article class="work-entry research-entry">
+              <div class="work-meta"><span>Policy report · Co-author</span><span>AidData · 2025</span></div>
+              <div><h3 class="feature-title"><a href="https://www.aiddata.org/publications/balancing-risk-and-reward">Balancing Risk<br><em>and Reward</em> <span class="title-arrow" aria-hidden="true">↗</span></a></h3><p class="research-subtitle">Who benefits from China’s investments in Indonesia?</p><p>A policy report examining the beneficiaries of Chinese development finance and foreign direct investment in Indonesia.</p></div>
+            </article>
+            <article class="work-entry research-entry">
+              <div class="work-meta"><span>Master’s thesis</span><span>NUS · International Affairs</span></div>
+              <div><h3 class="feature-title"><a href="https://faizkrisnadi.com/thesis-materials/">Does the<br><em>Label Matter?</em> <span class="title-arrow" aria-hidden="true">↗</span></a></h3><p class="research-subtitle">Explaining When Chinese Development Finance and FDI Blur in Indonesian Elite Narratives</p><p>A mixed-method study bringing together project-level data, media framing, and elite interviews.</p></div>
+            </article>
+          </section>
+          <section class="research-group" id="journals" aria-labelledby="journals-title">
+            <h2 class="research-group-title" id="journals-title">Peer-reviewed articles</h2>
+            <article class="publication"><p class="pub-meta">2026 · Journal of Paradiplomacy and City Networks</p><h3><a href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/107">Rooftop Solar Policy and Metropolitan Governance: Paradiplomacy as a Policy Channel in Five Southeast Asian Cities <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2025 · The Indonesian Quarterly, CSIS Indonesia</p><h3><a href="https://www.researchgate.net/publication/399538107_Reindustrializing_Indonesia_Lessons_from_China_Capital_Intensity_Paradox_and_Labor-Market_Realities">Re-industrialising Indonesia: Lessons from China, Capital Intensity, and Labour-Market Realities <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2025 · Perantau: Journal of Migration, Borders, and Belonging</p><h3><a href="https://journal.ygtmi.org/perantau/article/view/4">Shaping Governance Narratives through Divergent Migrant Labour Statistics within ASEAN: Evidence from Singapore, Malaysia, and Thailand <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2024 · Journal of Paradiplomacy and City Networks</p><h3><a href="https://jumahi.umy.ac.id/index.php/jumahi/article/view/38">The Shift from Paradiplomacy to Protodiplomacy: A Comparative Study of Catalonia and Kurdistan <span aria-hidden="true">↗</span></a></h3></article>
+          </section>
+          <section class="research-group" id="writing" aria-labelledby="writing-title">
+            <h2 class="research-group-title" id="writing-title">Public writing</h2>
+            <article class="publication"><p class="pub-meta">October 2026 · East Asia Forum</p><h3><a href="https://eastasiaforum.org/2026/10/17/indonesia-needs-predictable-rules-to-keep-chinese-capital/">Indonesia needs predictable rules to keep Chinese capital <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">October 2020 · Citrakara Mandala</p><h3><a href="https://link.medium.com/agfcQ4L6oub">Green Capitalism: The Manipulative Way to a Climate Death <span aria-hidden="true">↗</span></a></h3></article>
+          </section>
+          <section class="research-group" id="talks" aria-labelledby="talks-title">
+            <h2 class="research-group-title" id="talks-title">Presentations</h2>
+            <article class="publication"><p class="pub-meta">October 2026 · Sakola Kita · Online Diplomacy Training</p><h3>Global Economic Systems and Poverty: Understanding the Foundation of SDG 1 No Poverty</h3></article>
+            <article class="publication"><p class="pub-meta">June 2026 · 5th Annual Green Trade Lab Workshop · University of Basel</p><h3>Trade Pressure, Green Regulation, and the Politics of Legitimacy: Evidence from Foreign-Financed Development in Indonesia</h3></article>
+            <article class="publication"><p class="pub-meta">December 2025 · Conference on Innovation and Integration for Development · Singapore</p><h3>Shrinking Space for WTO Dispute Settlement: Geopolitics, Forum Shopping, and Lessons for Developing Economies</h3></article>
+          </section>
+          <details class="earlier-research"><summary>Earlier writing &amp; other work <span aria-hidden="true">+</span></summary>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/antikritik-di-masa-pandemi-negara-dalam-krisis-legitimasi-1tcSP3Lq67k">Antikritik di Masa Pandemi: Negara dalam Krisis Legitimasi <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/hampers-untuk-presiden-berulangnya-pembunuhan-keadilan-1tbatVL8ZS9">Hampers untuk Presiden: Berulangnya Pembunuhan Keadilan <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">June 2020 · Kumparan</p><h3><a href="https://kumparan.com/muhammad-faiz-krisnadi/politik-tata-ruang-dalam-gemuruh-pandemi-1tatGhJ5cfo">Politik Tata Ruang dalam Gemuruh Pandemi <span aria-hidden="true">↗</span></a></h3></article>
+            <article class="publication"><p class="pub-meta">2021 · Mahidol University · Book chapter</p><h3><a href="https://shapesea.com/wp-content/uploads/2021/02/SHAPE-SEA-Covid-19-Book-web.pdf">Concealing Data During the Pandemic: A Human Security Threat in Indonesia ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2023 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/530">Transforming Indonesia’s Informal Sector: The Role of Industrialization in Manufacturing Industry ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2023 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/529">Strengthening Social Protection Network in Indonesia: A Comprehensive Analysis of Coverage, Targeting, and Funding towards an Inclusive Welfare State ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2022 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/503">COVID-19 in Indonesia: Critics and Proposal ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2021 · UMY conference proceedings</p><h3><a href="https://prosiding.umy.ac.id/grace/index.php/pgrace/article/view/351">Russia Protest Against U.S. Plans to Place Military Equipment in Eastern Europe Countries in 2015 ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">2022 · Undergraduate thesis</p><h3><a href="https://drive.google.com/file/d/1zYUYVh5CufuM1Q8Ef0bJ9aTem5uOdc51/view?usp=drivesdk">Indonesia’s Government’s Role to Secure Vaccine Distribution in the Time of COVID-19 by Using Digital Diplomacy ↗</a></h3></article>
+            <article class="publication"><p class="pub-meta">December 2020 · IPIREL Podcast</p><h3><a href="https://open.spotify.com/episode/15Mkh9CSE47UiLAcoauvKp">Politik Lingkungan Global ↗</a></h3></article>
+            <p class="archive-materials"><a class="text-link" href="https://drive.google.com/drive/folders/11G8OIMqniB5RR5SmbO0QJHlBS6kcbusB">Research assignments, 2024–2025 ↗</a></p>
+          </details>
+        </div>
+
+        <div class="work-list" data-work-panel="projects" hidden>
+          <article class="work-entry visual-entry">
+            <a class="project-image flood-image" href="https://flood.faizkrisnadi.com/" aria-label="Open Peta Banjir Indonesia"><img src="assets/redesign/flood.png" alt="Peta Banjir Indonesia, showing flood records across the Indonesian archipelago" loading="lazy"></a>
+            <div class="work-copy"><h2>Peta Banjir<br>Indonesia</h2><p>A district-level view of about 26 years of historical flood records. Built to make long-term patterns easier to explore, whether you work in research, policy, or a community affected by flooding.</p><a class="text-link" href="https://flood.faizkrisnadi.com/">Explore the map ↗</a><div class="project-coverage"><p class="eyebrow">Featured in</p><a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai">Harian Kompas ↗</a><a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy">LKYSPP ↗</a><a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact">NUS Giving ↗</a></div></div>
+          </article>
+          <article class="work-entry visual-entry">
+            <a class="project-image energy-image" href="https://energy.faizkrisnadi.com/" aria-label="Open Paper to Power"><img src="assets/redesign/energy.png" alt="Paper to Power interface tracking Southeast Asian renewable-energy projects" loading="lazy"></a>
+            <div class="work-copy"><h2>Paper to Power</h2><p>A public-facing project following the development of utility-scale renewable energy across Southeast Asia, from announcements toward implementation.</p><a class="text-link" href="https://energy.faizkrisnadi.com/">Explore the project ↗</a></div>
+          </article>
+        </div>
+        <div class="cv-options" data-work-panel="cv">
+          <article><p class="eyebrow">4 pages</p><h2>Academic CV</h2><p>Research, publications, teaching, education, and academic activities.</p><a class="text-link" href="faiz-cv.pdf" target="_blank" rel="noopener">Open academic CV (PDF) ↗</a></article>
+          <article><p class="eyebrow">2 pages</p><h2>Professional CV</h2><p>A shorter overview of experience, education, and skills.</p><a class="text-link" href="faiz-professional-cv.pdf" target="_blank" rel="noopener">Open professional CV (PDF) ↗</a></article>
+        </div>
+      </section>
+
+      <section class="page story-page" data-page="migunani" aria-labelledby="story-title" hidden>
+        <header class="page-heading"><p class="eyebrow">A Javanese word: to be useful to others</p><h1 id="story-title">Migunani<span class="title-period">.</span></h1><p class="page-deck">Two sayings have lived rent-free in my head.</p></header>
+        <div class="sayings">
+          <blockquote><p>Urip iku urup.</p><footer>A life should bring light to others.</footer></blockquote>
+          <div class="sayings-art"><object class="saying-illustration motion-illustration" data="assets/redesign/migunani-motif.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object></div>
+          <blockquote><p>Ngelmu iku kalakone<br>kanthi laku.</p><footer>Knowledge has to be lived, not just learned.</footer></blockquote>
+        </div>
+        <div class="story-lead"><div class="saying-art community-art"><object id="community-illustration" class="community-illustration motion-illustration" data="assets/redesign/community-motif.svg" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object><button type="button" class="replay-motion" data-replay="community-illustration" aria-label="Replay community illustration" title="Replay illustration">↻</button></div>
+        <div class="story-opening reading"><p>I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p><p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p></div></div>
+        <article class="story-chapter"><div class="chapter-side"><span>01</span><p>Before there<br>was a plan</p></div><div class="reading"><h2>Starting with people.</h2><p>I was a natural science student in high school, but much of my time outside class went into organisations, volunteering, and youth programmes.</p><p>Through Mubaligh Hijrah, I spent time in two rural communities, one in Central Java and another in Kulon Progo. We worked with local leaders on activities for residents. Through <em>bakti sosial</em> and similar initiatives, we also collected money and other resources for people who needed them.</p><p>None of this felt like a career plan at the time. I simply liked being involved, trying things that had not been done before, and taking responsibility when something needed to get done.</p></div></article>
+        <article class="story-chapter"><div class="chapter-side"><span>02</span><p>Learning to build<br>with others</p></div><div class="reading"><h2>Making room for a conversation.</h2><p>At Universitas Muhammadiyah Yogyakarta, I moved between student government, research, external relations, communications, teaching support, and event organising. During the pandemic, I founded Ruang Virtual and worked on its partnerships, content, and communications.</p><p>I enjoyed the work behind an event as much as the event itself: contacting people, finding the right partners, and making sure the whole thing actually happened. Years later, I was still doing versions of that work through Coffee Chat on Energy Transition and NariTalk: Policy for Sustainable Development.</p></div></article>
+        <article class="story-chapter"><div class="chapter-side"><span>03</span><p>A wider world</p></div><div class="reading"><h2>Taking opportunities further.</h2><p>My studies eventually took me from Indonesia to Taiwan, the United Kingdom, Singapore, and Switzerland. The route to postgraduate study involved many applications and plenty of rejection. I chose the Low Tuck Kwong Foundation Scholarship to pursue my master’s at NUS.</p><p>I also joined Pacific Forum’s Young Leaders delegation to the Asia-Pacific Roundtable in Kuala Lumpur.</p>
+          <figure class="story-photo"><img src="assets/redesign/pacific.webp" alt="Faiz with the Pacific Forum Young Leaders delegation in Kuala Lumpur" loading="lazy" width="800" height="600"><figcaption><span>Pacific Forum Young Leaders · Asia-Pacific Roundtable</span><span>Kuala Lumpur, 2026</span></figcaption></figure>
+          <p>Through AidData, NUS, my master’s thesis, and independent projects, I became increasingly interested in how investment, institutions, and public narratives shape who benefits from economic change.</p><p>I had spent years helping organise and join discussions. I was now contributing more of my own ideas to them.</p></div></article>
+        <aside class="recognition-note recognition-with-photo"><div><span class="note-flower" aria-hidden="true">✳</span><p class="eyebrow">Recognition along the way</p><h2>Second place at St. Gallen.<br>A NUS Achievement Award.</h2><p>My Care Sovereignty Protocol proposal addressed the long-term financial costs borne by unpaid caregivers. It placed second in the 2026 Global Essay Competition at the St. Gallen Symposium, and was subsequently recognised by NUS.</p><a class="text-link" href="https://symposium.org/initiatives/global-essay-competition/">St. Gallen Symposium ↗</a><a class="text-link" href="https://osa.nus.edu.sg/naa/naa-recipients/">NUS award recipients ↗</a></div><figure><img src="assets/redesign/stgallen.webp" alt="Faiz with the other Global Essay Competition winners holding their certificates at St. Gallen" width="720" height="454" loading="lazy"><figcaption>Global Essay Competition winners · St. Gallen, 2026</figcaption></figure></aside>
+        <div class="story-close reading"><p>Some of the work I care about most is made for people who may never read an academic paper. The format changes depending on the problem, but the question is usually similar:</p><p class="closing-question">Once we understand something better, how can we make that knowledge useful to someone else?</p><a class="text-link" href="research.html">Some attempts at an answer →</a></div>
+      </section>
+
+      <section class="page about-page" data-page="about" aria-labelledby="about-title" hidden>
+        <header class="page-heading"><h1 id="about-title">Well, hello<br><em>there.</em></h1></header>
+        <div class="about-layout"><figure class="about-portrait"><img src="assets/redesign/portrait.jpg" alt="Faiz on a boat, smiling against a mountain and lake backdrop" width="1368" height="1824"></figure><div class="reading"><p>I’m a policy researcher working on investment, development, sustainability, and political economy in Southeast Asia.</p><p>I use research, data, and public-facing tools to understand how economic change affects people, institutions, and places.</p><p>I hold a Master’s in International Affairs from the <a href="https://lkyspp.nus.edu.sg/">Lee Kuan Yew School of Public Policy</a> at the National University of Singapore, where I was a Low Tuck Kwong Foundation scholar. During my master’s, I spent a semester as a guest student at the University of St. Gallen.</p><p>I recently completed a Research Assistant appointment at the <a href="https://nuscivicresilience.org/">NUS Civic Resilience Laboratory</a>, working on urban sustainability and AI applications in climate resilience. I also co-authored AidData’s <a href="https://www.aiddata.org/publications/balancing-risk-and-reward"><em>Balancing Risk and Reward</em></a>.</p><p>Before that, I studied International Relations at Universitas Muhammadiyah Yogyakarta, with study experiences at Asia University in Taiwan and the University of Glasgow in the UK.</p><a class="text-link" href="cv.html">View CV →</a></div></div>
+        <section class="elsewhere"><p class="eyebrow">Selected coverage</p><div><a href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact"><span>NUS Giving</span><h2>Inspired for Regional Impact <span aria-hidden="true">↗</span></h2></a><a href="https://lkyspp.nus.edu.sg/news-events/news/details/beyond-the-classroom--faiz-krisnadi-s-tech-based-solutions-for-flooding-and-caregiving-policy"><span>Lee Kuan Yew School of Public Policy</span><h2>Beyond the classroom <span aria-hidden="true">↗</span></h2></a><a href="https://www.kompas.id/artikel/mengolah-jutaan-data-untuk-menguatkan-sistem-mitigasi-banjir-dengan-ai"><span>Harian Kompas</span><h2>Making flood data useful <span aria-hidden="true">↗</span></h2></a></div></section>
+        <section class="contact-section" id="contact"><p class="eyebrow">Leave a note</p><h2>Something on your mind?</h2><p>For research, a useful project, or a conversation.</p><a class="contact-address" href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com <span aria-hidden="true">↗</span></a></section>
+      </section>
+    </main>
+    <footer class="site-footer"><a class="footer-email" href="mailto:hi@faizkrisnadi.com">hi@faizkrisnadi.com ↗</a><div><a href="https://www.linkedin.com/in/faiz-krisnadi/">LinkedIn ↗</a><a href="cv.html">CV</a><button id="colophon-open">About this site</button></div></footer>
   </div>
-
-  <main class="container">
-
-    <div class="cv-card">
-      <p style="margin-top:0">
-        You can download my CV here (last updated: September, 2026). For references or additional materials, feel free to <a href="mailto:hi@faizkrisnadi.com">email me</a>.
-      </p>
-      <p style="margin:.9rem 0 0">
-        <a class="dl" href="faiz-cv.pdf" target="_blank" rel="noopener">
-          <i class="fa-solid fa-file-pdf"></i> View CV (PDF)
-        </a>
-      </p>
-      <div class="filesize">File size: ~200 KB</div>
-    </div>
-  </main>
-
-  <footer><p>© 2026 Faiz Krisnadi. All rights reserved.</p></footer>
-
-  <!-- Static bottom-center analog clock -->
-  <div id="footer-clock" aria-hidden="true">
-    <svg viewBox="0 0 200 200">
-      <!-- clock face -->
-      <circle cx="100" cy="100" r="96" fill="#FDFCF5" stroke="#D5D1C0" stroke-width="2" />
-
-      <!-- tick marks and numbers populated by JS -->
-      <g id="clock-ticks"></g>
-      <g id="clock-numbers"></g>
-
-      <!-- hands -->
-      <line id="clock-hour-hand"
-            x1="100" y1="110" x2="100" y2="60"
-            stroke="#2A2520" stroke-width="4"
-            stroke-linecap="round" />
-
-      <line id="clock-minute-hand"
-            x1="100" y1="112" x2="100" y2="40"
-            stroke="#2A2520" stroke-width="3"
-            stroke-linecap="round" />
-
-      <line id="clock-second-hand"
-            x1="100" y1="115" x2="100" y2="30"
-            stroke="#B58900" stroke-width="1.5"
-            stroke-linecap="round" />
-
-      <!-- center cap -->
-      <circle cx="100" cy="100" r="3.5" fill="#FDFCF5" stroke="#2A2520" stroke-width="1" />
-    </svg>
-  </div>
-
-  <!-- Search overlay -->
-  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
-    <div class="search-panel" role="dialog" aria-modal="true" aria-labelledby="searchLabel">
-      <h2 id="searchLabel" class="sr-only">Search this site</h2>
-      <div class="search-bar">
-        <i class="fa-solid fa-magnifying-glass" style="color:#928374"></i>
-        <input id="searchInput" type="search" placeholder="Search this site…" aria-label="Search this site">
-        <button id="closeSearch" title="Close" aria-label="Close search" style="border:none;background:transparent;color:#928374;font-size:1.1rem;cursor:pointer">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="hint">Tip: press <strong>Enter</strong> to open the top result • <strong>Esc</strong> to close • <strong>⌘/Ctrl + K</strong> to open</div>
-      <div class="results" id="results"></div>
-    </div>
-  </div>
-
-  <script>
-    /* ---------- In-page search (same as Home/Research) ---------- */
-    const PAGE_LIST = [
-      { url: 'index.html',     title: 'Home' },
-      { url: 'research.html',  title: 'Research' },
-      { url: 'cv.html',        title: 'CV' },
-      { url: 'migunani.html', title: 'Migunani' },
-      { url: 'projects.html',  title: 'Projects' }
-    ];
-    const cache = new Map(); let indexBuilt = false, INDEX = [];
-    async function fetchPage(u){ if(cache.has(u)) return cache.get(u); const r=await fetch(u); const t=await r.text(); cache.set(u,t); return t; }
-    const buildDoc = html => new DOMParser().parseFromString(html,'text/html');
-    function extract(doc){
-      const title=(doc.querySelector('title')?.textContent||'').trim();
-      const metas=doc.querySelector('meta[name="description"]')?.getAttribute('content')||'';
-      const heads=[...doc.querySelectorAll('h1,h2,h3')].map(e=>e.textContent.trim()).join(' • ');
-      const links=[...doc.querySelectorAll('a')].map(a=>a.textContent.trim()).filter(s=>s && s.length<160).slice(0,200).join(' • ');
-      const body=(doc.body?.innerText||'').replace(/\s+/g,' ').trim().slice(0,20000);
-      return { title, metas, heads, links, body };
-    }
-    const normalize=s=>(s||'').toLowerCase();
-    function score(q,rec){
-      const hay=normalize([rec.title,rec.metas,rec.heads,rec.links,rec.body].join(' '));
-      const terms=normalize(q).split(/\s+/).filter(Boolean); if(!terms.length) return 0;
-      let sc=0; for(const t of terms){ const re=new RegExp('\\b'+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'); const m=hay.match(re); sc+=m?m.length*12:0; }
-      if(normalize(rec.title).includes(normalize(q))) sc+=30;
-      if(normalize(rec.heads).includes(normalize(q))) sc+=15;
-      return sc;
-    }
-    function snippet(rec,q){
-      const source=[rec.heads,rec.links,rec.body].join(' ').replace(/\s+/g,' ');
-      const term=normalize(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length)[0];
-      if(!term) return (rec.metas||rec.heads||rec.body).slice(0,160);
-      const i=normalize(source).indexOf(term); const start=Math.max(0,i-60), end=Math.min(source.length,i+120);
-      return i>=0 ? (start>0?'…':'')+source.slice(start,end)+(end<source.length?'…':'') : (rec.metas||rec.heads||rec.body).slice(0,160);
-    }
-    async function buildIndex(){
-      const pages=await Promise.allSettled(PAGE_LIST.map(async p=>{
-        const html=await fetchPage(p.url); const doc=buildDoc(html); const rec=extract(doc);
-        return { url:p.url, ...rec, title:p.title||rec.title };
-      }));
-      INDEX=pages.filter(x=>x.status==='fulfilled').map(x=>x.value); indexBuilt=true;
-    }
-    const normalizeForHilite=s=>(s||'').toLowerCase();
-    const escapeHtml=s=>(s||'').replace(/[&<>"']/g,c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
-    function hilite(text,q){
-      const terms=normalizeForHilite(q).split(/\s+/).filter(Boolean).sort((a,b)=>b.length-a.length);
-      const out=escapeHtml(text);
-      if(!terms.length) return out;
-      const re=new RegExp('('+terms.map(t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')+')','ig');
-      return out.replace(re,'<mark>$1</mark>');
-    }
-    function search(q){
-      if(!q) return INDEX.slice(0,8).map(r=>({rec:r,sc:0}));
-      return INDEX.map(rec=>({rec,sc:score(q,rec)})).filter(x=>x.sc>0).sort((a,b)=>b.sc-a.sc).slice(0,12);
-    }
-
-    const openBtn=document.getElementById('openSearch');
-    const overlay=document.getElementById('searchOverlay');
-    const input=document.getElementById('searchInput');
-    const closeBtn=document.getElementById('closeSearch');
-    const results=document.getElementById('results');
-
-    function openSearch(){ overlay.style.display='block'; overlay.setAttribute('aria-hidden','false'); setTimeout(()=>input.focus(),10); if(!indexBuilt) buildIndex().then(()=>render(input.value)); else render(input.value); }
-    function closeSearch(){ overlay.style.display='none'; overlay.setAttribute('aria-hidden','true'); input.value=''; results.innerHTML=''; }
-    function render(q){
-      const hits=search(q);
-      if(!hits.length){ results.innerHTML = q ? `<div class="nores">No results for "${escapeHtml(q)}".</div>` : `<div class="nores">Start typing to search pages.</div>`; return; }
-      results.innerHTML = hits.map(({rec})=>`<a class="result" href="${rec.url}"><strong>${hilite(rec.title||'Untitled',q)}</strong><small>${hilite(snippet(rec,q),q)}</small></a>`).join('');
-    }
-    openBtn.addEventListener('click',openSearch);
-    closeBtn.addEventListener('click',closeSearch);
-    overlay.addEventListener('click',e=>{ if(e.target===overlay) closeSearch(); });
-    input.addEventListener('input',e=>render(e.target.value));
-    document.addEventListener('keydown',e=>{
-      if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){ e.preventDefault(); openSearch(); }
-      if(e.key==='Escape' && overlay.getAttribute('aria-hidden')==='false') closeSearch();
-      if(e.key==='Enter' && overlay.getAttribute('aria-hidden')==='false'){ const top=results.querySelector('.result'); if(top) top.click(); }
-    });
-  </script>
-
-  <script>
-    // Analog clock drawing and movement
-    (function(){
-      const svgNS = "http://www.w3.org/2000/svg";
-      const ticksGroup = document.getElementById("clock-ticks");
-      const numbersGroup = document.getElementById("clock-numbers");
-      if (!ticksGroup || !numbersGroup) return;
-
-      // tick marks
-      for (let i = 0; i < 60; i++) {
-        const angle = Math.PI / 30 * i;
-        const isHour = i % 5 === 0;
-        const outerR = 94;
-        const innerR = isHour ? 82 : 88;
-
-        const x1 = 100 + innerR * Math.sin(angle);
-        const y1 = 100 - innerR * Math.cos(angle);
-        const x2 = 100 + outerR * Math.sin(angle);
-        const y2 = 100 - outerR * Math.cos(angle);
-
-        const line = document.createElementNS(svgNS, "line");
-        line.setAttribute("x1", x1);
-        line.setAttribute("y1", y1);
-        line.setAttribute("x2", x2);
-        line.setAttribute("y2", y2);
-        line.setAttribute("stroke", "#2A2520");
-        line.setAttribute("stroke-width", isHour ? "3" : "1.2");
-        ticksGroup.appendChild(line);
-      }
-
-      // numbers
-      for (let n = 1; n <= 12; n++) {
-        const angle = Math.PI / 6 * n;
-        const r = 70;
-
-        const x = 100 + r * Math.sin(angle);
-        const y = 100 - r * Math.cos(angle);
-
-        const text = document.createElementNS(svgNS, "text");
-        text.setAttribute("x", x);
-        text.setAttribute("y", y + 1);
-        text.setAttribute("text-anchor", "middle");
-        text.setAttribute("dominant-baseline", "middle");
-        text.setAttribute("font-size", "16");
-        text.setAttribute("font-family", "Lato, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif");
-        text.textContent = n.toString();
-        numbersGroup.appendChild(text);
-      }
-
-      const hourHand   = document.getElementById("clock-hour-hand");
-      const minuteHand = document.getElementById("clock-minute-hand");
-      const secondHand = document.getElementById("clock-second-hand");
-
-      function updateClock(){
-        const now = new Date();
-        const s = now.getSeconds();
-        const m = now.getMinutes();
-        const h = now.getHours();
-
-        const secondAngle = s * 6;
-        const minuteAngle = (m + s / 60) * 6;
-        const hourAngle   = ((h % 12) + m / 60) * 30;
-
-        hourHand.setAttribute("transform","rotate("+hourAngle+" 100 100)");
-        minuteHand.setAttribute("transform","rotate("+minuteAngle+" 100 100)");
-        secondHand.setAttribute("transform","rotate("+secondAngle+" 100 100)");
-      }
-
-      updateClock();
-      setInterval(updateClock, 1000);
-    })();
-  </script>
-  <script>
-    // Top tabs: slight drop when page is scrolled
-    (function() {
-      const tabsOuter = document.querySelector(".tabs-outer");
-      if (!tabsOuter) return;
-
-      function updateTabsPosition() {
-        tabsOuter.classList.toggle("scrolled", window.scrollY > 12);
-      }
-
-      updateTabsPosition();
-      window.addEventListener("scroll", updateTabsPosition, { passive: true });
-    })();
-  </script>
+  <dialog id="colophon"><button class="dialog-close" aria-label="Close site information">×</button><h2>About this site</h2><p>Set in Newsreader and DM Sans, with illustrated navigation and photographs from my travels and work.</p><p class="colophon-foot">Built with HTML, CSS, and JavaScript.<br>No analytics or tracking.</p></dialog>
 </body>
 </html>
