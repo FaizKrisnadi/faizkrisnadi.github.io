@@ -222,3 +222,22 @@
   .service-group .service-items article:first-child{border-top:0}
   .services-main-link{display:inline-block;margin-top:26px;font-size:13px}
 }
+
+/* Research: quiet navigation, clear section hierarchy, restrained dividers. */
+.research-index{display:none}
+@media(max-width:620px){
+  .work-heading{padding-bottom:29px}
+  .work-switch{margin-bottom:0}
+  .research-group{padding-top:46px}
+  .research-group + .research-group{border-top:1px solid var(--line);margin-top:32px}
+  .research-group-title{font-family:var(--sans);font-size:13px;line-height:1.4;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--rust);margin:0 0 19px}
+  .research-group .research-entry{padding:24px 0 30px}
+  .research-group .research-entry:first-of-type{border-top:0}
+  .research-group .research-entry:last-child{border-bottom:0}
+  .publication{padding:24px 0 27px}
+  .research-group .publication:first-of-type{border-top:0}
+  .research-group .publication h3{font-size:clamp(23px,6.5vw,28px);line-height:1.19;letter-spacing:-.015em}
+  .publication .pub-meta{font-size:11px;line-height:1.5;margin-bottom:11px}
+  .feature-title{font-size:clamp(37px,10vw,43px)}
+  .earlier-research{margin-top:35px}
+}
