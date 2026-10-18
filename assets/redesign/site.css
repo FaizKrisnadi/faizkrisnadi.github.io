@@ -198,3 +198,7 @@
   .masthead nav{gap:23px}
   .home-intro h1{font-size:clamp(46px,12.5vw,53px)}
 }
+
+/* Keep decorative flowers as typography rather than platform emoji. */
+.note-flower{font-size:0}
+.note-flower::before{content:"✳︎";font-family:Georgia,"Times New Roman",serif;font-size:33px;font-style:normal;font-weight:400;color:var(--rust)}
