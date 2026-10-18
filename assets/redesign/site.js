@@ -80,3 +80,12 @@ document.querySelectorAll('.motion-illustration').forEach(motif => {
 document.querySelectorAll('[data-replay]').forEach(button => button.addEventListener('click', () => {
   animateMotif(document.getElementById(button.dataset.replay), true);
 }));
+
+/* Keep the full service list on desktop; fold only the categories on phones. */
+const mobileServiceLayout = matchMedia('(max-width: 620px)');
+const serviceGroups = document.querySelectorAll('.service-audiences .service-group');
+function syncServiceGroups(event) {
+  serviceGroups.forEach(group => { group.open = !event.matches; });
+}
+syncServiceGroups(mobileServiceLayout);
+mobileServiceLayout.addEventListener('change', syncServiceGroups);
