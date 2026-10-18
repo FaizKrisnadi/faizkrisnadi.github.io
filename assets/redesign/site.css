@@ -247,3 +247,28 @@
 .report-coverage span{margin-right:10px;color:var(--muted)}
 .report-coverage a{color:var(--ink);text-decoration:underline;text-decoration-color:#b3b8c1;text-underline-offset:4px}
 .report-coverage a:hover{color:var(--rust)}
+
+/* News on About: bounded chronological list, independently scrollable. */
+.news-preview{align-items:start}
+.news-preview>h2{font-family:var(--sans);font-size:13px;line-height:1.4;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--rust);padding-top:9px}
+.news-scroll{max-height:430px;min-width:0;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-width:thin;scrollbar-color:#abb0ae transparent}
+.news-scroll:focus-visible{outline:2px solid var(--rust);outline-offset:4px}
+.news-scroll-inner{padding:0 16px 0 0}
+.news-scroll .news-year{display:block;margin:0}
+.news-scroll .news-year>h2{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.075em;text-transform:uppercase;color:var(--rust);border:0;padding:21px 0 12px}
+.news-scroll .news-year:not(:first-child)>h2{border-top:1px solid var(--line);margin-top:6px}
+.news-scroll .news-list li{grid-template-columns:105px minmax(0,1fr);gap:22px;padding:16px 0}
+.news-scroll .news-list li:first-child{border-top:0}
+.news-scroll .news-list p{font-size:14px;line-height:1.6}
+.elsewhere>.eyebrow{font-size:13px;font-weight:600;letter-spacing:.075em;color:var(--rust);line-height:1.4}
+@media(max-width:620px){
+ .news-preview{gap:18px}
+ .news-preview>h2{font-size:13px;padding-top:0}
+ .news-scroll{max-height:380px}
+ .news-scroll-inner{padding-right:13px}
+ .news-scroll .news-year>h2{font-size:12px;padding:17px 0 8px}
+ .news-scroll .news-list li{grid-template-columns:1fr;gap:5px;padding:15px 0}
+ .news-scroll .news-list time{font-size:11px}
+ .news-scroll .news-list p{font-size:14px;line-height:1.6}
+ .elsewhere>.eyebrow{font-size:13px}
+}
