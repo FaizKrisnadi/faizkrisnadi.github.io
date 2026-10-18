@@ -54,6 +54,26 @@ document.querySelector('.skip').addEventListener('click', event => {
   event.preventDefault(); document.getElementById('main').focus();
 });
 
+// Continuous landscape details, with an explicit pause control.
+const landscape = document.querySelector('.landscape');
+const landscapeToggle = document.querySelector('.landscape-toggle');
+if (landscape && landscapeToggle) {
+  const connectLandscape = () => {
+    const svg = landscape.contentDocument?.documentElement;
+    if (svg?.localName !== 'svg') return;
+    landscapeToggle.hidden = false;
+    svg.classList.toggle('paused', landscapeToggle.getAttribute('aria-pressed') === 'true');
+  };
+  landscape.addEventListener('load', connectLandscape);
+  connectLandscape();
+  landscapeToggle.addEventListener('click', () => {
+    const paused = landscapeToggle.getAttribute('aria-pressed') !== 'true';
+    landscapeToggle.setAttribute('aria-pressed', String(paused));
+    landscapeToggle.textContent = paused ? 'Resume illustration' : 'Pause illustration';
+    connectLandscape();
+  });
+}
+
 // Short, self-contained movement: play once on entry, or again by request.
 const visibleMotifs = new WeakMap();
 const playedMotifs = new WeakSet();

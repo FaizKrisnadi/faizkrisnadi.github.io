@@ -15,7 +15,16 @@
     .label{fill:#333b63;font-family:Georgia,'Times New Roman',serif;font-size:18px;letter-spacing:.15px}
     .arrow{stroke:#b85e45;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
     @media(max-width:620px){.label,.arrow{display:none}}
-    @media(prefers-reduced-motion:reduce){.wash{transition:none}}
+    .current{stroke-dasharray:30 50;animation:current 18s linear infinite}
+    .birds{animation:birds 7s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+    .leaves{animation:sway 6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+    .chart{animation:chart 5s ease-in-out infinite;stroke-dasharray:50;stroke-dashoffset:0}
+    @keyframes current{to{stroke-dashoffset:-160}}
+    @keyframes birds{50%{transform:translate(5px,-3px)}}
+    @keyframes sway{50%{transform:rotate(1.5deg)}}
+    @keyframes chart{50%{stroke-dashoffset:8}}
+    .paused *{animation-play-state:paused!important}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important}.wash{transition:none}}
   </style>
 
   <!-- The river is the shared ground, not a fourth destination. -->
@@ -23,12 +32,12 @@
     <path d="M32 192C119 176 179 204 259 193S378 158 442 176 511 215 594 202 709 172 766 188 861 219 967 196" class="line fine"/>
     <path d="M32 220C112 204 184 230 262 219S373 184 434 200 513 240 597 228 710 197 769 211 875 245 967 220" fill="#dde3d5" fill-opacity=".5"/>
     <path d="M32 220C112 204 184 230 262 219S373 184 434 200 513 240 597 228 710 197 769 211 875 245 967 220" class="line fine"/>
-    <path d="m74 204 31-2m49 10 23 1m133-14 24-6m67-5 20 3m166 24 29-2m109-18 22-1m100 24 32 5m55 0 30-3" class="line fine" opacity=".5"/>
+    <path d="M74 205C180 195 200 230 334 196S470 225 616 215 730 195 840 222 912 221 945 220" class="line fine current" opacity=".5"/>
     <path d="M53 174q15-7 26-4m227-16q17-6 29-3m374 16q13-5 23-2m190 6q17-6 28-2" class="line fine"/>
     <path d="m371 191 8-34 34-4 8 35m-47-8 43-4m-41-9 39-4" class="line paper"/>
     <path d="m376 163 2-20m36 17-2-20m-34 4 34-4" class="line fine"/>
     <path d="m56 178 1-12m-1 5-5-6m6 3 5-7m854 24 1-12m-1 5-5-6m6 3 5-7" class="line fine"/>
-    <path d="M416 59q6-6 12 0 6-6 12 0m249 7q5-5 10 0 5-5 10 0" class="line fine"/>
+    <path d="M416 59q6-6 12 0 6-6 12 0m249 7q5-5 10 0 5-5 10 0" class="line fine birds"/>
   </g>
 
   <a href="../../about.html" target="_top" class="destination" aria-label="About me" tabindex="0">
@@ -62,7 +71,7 @@
     <g class="line" aria-hidden="true">
       <path d="M459 184q33-10 74-3 67 11 123-3" class="fine"/>
       <path d="M480 180v-65m0 31-14-18m14 4 18-24"/>
-      <path d="M480 125c-23 6-41-8-36-25-14-15-1-38 16-35 7-21 35-20 42-1 20-3 35 17 24 33 4 17-15 29-32 22" class="sage"/>
+      <path d="M480 125c-23 6-41-8-36-25-14-15-1-38 16-35 7-21 35-20 42-1 20-3 35 17 24 33 4 17-15 29-32 22" class="sage leaves"/>
       <path d="m461 91 5 8m32-21 7 5m-52 25 8 2" class="fine"/>
       <!-- Four people bring different perspectives to the same table. -->
       <path d="M548 119c-9 0-12-15-5-20 8-6 17 0 16 9 0 7-4 11-11 11Z" class="paper"/>
@@ -98,7 +107,7 @@
       <path d="m807 83 39 23m-25-31 39 23m-54 0 42-24m-28 32 42-25" class="fine"/>
       <path d="M784 124h57v38h-57Zm4 4h49v30h-49Z" class="paper"/>
       <path d="M794 133v19h36m-32-2v-6m8 6v-12m8 12v-8m8 8v-18" class="fine"/>
-      <path d="m796 141 10-8 9 3 13-8" class="fine clay"/>
+      <path d="m796 141 10-8 9 3 13-8" class="fine clay chart"/>
       <path d="M854 176v-55h39v55" class="paper"/>
       <path d="m860 147 9-5 9 3 9-4v16l-9 4-9-3-9 5Zm9-5v16m9-13v16" class="fine"/>
       <path d="M858 164h32m-28 0-2 12m27-12 2 12m-8-38h8m-6-2v-5" class="fine"/>
