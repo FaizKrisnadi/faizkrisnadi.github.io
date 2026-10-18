@@ -241,3 +241,9 @@
   .feature-title{font-size:clamp(37px,10vw,43px)}
   .earlier-research{margin-top:35px}
 }
+
+/* Subtle external coverage line under the AidData report. */
+.research-entry .report-coverage{font-family:var(--sans);font-size:12px!important;line-height:1.6!important;color:var(--muted);margin:13px 0 0!important}
+.report-coverage span{margin-right:10px;color:var(--muted)}
+.report-coverage a{color:var(--ink);text-decoration:underline;text-decoration-color:#b3b8c1;text-underline-offset:4px}
+.report-coverage a:hover{color:var(--rust)}
