@@ -74,7 +74,7 @@ for (const page of pages) {
 
 writeFileSync(resolve(output, 'site.css'), readFileSync(resolve(source, 'style.css'), 'utf8').replaceAll("url('assets/", "url('"));
 writeFileSync(resolve(output, 'site.js'), readFileSync(resolve(source, 'script.js')));
-for (const name of ['home-video.js', 'home-video.css']) writeFileSync(resolve(output, name), readFileSync(resolve(source, name)));
+for (const name of ['home-video.js', 'home-video.css', 'conversation-photos.css']) writeFileSync(resolve(output, name), readFileSync(resolve(source, name)));
 writeFileSync(resolve(root, 'favicon.svg'), readFileSync(resolve(source, 'favicon.svg')));
 for (const name of ['landscape', 'migunani-motif', 'community-motif']) {
   let svg = readFileSync(resolve(source, `${name}.svg`), 'utf8');
