@@ -47,7 +47,7 @@
 .reading .story-photo img{height:auto;max-height:none;object-fit:contain}
 .recognition-with-photo{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:38px;align-items:center}
 .recognition-with-photo h2{font-size:32px}
-.recognition-with-photo img{width:100%;height:auto}
+.recognition-with-photo figure img{width:100%;height:auto}
 .recognition-with-photo figcaption{margin-top:10px}
 .site-footer .footer-email{font-size:11px;text-decoration:none;color:var(--muted)}
 .site-footer>div a,.site-footer button{font-size:11px}
