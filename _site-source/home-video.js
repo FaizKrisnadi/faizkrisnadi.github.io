@@ -68,6 +68,47 @@
   resume();
 })();
 
-(()=>{const video=document.getElementById('stitch-video'),button=document.getElementById('stitch-video-toggle');if(!video||!button)return;const reduced=matchMedia('(prefers-reduced-motion: reduce)');let paused=false;function sync(){if(reduced.matches||paused){video.pause();return}video.muted=true;video.playbackRate=0.8;video.play().catch(()=>{button.style.opacity='1';button.setAttribute('aria-label','Play stitching animation')})}button.addEventListener('click',()=>{paused=!video.paused;button.setAttribute('aria-pressed',String(paused));button.setAttribute('aria-label',paused?'Resume stitching animation':'Pause stitching animation');button.firstElementChild.textContent=paused?'▶':'Ⅱ';sync()});window.addEventListener('pageshow',()=>{paused=false;sync()});document.addEventListener('visibilitychange',()=>{if(!document.hidden)sync()});reduced.addEventListener('change',sync);sync()})();
+// Keep the source video in the rendered viewport for WebKit autoplay.
+(() => {
+  const video = document.getElementById('stitch-video');
+  const button = document.getElementById('stitch-video-toggle');
+  if (!video || !button) return;
+  let manuallyPaused = false;
+  let pending = false;
+  function update() {
+    button.setAttribute('aria-pressed', String(video.paused));
+    button.setAttribute('aria-label', video.paused ? 'Resume stitching animation' : 'Pause stitching animation');
+    button.firstElementChild.textContent = video.paused ? '▶' : 'Ⅱ';
+  }
+  function resume(reset = false) {
+    if (reset) manuallyPaused = false;
+    if (manuallyPaused || document.hidden || pending) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.playbackRate = 0.8;
+    pending = true;
+    video.play().catch(() => button.classList.add('needs-play')).finally(() => { pending = false; update(); });
+  }
+  button.addEventListener('click', () => {
+    manuallyPaused = !video.paused;
+    if (manuallyPaused) video.pause(); else resume();
+    update();
+  });
+  video.addEventListener('playing', () => { button.classList.remove('needs-play'); update(); });
+  video.addEventListener('pause', () => { update(); if (!manuallyPaused) resume(); });
+  for (const event of ['loadeddata', 'canplay', 'ended']) video.addEventListener(event, () => resume());
+  window.addEventListener('pageshow', () => resume(true));
+  window.addEventListener('hashchange', () => resume(true));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) resume(true); });
+  for (const event of ['pointerdown', 'touchstart', 'keydown']) document.addEventListener(event, e => {
+    if (!button.contains(e.target)) resume();
+  }, { passive: true });
+  new IntersectionObserver(entries => {
+    if (entries.some(entry => entry.isIntersecting)) resume(true);
+  }).observe(video.closest('.stitch-video'));
+  resume();
+})();
 
 (()=>{const v=document.getElementById('stitch-video'),canvas=document.getElementById('stitch-canvas');if(!v||!canvas)return;const ctx=canvas.getContext('2d',{willReadFrequently:true});canvas.width=640;canvas.height=360;function frame(){if(v.readyState>=2){ctx.clearRect(0,0,640,360);ctx.drawImage(v,0,0,640,360);const img=ctx.getImageData(0,0,640,360),d=img.data;for(let i=0;i<d.length;i+=4){const r=d[i],g=d[i+1],b=d[i+2],lum=.299*r+.587*g+.114*b;const chroma=Math.max(0,r-b);const strength=Math.max((170-lum)/45,(chroma-14)/25);d[i+3]=Math.round(Math.max(0,Math.min(1,strength))*255)}ctx.putImageData(img,0,0)}requestAnimationFrame(frame)}requestAnimationFrame(frame)})();
