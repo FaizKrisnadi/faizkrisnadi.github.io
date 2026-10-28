@@ -188,3 +188,17 @@
 .elsewhere{display:block}.elsewhere>.eyebrow{margin-bottom:28px}.elsewhere .coverage-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 28px}.elsewhere .coverage-grid a{display:block;min-width:0;text-decoration:none}.elsewhere .coverage-feature img,.elsewhere .coverage-giving img{display:block;width:100%;height:auto;aspect-ratio:1.58;object-fit:contain;object-position:center;background:#f3f3f0;border:8px solid #f3f3f0;margin-bottom:16px}.elsewhere .coverage-grid h2{font-size:clamp(24px,2.6vw,32px)}@media(max-width:620px){.elsewhere .coverage-grid{grid-template-columns:1fr;gap:32px}.elsewhere .coverage-feature img{aspect-ratio:auto}}
 
 .news-scroll{max-height:420px;overflow-y:auto;overscroll-behavior:contain;padding:0 12px 0 0;scrollbar-width:thin;scrollbar-color:#a8ada8 #e8ebe4}.news-scroll:focus-visible{outline:2px solid var(--rust);outline-offset:5px}.elsewhere .coverage-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 22px}.elsewhere .coverage-grid h2{font-size:clamp(18px,1.7vw,23px);line-height:1.2}.elsewhere .coverage-feature img{margin-bottom:10px}@media(max-width:620px){.news-scroll{max-height:340px}.elsewhere .coverage-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}.elsewhere .coverage-grid h2{font-size:17px}.elsewhere .coverage-feature img{aspect-ratio:1.58;object-fit:contain;border-width:4px}}
+
+@media(max-width:620px){.home-intro .portrait{justify-self:center;margin-left:0;margin-right:0}}
+.story-lead{display:flex;flex-direction:column;gap:24px}.story-lead .story-opening{max-width:760px}.story-lead .community-art{align-self:center}
+
+
+/* Upright lamp beside an indented reading note. */
+.home-bottom{padding-top:100px;padding-bottom:80px}
+.home-bottom .margin-note{position:relative;isolation:isolate;border:0;max-width:760px;width:100%;padding:24px 0 0 110px}
+.feature-lamp{position:absolute;z-index:-1;pointer-events:none;left:0;top:0;width:760px;height:300px;max-width:none}
+.feature-copy{position:relative;border-left:1px solid var(--line);padding:20px 0 12px 28px}
+
+.feature-copy p{font-family:var(--serif);font-size:25px;line-height:1.48;margin-bottom:24px}
+.feature-copy .text-link{font-size:13px}
+@media(max-width:620px){.home-bottom{padding-top:76px;padding-bottom:56px}.home-bottom .margin-note{padding:32px 0 0 65px}.feature-lamp{width:560px;height:auto;left:-8px;top:0}.feature-copy{padding:15px 0 8px 18px}.feature-copy p{font-size:22px;line-height:1.48;margin-bottom:20px}}

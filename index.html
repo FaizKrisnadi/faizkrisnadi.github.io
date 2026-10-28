@@ -9,10 +9,10 @@
   <link rel="icon" href="favicon.svg?v=lamp-1" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/redesign/brand.css?v=2">
   <link rel="preload" href="assets/redesign/newsreader.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="assets/redesign/site.css?v=ff9bb620a7">
-  <script src="assets/redesign/site.js?v=ff9bb620a7" defer></script>
-  <link rel="stylesheet" href="assets/redesign/home-video.css?v=1">
-  <script src="/assets/redesign/home-video.js?v=1" defer></script>
+  <link rel="stylesheet" href="assets/redesign/site.css?v=957dfe8fb2">
+  <script src="assets/redesign/site.js?v=957dfe8fb2" defer></script>
+  <link rel="stylesheet" href="assets/redesign/home-video.css?v=stitch5">
+  <script src="/assets/redesign/home-video.js?v=stitch4" defer></script>
   <link rel="stylesheet" href="/assets/redesign/conversation-photos.css?v=1">
   <link rel="stylesheet" href="/assets/redesign/footer.css?v=20261022">
   <link rel="canonical" href="https://faizkrisnadi.com/">
@@ -39,7 +39,7 @@
         <div class="home-intro">
           <div class="intro-copy">
             <h1 id="home-title">I’ve always wanted to know <em>why</em>.</h1>
-            <p class="intro-deck">I’m a policy researcher working on investment, sustainability, and political economy in Southeast Asia.</p>
+            <p class="intro-deck">The choices we make, the patterns they create, and the people they reach.</p>
           </div>
           <figure class="portrait">
             <div class="photo-mat"><img src="assets/redesign/portrait.jpg" alt="Faiz smiling on a boat, with a lake and mountains behind him" width="1368" height="1824"></div>
@@ -47,27 +47,29 @@
         </div>
 
         <section class="ways-in" aria-label="Explore the website">
-          <div class="video-landscape">
-            <video id="landscape-video" autoplay muted loop playsinline preload="auto" poster="/assets/redesign/video/poster.png?v=2" aria-label="Animated drawing of research, community, and public tools">
-              <source src="/assets/redesign/video/landscape.webm?v=2" type="video/webm">
-              <source src="/assets/redesign/video/landscape.mp4?v=2" type="video/mp4">
-            </video>
-            <img class="video-still" src="/assets/redesign/video/poster.png?v=2" alt="A person writing, people gathered beneath a tree, and a research workshop">
-            <button type="button" id="video-toggle" aria-label="Pause illustration" aria-pressed="false" title="Pause illustration"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg></button>
-          </div>
-          <div class="explore-links" aria-label="Explore the website">
-            <a href="about.html"><span>About me</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
-            <a href="migunani.html"><span>Migunani</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
-            <a href="research.html"><span>Research &amp; tools</span><svg class="nav-arrow" viewBox="0 0 24 16" aria-hidden="true"><path d="M2 8h18m-6-6 6 6-6 6"/></svg></a>
-          </div>
+          <div class="stitch-video"><canvas id="stitch-canvas" aria-hidden="true"></canvas><video id="stitch-video" autoplay muted loop playsinline preload="auto" aria-label="Needle slowly stitching thread across fabric"><source src="/assets/redesign/video/stitch-reference.mp4" type="video/mp4"></video><button id="stitch-video-toggle" type="button" aria-label="Pause stitching animation" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button></div>
+          <p class="stitch-invitation">Following those questions has taken me from <a href="about.html">where I started</a> to the idea of <a href="migunani.html">being useful to others</a>—and into <a href="research.html">research and tools</a> that bring the connections into view.</p>
         </section>
 
         <section class="home-bottom" aria-label="A recent feature">
           <aside class="margin-note">
-            <img class="note-lamp" src="/assets/redesign/desk-lamp.svg?v=1" alt="" width="36" height="36" aria-hidden="true">
-            <p class="eyebrow">In good company</p>
+            <svg class="feature-lamp" viewBox="0 0 760 300" aria-hidden="true" focusable="false">
+              <defs>
+                <radialGradient id="lamp-beam" gradientUnits="userSpaceOnUse" cx="75" cy="43" r="620"><stop stop-color="#f0bf68" stop-opacity=".42"/><stop offset=".25" stop-color="#efd09a" stop-opacity=".24"/><stop offset=".7" stop-color="#efd09a" stop-opacity=".08"/><stop offset="1" stop-color="#efd09a" stop-opacity="0"/></radialGradient>
+                <filter id="lamp-soft" x="-10%" y="-20%" width="120%" height="140%"><feGaussianBlur stdDeviation="5"/></filter>
+              </defs>
+              <path d="M76 30 Q310 20 720 24 L680 300 Q220 280 68 53Z" fill="url(#lamp-beam)" filter="url(#lamp-soft)"/>
+              <g fill="none" stroke="#b14b33" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 96h44M17 95q15-12 30 0M32 88V53l19-28"/><circle cx="32" cy="53" r="3" fill="#f8f7ef"/>
+                <path d="M48 23Q50 14 59 19L79 29 67 56 46 38Q41 31 48 23Z" fill="#f8f7ef"/>
+                <path d="M79 29 67 56" stroke="#d4a15b"/>
+              </g>
+              <ellipse cx="71" cy="42" rx="3.5" ry="7" transform="rotate(24 71 42)" fill="#f5d591"/>
+            </svg>
+            <div class="feature-copy">
             <p>NUS Giving recently told part of my story, from scholarship opportunities to research and public-interest projects.</p>
             <a class="text-link" href="https://www.nus.edu.sg/nusgiving/news-article/2026/08/14/inspired-for-regional-impact">Inspired for Regional Impact ↗</a>
+            </div>
           </aside>
         </section>
       </section>
@@ -154,14 +156,23 @@
       </section>
 
       <section class="page story-page" data-page="migunani" aria-labelledby="story-title" hidden>
+          <div class="video-landscape">
+            <video id="landscape-video" autoplay muted loop playsinline preload="auto" poster="/assets/redesign/video/poster.png?v=2" aria-label="Animated drawing of research, community, and public tools">
+              <source src="/assets/redesign/video/landscape.webm?v=2" type="video/webm">
+              <source src="/assets/redesign/video/landscape.mp4?v=2" type="video/mp4">
+            </video>
+            <img class="video-still" src="/assets/redesign/video/poster.png?v=2" alt="A person writing, people gathered beneath a tree, and a research workshop">
+            <button type="button" id="video-toggle" aria-label="Pause illustration" aria-pressed="false" title="Pause illustration"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M7 5v10m6-10v10"/></svg></button>
+          </div>
+
         <header class="page-heading"><p class="eyebrow">A Javanese word: to be useful to others</p><h1 id="story-title">Migunani<span class="title-period">.</span></h1><p class="page-deck">Two sayings have lived rent-free in my head.</p></header>
         <div class="sayings">
           <blockquote><p>Urip iku urup.</p><footer>A life should bring light to others.</footer></blockquote>
-          <div class="sayings-art"><object class="saying-illustration motion-illustration" data="assets/redesign/migunani-motif.svg?v=ff9bb620a7" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object></div>
+          <div class="sayings-art"><object class="saying-illustration motion-illustration" data="assets/redesign/migunani-motif.svg?v=957dfe8fb2" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object></div>
           <blockquote><p>Ngelmu iku kalakone<br>kanthi laku.</p><footer>Knowledge has to be lived, not just learned.</footer></blockquote>
         </div>
-        <div class="story-lead"><div class="saying-art community-art"><object id="community-illustration" class="community-illustration motion-illustration" data="assets/redesign/community-motif.svg?v=ff9bb620a7" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object><button type="button" class="replay-motion" data-replay="community-illustration" aria-label="Replay community illustration" title="Replay illustration">↻</button></div>
-        <div class="story-opening reading"><p>I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p><p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p></div></div>
+        <div class="story-lead">
+        <div class="story-opening reading"><p>I’ve always wanted to be part of work that matters to other people. I also want to do that work well, and see how far I can take it.</p><p>That has taken me through community work, research, and policy, often alongside people who have taught me a great deal. I’m proud of what I’ve done so far, grateful for who made it possible, and keen to put what I’ve learned to use in bigger ways.</p></div><div class="saying-art community-art"><object id="community-illustration" class="community-illustration motion-illustration" data="assets/redesign/community-motif.svg?v=957dfe8fb2" type="image/svg+xml" aria-hidden="true" tabindex="-1"></object><button type="button" class="replay-motion" data-replay="community-illustration" aria-label="Replay community illustration" title="Replay illustration">↻</button></div></div>
         <article class="story-chapter"><div class="chapter-side"><span>01</span><p>Before there<br>was a plan</p></div><div class="reading"><h2>Starting with people.</h2><p>I was a natural science student in high school, but much of my time outside class went into organisations, volunteering, and youth programmes.</p><p>Through Mubaligh Hijrah, I spent time in two rural communities, one in Central Java and another in Kulon Progo. We worked with local leaders on activities for residents. Through <em>bakti sosial</em> and similar initiatives, we also collected money and other resources for people who needed them.</p><p>None of this felt like a career plan at the time. I simply liked being involved, trying things that had not been done before, and taking responsibility when something needed to get done.</p></div></article>
         <article class="story-chapter"><div class="chapter-side"><span>02</span><p>Learning to build<br>with others</p></div><div class="reading"><h2>Making room for a conversation.</h2><p>At Universitas Muhammadiyah Yogyakarta, I moved between student government, research, external relations, communications, teaching support, and event organising. During the pandemic, I founded Ruang Virtual and worked on its partnerships, content, and communications.</p><p>I enjoyed the work behind an event as much as the event itself: contacting people, finding the right partners, and making sure the whole thing actually happened. Years later, I was still doing versions of that work through Coffee Chat on Energy Transition and NariTalk: Policy for Sustainable Development.</p></div></article>
 
