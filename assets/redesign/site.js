@@ -100,5 +100,3 @@ document.querySelectorAll('.motion-illustration').forEach(motif => {
 document.querySelectorAll('[data-replay]').forEach(button => button.addEventListener('click', () => {
   animateMotif(document.getElementById(button.dataset.replay), true);
 }));
-
-// Service categories use native details/summary on every screen size.

@@ -28,7 +28,7 @@ const newsItems = entries => `<ol class="news-list">${entries.map(item => `<li><
 const years = [...new Set(news.map(item => item.date.slice(0, 4)))];
 const newsArchive = years.map(year => `<section class="news-year" aria-labelledby="year-${year}"><h2 id="year-${year}">${year}</h2>${newsItems(news.filter(item => item.date.startsWith(year)))}</section>`).join('\n');
 let template = translateLinks(readFileSync(resolve(source, 'index.html'), 'utf8')
-  .replace('<!-- NEWS_PREVIEW -->', newsItems(news.slice(0, 4)))
+  .replace('<!-- NEWS_PREVIEW -->', newsItems(news))
   .replace('<!-- NEWS_ARCHIVE -->', newsArchive))
   .replaceAll('src="assets/', 'src="assets/redesign/')
   .replace('href="style.css"', `href="assets/redesign/site.css?v=${assetVersion}"`)
