@@ -192,6 +192,9 @@
 @media(max-width:620px){.home-intro .portrait{justify-self:center;margin-left:0;margin-right:0}}
 .story-lead{display:flex;flex-direction:column;gap:24px}.story-lead .story-opening{max-width:760px}.story-lead .community-art{align-self:center}
 
+.news-scroll{background:#e9ebe3;padding:20px 24px;border:1px solid #d9ded5}
+@media(max-width:620px){.news-scroll{padding:16px 18px}}
+
 
 /* Upright lamp beside an indented reading note. */
 .home-bottom{padding-top:100px;padding-bottom:80px}
