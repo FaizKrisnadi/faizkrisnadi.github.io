@@ -42,7 +42,7 @@ const pages = [
   {file: 'about.html', page: 'about', title: 'About', description: 'About Faiz Krisnadi: policy research, education, public projects, and selected coverage.'},
   {file: 'migunani.html', page: 'migunani', title: 'Migunani', description: 'Community work, research, and policy: the people and experiences behind Faiz Krisnadi’s work.'},
   {file: 'research.html', page: 'work', panel: 'research', title: 'Research', description: 'Policy reports, peer-reviewed articles, public writing, and presentations by Faiz Krisnadi.'},
-  {file: 'projects.html', page: 'work', panel: 'projects', title: 'Projects', description: 'Public maps and tools by Faiz Krisnadi, including Peta Banjir Indonesia and Paper to Power.'},
+  {file: 'projects.html', page: 'work', panel: 'projects', title: 'Projects', description: 'Public maps and tools by Faiz Krisnadi, including Flood Explorer, Paper to Power, and Galaxy of AI.'},
   {file: 'cv.html', page: 'work', panel: 'cv', title: 'CV', description: 'Download Faiz Krisnadi’s academic CV or professional CV.'},
   {file: 'services.html', page: 'work', panel: 'services', title: 'Services', description: 'Mentoring, talks, workshops, and policy research support from Faiz Krisnadi.'},
   {file: 'news.html', page: 'news', title: 'News', description: 'Updates on Faiz Krisnadi’s research, publications, projects, and activities.'},
