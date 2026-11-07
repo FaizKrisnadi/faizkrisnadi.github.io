@@ -66,7 +66,7 @@ for (const page of pages) {
   html = html.replace(/(<h1 id="work-title">)[^<]+/, `$1${workTitle}`)
     .replace(/(<p class="page-deck" id="work-description">)[^<]+/, `$1${workDescription}`);
   const canonical = `https://faizkrisnadi.com/${page.file === 'index.html' ? '' : page.file}`;
-  const metadata = `  <link rel="canonical" href="${canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:title" content="Faiz Krisnadi — ${page.title}">\n  <meta property="og:description" content="${page.description}">\n  <meta property="og:url" content="${canonical}">\n  <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait.jpg">\n`;
+  const metadata = `  <link rel="canonical" href="${canonical}">\n  <meta property="og:type" content="website">\n  <meta property="og:title" content="Faiz Krisnadi — ${page.title}">\n  <meta property="og:description" content="${page.description}">\n  <meta property="og:url" content="${canonical}">\n  <meta property="og:image" content="https://faizkrisnadi.com/assets/redesign/portrait-20261107.jpg">\n`;
   html = html.replace('</head>', `${metadata}</head>`);
   if (page.page !== 'home') html = html.replace(/(<video id="landscape-video"[^>]*)(>)/, (_, tag, end) => tag.replace(' autoplay', '').replace('preload="auto"', 'preload="none"') + end);
   writeFileSync(resolve(root, page.file), html);
